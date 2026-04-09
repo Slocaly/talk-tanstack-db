@@ -21,4 +21,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      // Default API port is 3001 (apps/api/src/main.ts). Override with API_PORT=...
+      '/api': {
+        target: `http://localhost:${process.env.API_PORT ?? '3001'}`,
+        changeOrigin: true,
+      },
+    },
+  },
 })

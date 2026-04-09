@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { Link, useParams } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { getRecipe, listIngredients, isRecipeMakable } from '@/mocks/api'
+import { getRecipe, listIngredients, isRecipeMakable } from '@/lib/api'
 import { queryKeys } from '@/lib/queryKeys'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'

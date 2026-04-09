@@ -25,7 +25,7 @@ export function NotFoundPage() {
       <CardContent className="flex flex-col gap-3">
         <p className="text-muted-foreground">Erreur 404 — chemin inconnu.</p>
         <Button asChild>
-          <Link to="/">Retour au village</Link>
+          <Link to="/tsq">Retour au village</Link>
         </Button>
       </CardContent>
     </Card>

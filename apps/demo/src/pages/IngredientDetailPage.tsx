@@ -16,6 +16,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { IngredientMap } from '@/components/map/IngredientMap'
 import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
 import type { Ingredient } from '@/types/domain'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 export type IngredientDetailPageProps = {
   id: string | undefined
@@ -23,6 +24,9 @@ export type IngredientDetailPageProps = {
 }
 
 export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientDetailPageProps) {
+  const prefix = useAppPathPrefix()
+  const ingredientsListTo = prefix === '/tsdb' ? '/tsdb/ingredients' : '/tsq/ingredients'
+
   useEffect(() => {
     const name = query.data?.name
     if (name) {
@@ -73,7 +77,7 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
         </CardHeader>
         <CardContent>
           <Button asChild variant="secondary">
-            <Link to="/ingredients">Retour à la liste</Link>
+            <Link to={ingredientsListTo}>Retour à la liste</Link>
           </Button>
         </CardContent>
       </Card>
@@ -87,7 +91,7 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <Button asChild variant="outline" size="sm" className="mb-3">
-            <Link to="/ingredients">← Ingrédients</Link>
+            <Link to={ingredientsListTo}>← Ingrédients</Link>
           </Button>
           <h1 className="text-4xl text-foreground">{ing.name}</h1>
           <Badge className="mt-2" variant="secondary">

@@ -1,6 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { DashboardPageQueryProvider } from '@/pages/providers/DashboardPageQueryProvider'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  component: DashboardPageQueryProvider,
+  beforeLoad: () => {
+    throw redirect({ to: '/tsq' })
+  },
 })

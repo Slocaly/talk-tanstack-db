@@ -5,7 +5,7 @@ import { queryKeys } from '@/lib/queryKeys'
 import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
 
 export function IngredientDetailPageQueryProvider() {
-  const { id } = useParams({ from: '/ingredients/$id' })
+  const { id } = useParams({ strict: false })
   const ingredientQuery = useQuery({
     queryKey: queryKeys.ingredient(id ?? ''),
     queryFn: () => getIngredient(id!),

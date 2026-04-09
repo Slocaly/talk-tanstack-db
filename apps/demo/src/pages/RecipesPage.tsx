@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { listIngredients, listRecipes, isRecipeMakable } from '@/lib/api'
-import { queryKeys } from '@/lib/queryKeys'
+import type { UseQueryResult } from '@tanstack/react-query'
+import { isRecipeMakable } from '@/lib/api'
+import type { Ingredient, Recipe } from '@/types/domain'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -16,19 +16,14 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export function RecipesPage() {
+export type RecipesPageProps = {
+  recipesQuery: UseQueryResult<Recipe[], Error>
+  ingredientsQuery: UseQueryResult<Ingredient[], Error>
+}
+
+export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredientsQ }: RecipesPageProps) {
   const [makableOnly, setMakableOnly] = useState(false)
   const [search, setSearch] = useState('')
-
-  const recipesQ = useQuery({
-    queryKey: queryKeys.recipes,
-    queryFn: listRecipes,
-  })
-
-  const ingredientsQ = useQuery({
-    queryKey: queryKeys.ingredients,
-    queryFn: listIngredients,
-  })
 
   useEffect(() => {
     document.title = 'Recettes — Stock du village gaulois'

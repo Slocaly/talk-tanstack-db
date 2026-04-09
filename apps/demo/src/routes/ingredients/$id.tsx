@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
+import { IngredientDetailPageQueryProvider } from '@/pages/providers/IngredientDetailPageQueryProvider'
 
 export const Route = createFileRoute('/ingredients/$id')({
-  component: IngredientDetailPage,
+  component: IngredientDetailPageQueryProvider,
 })

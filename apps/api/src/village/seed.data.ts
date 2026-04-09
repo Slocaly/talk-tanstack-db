@@ -1,4 +1,4 @@
-import type { Ingredient, Recipe } from '@/types/domain'
+import type { Ingredient, Recipe } from './village.types';
 
 export const seedIngredients: Ingredient[] = [
   {
@@ -133,7 +133,7 @@ export const seedIngredients: Ingredient[] = [
     lng: -4.738,
     category: 'viande',
   },
-]
+];
 
 export const seedRecipes: Recipe[] = [
   {
@@ -169,7 +169,8 @@ export const seedRecipes: Recipe[] = [
   {
     id: 'banquet-chef',
     name: 'Banquet du chef (menu complet)',
-    description: 'Réservé aux grandes victoires — et aux invités qui supportent le ton du chef.',
+    description:
+      'Réservé aux grandes victoires — et aux invités qui supportent le ton du chef.',
     ingredients: [
       { ingredientId: 'sanglier', amount: 8 },
       { ingredientId: 'hydromel', amount: 2 },
@@ -187,4 +188,4 @@ export const seedRecipes: Recipe[] = [
       { ingredientId: 'pain', amount: 1 },
     ],
   },
-]
+];

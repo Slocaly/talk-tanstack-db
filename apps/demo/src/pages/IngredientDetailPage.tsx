@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from '@tanstack/react-router'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { getIngredient, updateIngredientQuantity } from '@/mocks/api'
+import { getIngredient, updateIngredientQuantity } from '@/lib/api'
 import { queryKeys } from '@/lib/queryKeys'
 import { categoryLabels } from '@/lib/categoryLabels'
 import { Badge } from '@/components/ui/badge'
@@ -38,6 +38,7 @@ function AdjustStockCard({
         queryKey: queryKeys.ingredient(ingredientId),
       })
       void queryClient.invalidateQueries({ queryKey: queryKeys.dashboard })
+      void queryClient.invalidateQueries({ queryKey: queryKeys.recipes })
     },
   })
 
@@ -52,8 +53,7 @@ function AdjustStockCard({
       <CardHeader>
         <CardTitle>Ajuster le stock</CardTitle>
         <CardDescription>
-          Mise à jour locale (données fictives) — invalide le tableau de bord et
-          les recettes.
+          Enregistrée sur l’API — met à jour le tableau de bord et les recettes.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

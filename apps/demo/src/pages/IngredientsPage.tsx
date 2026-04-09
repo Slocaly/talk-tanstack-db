@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { useQuery } from '@tanstack/react-query'
-import { listIngredients } from '@/mocks/api'
+import { listIngredients } from '@/lib/api'
 import { queryKeys } from '@/lib/queryKeys'
 import type { IngredientCategory } from '@/types/domain'
 import { categoryLabels } from '@/lib/categoryLabels'

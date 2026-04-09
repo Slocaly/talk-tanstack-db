@@ -1,111 +1,425 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+:root {
+  --radius: 0.75rem;
+  --background: #faf6e8;
+  --foreground: #1a1a1a;
+  --card: #fff9ec;
+  --card-foreground: #1a1a1a;
+  --popover: #fff9ec;
+  --popover-foreground: #1a1a1a;
+  --primary: #1e5c3a;
+  --primary-foreground: #faf6e8;
+  --secondary: #4a90c2;
+  --secondary-foreground: #0f1729;
+  --muted: #ebe4d4;
+  --muted-foreground: #4a4538;
+  --accent: #d4a84b;
+  --accent-foreground: #1a1a1a;
+  --destructive: #c41e3a;
+  --border: #1a1a1a;
+  --input: #1a1a1a;
+  --ring: #2d7a4d;
+  --font-display: "Bangers", system-ui, sans-serif;
+  --font-body: "Comic Neue", system-ui, sans-serif;
+  /* Ornements « bande dessinée » */
+  --bd-ink: #1a1a1a;
+  --bd-paper-shine: rgba(255, 252, 240, 0.7);
+  --bd-paper-shade: rgba(0, 0, 0, 0.08);
+  --bd-gold-pop: rgba(212, 168, 75, 0.45);
+  --bd-radius-wobble: 6px 16px 10px 14px / 14px 9px 16px 8px;
+}
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.45;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
   }
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
+/* Astérix : ciel + trait d’encre + zone parchemin (comme une case de BD) */
+.app-frame {
+  position: relative;
+  background:
+    linear-gradient(180deg, #faf6e8 0%, #f4ead8 100%) 0 46px / 100%
+      calc(100% - 46px) no-repeat,
+    repeating-linear-gradient(
+        90deg,
+        var(--bd-ink) 0 3px,
+        transparent 3px 10px
+      )
+      0 41px / 100% 5px no-repeat,
+    linear-gradient(180deg, #1a1a1a, #1a1a1a) 0 40px / 100% 3px no-repeat,
+    linear-gradient(180deg, #87ceeb 0%, #b8dff7 100%) 0 0 / 100% 40px
+      no-repeat;
+  border-inline: 4px solid var(--bd-ink);
+  box-shadow:
+    inset 3px 0 0 rgba(255, 255, 255, 0.25),
+    inset -3px 0 0 rgba(0, 0, 0, 0.04),
+    5px 5px 0 var(--bd-ink);
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* En-tête : motif « papier quadrillé » léger + bordure couture */
+.bd-comic-header {
+  position: relative;
+  border-bottom: 3px solid var(--bd-ink) !important;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.35) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.35) 1px,
+      transparent 1px
+    );
+  background-size: 100% 12px, 12px 100%;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+.bd-comic-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--bd-ink) 0 4px,
+    transparent 4px 8px
+  );
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Pastilles de navigation façon bulle / étiquette BD */
+.bd-comic-pill {
+  position: relative;
+  border-radius: var(--bd-radius-wobble) !important;
+  border-width: 2px !important;
+  border-color: var(--bd-ink) !important;
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    inset -2px -2px 0 var(--bd-paper-shade),
+    2px 2px 0 var(--bd-ink),
+    4px 4px 0 var(--bd-gold-pop) !important;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.bd-comic-pill:hover {
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    inset -2px -2px 0 var(--bd-paper-shade),
+    1px 1px 0 var(--bd-ink),
+    2px 2px 0 var(--bd-gold-pop) !important;
+}
+
+/* Titre du site : relief encre + halo parchemin */
+.bd-comic-wordmark {
+  text-shadow:
+    1px 1px 0 rgba(255, 255, 255, 0.9),
+    2px 2px 0 rgba(26, 26, 26, 0.15),
+    3px 3px 0 var(--bd-ink);
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.5));
+}
+
+/* Pied de page : double filet + points de reliure */
+.bd-comic-footer {
+  border-top: 3px double var(--bd-ink) !important;
+  border-bottom: none !important;
+  background-image: radial-gradient(
+    var(--bd-ink) 1px,
+    transparent 1px
+  );
+  background-size: 10px 10px;
+  background-position: center top 2px;
+  background-repeat: repeat-x;
+}
+
+/* Cartes : trame points (halftone léger), bords irréguliers, double relief */
+[data-slot="card"] {
+  position: relative;
+  border-radius: var(--bd-radius-wobble) !important;
+  border-width: 3px !important;
+  border-color: var(--bd-ink) !important;
+  background-image: radial-gradient(
+    rgba(26, 26, 26, 0.055) 1.2px,
+    transparent 1.3px
+  );
+  background-size: 5px 5px;
+  box-shadow:
+    inset 0 0 0 1px var(--bd-paper-shine),
+    inset 3px 4px 0 rgba(255, 255, 255, 0.35),
+    inset -3px -4px 0 var(--bd-paper-shade),
+    4px 4px 0 var(--bd-ink),
+    7px 7px 0 var(--bd-gold-pop);
+}
+
+[data-slot="card"]::before,
+[data-slot="card"]::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--bd-ink);
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-slot="card"]::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 2px 0 0 0;
+}
+
+[data-slot="card"]::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 2px 0;
+}
+
+/* Boutons (hors lien / ghost) : même esprit que les cases */
+[data-slot="button"]:not([data-variant="link"]):not([data-variant="ghost"]) {
+  border-radius: var(--bd-radius-wobble) !important;
+  border-width: 2px !important;
+  border-color: var(--bd-ink) !important;
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    inset -2px -3px 0 var(--bd-paper-shade),
+    2px 2px 0 var(--bd-ink),
+    4px 4px 0 var(--bd-gold-pop);
+}
+
+[data-slot="button"]:not([data-variant="link"]):not([data-variant="ghost"]):hover {
+  transform: translate(1px, 1px);
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    inset -2px -3px 0 var(--bd-paper-shade),
+    1px 1px 0 var(--bd-ink),
+    2px 2px 0 var(--bd-gold-pop);
+}
+
+[data-slot="button"]:not([data-variant="link"]):not([data-variant="ghost"]):active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset 3px 3px 0 var(--bd-paper-shade),
+    0 0 0 var(--bd-ink);
+}
+
+[data-slot="button"][data-variant="link"],
+[data-slot="button"][data-variant="ghost"] {
+  border-width: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0.375rem !important;
+}
+
+[data-slot="button"][data-variant="ghost"]:hover {
+  box-shadow: inset 0 0 0 2px var(--bd-ink) !important;
+}
+
+/* Champs : contour pointillé façon crayonné */
+[data-slot="input"] {
+  border-style: dashed !important;
+  border-width: 2px !important;
+  border-radius: var(--bd-radius-wobble) !important;
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    inset -1px -2px 0 var(--bd-paper-shade);
+}
+
+[data-slot="input"]:focus-visible {
+  border-style: solid !important;
+}
+
+/* Listes déroulantes */
+[data-slot="select-trigger"] {
+  border-style: dashed !important;
+  border-width: 2px !important;
+  border-radius: var(--bd-radius-wobble) !important;
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    2px 2px 0 rgba(26, 26, 26, 0.12);
+}
+
+/* Badges : forme légèrement irrégulière */
+[data-slot="badge"] {
+  border-width: 2px !important;
+  border-color: var(--bd-ink) !important;
+  border-radius: 999px 10px 999px 10px / 10px 999px 10px 999px !important;
+  box-shadow: 1px 1px 0 var(--bd-ink);
+}
+
+/* Tableaux : grille BD */
+[data-slot="table-container"] {
+  border-radius: var(--bd-radius-wobble);
+  border: 3px solid var(--bd-ink);
+  box-shadow: 4px 4px 0 rgba(26, 26, 26, 0.12);
+  overflow: hidden;
+}
+
+[data-slot="table-header"] {
+  background: linear-gradient(
+    180deg,
+    rgba(212, 168, 75, 0.35) 0%,
+    rgba(212, 168, 75, 0.12) 100%
+  );
+  border-bottom: 2px solid var(--bd-ink);
+}
+
+[data-slot="separator"][data-orientation="horizontal"] {
+  height: 4px !important;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--bd-ink) 0 4px,
+    transparent 4px 8px
+  ) !important;
+  opacity: 0.35;
+}
+
+[data-slot="separator"][data-orientation="vertical"] {
+  width: 4px !important;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--bd-ink) 0 4px,
+    transparent 4px 8px
+  ) !important;
+  opacity: 0.35;
+}
+
+.leaflet-container {
+  font-family: var(--font-body);
+  border: 3px solid var(--bd-ink);
+  border-radius: var(--bd-radius-wobble);
+  overflow: hidden;
+  box-shadow:
+    inset 2px 2px 0 var(--bd-paper-shine),
+    4px 4px 0 var(--bd-ink),
+    7px 7px 0 var(--bd-gold-pop);
+}
+
+.ingredient-map-marker {
+  background: none !important;
+  border: none !important;
+}
+
+.ingredient-map-marker .map-pin {
+  display: block;
+  font-size: 1.75rem;
+  line-height: 1;
+  filter: drop-shadow(2px 2px 0 #1a1a1a);
+}
+
+[data-slot="card-title"] {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+}
+
+/* Chargement façon BD : parchemin hachuré, pas de pulse agressif */
+[data-slot="skeleton"] {
+  position: relative;
+  overflow: hidden;
+  border: 2px dashed rgba(26, 26, 26, 0.18);
+  border-radius: var(--bd-radius-wobble);
+  background-color: var(--muted);
+  background-image: repeating-linear-gradient(
+    -42deg,
+    transparent,
+    transparent 5px,
+    rgba(26, 26, 26, 0.045) 5px,
+    rgba(26, 26, 26, 0.045) 6px
+  );
+  box-shadow: inset 1px 1px 0 rgba(255, 252, 240, 0.5);
+}
+
+[data-slot="skeleton"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    102deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(255, 252, 240, 0.22) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  background-size: 180% 100%;
+  animation: bd-skeleton-wash 2.75s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes bd-skeleton-wash {
+  0%,
+  100% {
+    background-position: 100% 0;
+    opacity: 0.65;
+  }
+  50% {
+    background-position: 0% 0;
+    opacity: 1;
   }
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="skeleton"]::after {
+    animation: none;
+    opacity: 0.85;
+    background-position: 50% 0;
   }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }

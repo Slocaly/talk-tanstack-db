@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { listIngredients } from '@/lib/api'
-import { queryKeys } from '@/lib/queryKeys'
-import type { IngredientCategory } from '@/types/domain'
+import type { UseQueryResult } from '@tanstack/react-query'
+import type { Ingredient, IngredientCategory } from '@/types/domain'
 import { categoryLabels } from '@/lib/categoryLabels'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -45,16 +43,17 @@ function daysUntil(dateIso: string): number {
   return Math.ceil((d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
 }
 
-export function IngredientsPage() {
+export type IngredientsPageProps = {
+  ingredientsQuery: UseQueryResult<Ingredient[], Error>
+}
+
+export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<IngredientCategory | 'tous'>('tous')
   const [expiringSoon, setExpiringSoon] = useState(false)
   const [inStockOnly, setInStockOnly] = useState(false)
 
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: queryKeys.ingredients,
-    queryFn: listIngredients,
-  })
+  const { data, isPending, isError, error, refetch } = ingredientsQuery
 
   useEffect(() => {
     document.title = 'Ingrédients — Stock du village gaulois'

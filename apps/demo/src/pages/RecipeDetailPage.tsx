@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react'
-import { Link, useParams } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { getRecipe, listIngredients, isRecipeMakable } from '@/lib/api'
-import { queryKeys } from '@/lib/queryKeys'
+import { Link } from '@tanstack/react-router'
+import type { UseQueryResult } from '@tanstack/react-query'
+import { isRecipeMakable } from '@/lib/api'
+import type { Ingredient, Recipe } from '@/types/domain'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -23,19 +23,17 @@ import {
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 
-export function RecipeDetailPage() {
-  const { id } = useParams({ from: '/recipes/$id' })
+export type RecipeDetailPageProps = {
+  id: string | undefined
+  recipeQuery: UseQueryResult<Recipe | null, Error>
+  ingredientsQuery: UseQueryResult<Ingredient[], Error>
+}
 
-  const recipeQ = useQuery({
-    queryKey: queryKeys.recipe(id ?? ''),
-    queryFn: () => getRecipe(id!),
-    enabled: Boolean(id),
-  })
-
-  const ingredientsQ = useQuery({
-    queryKey: queryKeys.ingredients,
-    queryFn: listIngredients,
-  })
+export function RecipeDetailPage({
+  id,
+  recipeQuery: recipeQ,
+  ingredientsQuery: ingredientsQ,
+}: RecipeDetailPageProps) {
 
   const stockById = useMemo(() => {
     const m = new Map<string, number>()

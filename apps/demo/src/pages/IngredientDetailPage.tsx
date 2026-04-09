@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
-import { Link, useParams } from '@tanstack/react-router'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { getIngredient, updateIngredientQuantity } from '@/lib/api'
-import { queryKeys } from '@/lib/queryKeys'
+import { useEffect } from 'react'
+import { Link } from '@tanstack/react-router'
+import type { UseQueryResult } from '@tanstack/react-query'
 import { categoryLabels } from '@/lib/categoryLabels'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -13,89 +11,18 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { IngredientMap } from '@/components/map/IngredientMap'
+import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
+import type { Ingredient } from '@/types/domain'
 
-function AdjustStockCard({
-  ingredientId,
-  quantity,
-}: {
-  ingredientId: string
-  quantity: number
-}) {
-  const queryClient = useQueryClient()
-  const [qtyInput, setQtyInput] = useState(() => String(quantity))
-
-  const mutation = useMutation({
-    mutationFn: (newQuantity: number) =>
-      updateIngredientQuantity(ingredientId, newQuantity),
-    onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: queryKeys.ingredients })
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.ingredient(ingredientId),
-      })
-      void queryClient.invalidateQueries({ queryKey: queryKeys.dashboard })
-      void queryClient.invalidateQueries({ queryKey: queryKeys.recipes })
-    },
-  })
-
-  const onSaveQuantity = () => {
-    const n = Number.parseFloat(qtyInput.replace(',', '.'))
-    if (Number.isNaN(n)) return
-    mutation.mutate(n)
-  }
-
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Ajuster le stock</CardTitle>
-        <CardDescription>
-          Enregistrée sur l’API — met à jour le tableau de bord et les recettes.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="qty">Nouvelle quantité</Label>
-          <Input
-            id="qty"
-            type="text"
-            inputMode="decimal"
-            value={qtyInput}
-            onChange={(e) => setQtyInput(e.target.value)}
-            aria-label="Nouvelle quantité en stock"
-          />
-        </div>
-        {mutation.isError && (
-          <p className="text-sm text-destructive" role="alert">
-            {mutation.error instanceof Error
-              ? mutation.error.message
-              : 'Échec de la mise à jour'}
-          </p>
-        )}
-        <Button
-          type="button"
-          onClick={onSaveQuantity}
-          disabled={mutation.isPending}
-        >
-          {mutation.isPending ? 'Enregistrement…' : 'Enregistrer la quantité'}
-        </Button>
-      </CardContent>
-    </Card>
-  )
+export type IngredientDetailPageProps = {
+  id: string | undefined
+  ingredientQuery: UseQueryResult<Ingredient | null, Error>
 }
 
-export function IngredientDetailPage() {
-  const { id } = useParams({ from: '/ingredients/$id' })
-
-  const query = useQuery({
-    queryKey: queryKeys.ingredient(id ?? ''),
-    queryFn: () => getIngredient(id!),
-    enabled: Boolean(id),
-  })
-
+export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientDetailPageProps) {
   useEffect(() => {
     const name = query.data?.name
     if (name) {
@@ -204,7 +131,7 @@ export function IngredientDetailPage() {
           </CardContent>
         </Card>
 
-        <AdjustStockCard
+        <AdjustStockCardMutationProvider
           key={`${ing.id}-${ing.quantity}`}
           ingredientId={ing.id}
           quantity={ing.quantity}

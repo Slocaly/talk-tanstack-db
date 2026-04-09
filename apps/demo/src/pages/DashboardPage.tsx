@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
 import { Link } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
+import type { UseQueryResult } from '@tanstack/react-query'
 import { CalendarClock, ChefHat, Package, TriangleAlert } from 'lucide-react'
-import { getDashboardSummary } from '@/lib/api'
-import { queryKeys } from '@/lib/queryKeys'
+import type { DashboardSummary } from '@/types/domain'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -16,11 +15,12 @@ import {
 import { Skeleton } from '@/components/ui/skeleton'
 import { categoryLabels } from '@/lib/categoryLabels'
 
-export function DashboardPage() {
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: queryKeys.dashboard,
-    queryFn: getDashboardSummary,
-  })
+export type DashboardPageProps = {
+  dashboardQuery: UseQueryResult<DashboardSummary, Error>
+}
+
+export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
+  const { data, isPending, isError, error, refetch } = dashboardQuery
 
   useEffect(() => {
     document.title = 'Village — Stock du village gaulois'

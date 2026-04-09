@@ -23,6 +23,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 const categories: (IngredientCategory | 'tous')[] = [
   'tous',
@@ -48,6 +49,7 @@ export type IngredientsPageProps = {
 }
 
 export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
+  const prefix = useAppPathPrefix()
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<IngredientCategory | 'tous'>('tous')
   const [expiringSoon, setExpiringSoon] = useState(false)
@@ -197,7 +199,10 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
                   </TableCell>
                   <TableCell className="text-right">
                     <Button asChild size="sm" variant="secondary">
-                      <Link to="/ingredients/$id" params={{ id: ing.id }}>
+                      <Link
+                        to={prefix === '/tsdb' ? '/tsdb/ingredients/$id' : '/tsq/ingredients/$id'}
+                        params={{ id: ing.id }}
+                      >
                         Détails
                       </Link>
                     </Button>

@@ -1,18 +1,28 @@
 import { Link, Outlet } from '@tanstack/react-router'
-
-const nav = [
-  { to: '/', label: 'Village' },
-  { to: '/ingredients', label: 'Ingrédients' },
-  { to: '/recipes', label: 'Recettes' },
-] as const
+import { useAppPathPrefix, useToggleAppPathPrefixOnDollar } from '@/lib/appPathPrefix'
 
 export function AppLayout() {
+  useToggleAppPathPrefixOnDollar()
+  const prefix = useAppPathPrefix()
+  const nav =
+    prefix === '/tsdb'
+      ? ([
+          { to: '/tsdb' as const, label: 'Village' },
+          { to: '/tsdb/ingredients' as const, label: 'Ingrédients' },
+          { to: '/tsdb/recipes' as const, label: 'Recettes' },
+        ] as const)
+      : ([
+          { to: '/tsq' as const, label: 'Village' },
+          { to: '/tsq/ingredients' as const, label: 'Ingrédients' },
+          { to: '/tsq/recipes' as const, label: 'Recettes' },
+        ] as const)
+
   return (
     <div className="app-frame flex min-h-svh flex-col">
       <header className="bd-comic-header border-b-2 border-foreground bg-secondary/25 px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <Link
-            to="/"
+            to={prefix === '/tsdb' ? '/tsdb' : '/tsq'}
             className="bd-comic-wordmark font-[family-name:var(--font-display)] text-2xl tracking-wide text-foreground no-underline sm:text-3xl"
           >
             Stock du village gaulois

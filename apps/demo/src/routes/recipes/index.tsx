@@ -1,6 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { RecipesPageQueryProvider } from '@/pages/providers/RecipesPageQueryProvider'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/recipes/')({
-  component: RecipesPageQueryProvider,
+  beforeLoad: () => {
+    throw redirect({ to: '/tsq/recipes' })
+  },
 })

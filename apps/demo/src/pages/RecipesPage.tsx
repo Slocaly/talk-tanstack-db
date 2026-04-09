@@ -15,6 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 export type RecipesPageProps = {
   recipesQuery: UseQueryResult<Recipe[], Error>
@@ -22,6 +23,7 @@ export type RecipesPageProps = {
 }
 
 export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredientsQ }: RecipesPageProps) {
+  const prefix = useAppPathPrefix()
   const [makableOnly, setMakableOnly] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -158,7 +160,10 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
                   </CardHeader>
                   <CardContent>
                     <Button asChild size="sm">
-                      <Link to="/recipes/$id" params={{ id: recipe.id }}>
+                      <Link
+                        to={prefix === '/tsdb' ? '/tsdb/recipes/$id' : '/tsq/recipes/$id'}
+                        params={{ id: recipe.id }}
+                      >
                         Voir la recette
                       </Link>
                     </Button>

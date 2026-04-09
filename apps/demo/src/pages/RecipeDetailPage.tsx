@@ -22,6 +22,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 export type RecipeDetailPageProps = {
   id: string | undefined
@@ -34,6 +35,9 @@ export function RecipeDetailPage({
   recipeQuery: recipeQ,
   ingredientsQuery: ingredientsQ,
 }: RecipeDetailPageProps) {
+  const prefix = useAppPathPrefix()
+  const recipesListTo = prefix === '/tsdb' ? '/tsdb/recipes' : '/tsq/recipes'
+  const ingredientDetailTo = prefix === '/tsdb' ? '/tsdb/ingredients/$id' : '/tsq/ingredients/$id'
 
   const stockById = useMemo(() => {
     const m = new Map<string, number>()
@@ -95,7 +99,7 @@ export function RecipeDetailPage({
         </CardHeader>
         <CardContent>
           <Button asChild variant="secondary">
-            <Link to="/recipes">Retour aux recettes</Link>
+            <Link to={recipesListTo}>Retour aux recettes</Link>
           </Button>
         </CardContent>
       </Card>
@@ -108,7 +112,7 @@ export function RecipeDetailPage({
     <div className="space-y-6">
       <div>
         <Button asChild variant="outline" size="sm" className="mb-3">
-          <Link to="/recipes">← Recettes</Link>
+          <Link to={recipesListTo}>← Recettes</Link>
         </Button>
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-4xl text-foreground">{recipe.name}</h1>
@@ -150,7 +154,7 @@ export function RecipeDetailPage({
                       <TableCell className="font-medium">
                         <Link
                           className="text-primary underline-offset-2 hover:underline"
-                          to="/ingredients/$id"
+                          to={ingredientDetailTo}
                           params={{ id: line.ingredientId }}
                         >
                           {displayName}
@@ -170,7 +174,7 @@ export function RecipeDetailPage({
                       <TableCell className="text-right">
                         <Button asChild size="sm" variant="secondary">
                           <Link
-                            to="/ingredients/$id"
+                            to={ingredientDetailTo}
                             params={{ id: line.ingredientId }}
                           >
                             Détails

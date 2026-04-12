@@ -1,0 +1,35 @@
+@font-face {
+    font-family: 'Anime Ace';
+    src: url('../public/fonts/animeace/animeace_reg.woff2') format('woff2'),
+         url('../public/fonts/animeace/animeace_reg.woff') format('woff'),
+         url('../public/fonts/animeace/animeace_reg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Anime Ace';
+    src: url('../public/fonts/animeace/animeace_ital.woff2') format('woff2'),
+         url('../public/fonts/animeace/animeace_ital.woff') format('woff'),
+         url('../public/fonts/animeace/animeace_ital.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Anime Ace';
+    src: url('../public/fonts/animeace/animeace_bold.woff2') format('woff2'),
+         url('../public/fonts/animeace/animeace_bold.woff') format('woff'),
+         url('../public/fonts/animeace/animeace_bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+html, body {
+}
+
+/* Theme styles */
+.slidev-layout {
+    font-family: 'Anime Ace', sans-serif!important;
+    padding: 2rem;
+}

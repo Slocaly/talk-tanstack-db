@@ -1,0 +1,12 @@
+{
+  "name": "slidev-theme-comics",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "keywords": [
+    "slidev-theme"
+  ],
+  "slidev": {
+    "colorSchema": "light"
+  }
+}

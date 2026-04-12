@@ -220,9 +220,14 @@ importers:
       '@slidev/theme-seriph':
         specifier: latest
         version: 0.25.0
+      slidev-theme-comics:
+        specifier: workspace:*
+        version: link:../../packages/slidev-theme-comics
       vue:
         specifier: ^3.5.27
         version: 3.5.27(typescript@5.9.3)
+
+  packages/slidev-theme-comics: {}
 
 packages:
 

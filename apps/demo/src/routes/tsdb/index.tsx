@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { DashboardPageQueryProvider } from '@/pages/providers/DashboardPageQueryProvider'
+import { DashboardPageDBProvider } from '@/pages/providers/DashboardPageDBProvider'
 
 export const Route = createFileRoute('/tsdb/')({
-  component: DashboardPageQueryProvider,
+  component: DashboardPageDBProvider,
 })

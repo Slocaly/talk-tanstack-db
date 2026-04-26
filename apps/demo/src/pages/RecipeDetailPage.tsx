@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { isRecipeMakable } from '@/lib/api'
@@ -22,6 +22,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ListPaginationBar } from '@/components/ListPaginationBar'
+import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 export type RecipeDetailPageProps = {
@@ -36,6 +38,8 @@ export function RecipeDetailPage({
   ingredientsQuery: ingredientsQ,
 }: RecipeDetailPageProps) {
   const prefix = useAppPathPrefix()
+  const paginateLinesTable = prefix === '/tsq'
+  const [linesPage, setLinesPage] = useState(1)
   const recipesListTo = prefix === '/tsdb' ? '/tsdb/recipes' : '/tsq/recipes'
   const ingredientDetailTo = prefix === '/tsdb' ? '/tsdb/ingredients/$id' : '/tsq/ingredients/$id'
 
@@ -50,6 +54,34 @@ export function RecipeDetailPage({
     ingredientsQ.data?.forEach((i) => m.set(i.id, i.name))
     return m
   }, [ingredientsQ.data])
+
+  const ingredientLines = recipeQ.data?.ingredients ?? []
+
+  useEffect(() => {
+    if (!paginateLinesTable) return
+    setLinesPage(1)
+  }, [paginateLinesTable, recipeQ.data?.id])
+
+  const linesTableTotalPages =
+    !paginateLinesTable || ingredientLines.length === 0
+      ? 0
+      : Math.ceil(ingredientLines.length / TABLE_PAGE_SIZE)
+  const linesTableSafePage =
+    linesTableTotalPages === 0
+      ? 1
+      : Math.min(linesPage, linesTableTotalPages)
+  const tableIngredientLines = useMemo(() => {
+    if (!paginateLinesTable) return ingredientLines
+    const start = (linesTableSafePage - 1) * TABLE_PAGE_SIZE
+    return ingredientLines.slice(start, start + TABLE_PAGE_SIZE)
+  }, [paginateLinesTable, ingredientLines, linesTableSafePage])
+
+  useEffect(() => {
+    if (!paginateLinesTable) return
+    if (linesTableTotalPages > 0 && linesPage > linesTableTotalPages) {
+      setLinesPage(linesTableTotalPages)
+    }
+  }, [paginateLinesTable, linesPage, linesTableTotalPages])
 
   useEffect(() => {
     if (recipeQ.data) {
@@ -144,7 +176,7 @@ export function RecipeDetailPage({
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {recipe.ingredients.map((line) => {
+                {tableIngredientLines.map((line) => {
                   const stock = stockById.get(line.ingredientId) ?? 0
                   const ok = stock >= line.amount
                   const displayName =
@@ -187,6 +219,15 @@ export function RecipeDetailPage({
               </TableBody>
             </Table>
           </div>
+          {paginateLinesTable ? (
+            <ListPaginationBar
+              page={linesTableSafePage}
+              totalPages={linesTableTotalPages}
+              totalItems={ingredientLines.length}
+              pageSize={TABLE_PAGE_SIZE}
+              onPageChange={setLinesPage}
+            />
+          ) : null}
           <Separator />
           <p className="text-sm text-muted-foreground">
             Les unités sont celles du stock (kg, fioles, miches, etc.) — comparaison

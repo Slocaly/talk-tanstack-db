@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
+import { ListPaginationBar } from '@/components/ListPaginationBar'
+import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { Link } from '@tanstack/react-router'
 import type { UseQueryResult } from '@tanstack/react-query'
 import { isRecipeMakable } from '@/lib/api'
@@ -24,8 +26,10 @@ export type RecipesPageProps = {
 
 export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredientsQ }: RecipesPageProps) {
   const prefix = useAppPathPrefix()
+  const paginateGrid = prefix === '/tsq'
   const [makableOnly, setMakableOnly] = useState(false)
   const [search, setSearch] = useState('')
+  const [tablePage, setTablePage] = useState(1)
 
   useEffect(() => {
     document.title = 'Recettes — Stock du village gaulois'
@@ -68,6 +72,30 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
     search,
     ingredientNameById,
   ])
+
+  useEffect(() => {
+    if (!paginateGrid) return
+    setTablePage(1)
+  }, [paginateGrid, search, makableOnly])
+
+  const tableTotalPages =
+    !paginateGrid || visibleRecipes.length === 0
+      ? 0
+      : Math.ceil(visibleRecipes.length / TABLE_PAGE_SIZE)
+  const tableSafePage =
+    tableTotalPages === 0 ? 1 : Math.min(tablePage, tableTotalPages)
+  const gridRecipes = useMemo(() => {
+    if (!paginateGrid) return visibleRecipes
+    const start = (tableSafePage - 1) * TABLE_PAGE_SIZE
+    return visibleRecipes.slice(start, start + TABLE_PAGE_SIZE)
+  }, [paginateGrid, visibleRecipes, tableSafePage])
+
+  useEffect(() => {
+    if (!paginateGrid) return
+    if (tableTotalPages > 0 && tablePage > tableTotalPages) {
+      setTablePage(tableTotalPages)
+    }
+  }, [paginateGrid, tablePage, tableTotalPages])
 
   const pending = recipesQ.isPending || ingredientsQ.isPending
   const error = recipesQ.error ?? ingredientsQ.error
@@ -142,7 +170,7 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
             Aucune recette ne correspond à la recherche ou aux filtres.
           </li>
         ) : (
-          visibleRecipes.map((recipe) => {
+          gridRecipes.map((recipe) => {
             const ok = isRecipeMakable(recipe, stockById)
             return (
               <li key={recipe.id}>
@@ -174,6 +202,15 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
           })
         )}
       </ul>
+      {paginateGrid ? (
+        <ListPaginationBar
+          page={tableSafePage}
+          totalPages={tableTotalPages}
+          totalItems={visibleRecipes.length}
+          pageSize={TABLE_PAGE_SIZE}
+          onPageChange={setTablePage}
+        />
+      ) : null}
     </div>
   )
 }

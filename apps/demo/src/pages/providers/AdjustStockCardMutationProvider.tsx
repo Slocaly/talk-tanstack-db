@@ -1,35 +1,43 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateIngredientQuantity } from '@/lib/api'
-import { queryKeys } from '@/lib/queryKeys'
-import { AdjustStockCard } from '@/pages/AdjustStockCard'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateIngredientQuantity } from "@/lib/api";
+import { useAppPathPrefix } from "@/lib/appPathPrefix";
+import { AdjustStockCard } from "@/pages/AdjustStockCard";
+import { queryKeys } from "@/lib/queryKeys";
 
 type AdjustStockCardMutationProviderProps = {
-  ingredientId: string
-  quantity: number
-}
+  ingredientId: string;
+  quantity: number;
+};
 
 export function AdjustStockCardMutationProvider({
   ingredientId,
   quantity,
 }: AdjustStockCardMutationProviderProps) {
-  const queryClient = useQueryClient()
+  const prefix = useAppPathPrefix();
+  const queryClient = useQueryClient();
   const updateQuantityMutation = useMutation({
     mutationFn: (newQuantity: number) =>
-      updateIngredientQuantity(ingredientId, newQuantity),
+      updateIngredientQuantity(prefix, ingredientId, newQuantity),
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: queryKeys.ingredients })
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.ingredient(ingredientId),
-      })
-      void queryClient.invalidateQueries({ queryKey: queryKeys.dashboard })
-      void queryClient.invalidateQueries({ queryKey: queryKeys.recipes })
+        queryKey: queryKeys.ingredientsScope(prefix),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: queryKeys.ingredient(prefix, ingredientId),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: queryKeys.dashboard(prefix),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: queryKeys.recipesScope(prefix),
+      });
     },
-  })
+  });
 
   return (
     <AdjustStockCard
       quantity={quantity}
       updateQuantityMutation={updateQuantityMutation}
     />
-  )
+  );
 }

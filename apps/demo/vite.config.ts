@@ -20,6 +20,8 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+    // Avoid multiple physical copies of react-query (separate QueryClientContext → "No QueryClient set")
+    dedupe: ['@tanstack/react-query', 'react', 'react-dom'],
   },
   server: {
     proxy: {

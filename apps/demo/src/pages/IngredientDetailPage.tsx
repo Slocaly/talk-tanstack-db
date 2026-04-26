@@ -14,6 +14,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { IngredientMap } from '@/components/map/IngredientMap'
+import { AdjustStockCardMutationDBProvider } from '@/pages/providers/AdjustStockCardMutationDBProvider'
 import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
 import type { Ingredient } from '@/types/domain'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
@@ -135,11 +136,19 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
           </CardContent>
         </Card>
 
-        <AdjustStockCardMutationProvider
-          key={`${ing.id}-${ing.quantity}`}
-          ingredientId={ing.id}
-          quantity={ing.quantity}
-        />
+        {prefix === '/tsdb' ? (
+          <AdjustStockCardMutationDBProvider
+            key={`${ing.id}-${ing.quantity}`}
+            ingredientId={ing.id}
+            quantity={ing.quantity}
+          />
+        ) : (
+          <AdjustStockCardMutationProvider
+            key={`${ing.id}-${ing.quantity}`}
+            ingredientId={ing.id}
+            quantity={ing.quantity}
+          />
+        )}
       </div>
 
       <Card>

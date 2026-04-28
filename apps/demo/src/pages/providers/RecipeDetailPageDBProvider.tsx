@@ -6,7 +6,7 @@ import { LIST_FETCH_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { queryKeys } from '@/lib/queryKeys'
 import { RecipeDetailPage } from '@/pages/RecipeDetailPage'
 
-export function RecipeDetailPageQueryProvider() {
+export function RecipeDetailPageDBProvider() {
   const prefix = useAppPathPrefix()
   const { id } = useParams({ strict: false })
   const recipeQuery = useQuery({

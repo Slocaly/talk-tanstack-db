@@ -5,7 +5,7 @@ import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import { queryKeys } from '@/lib/queryKeys'
 import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
 
-export function IngredientDetailPageQueryProvider() {
+export function IngredientDetailPageDBProvider() {
   const prefix = useAppPathPrefix()
   const { id } = useParams({ strict: false })
   const ingredientQuery = useQuery({

@@ -3,6 +3,7 @@ import { seedIngredients, seedRecipes } from './seed.data';
 import type {
   DashboardSummary,
   Ingredient,
+  PaginatedList,
   Recipe,
 } from './village.types';
 
@@ -23,6 +24,45 @@ function daysUntil(dateIso: string): number {
   now.setHours(0, 0, 0, 0);
   d.setHours(0, 0, 0, 0);
   return Math.ceil((d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+const MAX_PAGE_SIZE = 200;
+
+function normalizePagination(
+  page: number,
+  pageSize: number,
+): { page: number; pageSize: number } {
+  const pageSizeClamped = Math.min(
+    MAX_PAGE_SIZE,
+    Math.max(1, Number.isFinite(pageSize) ? Math.floor(pageSize) : 20),
+  );
+  const pageClamped = Math.max(1, Number.isFinite(page) ? Math.floor(page) : 1);
+  return { page: pageClamped, pageSize: pageSizeClamped };
+}
+
+function paginateArray<T>(
+  source: T[],
+  mapItem: (item: T) => T,
+  page: number,
+  pageSize: number,
+): PaginatedList<T> {
+  const { page: p, pageSize: ps } = normalizePagination(page, pageSize);
+  const totalItems = source.length;
+  const totalPages =
+    totalItems === 0 ? 0 : Math.ceil(totalItems / ps);
+  const pageSafe =
+    totalPages === 0 ? 1 : Math.min(Math.max(1, p), totalPages);
+  const start = (pageSafe - 1) * ps;
+  const items = source.slice(start, start + ps).map(mapItem);
+  return {
+    items,
+    page: pageSafe,
+    pageSize: ps,
+    totalItems,
+    totalPages,
+    hasNextPage: totalPages > 0 && pageSafe < totalPages,
+    hasPreviousPage: pageSafe > 1,
+  };
 }
 
 @Injectable()
@@ -54,6 +94,17 @@ export class VillageService {
 
   findAllRecipes(): Recipe[] {
     return this.recipes.map(cloneRecipe);
+  }
+
+  findRecipesPaginated(page: number, pageSize: number): PaginatedList<Recipe> {
+    return paginateArray(this.recipes, cloneRecipe, page, pageSize);
+  }
+
+  findIngredientsPaginated(
+    page: number,
+    pageSize: number,
+  ): PaginatedList<Ingredient> {
+    return paginateArray(this.ingredients, cloneIngredient, page, pageSize);
   }
 
   findRecipe(id: string): Recipe {

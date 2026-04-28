@@ -4,7 +4,7 @@ import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import { queryKeys } from '@/lib/queryKeys'
 import { DashboardPage } from '@/pages/DashboardPage'
 
-export function DashboardPageQueryProvider() {
+export function DashboardPageDBProvider() {
   const prefix = useAppPathPrefix()
   const dashboardQuery = useQuery({
     queryKey: queryKeys.dashboard(prefix),

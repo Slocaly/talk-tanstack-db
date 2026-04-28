@@ -1,16 +1,22 @@
 import { useQuery } from '@tanstack/react-query'
-import { listIngredients } from '@/lib/api'
+import { listIngredients, listRecipes } from '@/lib/api'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import { LIST_FETCH_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { queryKeys } from '@/lib/queryKeys'
-import { IngredientsPage } from '@/pages/IngredientsPage'
+import { RecipesPage } from '@/pages/RecipesPage'
 
-export function IngredientsPageQueryProvider() {
+export function RecipesPageDBProvider() {
   const prefix = useAppPathPrefix()
+  const recipesQuery = useQuery({
+    queryKey: queryKeys.recipes(prefix, LIST_FETCH_PAGE_SIZE),
+    queryFn: () => listRecipes(prefix, { fetchPageSize: LIST_FETCH_PAGE_SIZE }),
+  })
   const ingredientsQuery = useQuery({
     queryKey: queryKeys.ingredients(prefix, LIST_FETCH_PAGE_SIZE),
     queryFn: () =>
       listIngredients(prefix, { fetchPageSize: LIST_FETCH_PAGE_SIZE }),
   })
-  return <IngredientsPage ingredientsQuery={ingredientsQuery} />
+  return (
+    <RecipesPage recipesQuery={recipesQuery} ingredientsQuery={ingredientsQuery} />
+  )
 }

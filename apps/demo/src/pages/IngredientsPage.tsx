@@ -23,6 +23,8 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ListPaginationBar } from '@/components/ListPaginationBar'
+import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 const categories: (IngredientCategory | 'tous')[] = [
@@ -50,10 +52,12 @@ export type IngredientsPageProps = {
 
 export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
   const prefix = useAppPathPrefix()
+  const paginateTable = prefix === '/tsq'
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<IngredientCategory | 'tous'>('tous')
   const [expiringSoon, setExpiringSoon] = useState(false)
   const [inStockOnly, setInStockOnly] = useState(false)
+  const [tablePage, setTablePage] = useState(1)
 
   const { data, isPending, isError, error, refetch } = ingredientsQuery
 
@@ -77,6 +81,30 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
       return blob.includes(q)
     })
   }, [data, search, category, expiringSoon, inStockOnly])
+
+  useEffect(() => {
+    if (!paginateTable) return
+    setTablePage(1)
+  }, [paginateTable, search, category, expiringSoon, inStockOnly])
+
+  const tableTotalPages =
+    !paginateTable || filtered.length === 0
+      ? 0
+      : Math.ceil(filtered.length / TABLE_PAGE_SIZE)
+  const tableSafePage =
+    tableTotalPages === 0 ? 1 : Math.min(tablePage, tableTotalPages)
+  const tableRows = useMemo(() => {
+    if (!paginateTable) return filtered
+    const start = (tableSafePage - 1) * TABLE_PAGE_SIZE
+    return filtered.slice(start, start + TABLE_PAGE_SIZE)
+  }, [paginateTable, filtered, tableSafePage])
+
+  useEffect(() => {
+    if (!paginateTable) return
+    if (tableTotalPages > 0 && tablePage > tableTotalPages) {
+      setTablePage(tableTotalPages)
+    }
+  }, [paginateTable, tablePage, tableTotalPages])
 
   if (isPending) {
     return (
@@ -164,7 +192,8 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
         </div>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border-2 border-border">
+      <div className="rounded-xl border-2 border-border">
+        <div className="overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
@@ -183,7 +212,7 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
                 </TableCell>
               </TableRow>
             ) : (
-              filtered.map((ing) => (
+              tableRows.map((ing) => (
                 <TableRow key={ing.id}>
                   <TableCell className="font-medium">{ing.name}</TableCell>
                   <TableCell>
@@ -212,6 +241,17 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
             )}
           </TableBody>
         </Table>
+        </div>
+        {paginateTable ? (
+          <ListPaginationBar
+            className="px-4 pb-4"
+            page={tableSafePage}
+            totalPages={tableTotalPages}
+            totalItems={filtered.length}
+            pageSize={TABLE_PAGE_SIZE}
+            onPageChange={setTablePage}
+          />
+        ) : null}
       </div>
     </div>
   )

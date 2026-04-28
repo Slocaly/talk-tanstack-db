@@ -5,7 +5,7 @@ import { LIST_FETCH_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { queryKeys } from '@/lib/queryKeys'
 import { IngredientsPage } from '@/pages/IngredientsPage'
 
-export function IngredientsPageQueryProvider() {
+export function IngredientsPageDBProvider() {
   const prefix = useAppPathPrefix()
   const ingredientsQuery = useQuery({
     queryKey: queryKeys.ingredients(prefix, LIST_FETCH_PAGE_SIZE),

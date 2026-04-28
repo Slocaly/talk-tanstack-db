@@ -8,5 +8,12 @@
   ],
   "slidev": {
     "colorSchema": "light"
+  },
+  "peerDependencies": {
+    "@slidev/cli": "^52.11.5",
+    "vue": "^3.5.27"
+  },
+  "dependencies": {
+    "@slidev/client": "^52.14.2"
   }
 }

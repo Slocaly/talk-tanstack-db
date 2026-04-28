@@ -11,6 +11,10 @@
     "@slidev/cli": "^52.11.5",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "slidev-theme-comics": "workspace:*",
     "vue": "^3.5.27"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
   }
 }

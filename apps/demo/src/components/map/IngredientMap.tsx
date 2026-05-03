@@ -1,6 +1,13 @@
 import { useMemo } from 'react'
 import L from 'leaflet'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import type { LatLngBoundsExpression } from 'leaflet'
+import { ImageOverlay, MapContainer, Marker, Popup } from 'react-leaflet'
+
+/** Geographic frame for the fictional village map (covers all seed ingredient coords). */
+const VILLAGE_MAP_BOUNDS: LatLngBoundsExpression = [
+  [48.312, -4.78],
+  [48.358, -4.698],
+]
 
 type Props = {
   lat: number
@@ -27,13 +34,12 @@ export function IngredientMap({ lat, lng, title, snippet }: Props) {
       center={[lat, lng]}
       zoom={13}
       scrollWheelZoom
+      maxBounds={VILLAGE_MAP_BOUNDS}
+      maxBoundsViscosity={0.85}
       className="h-[280px] w-full z-0"
       aria-label={`Carte : ${title}`}
     >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <ImageOverlay url="/village-map-illustration.svg" bounds={VILLAGE_MAP_BOUNDS} />
       <Marker position={[lat, lng]} icon={icon}>
         <Popup>
           <strong>{title}</strong>

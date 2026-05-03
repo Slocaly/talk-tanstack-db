@@ -12,10 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TsqRouteRouteImport } from './routes/tsq/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TsqIndexRouteImport } from './routes/tsq/index'
-import { Route as RecipesIndexRouteImport } from './routes/recipes/index'
-import { Route as IngredientsIndexRouteImport } from './routes/ingredients/index'
-import { Route as RecipesIdRouteImport } from './routes/recipes/$id'
-import { Route as IngredientsIdRouteImport } from './routes/ingredients/$id'
 import { Route as TsqRecipesIndexRouteImport } from './routes/tsq/recipes/index'
 import { Route as TsqIngredientsIndexRouteImport } from './routes/tsq/ingredients/index'
 import { Route as TsqRecipesIdRouteImport } from './routes/tsq/recipes/$id'
@@ -35,26 +31,6 @@ const TsqIndexRoute = TsqIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => TsqRouteRoute,
-} as any)
-const RecipesIndexRoute = RecipesIndexRouteImport.update({
-  id: '/recipes/',
-  path: '/recipes/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IngredientsIndexRoute = IngredientsIndexRouteImport.update({
-  id: '/ingredients/',
-  path: '/ingredients/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecipesIdRoute = RecipesIdRouteImport.update({
-  id: '/recipes/$id',
-  path: '/recipes/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IngredientsIdRoute = IngredientsIdRouteImport.update({
-  id: '/ingredients/$id',
-  path: '/ingredients/$id',
-  getParentRoute: () => rootRouteImport,
 } as any)
 const TsqRecipesIndexRoute = TsqRecipesIndexRouteImport.update({
   id: '/recipes/',
@@ -80,10 +56,6 @@ const TsqIngredientsIdRoute = TsqIngredientsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/tsq': typeof TsqRouteRouteWithChildren
-  '/ingredients/$id': typeof IngredientsIdRoute
-  '/recipes/$id': typeof RecipesIdRoute
-  '/ingredients/': typeof IngredientsIndexRoute
-  '/recipes/': typeof RecipesIndexRoute
   '/tsq/': typeof TsqIndexRoute
   '/tsq/ingredients/$id': typeof TsqIngredientsIdRoute
   '/tsq/recipes/$id': typeof TsqRecipesIdRoute
@@ -92,10 +64,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ingredients/$id': typeof IngredientsIdRoute
-  '/recipes/$id': typeof RecipesIdRoute
-  '/ingredients': typeof IngredientsIndexRoute
-  '/recipes': typeof RecipesIndexRoute
   '/tsq': typeof TsqIndexRoute
   '/tsq/ingredients/$id': typeof TsqIngredientsIdRoute
   '/tsq/recipes/$id': typeof TsqRecipesIdRoute
@@ -106,10 +74,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/tsq': typeof TsqRouteRouteWithChildren
-  '/ingredients/$id': typeof IngredientsIdRoute
-  '/recipes/$id': typeof RecipesIdRoute
-  '/ingredients/': typeof IngredientsIndexRoute
-  '/recipes/': typeof RecipesIndexRoute
   '/tsq/': typeof TsqIndexRoute
   '/tsq/ingredients/$id': typeof TsqIngredientsIdRoute
   '/tsq/recipes/$id': typeof TsqRecipesIdRoute
@@ -121,10 +85,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/tsq'
-    | '/ingredients/$id'
-    | '/recipes/$id'
-    | '/ingredients/'
-    | '/recipes/'
     | '/tsq/'
     | '/tsq/ingredients/$id'
     | '/tsq/recipes/$id'
@@ -133,10 +93,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/ingredients/$id'
-    | '/recipes/$id'
-    | '/ingredients'
-    | '/recipes'
     | '/tsq'
     | '/tsq/ingredients/$id'
     | '/tsq/recipes/$id'
@@ -146,10 +102,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/tsq'
-    | '/ingredients/$id'
-    | '/recipes/$id'
-    | '/ingredients/'
-    | '/recipes/'
     | '/tsq/'
     | '/tsq/ingredients/$id'
     | '/tsq/recipes/$id'
@@ -160,10 +112,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   TsqRouteRoute: typeof TsqRouteRouteWithChildren
-  IngredientsIdRoute: typeof IngredientsIdRoute
-  RecipesIdRoute: typeof RecipesIdRoute
-  IngredientsIndexRoute: typeof IngredientsIndexRoute
-  RecipesIndexRoute: typeof RecipesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -188,34 +136,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/tsq/'
       preLoaderRoute: typeof TsqIndexRouteImport
       parentRoute: typeof TsqRouteRoute
-    }
-    '/recipes/': {
-      id: '/recipes/'
-      path: '/recipes'
-      fullPath: '/recipes/'
-      preLoaderRoute: typeof RecipesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ingredients/': {
-      id: '/ingredients/'
-      path: '/ingredients'
-      fullPath: '/ingredients/'
-      preLoaderRoute: typeof IngredientsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recipes/$id': {
-      id: '/recipes/$id'
-      path: '/recipes/$id'
-      fullPath: '/recipes/$id'
-      preLoaderRoute: typeof RecipesIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ingredients/$id': {
-      id: '/ingredients/$id'
-      path: '/ingredients/$id'
-      fullPath: '/ingredients/$id'
-      preLoaderRoute: typeof IngredientsIdRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/tsq/recipes/': {
       id: '/tsq/recipes/'
@@ -271,10 +191,6 @@ const TsqRouteRouteWithChildren = TsqRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   TsqRouteRoute: TsqRouteRouteWithChildren,
-  IngredientsIdRoute: IngredientsIdRoute,
-  RecipesIdRoute: RecipesIdRoute,
-  IngredientsIndexRoute: IngredientsIndexRoute,
-  RecipesIndexRoute: RecipesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

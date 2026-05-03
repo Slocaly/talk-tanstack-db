@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Link } from '@tanstack/react-router'
-import type { AsyncSingleResult } from '@/lib/remoteData'
 import { categoryLabels } from '@/lib/categoryLabels'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -16,26 +15,30 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { IngredientMap } from '@/components/map/IngredientMap'
 import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
 import type { Ingredient } from '@/types/domain'
-export type IngredientDetailPageProps = {
-  id: string | undefined
-  ingredientQuery: AsyncSingleResult<Ingredient>
+
+export interface IngredientDetailPageProps {
+  id: string | undefined;
+  ingredient: Ingredient | null;
+  isPending: boolean;
+  error: Error | null;
+  refetch: () => void;
 }
 
-export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientDetailPageProps) {
+export function IngredientDetailPage({ id, ingredient, isPending, error, refetch }: IngredientDetailPageProps) {
   const ingredientsListTo = '/tsq/ingredients'
 
   useEffect(() => {
-    const name = query.data?.name
+    const name = ingredient?.name
     if (name) {
       document.title = `${name} — Ingrédient`
     }
-  }, [query.data?.name])
+  }, [ingredient?.name])
 
   if (!id) {
     return <p className="text-destructive">Identifiant manquant.</p>
   }
 
-  if (query.isPending) {
+  if (isPending) {
     return (
       <div className="space-y-4">
         <Skeleton className="h-10 w-2/3" />
@@ -44,19 +47,19 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
     )
   }
 
-  if (query.isError) {
+  if (error) {
     return (
       <Card>
         <CardHeader>
           <CardTitle>Erreur</CardTitle>
           <CardDescription>
-            {query.error instanceof Error
-              ? query.error.message
+            {error instanceof Error
+              ? error.message
               : 'Chargement impossible'}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button type="button" onClick={() => void query.refetch()}>
+          <Button type="button" onClick={refetch}>
             Réessayer
           </Button>
         </CardContent>
@@ -64,8 +67,7 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
     )
   }
 
-  const ing = query.data
-  if (!ing) {
+  if (!ingredient) {
     return (
       <Card>
         <CardHeader>
@@ -81,7 +83,7 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
     )
   }
 
-  const hasMapCoords = Number.isFinite(ing.lat) && Number.isFinite(ing.lng)
+  const hasMapCoords = Number.isFinite(ingredient.lat) && Number.isFinite(ingredient.lng)
 
   return (
     <div className="space-y-6">
@@ -90,9 +92,9 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
           <Button asChild variant="outline" size="sm" className="mb-3">
             <Link to={ingredientsListTo}>← Ingrédients</Link>
           </Button>
-          <h1 className="text-4xl text-foreground">{ing.name}</h1>
+          <h1 className="text-4xl text-foreground">{ingredient.name}</h1>
           <Badge className="mt-2" variant="secondary">
-            {categoryLabels[ing.category]}
+            {categoryLabels[ingredient.category]}
           </Badge>
         </div>
       </div>
@@ -107,14 +109,14 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
             <div>
               <p className="text-sm text-muted-foreground">Stock actuel</p>
               <p className="font-[family-name:var(--font-display)] text-2xl text-primary">
-                {ing.quantity} {ing.unit}
+                {ingredient.quantity} {ingredient.unit}
               </p>
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Date limite</p>
               <p>
-                <time dateTime={ing.dueDate}>
-                  {new Date(ing.dueDate).toLocaleDateString('fr-FR', {
+                <time dateTime={ingredient.dueDate}>
+                  {new Date(ingredient.dueDate).toLocaleDateString('fr-FR', {
                     dateStyle: 'long',
                   })}
                 </time>
@@ -123,19 +125,19 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
             <Separator />
             <div>
               <p className="text-sm font-semibold text-foreground">Où trouver</p>
-              <p className="text-muted-foreground">{ing.whereToFind}</p>
+              <p className="text-muted-foreground">{ingredient.whereToFind}</p>
             </div>
             <div>
               <p className="text-sm font-semibold text-foreground">Comment récolter</p>
-              <p className="text-muted-foreground">{ing.howToHarvest}</p>
+              <p className="text-muted-foreground">{ingredient.howToHarvest}</p>
             </div>
           </CardContent>
         </Card>
 
         <AdjustStockCardMutationProvider
-          key={`${ing.id}-${ing.quantity}`}
-          ingredientId={ing.id}
-          quantity={ing.quantity}
+          key={`${ingredient.id}-${ingredient.quantity}`}
+          ingredientId={ingredient.id}
+          quantity={ingredient.quantity}
         />
       </div>
 
@@ -149,10 +151,10 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
         <CardContent>
           {hasMapCoords ? (
             <IngredientMap
-              lat={ing.lat}
-              lng={ing.lng}
-              title={ing.name}
-              snippet={ing.whereToFind}
+              lat={ingredient.lat}
+              lng={ingredient.lng}
+              title={ingredient.name}
+              snippet={ingredient.whereToFind}
             />
           ) : (
             <p className="text-muted-foreground">

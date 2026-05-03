@@ -1,15 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
-import { getIngredient } from '@/lib/api'
-import type { AppPathPrefix } from '@/lib/appPathPrefix'
-import { queryKeys } from '@/lib/queryKeys'
+import { useQuery } from "@tanstack/react-query";
+import { getIngredient } from "@/lib/api";
+import { queryKeys } from "@/lib/queryKeys";
 
-export function useIngredientByIdQuery(
-  prefix: AppPathPrefix,
-  id: string | undefined,
-) {
+export function useIngredientByIdQuery(id: string) {
   return useQuery({
-    queryKey: queryKeys.ingredient(prefix, id ?? ''),
-    queryFn: () => getIngredient(prefix, id!),
-    enabled: Boolean(id),
-  })
+    queryKey: queryKeys.ingredient("/tsq", id),
+    queryFn: () => getIngredient("/tsq", id),
+  });
 }

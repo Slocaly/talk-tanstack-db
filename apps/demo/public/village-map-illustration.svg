@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" width="800" height="520">
+  <defs>
+    <linearGradient id="parchment" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4e4c8"/>
+      <stop offset="50%" stop-color="#e8d4b0"/>
+      <stop offset="100%" stop-color="#dcc49a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#parchment)"/>
+  <path fill="none" stroke="#1a1208" stroke-width="3" stroke-linejoin="round"
+    d="M40 36 Q80 20 120 38 T200 32 T280 40 T360 28 T440 38 T520 30 T600 42 T680 34 T760 40
+       L764 120 Q780 180 760 240 T768 360 T756 440 T764 484
+       Q720 500 640 496 T480 504 T320 498 T160 504 T36 488
+       L28 400 Q16 320 32 240 T36 120 Z"/>
+  <g fill="#2d5016" opacity="0.35">
+    <ellipse cx="90" cy="120" rx="55" ry="70"/>
+    <ellipse cx="720" cy="100" rx="60" ry="75"/>
+    <ellipse cx="760" cy="380" rx="45" ry="90"/>
+  </g>
+  <g fill="none" stroke="#1a1208" stroke-width="2" stroke-linecap="round">
+    <path d="M120 400 Q200 320 280 360 T440 340 T600 380 T700 360"/>
+    <path d="M180 140 Q260 200 340 160 T500 180 T620 150"/>
+    <path d="M400 100 L420 420"/>
+  </g>
+  <g fill="#c4a574" stroke="#1a1208" stroke-width="2">
+    <ellipse cx="220" cy="280" rx="38" ry="22"/>
+    <ellipse cx="380" cy="240" rx="42" ry="24"/>
+    <ellipse cx="520" cy="300" rx="40" ry="23"/>
+    <ellipse cx="320" cy="380" rx="36" ry="21"/>
+    <ellipse cx="580" cy="200" rx="35" ry="20"/>
+  </g>
+  <g fill="#8b6914" stroke="#1a1208" stroke-width="1.5">
+    <path d="M200 180 L210 150 L220 180 Z"/>
+    <path d="M450 420 L460 390 L470 420 Z"/>
+    <path d="M640 320 L650 290 L660 320 Z"/>
+  </g>
+  <text x="400" y="48" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#3d2914" font-weight="bold">Plan du village</text>
+</svg>

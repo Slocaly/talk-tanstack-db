@@ -1,11 +1,11 @@
 import { useParams } from '@tanstack/react-router'
 import { useIngredientByIdQuery } from '@/hooks/useIngredientByIdQuery'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
 
 export function IngredientDetailPageQueryProvider() {
-  const prefix = useAppPathPrefix()
   const { id } = useParams({ strict: false })
-  const ingredientQuery = useIngredientByIdQuery(prefix, id)
-  return <IngredientDetailPage id={id} ingredientQuery={ingredientQuery} />
+
+  const { data: ingredient, isPending, error, refetch } = useIngredientByIdQuery(id ?? '')
+
+  return <IngredientDetailPage id={id} ingredient={ingredient ?? null} isPending={isPending} error={error} refetch={refetch} />
 }

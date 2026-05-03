@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import type { UseQueryResult } from '@tanstack/react-query'
+import { useIngredientsCatalogQuery } from '@/hooks/useIngredientsCatalogQuery'
+import { useIngredientsPaginatedTableQuery } from '@/hooks/useIngredientsPaginatedTableQuery'
 import type { Ingredient, IngredientCategory } from '@/types/domain'
 import { categoryLabels } from '@/lib/categoryLabels'
 import { Badge } from '@/components/ui/badge'
@@ -24,6 +25,7 @@ import {
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ListPaginationBar } from '@/components/ListPaginationBar'
+import { type PaginatedList } from '@/lib/api'
 import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
@@ -46,29 +48,46 @@ function daysUntil(dateIso: string): number {
   return Math.ceil((d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
 }
 
-export type IngredientsPageProps = {
-  ingredientsQuery: UseQueryResult<Ingredient[], Error>
+export function IngredientsPage() {
+  return <IngredientsPageSlice />
 }
 
-export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
+function IngredientsPageSlice() {
   const prefix = useAppPathPrefix()
-  const paginateTable = prefix === '/tsq'
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState<IngredientCategory | 'tous'>('tous')
   const [expiringSoon, setExpiringSoon] = useState(false)
   const [inStockOnly, setInStockOnly] = useState(false)
   const [tablePage, setTablePage] = useState(1)
 
-  const { data, isPending, isError, error, refetch } = ingredientsQuery
+  const filtersActive =
+    search.trim().length > 0 ||
+    category !== 'tous' ||
+    expiringSoon ||
+    inStockOnly
+
+  const catalogQuery = useIngredientsCatalogQuery(prefix, filtersActive)
+  const pageQuery = useIngredientsPaginatedTableQuery(
+    prefix,
+    tablePage,
+    filtersActive,
+  )
+
+  const listQuery = filtersActive ? catalogQuery : pageQuery
+  const { data: rawData, refetch } = listQuery
 
   useEffect(() => {
     document.title = 'Ingrédients — Stock du village gaulois'
   }, [])
 
   const filtered = useMemo(() => {
-    if (!data) return []
+    if (!rawData) return []
+    if (!filtersActive) {
+      return (rawData as PaginatedList<Ingredient>).items
+    }
+    const all = rawData as Ingredient[]
     const q = search.trim().toLowerCase()
-    return data.filter((ing) => {
+    return all.filter((ing) => {
       if (inStockOnly && ing.quantity <= 0) return false
       if (category !== 'tous' && ing.category !== category) return false
       if (expiringSoon) {
@@ -80,33 +99,46 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
         `${ing.name} ${ing.whereToFind} ${ing.howToHarvest} ${categoryLabels[ing.category]}`.toLowerCase()
       return blob.includes(q)
     })
-  }, [data, search, category, expiringSoon, inStockOnly])
+  }, [rawData, filtersActive, search, category, expiringSoon, inStockOnly])
 
   useEffect(() => {
-    if (!paginateTable) return
     setTablePage(1)
-  }, [paginateTable, search, category, expiringSoon, inStockOnly])
+  }, [search, category, expiringSoon, inStockOnly])
 
-  const tableTotalPages =
-    !paginateTable || filtered.length === 0
+  const paginatedMeta =
+    !filtersActive && rawData ? (rawData as PaginatedList<Ingredient>) : null
+
+  const tableTotalPages = filtersActive
+    ? filtered.length === 0
       ? 0
       : Math.ceil(filtered.length / TABLE_PAGE_SIZE)
+    : paginatedMeta?.totalPages ?? 0
+
   const tableSafePage =
     tableTotalPages === 0 ? 1 : Math.min(tablePage, tableTotalPages)
+
   const tableRows = useMemo(() => {
-    if (!paginateTable) return filtered
+    if (!rawData) return []
+    if (!filtersActive) {
+      return (rawData as PaginatedList<Ingredient>).items
+    }
     const start = (tableSafePage - 1) * TABLE_PAGE_SIZE
     return filtered.slice(start, start + TABLE_PAGE_SIZE)
-  }, [paginateTable, filtered, tableSafePage])
+  }, [rawData, filtersActive, filtered, tableSafePage])
+
+  const filteredLength = filtersActive
+    ? filtered.length
+    : paginatedMeta?.totalItems ?? 0
 
   useEffect(() => {
-    if (!paginateTable) return
-    if (tableTotalPages > 0 && tablePage > tableTotalPages) {
+    if (filtersActive && tableTotalPages > 0 && tablePage > tableTotalPages) {
       setTablePage(tableTotalPages)
     }
-  }, [paginateTable, tablePage, tableTotalPages])
+  }, [filtersActive, tablePage, tableTotalPages])
 
-  if (isPending) {
+  const listPending = listQuery.isPending && !listQuery.data
+
+  if (listPending) {
     return (
       <div className="space-y-4">
         <Skeleton className="h-10 w-48" />
@@ -116,12 +148,14 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
     )
   }
 
-  if (isError) {
+  if (listQuery.isError) {
     return (
       <div className="rounded-xl border-2 border-destructive bg-card p-6">
         <p className="font-semibold text-destructive">Échec du chargement</p>
         <p className="text-sm text-muted-foreground">
-          {error instanceof Error ? error.message : 'Erreur inconnue'}
+          {listQuery.error instanceof Error
+            ? listQuery.error.message
+            : 'Erreur inconnue'}
         </p>
         <Button className="mt-4" type="button" onClick={() => void refetch()}>
           Réessayer
@@ -130,6 +164,56 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
     )
   }
 
+  return (
+    <IngredientsPageLayout
+      search={search}
+      setSearch={setSearch}
+      category={category}
+      setCategory={setCategory}
+      expiringSoon={expiringSoon}
+      setExpiringSoon={setExpiringSoon}
+      inStockOnly={inStockOnly}
+      setInStockOnly={setInStockOnly}
+      filteredLength={filteredLength}
+      tableRows={tableRows}
+      tableSafePage={tableSafePage}
+      tableTotalPages={tableTotalPages}
+      setTablePage={setTablePage}
+    />
+  )
+}
+
+type IngredientsPageLayoutProps = {
+  search: string
+  setSearch: (v: string) => void
+  category: IngredientCategory | 'tous'
+  setCategory: (v: IngredientCategory | 'tous') => void
+  expiringSoon: boolean
+  setExpiringSoon: (v: boolean) => void
+  inStockOnly: boolean
+  setInStockOnly: (v: boolean) => void
+  filteredLength: number
+  tableRows: Ingredient[]
+  tableSafePage: number
+  tableTotalPages: number
+  setTablePage: (p: number) => void
+}
+
+function IngredientsPageLayout({
+  search,
+  setSearch,
+  category,
+  setCategory,
+  expiringSoon,
+  setExpiringSoon,
+  inStockOnly,
+  setInStockOnly,
+  filteredLength,
+  tableRows,
+  tableSafePage,
+  tableTotalPages,
+  setTablePage,
+}: IngredientsPageLayoutProps) {
   return (
     <div className="space-y-6">
       <div>
@@ -194,64 +278,64 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
 
       <div className="rounded-xl border-2 border-border">
         <div className="overflow-x-auto">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nom</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Péremption</TableHead>
-              <TableHead>Catégorie</TableHead>
-              <TableHead className="text-right">Fiche</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.length === 0 ? (
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground">
-                  Aucun ingrédient ne correspond aux filtres.
-                </TableCell>
+                <TableHead>Nom</TableHead>
+                <TableHead>Stock</TableHead>
+                <TableHead>Péremption</TableHead>
+                <TableHead>Catégorie</TableHead>
+                <TableHead className="text-right">Fiche</TableHead>
               </TableRow>
-            ) : (
-              tableRows.map((ing) => (
-                <TableRow key={ing.id}>
-                  <TableCell className="font-medium">{ing.name}</TableCell>
-                  <TableCell>
-                    {ing.quantity} {ing.unit}
-                  </TableCell>
-                  <TableCell>
-                    <time dateTime={ing.dueDate}>
-                      {new Date(ing.dueDate).toLocaleDateString('fr-FR')}
-                    </time>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">{categoryLabels[ing.category]}</Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button asChild size="sm" variant="secondary">
-                      <Link
-                        to={prefix === '/tsdb' ? '/tsdb/ingredients/$id' : '/tsq/ingredients/$id'}
-                        params={{ id: ing.id }}
-                      >
-                        Détails
-                      </Link>
-                    </Button>
+            </TableHeader>
+            <TableBody>
+              {filteredLength === 0 ? (
+                <TableRow>
+                  <TableCell
+                    colSpan={5}
+                    className="text-center text-muted-foreground"
+                  >
+                    Aucun ingrédient ne correspond aux filtres.
                   </TableCell>
                 </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
+              ) : (
+                tableRows.map((ing) => (
+                  <TableRow key={ing.id}>
+                    <TableCell className="font-medium">{ing.name}</TableCell>
+                    <TableCell>
+                      {ing.quantity} {ing.unit}
+                    </TableCell>
+                    <TableCell>
+                      <time dateTime={ing.dueDate}>
+                        {new Date(ing.dueDate).toLocaleDateString('fr-FR')}
+                      </time>
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant="outline">
+                        {categoryLabels[ing.category]}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button asChild size="sm" variant="secondary">
+                        <Link to="/tsq/ingredients/$id" params={{ id: ing.id }}>
+                          Détails
+                        </Link>
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
         </div>
-        {paginateTable ? (
-          <ListPaginationBar
-            className="px-4 pb-4"
-            page={tableSafePage}
-            totalPages={tableTotalPages}
-            totalItems={filtered.length}
-            pageSize={TABLE_PAGE_SIZE}
-            onPageChange={setTablePage}
-          />
-        ) : null}
+        <ListPaginationBar
+          className="px-4 pb-4"
+          page={tableSafePage}
+          totalPages={tableTotalPages}
+          totalItems={filteredLength}
+          pageSize={TABLE_PAGE_SIZE}
+          onPageChange={setTablePage}
+        />
       </div>
     </div>
   )

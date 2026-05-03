@@ -1,0 +1,15 @@
+import { useQuery } from '@tanstack/react-query'
+import { listIngredients } from '@/lib/api'
+import type { AppPathPrefix } from '@/lib/appPathPrefix'
+import { LIST_FETCH_PAGE_SIZE } from '@/lib/listPaginationConfig'
+import { queryKeys } from '@/lib/queryKeys'
+
+export function useRecipeDetailIngredientsCatalogQuery(
+  prefix: AppPathPrefix,
+) {
+  return useQuery({
+    queryKey: queryKeys.ingredientsCatalog(prefix),
+    queryFn: () =>
+      listIngredients(prefix, { fetchPageSize: LIST_FETCH_PAGE_SIZE }),
+  })
+}

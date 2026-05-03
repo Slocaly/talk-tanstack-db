@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ListPaginationBar } from '@/components/ListPaginationBar'
 import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
+import { useRecipesCatalogQuery } from '@/hooks/useRecipesCatalogQuery'
+import { useRecipesPaginatedTableQuery } from '@/hooks/useRecipesPaginatedTableQuery'
 import { Link } from '@tanstack/react-router'
-import type { UseQueryResult } from '@tanstack/react-query'
-import { isRecipeMakable } from '@/lib/api'
+import type { AsyncListResult } from '@/lib/remoteData'
+import { isRecipeMakable, type PaginatedList } from '@/lib/api'
 import type { Ingredient, Recipe } from '@/types/domain'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -20,16 +22,23 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
 
 export type RecipesPageProps = {
-  recipesQuery: UseQueryResult<Recipe[], Error>
-  ingredientsQuery: UseQueryResult<Ingredient[], Error>
+  ingredientsQuery: AsyncListResult<Ingredient>
 }
 
-export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredientsQ }: RecipesPageProps) {
+export function RecipesPage({ ingredientsQuery: ingredientsQ }: RecipesPageProps) {
   const prefix = useAppPathPrefix()
-  const paginateGrid = prefix === '/tsq'
   const [makableOnly, setMakableOnly] = useState(false)
   const [search, setSearch] = useState('')
   const [tablePage, setTablePage] = useState(1)
+
+  const filtersActive = makableOnly || search.trim().length > 0
+
+  const recipesCatalogQ = useRecipesCatalogQuery(prefix, filtersActive)
+  const recipesPageQ = useRecipesPaginatedTableQuery(
+    prefix,
+    tablePage,
+    filtersActive,
+  )
 
   useEffect(() => {
     document.title = 'Recettes — Stock du village gaulois'
@@ -48,8 +57,13 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
   }, [ingredientsQ.data])
 
   const visibleRecipes = useMemo(() => {
-    if (!recipesQ.data) return []
-    let list = recipesQ.data
+    if (!filtersActive) {
+      const p = recipesPageQ.data as PaginatedList<Recipe> | undefined
+      return p?.items ?? []
+    }
+    const base: Recipe[] =
+      (recipesCatalogQ.data as Recipe[] | undefined) ?? []
+    let list = base
     if (makableOnly) {
       list = list.filter((r) => isRecipeMakable(r, stockById))
     }
@@ -66,7 +80,9 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
     }
     return list
   }, [
-    recipesQ.data,
+    filtersActive,
+    recipesPageQ.data,
+    recipesCatalogQ.data,
     makableOnly,
     stockById,
     search,
@@ -74,31 +90,56 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
   ])
 
   useEffect(() => {
-    if (!paginateGrid) return
     setTablePage(1)
-  }, [paginateGrid, search, makableOnly])
+  }, [search, makableOnly])
 
-  const tableTotalPages =
-    !paginateGrid || visibleRecipes.length === 0
+  const paginatedMeta =
+    !filtersActive && recipesPageQ.data
+      ? (recipesPageQ.data as PaginatedList<Recipe>)
+      : null
+
+  const tableTotalPages = !filtersActive
+    ? paginatedMeta?.totalPages ?? 0
+    : visibleRecipes.length === 0
       ? 0
       : Math.ceil(visibleRecipes.length / TABLE_PAGE_SIZE)
+
   const tableSafePage =
     tableTotalPages === 0 ? 1 : Math.min(tablePage, tableTotalPages)
+
   const gridRecipes = useMemo(() => {
-    if (!paginateGrid) return visibleRecipes
+    if (!filtersActive) {
+      const p = recipesPageQ.data as PaginatedList<Recipe> | undefined
+      return p?.items ?? []
+    }
     const start = (tableSafePage - 1) * TABLE_PAGE_SIZE
     return visibleRecipes.slice(start, start + TABLE_PAGE_SIZE)
-  }, [paginateGrid, visibleRecipes, tableSafePage])
+  }, [filtersActive, recipesPageQ.data, visibleRecipes, tableSafePage])
 
   useEffect(() => {
-    if (!paginateGrid) return
     if (tableTotalPages > 0 && tablePage > tableTotalPages) {
       setTablePage(tableTotalPages)
     }
-  }, [paginateGrid, tablePage, tableTotalPages])
+  }, [tablePage, tableTotalPages])
 
-  const pending = recipesQ.isPending || ingredientsQ.isPending
-  const error = recipesQ.error ?? ingredientsQ.error
+  const paginationTotalItems = !filtersActive
+    ? paginatedMeta?.totalItems ?? 0
+    : visibleRecipes.length
+
+  const ingredientsPending = ingredientsQ.isPending && !ingredientsQ.data
+  const recipesPending = filtersActive
+    ? recipesCatalogQ.isPending && !recipesCatalogQ.data
+    : recipesPageQ.isPending && !recipesPageQ.data
+
+  const pending = recipesPending || ingredientsPending
+
+  const recipesError = filtersActive
+    ? recipesCatalogQ.error
+    : recipesPageQ.error
+  const error = recipesError ?? ingredientsQ.error
+
+  const refetchRecipes = () =>
+    filtersActive ? recipesCatalogQ.refetch() : recipesPageQ.refetch()
 
   if (pending) {
     return (
@@ -119,7 +160,7 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
           {error instanceof Error ? error.message : 'Erreur'}
         </p>
         <div className="mt-4 flex gap-2">
-          <Button type="button" onClick={() => void recipesQ.refetch()}>
+          <Button type="button" onClick={() => void refetchRecipes()}>
             Réessayer (recettes)
           </Button>
           <Button type="button" variant="secondary" onClick={() => void ingredientsQ.refetch()}>
@@ -188,10 +229,7 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
                   </CardHeader>
                   <CardContent>
                     <Button asChild size="sm">
-                      <Link
-                        to={prefix === '/tsdb' ? '/tsdb/recipes/$id' : '/tsq/recipes/$id'}
-                        params={{ id: recipe.id }}
-                      >
+                      <Link to="/tsq/recipes/$id" params={{ id: recipe.id }}>
                         Voir la recette
                       </Link>
                     </Button>
@@ -202,15 +240,13 @@ export function RecipesPage({ recipesQuery: recipesQ, ingredientsQuery: ingredie
           })
         )}
       </ul>
-      {paginateGrid ? (
-        <ListPaginationBar
-          page={tableSafePage}
-          totalPages={tableTotalPages}
-          totalItems={visibleRecipes.length}
-          pageSize={TABLE_PAGE_SIZE}
-          onPageChange={setTablePage}
-        />
-      ) : null}
+      <ListPaginationBar
+        page={tableSafePage}
+        totalPages={tableTotalPages}
+        totalItems={paginationTotalItems}
+        pageSize={TABLE_PAGE_SIZE}
+        onPageChange={setTablePage}
+      />
     </div>
   )
 }

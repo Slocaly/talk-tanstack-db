@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import {
   DashboardController,
-  TsdbDashboardController,
   TsqDashboardController,
 } from '../dashboard/dashboard.controller';
 import {
@@ -26,7 +25,6 @@ import { VillageService } from './village.service';
     TsdbRecipesController,
     DashboardController,
     TsqDashboardController,
-    TsdbDashboardController,
   ],
   providers: [VillageService],
 })

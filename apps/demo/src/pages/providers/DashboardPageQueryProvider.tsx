@@ -1,14 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
-import { getDashboardSummary } from '@/lib/api'
+import { useDashboardSummaryQuery } from '@/hooks/useDashboardSummaryQuery'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
-import { queryKeys } from '@/lib/queryKeys'
 import { DashboardPage } from '@/pages/DashboardPage'
 
 export function DashboardPageQueryProvider() {
   const prefix = useAppPathPrefix()
-  const dashboardQuery = useQuery({
-    queryKey: queryKeys.dashboard(prefix),
-    queryFn: () => getDashboardSummary(prefix),
-  })
+  const dashboardQuery = useDashboardSummaryQuery(prefix)
   return <DashboardPage dashboardQuery={dashboardQuery} />
 }

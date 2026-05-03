@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from '@tanstack/react-router'
-import type { UseQueryResult } from '@tanstack/react-query'
+import type { AsyncSingleResult } from '@/lib/remoteData'
 import { categoryLabels } from '@/lib/categoryLabels'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -14,19 +14,15 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { IngredientMap } from '@/components/map/IngredientMap'
-import { AdjustStockCardMutationDBProvider } from '@/pages/providers/AdjustStockCardMutationDBProvider'
 import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
 import type { Ingredient } from '@/types/domain'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
-
 export type IngredientDetailPageProps = {
   id: string | undefined
-  ingredientQuery: UseQueryResult<Ingredient | null, Error>
+  ingredientQuery: AsyncSingleResult<Ingredient>
 }
 
 export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientDetailPageProps) {
-  const prefix = useAppPathPrefix()
-  const ingredientsListTo = prefix === '/tsdb' ? '/tsdb/ingredients' : '/tsq/ingredients'
+  const ingredientsListTo = '/tsq/ingredients'
 
   useEffect(() => {
     const name = query.data?.name
@@ -136,19 +132,11 @@ export function IngredientDetailPage({ id, ingredientQuery: query }: IngredientD
           </CardContent>
         </Card>
 
-        {prefix === '/tsdb' ? (
-          <AdjustStockCardMutationDBProvider
-            key={`${ing.id}-${ing.quantity}`}
-            ingredientId={ing.id}
-            quantity={ing.quantity}
-          />
-        ) : (
-          <AdjustStockCardMutationProvider
-            key={`${ing.id}-${ing.quantity}`}
-            ingredientId={ing.id}
-            quantity={ing.quantity}
-          />
-        )}
+        <AdjustStockCardMutationProvider
+          key={`${ing.id}-${ing.quantity}`}
+          ingredientId={ing.id}
+          quantity={ing.quantity}
+        />
       </div>
 
       <Card>

@@ -1,43 +1,26 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateIngredientQuantity } from "@/lib/api";
-import { useAppPathPrefix } from "@/lib/appPathPrefix";
-import { AdjustStockCard } from "@/pages/AdjustStockCard";
-import { queryKeys } from "@/lib/queryKeys";
+import { useUpdateIngredientQuantityMutation } from '@/hooks/useUpdateIngredientQuantityMutation'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
+import { AdjustStockCard } from '@/pages/AdjustStockCard'
 
 type AdjustStockCardMutationProviderProps = {
-  ingredientId: string;
-  quantity: number;
-};
+  ingredientId: string
+  quantity: number
+}
 
 export function AdjustStockCardMutationProvider({
   ingredientId,
   quantity,
 }: AdjustStockCardMutationProviderProps) {
-  const prefix = useAppPathPrefix();
-  const queryClient = useQueryClient();
-  const updateQuantityMutation = useMutation({
-    mutationFn: (newQuantity: number) =>
-      updateIngredientQuantity(prefix, ingredientId, newQuantity),
-    onSuccess: () => {
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.ingredientsScope(prefix),
-      });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.ingredient(prefix, ingredientId),
-      });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.dashboard(prefix),
-      });
-      void queryClient.invalidateQueries({
-        queryKey: queryKeys.recipesScope(prefix),
-      });
-    },
-  });
+  const prefix = useAppPathPrefix()
+  const updateQuantityMutation = useUpdateIngredientQuantityMutation(
+    prefix,
+    ingredientId,
+  )
 
   return (
     <AdjustStockCard
       quantity={quantity}
       updateQuantityMutation={updateQuantityMutation}
     />
-  );
+  )
 }

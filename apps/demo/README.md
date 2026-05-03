@@ -10,16 +10,9 @@ Small front-end for the **talk-tanstack-db** monorepo: a playful “Gaulish vill
 
 The copy and labels are mostly in French to match the theme.
 
-## Two URL trees: `/tsq` and `/tsdb`
+## Routes
 
-The same screens exist under two prefixes:
-
-| Prefix   | Role in the talk                          |
-| -------- | ----------------------------------------- |
-| `/tsq`   | “TanStack Query” route tree               |
-| `/tsdb`  | “TanStack DB” route tree (parallel pages) |
-
-The home route `/` redirects to `/tsq`. While **not** typing in an input, press **`$`** to jump between the matching `/tsq/...` and `/tsdb/...` URL (same path, other prefix)—handy when comparing how each tree wires data.
+The app lives under **`/tsq`** (e.g. `/tsq`, `/tsq/ingredients`). The home route `/` redirects to `/tsq`.
 
 ## Stack
 

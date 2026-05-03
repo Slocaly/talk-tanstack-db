@@ -4,5 +4,7 @@
  */
 export const LIST_FETCH_PAGE_SIZE = 50
 
-/** Rows per page on `/tsq` list UIs (ingredients table, recipe cards, recipe lines). */
+/**
+ * Rows per page for list UIs (ingredients table, recipe cards, recipe lines).
+ */
 export const TABLE_PAGE_SIZE = 8

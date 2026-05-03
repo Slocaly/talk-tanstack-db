@@ -1,17 +1,13 @@
-import { useQuery } from '@tanstack/react-query'
-import { listRecipes } from '@/lib/api'
-import type { AppPathPrefix } from '@/lib/appPathPrefix'
-import { LIST_FETCH_PAGE_SIZE } from '@/lib/listPaginationConfig'
-import { queryKeys } from '@/lib/queryKeys'
+import { useQuery } from "@tanstack/react-query";
+import { listRecipes } from "@/lib/api";
+import { queryKeys } from "@/lib/queryKeys";
+import { useRecipesFilters } from "./useRecipesFilters";
 
-export function useRecipesCatalogQuery(
-  prefix: AppPathPrefix,
-  filtersActive: boolean,
-) {
+export function useRecipesQuery() {
+  const { filters } = useRecipesFilters();  
+
   return useQuery({
-    queryKey: queryKeys.recipesCatalog(prefix),
-    queryFn: () =>
-      listRecipes(prefix, { fetchPageSize: LIST_FETCH_PAGE_SIZE }),
-    enabled: filtersActive,
-  })
+    queryKey: queryKeys.recipesCatalog("/tsq", filters),
+    queryFn: () => listRecipes("/tsq", filters),
+  });
 }

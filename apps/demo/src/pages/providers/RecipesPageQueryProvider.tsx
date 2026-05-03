@@ -1,9 +1,8 @@
-import { useIngredientsListQuery } from '@/hooks/useIngredientsListQuery'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
+import { useRecipesQuery } from '@/hooks/useRecipesCatalogQuery';
 import { RecipesPage } from '@/pages/RecipesPage'
 
 export function RecipesPageQueryProvider() {
-  const prefix = useAppPathPrefix()
-  const ingredientsQuery = useIngredientsListQuery(prefix)
-  return <RecipesPage ingredientsQuery={ingredientsQuery} />
+  const { data, isPending, error, refetch } = useRecipesQuery()
+
+  return <RecipesPage recipes={data?.items ?? []} isPending={isPending} error={error} refetch={refetch} totalItems={data?.totalItems ?? 0} totalPages={data?.totalPages ?? 0} />
 }

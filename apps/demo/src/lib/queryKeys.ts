@@ -1,4 +1,5 @@
 import type { IngredientsFilters } from "@/hooks/useIngredientsFilters";
+import type { RecipesFilters } from "@/hooks/useRecipesFilters";
 import type { AppPathPrefix } from "@/lib/appPathPrefix";
 
 export const queryKeys = {
@@ -15,8 +16,8 @@ export const queryKeys = {
   ingredient: (prefix: AppPathPrefix, id: string) =>
     ["ingredient", prefix, id] as const,
   recipesScope: (prefix: AppPathPrefix) => ["recipes", prefix] as const,
-  recipesCatalog: (prefix: AppPathPrefix) =>
-    ["recipes", prefix, "catalog"] as const,
+  recipesCatalog: (prefix: AppPathPrefix, filters: RecipesFilters) =>
+    ["recipes", prefix, "catalog", filters] as const,
   recipesPage: (prefix: AppPathPrefix, page: number, pageSize: number) =>
     ["recipes", prefix, "page", page, pageSize] as const,
   recipes: (prefix: AppPathPrefix, fetchPageSize: number) =>

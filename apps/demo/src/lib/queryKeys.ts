@@ -1,17 +1,15 @@
+import type { IngredientsFilters } from "@/hooks/useIngredientsFilters";
 import type { AppPathPrefix } from "@/lib/appPathPrefix";
 
 export const queryKeys = {
   /** Prefix match for invalidating any ingredients query for this app tree. */
   ingredientsScope: (prefix: AppPathPrefix) => ["ingredients", prefix] as const,
   /** Full ingredients list for client-side filtering (e.g. search). */
-  ingredientsCatalog: (prefix: AppPathPrefix) =>
-    ["ingredients", prefix, "catalog"] as const,
+  ingredientsCatalog: (prefix: AppPathPrefix, filters: IngredientsFilters) =>
+    ["ingredients", prefix, "catalog", filters] as const,
   /** Server-paginated ingredients table. */
-  ingredientsPage: (
-    prefix: AppPathPrefix,
-    page: number,
-    pageSize: number,
-  ) => ["ingredients", prefix, "page", page, pageSize] as const,
+  ingredientsPage: (prefix: AppPathPrefix, page: number, pageSize: number) =>
+    ["ingredients", prefix, "page", page, pageSize] as const,
   ingredients: (prefix: AppPathPrefix, fetchPageSize: number) =>
     ["ingredients", prefix, fetchPageSize] as const,
   ingredient: (prefix: AppPathPrefix, id: string) =>

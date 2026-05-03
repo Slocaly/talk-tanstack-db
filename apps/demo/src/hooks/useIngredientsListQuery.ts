@@ -7,7 +7,6 @@ import { queryKeys } from '@/lib/queryKeys'
 export function useIngredientsListQuery(prefix: AppPathPrefix) {
   return useQuery({
     queryKey: queryKeys.ingredients(prefix, LIST_FETCH_PAGE_SIZE),
-    queryFn: () =>
-      listIngredients(prefix, { fetchPageSize: LIST_FETCH_PAGE_SIZE }),
+    queryFn: () => listIngredients(prefix),
   })
 }

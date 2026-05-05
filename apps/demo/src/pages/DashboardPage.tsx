@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import { categoryLabels } from '@/lib/categoryLabels'
 export type DashboardPageProps = {
   dashboardQuery: UseQueryResult<DashboardSummary, Error>
@@ -20,6 +21,10 @@ export type DashboardPageProps = {
 
 export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
   const { data, isPending, isError, error, refetch } = dashboardQuery
+  const prefix = useAppPathPrefix()
+  const ingredientDetailTo = `${prefix}/ingredients/$id` as const
+  const ingredientsIndexTo = `${prefix}/ingredients` as const
+  const recipesIndexTo = `${prefix}/recipes` as const
 
   useEffect(() => {
     document.title = 'Village — Stock du village gaulois'
@@ -114,7 +119,7 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
             {next ? (
               <>
                 <Link
-                  to="/tsq/ingredients/$id"
+                  to={ingredientDetailTo}
                   params={{ id: next.id }}
                   className="font-[family-name:var(--font-display)] text-xl text-primary underline-offset-2 hover:underline"
                 >
@@ -163,12 +168,12 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
 
       <div className="flex flex-wrap gap-3">
         <Button asChild>
-          <Link to="/tsq/ingredients">
+          <Link to={ingredientsIndexTo}>
             Voir tous les ingrédients
           </Link>
         </Button>
         <Button asChild variant="secondary">
-          <Link to="/tsq/recipes">
+          <Link to={recipesIndexTo}>
             Consulter les recettes
           </Link>
         </Button>

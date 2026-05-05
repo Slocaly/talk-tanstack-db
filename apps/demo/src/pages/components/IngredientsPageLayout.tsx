@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useIngredientsFilters } from "@/hooks/useIngredientsFilters";
+import { useAppPathPrefix } from "@/lib/appPathPrefix";
 import { categoryLabels } from "@/lib/categoryLabels";
 import type { Ingredient, IngredientCategory } from "@/types/domain";
 import { Link } from "@tanstack/react-router";
@@ -36,6 +37,8 @@ export function IngredientsPageLayout({
     isPending,
 }: IngredientsPageLayoutProps) {
     const { filters: { search, category, expiringSoon, inStockOnly, page, pageSize }, setFilters } = useIngredientsFilters();
+    const prefix = useAppPathPrefix();
+    const ingredientDetailTo = `${prefix}/ingredients/$id` as const;
 
     return (
         <div className="space-y-6">
@@ -143,7 +146,7 @@ export function IngredientsPageLayout({
                                             </TableCell>
                                             <TableCell className="text-right">
                                                 <Button asChild size="sm" variant="secondary">
-                                                    <Link to="/tsq/ingredients/$id" params={{ id: ing.id }}>
+                                                    <Link to={ingredientDetailTo} params={{ id: ing.id }}>
                                                         Détails
                                                     </Link>
                                                 </Button>

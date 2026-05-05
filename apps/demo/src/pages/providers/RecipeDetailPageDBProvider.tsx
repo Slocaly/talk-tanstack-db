@@ -3,10 +3,10 @@ import { useRecipeByIdQuery } from '@/hooks/useRecipeByIdQuery'
 import { useRecipeDetailIngredientsCatalogQuery } from '@/hooks/useRecipeDetailIngredientsCatalogQuery'
 import { RecipeDetailPage } from '@/pages/RecipeDetailPage'
 
-export function RecipeDetailPageQueryProvider() {
+export function RecipeDetailPageDBProvider() {
   const { id } = useParams({ strict: false })
-  const recipeQuery = useRecipeByIdQuery('/tsq', id)
-  const ingredientsQuery = useRecipeDetailIngredientsCatalogQuery('/tsq')
+  const recipeQuery = useRecipeByIdQuery('/tsdb', id)
+  const ingredientsQuery = useRecipeDetailIngredientsCatalogQuery('/tsdb')
   return (
     <RecipeDetailPage
       id={id}

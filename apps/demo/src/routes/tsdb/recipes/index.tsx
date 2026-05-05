@@ -1,7 +1,7 @@
-import { RecipesPageQueryProvider } from '@/pages/providers/RecipesPageQueryProvider';
 import { createFileRoute } from '@tanstack/react-router'
+import { RecipesPageDBProvider } from '@/pages/providers/RecipesPageDBProvider'
 
 export const Route = createFileRoute('/tsdb/recipes/')({
-    component: RecipesPageQueryProvider,
+  component: RecipesPageDBProvider,
 })
 

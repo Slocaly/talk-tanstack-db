@@ -1,6 +1,9 @@
-/** API and query keys are scoped to the TanStack Query demo route tree (`/tsq/...`). */
-export type AppPathPrefix = "/tsq" | "/tsdb";
+import { useRouterState } from '@tanstack/react-router'
+
+/** Route segment used for API paths and in-app links (`/tsq/...` vs `/tsdb/...`). */
+export type AppPathPrefix = '/tsq' | '/tsdb'
 
 export function useAppPathPrefix(): AppPathPrefix {
-  return "/tsq";
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  return pathname.startsWith('/tsdb') ? '/tsdb' : '/tsq'
 }

@@ -1,17 +1,17 @@
 import { useUpdateIngredientQuantityMutation } from '@/hooks/useUpdateIngredientQuantityMutation'
 import { AdjustStockCard } from '@/pages/AdjustStockCard'
 
-type AdjustStockCardMutationProviderProps = {
+type AdjustStockCardMutationDBProviderProps = {
   ingredientId: string
   quantity: number
 }
 
-export function AdjustStockCardMutationProvider({
+export function AdjustStockCardMutationDBProvider({
   ingredientId,
   quantity,
-}: AdjustStockCardMutationProviderProps) {
+}: AdjustStockCardMutationDBProviderProps) {
   const updateQuantityMutation = useUpdateIngredientQuantityMutation(
-    '/tsq',
+    '/tsdb',
     ingredientId,
   )
 

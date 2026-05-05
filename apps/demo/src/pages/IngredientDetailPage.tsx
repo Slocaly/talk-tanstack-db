@@ -13,7 +13,9 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { Skeleton } from '@/components/ui/skeleton'
 import { IngredientMap } from '@/components/map/IngredientMap'
+import { AdjustStockCardMutationDBProvider } from '@/pages/providers/AdjustStockCardMutationDBProvider'
 import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import type { Ingredient } from '@/types/domain'
 
 export interface IngredientDetailPageProps {
@@ -25,7 +27,12 @@ export interface IngredientDetailPageProps {
 }
 
 export function IngredientDetailPage({ id, ingredient, isPending, error, refetch }: IngredientDetailPageProps) {
-  const ingredientsListTo = '/tsq/ingredients'
+  const prefix = useAppPathPrefix()
+  const ingredientsListTo = `${prefix}/ingredients` as const
+  const AdjustStock =
+    prefix === '/tsdb'
+      ? AdjustStockCardMutationDBProvider
+      : AdjustStockCardMutationProvider
 
   useEffect(() => {
     const name = ingredient?.name
@@ -134,7 +141,7 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
           </CardContent>
         </Card>
 
-        <AdjustStockCardMutationProvider
+        <AdjustStock
           key={`${ingredient.id}-${ingredient.quantity}`}
           ingredientId={ingredient.id}
           quantity={ingredient.quantity}

@@ -1,13 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import { listIngredients } from "@/lib/api";
-import { queryKeys } from "@/lib/queryKeys";
-import { useIngredientsFilters } from "./useIngredientsFilters";
+import { useQuery } from '@tanstack/react-query'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
+import { listIngredients } from '@/lib/api'
+import { queryKeys } from '@/lib/queryKeys'
+import { useIngredientsFilters } from './useIngredientsFilters'
 
 export function useIngredientsQuery() {
-  const { filters } = useIngredientsFilters();
+  const prefix = useAppPathPrefix()
+  const { filters } = useIngredientsFilters()
 
   return useQuery({
-    queryKey: queryKeys.ingredientsCatalog("/tsq", filters),
-    queryFn: () => listIngredients("/tsq", filters),
-  });
+    queryKey: queryKeys.ingredientsCatalog(prefix, filters),
+    queryFn: () => listIngredients(prefix, filters),
+  })
 }

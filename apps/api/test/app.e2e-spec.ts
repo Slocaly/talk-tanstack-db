@@ -39,6 +39,16 @@ describe('Village API (e2e)', () => {
       });
   });
 
+  it('GET /api/tsdb/dashboard/summary', () => {
+    return request(app.getHttpServer())
+      .get('/api/tsdb/dashboard/summary')
+      .expect(200)
+      .expect((res) => {
+        expect(res.body).toHaveProperty('totalIngredientKinds');
+        expect(res.body).toHaveProperty('totalStockUnits');
+      });
+  });
+
   afterEach(async () => {
     await app.close();
   });

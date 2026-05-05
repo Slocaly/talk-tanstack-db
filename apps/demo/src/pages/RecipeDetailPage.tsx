@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ListPaginationBar } from '@/components/ListPaginationBar'
+import { useAppPathPrefix } from '@/lib/appPathPrefix'
 import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 export type RecipeDetailPageProps = {
   id: string | undefined
@@ -36,8 +37,9 @@ export function RecipeDetailPage({
   ingredientsQuery: ingredientsQ,
 }: RecipeDetailPageProps) {
   const [linesPage, setLinesPage] = useState(1)
-  const recipesListTo = '/tsq/recipes'
-  const ingredientDetailTo = '/tsq/ingredients/$id'
+  const prefix = useAppPathPrefix()
+  const recipesListTo = `${prefix}/recipes` as const
+  const ingredientDetailTo = `${prefix}/ingredients/$id` as const
 
   const stockById = useMemo(() => {
     const m = new Map<string, number>()

@@ -2,13 +2,21 @@ import { useParams } from '@tanstack/react-router'
 import { useIngredientByIdQuery } from '@/hooks/useIngredientByIdQuery'
 import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
 
-export function IngredientDetailPageQueryProvider() {
+export function IngredientDetailPageDBProvider() {
   const { id } = useParams({ strict: false })
 
   const { data: ingredient, isPending, error, refetch } = useIngredientByIdQuery(
-    '/tsq',
+    '/tsdb',
     id ?? '',
   )
 
-  return <IngredientDetailPage id={id} ingredient={ingredient ?? null} isPending={isPending} error={error} refetch={refetch} />
+  return (
+    <IngredientDetailPage
+      id={id}
+      ingredient={ingredient ?? null}
+      isPending={isPending}
+      error={error}
+      refetch={refetch}
+    />
+  )
 }

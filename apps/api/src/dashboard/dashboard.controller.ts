@@ -24,3 +24,10 @@ export class TsqDashboardController extends DashboardControllerBase {
   }
 }
 
+@Controller('tsdb/dashboard')
+export class TsdbDashboardController extends DashboardControllerBase {
+  constructor(village: VillageService) {
+    super(village);
+  }
+}
+

@@ -1,7 +1,7 @@
 import { useDashboardSummaryQuery } from '@/hooks/useDashboardSummaryQuery'
 import { DashboardPage } from '@/pages/DashboardPage'
 
-export function DashboardPageQueryProvider() {
-  const dashboardQuery = useDashboardSummaryQuery('/tsq')
+export function DashboardPageDBProvider() {
+  const dashboardQuery = useDashboardSummaryQuery('/tsdb')
   return <DashboardPage dashboardQuery={dashboardQuery} />
 }

@@ -30,3 +30,4 @@ export class TsdbDashboardController extends DashboardControllerBase {
     super(village);
   }
 }
+

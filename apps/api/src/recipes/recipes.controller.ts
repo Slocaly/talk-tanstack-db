@@ -17,18 +17,6 @@ abstract class RecipesControllerBase {
   }
 }
 
-@Controller('recipes')
-export class RecipesController extends RecipesControllerBase {
-  constructor(village: VillageService) {
-    super(village);
-  }
-
-  @Get()
-  list() {
-    return this.village.findAllRecipes();
-  }
-}
-
 @Controller('tsq/recipes')
 export class TsqRecipesController extends RecipesControllerBase {
   constructor(village: VillageService) {

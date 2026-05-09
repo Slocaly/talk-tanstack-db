@@ -1,17 +1,14 @@
 import { useParams } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { getIngredient } from '@/lib/api'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
-import { queryKeys } from '@/lib/queryKeys'
+import { useIngredientByIdQuery } from '@/hooks/useIngredientByIdQuery'
 import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
 
 export function IngredientDetailPageQueryProvider() {
-  const prefix = useAppPathPrefix()
   const { id } = useParams({ strict: false })
-  const ingredientQuery = useQuery({
-    queryKey: queryKeys.ingredient(prefix, id ?? ''),
-    queryFn: () => getIngredient(prefix, id!),
-    enabled: Boolean(id),
-  })
-  return <IngredientDetailPage id={id} ingredientQuery={ingredientQuery} />
+
+  const { data: ingredient, isPending, error, refetch } = useIngredientByIdQuery(
+    '/tsq',
+    id ?? '',
+  )
+
+  return <IngredientDetailPage id={id} ingredient={ingredient ?? null} isPending={isPending} error={error} refetch={refetch} />
 }

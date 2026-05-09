@@ -1,127 +1,25 @@
-import { useEffect, useMemo, useState } from 'react'
-import { Link } from '@tanstack/react-router'
-import type { UseQueryResult } from '@tanstack/react-query'
-import type { Ingredient, IngredientCategory } from '@/types/domain'
-import { categoryLabels } from '@/lib/categoryLabels'
-import { Badge } from '@/components/ui/badge'
+import { useEffect } from 'react'
+import { useIngredientsQuery } from '@/hooks/useIngredientsQuery'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import { Skeleton } from '@/components/ui/skeleton'
-import { ListPaginationBar } from '@/components/ListPaginationBar'
-import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
+import { IngredientsPageLayout } from './components/IngredientsPageLayout'
 
-const categories: (IngredientCategory | 'tous')[] = [
-  'tous',
-  'viande',
-  'poisson',
-  'cereales',
-  'boisson',
-  'herbe',
-  'laitier',
-  'autre',
-]
+export function IngredientsPage() {
+  const { data, refetch, error, isPending } = useIngredientsQuery()
 
-function daysUntil(dateIso: string): number {
-  const d = new Date(dateIso)
-  const now = new Date()
-  now.setHours(0, 0, 0, 0)
-  d.setHours(0, 0, 0, 0)
-  return Math.ceil((d.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
-}
-
-export type IngredientsPageProps = {
-  ingredientsQuery: UseQueryResult<Ingredient[], Error>
-}
-
-export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
-  const prefix = useAppPathPrefix()
-  const paginateTable = prefix === '/tsq'
-  const [search, setSearch] = useState('')
-  const [category, setCategory] = useState<IngredientCategory | 'tous'>('tous')
-  const [expiringSoon, setExpiringSoon] = useState(false)
-  const [inStockOnly, setInStockOnly] = useState(false)
-  const [tablePage, setTablePage] = useState(1)
-
-  const { data, isPending, isError, error, refetch } = ingredientsQuery
+  const ingredients = data?.items ?? []
 
   useEffect(() => {
     document.title = 'Ingrédients — Stock du village gaulois'
   }, [])
 
-  const filtered = useMemo(() => {
-    if (!data) return []
-    const q = search.trim().toLowerCase()
-    return data.filter((ing) => {
-      if (inStockOnly && ing.quantity <= 0) return false
-      if (category !== 'tous' && ing.category !== category) return false
-      if (expiringSoon) {
-        const days = daysUntil(ing.dueDate)
-        if (days < 0 || days > 7) return false
-      }
-      if (!q) return true
-      const blob =
-        `${ing.name} ${ing.whereToFind} ${ing.howToHarvest} ${categoryLabels[ing.category]}`.toLowerCase()
-      return blob.includes(q)
-    })
-  }, [data, search, category, expiringSoon, inStockOnly])
-
-  useEffect(() => {
-    if (!paginateTable) return
-    setTablePage(1)
-  }, [paginateTable, search, category, expiringSoon, inStockOnly])
-
-  const tableTotalPages =
-    !paginateTable || filtered.length === 0
-      ? 0
-      : Math.ceil(filtered.length / TABLE_PAGE_SIZE)
-  const tableSafePage =
-    tableTotalPages === 0 ? 1 : Math.min(tablePage, tableTotalPages)
-  const tableRows = useMemo(() => {
-    if (!paginateTable) return filtered
-    const start = (tableSafePage - 1) * TABLE_PAGE_SIZE
-    return filtered.slice(start, start + TABLE_PAGE_SIZE)
-  }, [paginateTable, filtered, tableSafePage])
-
-  useEffect(() => {
-    if (!paginateTable) return
-    if (tableTotalPages > 0 && tablePage > tableTotalPages) {
-      setTablePage(tableTotalPages)
-    }
-  }, [paginateTable, tablePage, tableTotalPages])
-
-  if (isPending) {
-    return (
-      <div className="space-y-4">
-        <Skeleton className="h-10 w-48" />
-        <Skeleton className="h-10 w-full max-w-md" />
-        <Skeleton className="h-64 w-full" />
-      </div>
-    )
-  }
-
-  if (isError) {
+  if (error) {
     return (
       <div className="rounded-xl border-2 border-destructive bg-card p-6">
         <p className="font-semibold text-destructive">Échec du chargement</p>
         <p className="text-sm text-muted-foreground">
-          {error instanceof Error ? error.message : 'Erreur inconnue'}
+          {error instanceof Error
+            ? error.message
+            : 'Erreur inconnue'}
         </p>
         <Button className="mt-4" type="button" onClick={() => void refetch()}>
           Réessayer
@@ -130,129 +28,16 @@ export function IngredientsPage({ ingredientsQuery }: IngredientsPageProps) {
     )
   }
 
+  if (!ingredients) {
+    return null
+  }
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="mb-2 text-4xl text-foreground">Ingrédients</h1>
-        <p className="text-muted-foreground">
-          Cherchez, filtrez et ouvrez la fiche pour la carte et la récolte.
-        </p>
-      </div>
-
-      <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-card/80 p-4">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="ing-search">Recherche</Label>
-            <Input
-              id="ing-search"
-              placeholder="Nom, lieu, récolte, catégorie…"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              aria-label="Recherche d’ingrédients"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="ing-cat">Catégorie</Label>
-            <Select
-              value={category}
-              onValueChange={(v) => setCategory(v as IngredientCategory | 'tous')}
-            >
-              <SelectTrigger id="ing-cat" aria-label="Filtrer par catégorie">
-                <SelectValue placeholder="Catégorie" />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((c) => (
-                  <SelectItem key={c} value={c}>
-                    {c === 'tous' ? 'Toutes les catégories' : categoryLabels[c]}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-4">
-          <label className="flex cursor-pointer items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={expiringSoon}
-              onChange={(e) => setExpiringSoon(e.target.checked)}
-              className="size-4 rounded border-2 border-foreground"
-            />
-            Péremption dans les 7 jours
-          </label>
-          <label className="flex cursor-pointer items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={inStockOnly}
-              onChange={(e) => setInStockOnly(e.target.checked)}
-              className="size-4 rounded border-2 border-foreground"
-            />
-            Uniquement en stock
-          </label>
-        </div>
-      </div>
-
-      <div className="rounded-xl border-2 border-border">
-        <div className="overflow-x-auto">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Nom</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Péremption</TableHead>
-              <TableHead>Catégorie</TableHead>
-              <TableHead className="text-right">Fiche</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filtered.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground">
-                  Aucun ingrédient ne correspond aux filtres.
-                </TableCell>
-              </TableRow>
-            ) : (
-              tableRows.map((ing) => (
-                <TableRow key={ing.id}>
-                  <TableCell className="font-medium">{ing.name}</TableCell>
-                  <TableCell>
-                    {ing.quantity} {ing.unit}
-                  </TableCell>
-                  <TableCell>
-                    <time dateTime={ing.dueDate}>
-                      {new Date(ing.dueDate).toLocaleDateString('fr-FR')}
-                    </time>
-                  </TableCell>
-                  <TableCell>
-                    <Badge variant="outline">{categoryLabels[ing.category]}</Badge>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Button asChild size="sm" variant="secondary">
-                      <Link
-                        to={prefix === '/tsdb' ? '/tsdb/ingredients/$id' : '/tsq/ingredients/$id'}
-                        params={{ id: ing.id }}
-                      >
-                        Détails
-                      </Link>
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-        </div>
-        {paginateTable ? (
-          <ListPaginationBar
-            className="px-4 pb-4"
-            page={tableSafePage}
-            totalPages={tableTotalPages}
-            totalItems={filtered.length}
-            pageSize={TABLE_PAGE_SIZE}
-            onPageChange={setTablePage}
-          />
-        ) : null}
-      </div>
-    </div>
+    <IngredientsPageLayout
+      ingredients={ingredients}
+      totalItems={data?.totalItems ?? 0}
+      totalPages={data?.totalPages ?? 0}
+      isPending={isPending}
+    />
   )
 }

@@ -3,9 +3,17 @@ import { seedIngredients, seedRecipes } from './seed.data';
 import type {
   DashboardSummary,
   Ingredient,
+  IngredientCategory,
   PaginatedList,
   Recipe,
 } from './village.types';
+
+export type IngredientsListFilters = {
+  search: string;
+  category: IngredientCategory | 'tous';
+  expiringSoon: boolean;
+  inStockOnly: boolean;
+};
 
 function cloneIngredient(i: Ingredient): Ingredient {
   return { ...i };
@@ -48,10 +56,8 @@ function paginateArray<T>(
 ): PaginatedList<T> {
   const { page: p, pageSize: ps } = normalizePagination(page, pageSize);
   const totalItems = source.length;
-  const totalPages =
-    totalItems === 0 ? 0 : Math.ceil(totalItems / ps);
-  const pageSafe =
-    totalPages === 0 ? 1 : Math.min(Math.max(1, p), totalPages);
+  const totalPages = totalItems === 0 ? 0 : Math.ceil(totalItems / ps);
+  const pageSafe = totalPages === 0 ? 1 : Math.min(Math.max(1, p), totalPages);
   const start = (pageSafe - 1) * ps;
   const items = source.slice(start, start + ps).map(mapItem);
   return {
@@ -103,8 +109,39 @@ export class VillageService {
   findIngredientsPaginated(
     page: number,
     pageSize: number,
+    filters: IngredientsListFilters,
   ): PaginatedList<Ingredient> {
-    return paginateArray(this.ingredients, cloneIngredient, page, pageSize);
+    const source = this.filterIngredientsForList(this.ingredients, filters);
+    return paginateArray(source, cloneIngredient, page, pageSize);
+  }
+
+  private filterIngredientsForList(
+    list: Ingredient[],
+    f: IngredientsListFilters,
+  ): Ingredient[] {
+    let out = list;
+    if (f.inStockOnly) {
+      out = out.filter((i) => i.quantity > 0);
+    }
+    if (f.expiringSoon) {
+      out = out.filter((i) => {
+        if (i.quantity <= 0) return false;
+        const d = daysUntil(i.dueDate);
+        return d >= 0 && d <= 7;
+      });
+    }
+    if (f.category !== 'tous') {
+      out = out.filter((i) => i.category === f.category);
+    }
+    const q = f.search.trim().toLowerCase();
+    if (q.length > 0) {
+      out = out.filter((i) => {
+        const hay =
+          `${i.name} ${i.whereToFind} ${i.howToHarvest} ${i.category}`.toLowerCase();
+        return hay.includes(q);
+      });
+    }
+    return out;
   }
 
   findRecipe(id: string): Recipe {

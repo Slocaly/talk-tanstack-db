@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import type { UseQueryResult } from '@tanstack/react-query'
+import type { AsyncListResult, AsyncSingleResult } from '@/lib/remoteData'
 import { isRecipeMakable } from '@/lib/api'
 import type { Ingredient, Recipe } from '@/types/domain'
 import { Badge } from '@/components/ui/badge'
@@ -23,13 +23,12 @@ import {
 } from '@/components/ui/table'
 import { Skeleton } from '@/components/ui/skeleton'
 import { ListPaginationBar } from '@/components/ListPaginationBar'
-import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 import { useAppPathPrefix } from '@/lib/appPathPrefix'
-
+import { TABLE_PAGE_SIZE } from '@/lib/listPaginationConfig'
 export type RecipeDetailPageProps = {
   id: string | undefined
-  recipeQuery: UseQueryResult<Recipe | null, Error>
-  ingredientsQuery: UseQueryResult<Ingredient[], Error>
+  recipeQuery: AsyncSingleResult<Recipe>
+  ingredientsQuery: AsyncListResult<Ingredient>
 }
 
 export function RecipeDetailPage({
@@ -37,11 +36,10 @@ export function RecipeDetailPage({
   recipeQuery: recipeQ,
   ingredientsQuery: ingredientsQ,
 }: RecipeDetailPageProps) {
-  const prefix = useAppPathPrefix()
-  const paginateLinesTable = prefix === '/tsq'
   const [linesPage, setLinesPage] = useState(1)
-  const recipesListTo = prefix === '/tsdb' ? '/tsdb/recipes' : '/tsq/recipes'
-  const ingredientDetailTo = prefix === '/tsdb' ? '/tsdb/ingredients/$id' : '/tsq/ingredients/$id'
+  const prefix = useAppPathPrefix()
+  const recipesListTo = `${prefix}/recipes` as const
+  const ingredientDetailTo = `${prefix}/ingredients/$id` as const
 
   const stockById = useMemo(() => {
     const m = new Map<string, number>()
@@ -58,12 +56,11 @@ export function RecipeDetailPage({
   const ingredientLines = recipeQ.data?.ingredients ?? []
 
   useEffect(() => {
-    if (!paginateLinesTable) return
     setLinesPage(1)
-  }, [paginateLinesTable, recipeQ.data?.id])
+  }, [recipeQ.data?.id])
 
   const linesTableTotalPages =
-    !paginateLinesTable || ingredientLines.length === 0
+    ingredientLines.length === 0
       ? 0
       : Math.ceil(ingredientLines.length / TABLE_PAGE_SIZE)
   const linesTableSafePage =
@@ -71,17 +68,15 @@ export function RecipeDetailPage({
       ? 1
       : Math.min(linesPage, linesTableTotalPages)
   const tableIngredientLines = useMemo(() => {
-    if (!paginateLinesTable) return ingredientLines
     const start = (linesTableSafePage - 1) * TABLE_PAGE_SIZE
     return ingredientLines.slice(start, start + TABLE_PAGE_SIZE)
-  }, [paginateLinesTable, ingredientLines, linesTableSafePage])
+  }, [ingredientLines, linesTableSafePage])
 
   useEffect(() => {
-    if (!paginateLinesTable) return
     if (linesTableTotalPages > 0 && linesPage > linesTableTotalPages) {
       setLinesPage(linesTableTotalPages)
     }
-  }, [paginateLinesTable, linesPage, linesTableTotalPages])
+  }, [linesPage, linesTableTotalPages])
 
   useEffect(() => {
     if (recipeQ.data) {
@@ -219,15 +214,13 @@ export function RecipeDetailPage({
               </TableBody>
             </Table>
           </div>
-          {paginateLinesTable ? (
-            <ListPaginationBar
-              page={linesTableSafePage}
-              totalPages={linesTableTotalPages}
-              totalItems={ingredientLines.length}
-              pageSize={TABLE_PAGE_SIZE}
-              onPageChange={setLinesPage}
-            />
-          ) : null}
+          <ListPaginationBar
+            page={linesTableSafePage}
+            totalPages={linesTableTotalPages}
+            totalItems={ingredientLines.length}
+            pageSize={TABLE_PAGE_SIZE}
+            onPageChange={setLinesPage}
+          />
           <Separator />
           <p className="text-sm text-muted-foreground">
             Les unités sont celles du stock (kg, fioles, miches, etc.) — comparaison

@@ -1,12 +1,8 @@
 ---
 theme: comics
-background: https://cover.sli.dev
-title: Welcome to Slidev
+title: Ils sont fous chez Tanstack ils ont mis une DB dans le front !
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+  ## Conference sur TanstackDB
 # apply UnoCSS classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -18,34 +14,45 @@ transition: slide-left
 mdc: true
 # duration of the presentation
 duration: 45min
+background: /panoramix_deborde.png
 layout: title
 ---
 
 # Tout commence par un probleme de potion
 
+
+
+---
+layout: image
+image: /armoire_potion_vide.png
 ---
 
+
+---
+layout: image
+image: /panoramix_deborde.png
+---
+
+
+---
 layout: dialog
 location: panoramix_home
-left: asterix:happy
+left: asterix:sad
 right: panoramix:sad
 transition: fade
-
 ---
 
-ca va pano ?
+ça va pano ?
 
 ::right::
 
 Non je n'ai plus de potion et je n'ai pas le temps d'en refaire
 
 ---
-
 layout: dialog
 location: panoramix_home
 left: asterix:happy
 right: panoramix:happy
-
 ---
 
 Je vais aller t'en chercher
@@ -55,12 +62,10 @@ Je vais aller t'en chercher
 Merci Asterix !
 
 ---
-
 layout: dialog
 location: village
 left: asterix:happy
 right: obelix:happy
-
 ---
 
 Tu viens m'aider Panoramix a besoin de nous ?
@@ -70,12 +75,10 @@ Tu viens m'aider Panoramix a besoin de nous ?
 Les sangliers peuvent attendre !
 
 ---
-
 layout: dialog
 location: forest
 left: obelix:scorn
 right: asterix:scorn
-
 ---
 
 C'est un travail a temps plein d'aller chercher des ingredients !
@@ -85,7 +88,7 @@ C'est un travail a temps plein d'aller chercher des ingredients !
 On ne fait que des allers retours
 
 ---
-layout: title
+layout: fullHeight
 ---
 
 <FlowDiagram :nodes="[
@@ -130,5 +133,4 @@ layout: title
         source: '3',
         target: '4',
         label: 'persist'
-    }]"
-height="350px" />
+    }]" height="500px" width="400px" />

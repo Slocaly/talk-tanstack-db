@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { computed } from "vue";
 
 const props = defineProps({
@@ -58,20 +58,20 @@ const svgHeight = computed(() =>
     Math.max(props.height, props.tailY, 0) + pad * 2
 );
 
-function pointOnEllipse(cx, cy, rx, ry, a) {
+function pointOnEllipse(cx: number, cy: number, rx: number, ry: number, a: number) {
   return {
     x: cx + rx * Math.cos(a),
     y: cy + ry * Math.sin(a),
   };
 }
 
-function normalizeAngle(a) {
+function normalizeAngle(a: number) {
   while (a < 0) a += Math.PI * 2;
   while (a >= Math.PI * 2) a -= Math.PI * 2;
   return a;
 }
 
-function buildBubblePath(cx, cy, rx, ry, tipX, tipY) {
+function buildBubblePath(cx: number, cy: number, rx: number, ry: number, tipX: number, tipY: number) {
   const angle = Math.atan2(tipY - cy, tipX - cx);
 
   // Taille de l’ouverture dans l’ellipse pour insérer la queue
@@ -120,7 +120,7 @@ const bubblePath = computed(() =>
 );
 
 const containerStyle = computed(() => ({
-  position: "absolute",
+  position: "absolute" as const,
   left: `${props.x}px`,
   top: `${props.y}px`,
   width: `${svgWidth.value}px`,
@@ -143,7 +143,7 @@ const textBoxStyle = computed(() => ({
   fontFamily: "var(--comics-font)",
   boxSizing: "border-box",
   ...props.textStyle,
-}));
+} as const));
 </script>
 
 <style scoped>

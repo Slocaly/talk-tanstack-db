@@ -18,7 +18,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useSlideContext } from "@slidev/client";
 import { computed } from "vue";
 import {
   ALL_CHARACTERS,
@@ -33,22 +32,30 @@ import SpeakingCharacter from "../components/SpeakingCharacter.vue";
 import BackgroundImage from "../components/BackgroundImage.vue";
 import { resolveAssetUrl } from "../utils/resolveAssetUrl";
 
-const { $frontmatter } = useSlideContext();
+const props = defineProps<{
+  location?: Location;
+  left?: string;
+  right?: string;
+  frontmatter: unknown;
+}>();
 
 const characters = computed(
   (): { right: CharacterToShow; left: CharacterToShow } => {
     return {
-      right: getCharacterToShow($frontmatter.right),
-      left: getCharacterToShow($frontmatter.left),
+      right: getCharacterToShow(props.right),
+      left: getCharacterToShow(props.left),
     };
   },
 );
 
 const backGroundImageUrl = computed((): string | null =>
-  getBackgroundImageUrl($frontmatter.location),
+  getBackgroundImageUrl(props.location),
 );
 
 function getBackgroundImageUrl(location: Location | undefined) {
+  if (!location) {
+    return null;
+  }
   if (ALL_LOCATIONS.includes(location)) {
     return resolveAssetUrl(`../public/images/background/${location}.png`);
   }

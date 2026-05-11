@@ -13,8 +13,6 @@ const style = computed(() => handleBackground(props.image, false));
 
 <template>
   <div class="slidev-layout image" :style="style">
-    <div class="my-auto w-full">
       <slot />
-    </div>
   </div>
 </template>

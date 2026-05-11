@@ -6,6 +6,7 @@
     :class="cssClasses"
   />
   <SpeechBubble
+    v-if="hasSlots"
     :x="bubblePosition.x"
     :y="bubblePosition.y"
     :width="300"
@@ -23,9 +24,30 @@
 
 <script lang="ts" setup>
 import { CharacterEmotion, CharacterName } from "../types/characters";
-import { computed } from "vue";
+import { computed, Fragment, useSlots } from "vue";
 import { resolveAssetUrl } from "../utils/resolveAssetUrl";
 import SpeechBubble from "./SpeechBubble.vue";
+
+const slots = useSlots();
+
+function isSlotEmpty(slot?: () => any[]) {
+  if (!slot) return true;
+
+  return slot().every((node) => {
+    if (node.type === Comment) return true;
+
+    if (node.type === Text && !String(node.children).trim()) {
+      return true;
+    }
+
+    if (node.type === Fragment && Array.isArray(node.children)) {
+      return node.children.length === 0;
+    }
+
+    return false;
+  });
+}
+const hasSlots = computed(() => !isSlotEmpty(slots.default));
 
 const props = defineProps<{
   character: {
@@ -124,5 +146,4 @@ const tailPosition =
         x: 220 - leftTailPosition.x,
         y: leftTailPosition.y - BUBBLE_POSITIONS.right.y,
       };
-
 </script>

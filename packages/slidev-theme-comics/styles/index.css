@@ -4,6 +4,13 @@
 @import url("https://fonts.googleapis.com/css2?family=BJCree:wght@400;500;600;700&family=Comic+Relief:wght@400;700&family=Permanent+Marker&display=swap");
 
 @font-face {
+  font-family: "Excalifont";
+  src:
+    url("../public/fonts/excalifont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: "Anime Ace";
   src:
     url("../public/fonts/animeace/animeace_reg.woff2") format("woff2"),
@@ -34,8 +41,8 @@
 }
 
 :root {
-  --comics-font: "Anime Ace", sans-serif;
-  --title-font: "BJCree", system-ui;
+  --comics-font: "Excalifont", "Anime Ace", sans-serif;
+  --title-font: "Excalifont", system-ui;
 }
 
 .slidev-layout {

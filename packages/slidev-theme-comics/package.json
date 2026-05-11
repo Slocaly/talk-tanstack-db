@@ -14,6 +14,7 @@
     "vue": "^3.5.27"
   },
   "dependencies": {
+    "@vueuse/motion": "^3.0.3",
     "@slidev/client": "^52.14.2",
     "@vue-flow/core": "^1.41.8"
   }

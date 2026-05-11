@@ -17,7 +17,7 @@
     </svg>
 
     <div class="speech-bubble-text" :style="textBoxStyle">
-      <slot>Bonjour !</slot>
+      <slot/>
     </div>
   </div>
 </template>
@@ -141,6 +141,7 @@ const textBoxStyle = computed(() => ({
   fontWeight: "bold",
   pointerEvents: "none",
   fontFamily: "var(--comics-font)",
+  textTransform: 'uppercase',
   boxSizing: "border-box",
   ...props.textStyle,
 } as const));

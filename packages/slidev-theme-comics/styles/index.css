@@ -1,5 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Permanent+Marker&display=swap');
+/* Required structural CSS — unscoped so it applies to vue-flow's dynamically injected classes */
+@import "@vue-flow/core/dist/style.css";
+@import "@vue-flow/core/dist/theme-default.css";
+@import url("https://fonts.googleapis.com/css2?family=BJCree:wght@400;500;600;700&family=Comic+Relief:wght@400;700&family=Permanent+Marker&display=swap");
 
+@font-face {
+  font-family: "Excalifont";
+  src:
+    url("../public/fonts/excalifont.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
 @font-face {
   font-family: "Anime Ace";
   src:
@@ -30,19 +40,26 @@
   font-style: normal;
 }
 
-
 :root {
-  --comics-font: "Anime Ace", sans-serif;
-  --title-font: "Comic Relief", system-ui
+  --comics-font: "Excalifont", "Anime Ace", sans-serif;
+  --title-font: "Excalifont", system-ui;
 }
 
 .slidev-layout {
   padding: 2rem;
 
   h1 {
-    font-size: 4rem;
     font-family: var(--title-font), system-ui;
-    font-weight: 200;
+  }
+}
+.slidev-layout.cover,
+.slidev-layout.title,
+.slidev-layout.image
+{
+  @apply h-full grid;
+
+  h1 {
+    @apply text-6xl leading-20;
   }
 }
 

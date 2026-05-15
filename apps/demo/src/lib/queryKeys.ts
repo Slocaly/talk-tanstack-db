@@ -1,4 +1,5 @@
 import type { IngredientsFilters } from '@/hooks/useIngredientsFilters';
+import type { MonoprixFilters } from '@/hooks/useMonoprixFilters';
 import type { RecipesFilters } from '@/hooks/useRecipesFilters';
 import type { AppPathPrefix } from '@/lib/appPathPrefix';
 
@@ -25,4 +26,6 @@ export const queryKeys = {
   recipe: (prefix: AppPathPrefix, id: string) =>
     ['recipe', prefix, id] as const,
   dashboard: (prefix: AppPathPrefix) => ['dashboard', prefix] as const,
+  monoprixCatalog: (filters: MonoprixFilters) =>
+    ['monoprix', 'catalog', filters] as const,
 };

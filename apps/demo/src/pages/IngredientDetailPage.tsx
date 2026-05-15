@@ -15,6 +15,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { IngredientMap } from '@/components/map/IngredientMap';
 import { AdjustStockCardMutationDBProvider } from '@/pages/providers/AdjustStockCardMutationDBProvider';
 import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider';
+import { MonoprixAd } from '@/components/monoprix/MonoprixAd';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import type { Ingredient } from '@/types/domain';
 
@@ -112,6 +113,11 @@ export function IngredientDetailPage({
           </Badge>
         </div>
       </div>
+
+      <MonoprixAd
+        ingredientId={ingredient.id}
+        ingredientName={ingredient.name}
+      />
 
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>

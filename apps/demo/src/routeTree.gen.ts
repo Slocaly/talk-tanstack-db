@@ -14,10 +14,12 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TsqIndexRouteImport } from './routes/tsq/index'
 import { Route as TsdbIndexRouteImport } from './routes/tsdb/index'
 import { Route as TsqRecipesIndexRouteImport } from './routes/tsq/recipes/index'
+import { Route as TsqMonoprixIndexRouteImport } from './routes/tsq/monoprix/index'
 import { Route as TsqIngredientsIndexRouteImport } from './routes/tsq/ingredients/index'
 import { Route as TsdbRecipesIndexRouteImport } from './routes/tsdb/recipes/index'
 import { Route as TsdbIngredientsIndexRouteImport } from './routes/tsdb/ingredients/index'
 import { Route as TsqRecipesIdRouteImport } from './routes/tsq/recipes/$id'
+import { Route as TsqMonoprixIdRouteImport } from './routes/tsq/monoprix/$id'
 import { Route as TsqIngredientsIdRouteImport } from './routes/tsq/ingredients/$id'
 import { Route as TsdbRecipesIdRouteImport } from './routes/tsdb/recipes/$id'
 import { Route as TsdbIngredientsIdRouteImport } from './routes/tsdb/ingredients/$id'
@@ -47,6 +49,11 @@ const TsqRecipesIndexRoute = TsqRecipesIndexRouteImport.update({
   path: '/recipes/',
   getParentRoute: () => TsqRouteRoute,
 } as any)
+const TsqMonoprixIndexRoute = TsqMonoprixIndexRouteImport.update({
+  id: '/monoprix/',
+  path: '/monoprix/',
+  getParentRoute: () => TsqRouteRoute,
+} as any)
 const TsqIngredientsIndexRoute = TsqIngredientsIndexRouteImport.update({
   id: '/ingredients/',
   path: '/ingredients/',
@@ -65,6 +72,11 @@ const TsdbIngredientsIndexRoute = TsdbIngredientsIndexRouteImport.update({
 const TsqRecipesIdRoute = TsqRecipesIdRouteImport.update({
   id: '/recipes/$id',
   path: '/recipes/$id',
+  getParentRoute: () => TsqRouteRoute,
+} as any)
+const TsqMonoprixIdRoute = TsqMonoprixIdRouteImport.update({
+  id: '/monoprix/$id',
+  path: '/monoprix/$id',
   getParentRoute: () => TsqRouteRoute,
 } as any)
 const TsqIngredientsIdRoute = TsqIngredientsIdRouteImport.update({
@@ -91,10 +103,12 @@ export interface FileRoutesByFullPath {
   '/tsdb/ingredients/$id': typeof TsdbIngredientsIdRoute
   '/tsdb/recipes/$id': typeof TsdbRecipesIdRoute
   '/tsq/ingredients/$id': typeof TsqIngredientsIdRoute
+  '/tsq/monoprix/$id': typeof TsqMonoprixIdRoute
   '/tsq/recipes/$id': typeof TsqRecipesIdRoute
   '/tsdb/ingredients/': typeof TsdbIngredientsIndexRoute
   '/tsdb/recipes/': typeof TsdbRecipesIndexRoute
   '/tsq/ingredients/': typeof TsqIngredientsIndexRoute
+  '/tsq/monoprix/': typeof TsqMonoprixIndexRoute
   '/tsq/recipes/': typeof TsqRecipesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -104,10 +118,12 @@ export interface FileRoutesByTo {
   '/tsdb/ingredients/$id': typeof TsdbIngredientsIdRoute
   '/tsdb/recipes/$id': typeof TsdbRecipesIdRoute
   '/tsq/ingredients/$id': typeof TsqIngredientsIdRoute
+  '/tsq/monoprix/$id': typeof TsqMonoprixIdRoute
   '/tsq/recipes/$id': typeof TsqRecipesIdRoute
   '/tsdb/ingredients': typeof TsdbIngredientsIndexRoute
   '/tsdb/recipes': typeof TsdbRecipesIndexRoute
   '/tsq/ingredients': typeof TsqIngredientsIndexRoute
+  '/tsq/monoprix': typeof TsqMonoprixIndexRoute
   '/tsq/recipes': typeof TsqRecipesIndexRoute
 }
 export interface FileRoutesById {
@@ -119,10 +135,12 @@ export interface FileRoutesById {
   '/tsdb/ingredients/$id': typeof TsdbIngredientsIdRoute
   '/tsdb/recipes/$id': typeof TsdbRecipesIdRoute
   '/tsq/ingredients/$id': typeof TsqIngredientsIdRoute
+  '/tsq/monoprix/$id': typeof TsqMonoprixIdRoute
   '/tsq/recipes/$id': typeof TsqRecipesIdRoute
   '/tsdb/ingredients/': typeof TsdbIngredientsIndexRoute
   '/tsdb/recipes/': typeof TsdbRecipesIndexRoute
   '/tsq/ingredients/': typeof TsqIngredientsIndexRoute
+  '/tsq/monoprix/': typeof TsqMonoprixIndexRoute
   '/tsq/recipes/': typeof TsqRecipesIndexRoute
 }
 export interface FileRouteTypes {
@@ -135,10 +153,12 @@ export interface FileRouteTypes {
     | '/tsdb/ingredients/$id'
     | '/tsdb/recipes/$id'
     | '/tsq/ingredients/$id'
+    | '/tsq/monoprix/$id'
     | '/tsq/recipes/$id'
     | '/tsdb/ingredients/'
     | '/tsdb/recipes/'
     | '/tsq/ingredients/'
+    | '/tsq/monoprix/'
     | '/tsq/recipes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -148,10 +168,12 @@ export interface FileRouteTypes {
     | '/tsdb/ingredients/$id'
     | '/tsdb/recipes/$id'
     | '/tsq/ingredients/$id'
+    | '/tsq/monoprix/$id'
     | '/tsq/recipes/$id'
     | '/tsdb/ingredients'
     | '/tsdb/recipes'
     | '/tsq/ingredients'
+    | '/tsq/monoprix'
     | '/tsq/recipes'
   id:
     | '__root__'
@@ -162,10 +184,12 @@ export interface FileRouteTypes {
     | '/tsdb/ingredients/$id'
     | '/tsdb/recipes/$id'
     | '/tsq/ingredients/$id'
+    | '/tsq/monoprix/$id'
     | '/tsq/recipes/$id'
     | '/tsdb/ingredients/'
     | '/tsdb/recipes/'
     | '/tsq/ingredients/'
+    | '/tsq/monoprix/'
     | '/tsq/recipes/'
   fileRoutesById: FileRoutesById
 }
@@ -216,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TsqRecipesIndexRouteImport
       parentRoute: typeof TsqRouteRoute
     }
+    '/tsq/monoprix/': {
+      id: '/tsq/monoprix/'
+      path: '/monoprix'
+      fullPath: '/tsq/monoprix/'
+      preLoaderRoute: typeof TsqMonoprixIndexRouteImport
+      parentRoute: typeof TsqRouteRoute
+    }
     '/tsq/ingredients/': {
       id: '/tsq/ingredients/'
       path: '/ingredients'
@@ -242,6 +273,13 @@ declare module '@tanstack/react-router' {
       path: '/recipes/$id'
       fullPath: '/tsq/recipes/$id'
       preLoaderRoute: typeof TsqRecipesIdRouteImport
+      parentRoute: typeof TsqRouteRoute
+    }
+    '/tsq/monoprix/$id': {
+      id: '/tsq/monoprix/$id'
+      path: '/monoprix/$id'
+      fullPath: '/tsq/monoprix/$id'
+      preLoaderRoute: typeof TsqMonoprixIdRouteImport
       parentRoute: typeof TsqRouteRoute
     }
     '/tsq/ingredients/$id': {
@@ -271,16 +309,20 @@ declare module '@tanstack/react-router' {
 interface TsqRouteRouteChildren {
   TsqIndexRoute: typeof TsqIndexRoute
   TsqIngredientsIdRoute: typeof TsqIngredientsIdRoute
+  TsqMonoprixIdRoute: typeof TsqMonoprixIdRoute
   TsqRecipesIdRoute: typeof TsqRecipesIdRoute
   TsqIngredientsIndexRoute: typeof TsqIngredientsIndexRoute
+  TsqMonoprixIndexRoute: typeof TsqMonoprixIndexRoute
   TsqRecipesIndexRoute: typeof TsqRecipesIndexRoute
 }
 
 const TsqRouteRouteChildren: TsqRouteRouteChildren = {
   TsqIndexRoute: TsqIndexRoute,
   TsqIngredientsIdRoute: TsqIngredientsIdRoute,
+  TsqMonoprixIdRoute: TsqMonoprixIdRoute,
   TsqRecipesIdRoute: TsqRecipesIdRoute,
   TsqIngredientsIndexRoute: TsqIngredientsIndexRoute,
+  TsqMonoprixIndexRoute: TsqMonoprixIndexRoute,
   TsqRecipesIndexRoute: TsqRecipesIndexRoute,
 }
 

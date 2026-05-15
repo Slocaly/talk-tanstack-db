@@ -1,11 +1,16 @@
-import { Link, Outlet } from '@tanstack/react-router';
+import { Link, Outlet, useRouterState } from '@tanstack/react-router';
 import { useDemoStackToggleHotkey } from '@/hooks/useDemoStackToggleHotkey';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { demoLibraryAccentHex } from '@/lib/demoLibraryAccent';
 import { cn } from '@/lib/utils';
 
+function isMonoprixPath(pathname: string): boolean {
+  return pathname.startsWith('/tsq/monoprix');
+}
+
 export function AppLayout() {
   useDemoStackToggleHotkey();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   const prefix = useAppPathPrefix();
   const accent = demoLibraryAccentHex(prefix);
   const villageTo = prefix === '/tsq' ? '/tsq' : '/tsdb';
@@ -14,6 +19,10 @@ export function AppLayout() {
     { to: `${prefix}/ingredients`, label: 'Ingrédients' },
     { to: `${prefix}/recipes`, label: 'Recettes' },
   ];
+
+  if (isMonoprixPath(pathname)) {
+    return <Outlet />;
+  }
 
   return (
     <div className="app-frame flex min-h-svh flex-col">

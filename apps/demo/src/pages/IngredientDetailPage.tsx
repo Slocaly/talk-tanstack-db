@@ -181,6 +181,7 @@ export function IngredientDetailPage({
               lng={ingredient.lng}
               title={ingredient.name}
               snippet={ingredient.whereToFind}
+              category={ingredient.category}
             />
           ) : (
             <p className="text-muted-foreground">

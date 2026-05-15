@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import L from 'leaflet';
 import type { LatLngBoundsExpression } from 'leaflet';
 import { ImageOverlay, MapContainer, Marker, Popup } from 'react-leaflet';
+import { categoryEmoji } from '@/lib/categoryEmoji';
+import type { IngredientCategory } from '@/types/domain';
 
 /** Geographic frame for the fictional village map (covers all seed ingredient coords). */
 const VILLAGE_MAP_BOUNDS: LatLngBoundsExpression = [
@@ -14,25 +16,26 @@ type Props = {
   lng: number;
   title: string;
   snippet: string;
+  category: IngredientCategory;
 };
 
-export function IngredientMap({ lat, lng, title, snippet }: Props) {
+export function IngredientMap({ lat, lng, title, snippet, category }: Props) {
   const icon = useMemo(
     () =>
       L.divIcon({
         className: 'ingredient-map-marker',
-        html: '<span class="map-pin" aria-hidden="true">🌿</span>',
+        html: `<span class="map-pin" data-category="${category}" aria-hidden="true">${categoryEmoji[category]}</span>`,
         iconSize: [32, 32],
         iconAnchor: [16, 30],
         popupAnchor: [0, -26],
       }),
-    [],
+    [category],
   );
 
   return (
     <MapContainer
       center={[lat, lng]}
-      zoom={13}
+      zoom={15}
       scrollWheelZoom
       maxBounds={VILLAGE_MAP_BOUNDS}
       maxBoundsViscosity={0.85}
@@ -40,7 +43,7 @@ export function IngredientMap({ lat, lng, title, snippet }: Props) {
       aria-label={`Carte : ${title}`}
     >
       <ImageOverlay
-        url="/village-map-illustration.svg"
+        url="/village.png"
         bounds={VILLAGE_MAP_BOUNDS}
       />
       <Marker position={[lat, lng]} icon={icon}>

@@ -7,20 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { categoryEmoji } from '@/lib/categoryEmoji';
 import { categoryLabels } from '@/lib/categoryLabels';
 import { MonoprixPriceTag } from '@/components/monoprix/MonoprixPriceTag';
 import { getMonoprixPrice } from '@/lib/monoprixPrice';
 import type { Ingredient } from '@/types/domain';
-
-const categoryEmoji: Record<Ingredient['category'], string> = {
-  viande: '🥩',
-  poisson: '🐟',
-  cereales: '🌾',
-  boisson: '🍺',
-  herbe: '🌿',
-  laitier: '🧀',
-  autre: '📦',
-};
 
 type MonoprixProductCardProps = {
   ingredient: Ingredient;

@@ -1,22 +1,24 @@
-import { useParams } from '@tanstack/react-router'
-import { useIngredientByIdQuery } from '@/hooks/useIngredientByIdQuery'
-import { IngredientDetailPage } from '@/pages/IngredientDetailPage'
+import { useParams } from '@tanstack/react-router';
+import { IngredientDetailPage } from '@/pages/IngredientDetailPage';
+import { eq, useLiveQuery } from '@tanstack/react-db';
+import { ingredientCollection } from '@/collections/ingredient-collection';
 
 export function IngredientDetailPageDBProvider() {
-  const { id } = useParams({ strict: false })
+  const { id } = useParams({ strict: false });
 
-  const { data: ingredient, isPending, error, refetch } = useIngredientByIdQuery(
-    '/tsdb',
-    id ?? '',
-  )
+  const { data: ingredient, isLoading: isPending, isError } = useLiveQuery((q) =>
+    q.from({ ingredients: ingredientCollection })
+      .where(({ ingredients }) => eq(ingredients.id, id)).findOne(),
+    [id],
+  );
 
   return (
     <IngredientDetailPage
       id={id}
       ingredient={ingredient ?? null}
       isPending={isPending}
-      error={error}
-      refetch={refetch}
+      error={isError ? new Error('Erreur lors de la récupération de l\'ingrédient') : null}
+      refetch={() => { }}
     />
-  )
+  );
 }

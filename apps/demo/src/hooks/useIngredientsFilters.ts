@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtom } from 'jotai';
 import {
   ingredientsPageCategoryAtom,
   ingredientsPageExpiringSoonAtom,
@@ -6,12 +6,12 @@ import {
   ingredientsPagePageSizeAtom,
   ingredientsPageSearchAtom,
   ingredientsPageTablePageAtom,
-} from "@/atoms/ingredientsPageAtoms";
-import type { IngredientCategory } from "@/types/domain";
+} from '@/atoms/ingredientsPageAtoms';
+import type { IngredientCategory } from '@/types/domain';
 
 export type IngredientsFilters = {
   search: string;
-  category: IngredientCategory | "tous";
+  category: IngredientCategory | 'tous';
   expiringSoon: boolean;
   inStockOnly: boolean;
   page: number;

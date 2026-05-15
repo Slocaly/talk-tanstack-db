@@ -1,19 +1,19 @@
-import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
-import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
 type ListPaginationBarProps = {
-  page: number
-  totalPages: number
-  totalItems: number
-  pageSize: number
-  onPageChange: (page: number) => void
-  className?: string
+  page: number;
+  totalPages: number;
+  totalItems: number;
+  pageSize: number;
+  onPageChange: (page: number) => void;
+  className?: string;
   /** When true, navigation buttons are disabled (e.g. while a page is loading). */
-  disabled?: boolean
+  disabled?: boolean;
   /** When true, shows a loading summary and spinners; navigation is disabled. */
-  isLoading?: boolean
-}
+  isLoading?: boolean;
+};
 
 export function ListPaginationBar({
   page,
@@ -25,15 +25,15 @@ export function ListPaginationBar({
   disabled = false,
   isLoading = false,
 }: ListPaginationBarProps) {
-  const from = totalItems === 0 ? 0 : (page - 1) * pageSize + 1
-  const to = Math.min(page * pageSize, totalItems)
-  const navDisabled = disabled || isLoading
+  const from = totalItems === 0 ? 0 : (page - 1) * pageSize + 1;
+  const to = Math.min(page * pageSize, totalItems);
+  const navDisabled = disabled || isLoading;
 
   return (
     <div
       className={cn(
         'flex flex-col gap-3 border-t-2 border-border pt-4 sm:flex-row sm:items-center sm:justify-between',
-        className
+        className,
       )}
       aria-busy={isLoading || undefined}
     >
@@ -67,5 +67,5 @@ export function ListPaginationBar({
         </Button>
       </div>
     </div>
-  )
+  );
 }

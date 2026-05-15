@@ -1,18 +1,18 @@
-import { useEffect } from 'react'
-import { Link } from '@tanstack/react-router'
-import { Button } from '@/components/ui/button'
+import { useEffect } from 'react';
+import { Link } from '@tanstack/react-router';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from '@/components/ui/card';
 
 export function NotFoundPage() {
   useEffect(() => {
-    document.title = 'Page introuvable — Stock du village gaulois'
-  }, [])
+    document.title = 'Page introuvable — Stock du village gaulois';
+  }, []);
 
   return (
     <Card className="mx-auto max-w-lg text-center">
@@ -29,5 +29,5 @@ export function NotFoundPage() {
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

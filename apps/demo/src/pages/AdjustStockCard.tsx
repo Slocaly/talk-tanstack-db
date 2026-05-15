@@ -1,33 +1,33 @@
-import { useState } from 'react'
-import type { UseMutationResult } from '@tanstack/react-query'
-import { Button } from '@/components/ui/button'
+import { useState } from 'react';
+import type { UseMutationResult } from '@tanstack/react-query';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import type { Ingredient } from '@/types/domain'
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import type { Ingredient } from '@/types/domain';
 
 type AdjustStockCardProps = {
-  quantity: number
-  updateQuantityMutation: UseMutationResult<Ingredient, Error, number>
-}
+  quantity: number;
+  updateQuantityMutation: UseMutationResult<Ingredient, Error, number>;
+};
 
 export function AdjustStockCard({
   quantity,
   updateQuantityMutation: mutation,
 }: AdjustStockCardProps) {
-  const [qtyInput, setQtyInput] = useState(() => String(quantity))
+  const [qtyInput, setQtyInput] = useState(() => String(quantity));
 
   const onSaveQuantity = () => {
-    const n = Number.parseFloat(qtyInput.replace(',', '.'))
-    if (Number.isNaN(n)) return
-    mutation.mutate(n)
-  }
+    const n = Number.parseFloat(qtyInput.replace(',', '.'));
+    if (Number.isNaN(n)) return;
+    mutation.mutate(n);
+  };
 
   return (
     <Card>
@@ -65,5 +65,5 @@ export function AdjustStockCard({
         </Button>
       </CardContent>
     </Card>
-  )
+  );
 }

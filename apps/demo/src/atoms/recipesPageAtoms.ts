@@ -1,6 +1,6 @@
-import { atom } from "jotai";
+import { atom } from 'jotai';
 
-export const recipesPageSearchAtom = atom("");
+export const recipesPageSearchAtom = atom('');
 
 export const recipesPageMakableOnlyAtom = atom(false);
 

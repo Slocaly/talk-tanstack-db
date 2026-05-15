@@ -1,10 +1,10 @@
-import { useUpdateIngredientQuantityMutation } from '@/hooks/useUpdateIngredientQuantityMutation'
-import { AdjustStockCard } from '@/pages/AdjustStockCard'
+import { useUpdateIngredientQuantityMutation } from '@/hooks/useUpdateIngredientQuantityMutation';
+import { AdjustStockCard } from '@/pages/AdjustStockCard';
 
 type AdjustStockCardMutationDBProviderProps = {
-  ingredientId: string
-  quantity: number
-}
+  ingredientId: string;
+  quantity: number;
+};
 
 export function AdjustStockCardMutationDBProvider({
   ingredientId,
@@ -13,12 +13,12 @@ export function AdjustStockCardMutationDBProvider({
   const updateQuantityMutation = useUpdateIngredientQuantityMutation(
     '/tsdb',
     ingredientId,
-  )
+  );
 
   return (
     <AdjustStockCard
       quantity={quantity}
       updateQuantityMutation={updateQuantityMutation}
     />
-  )
+  );
 }

@@ -1,7 +1,7 @@
-import type { IngredientsFilters } from "@/hooks/useIngredientsFilters";
-import type { RecipesFilters } from "@/hooks/useRecipesFilters";
-import type { AppPathPrefix } from "@/lib/appPathPrefix";
-import type { DashboardSummary, Ingredient, Recipe } from "@/types/domain";
+import type { IngredientsFilters } from '@/hooks/useIngredientsFilters';
+import type { RecipesFilters } from '@/hooks/useRecipesFilters';
+import type { AppPathPrefix } from '@/lib/appPathPrefix';
+import type { DashboardSummary, Ingredient, Recipe } from '@/types/domain';
 
 export type PaginatedList<T> = {
   items: T[];
@@ -19,10 +19,10 @@ export type TsqListFetchOptions = {
 };
 
 const rawBase = import.meta.env.VITE_API_BASE_URL as string | undefined;
-const base = (rawBase?.replace(/\/$/, "") || "/api").replace(/\/$/, "");
+const base = (rawBase?.replace(/\/$/, '') || '/api').replace(/\/$/, '');
 
 function apiRoot(prefix: AppPathPrefix): string {
-  const segment = prefix === "/tsdb" ? "tsdb" : "tsq";
+  const segment = prefix === '/tsdb' ? 'tsdb' : 'tsq';
   return `${base}/${segment}`;
 }
 
@@ -30,8 +30,8 @@ async function readErrorMessage(res: Response): Promise<string> {
   const text = await res.text();
   try {
     const j = JSON.parse(text) as { message?: unknown };
-    if (typeof j.message === "string") return j.message;
-    if (Array.isArray(j.message)) return j.message.join(", ");
+    if (typeof j.message === 'string') return j.message;
+    if (Array.isArray(j.message)) return j.message.join(', ');
   } catch {
     /* ignore */
   }
@@ -47,12 +47,12 @@ async function parseJson<T>(res: Response): Promise<T> {
 
 function tsqListParams(filters: IngredientsFilters, pageSize: number): string {
   const q = new URLSearchParams();
-  q.set("page", String(filters.page));
-  q.set("pageSize", String(pageSize));
-  q.set("search", filters.search.trim());
-  q.set("category", filters.category);
-  q.set("expiringSoon", filters.expiringSoon ? "true" : "false");
-  q.set("inStockOnly", filters.inStockOnly ? "true" : "false");
+  q.set('page', String(filters.page));
+  q.set('pageSize', String(pageSize));
+  q.set('search', filters.search.trim());
+  q.set('category', filters.category);
+  q.set('expiringSoon', filters.expiringSoon ? 'true' : 'false');
+  q.set('inStockOnly', filters.inStockOnly ? 'true' : 'false');
   return q.toString();
 }
 
@@ -61,11 +61,16 @@ function tsqRecipeListParams(
   pageSize: number,
 ): string {
   const q = new URLSearchParams();
-  q.set("page", String(filters.page));
-  q.set("pageSize", String(pageSize));
-  q.set("search", filters.search.trim());
-  q.set("makableOnly", filters.makableOnly ? "true" : "false");
+  q.set('page', String(filters.page));
+  q.set('pageSize', String(pageSize));
+  q.set('search', filters.search.trim());
+  q.set('makableOnly', filters.makableOnly ? 'true' : 'false');
   return q.toString();
+}
+
+export async function listIngredientsDB(): Promise<Ingredient[]> {
+  const res = await fetch(`${apiRoot('/tsdb')}/ingredients`);
+  return parseJson(res);
 }
 
 export async function listIngredients(
@@ -98,11 +103,16 @@ export async function updateIngredientQuantity(
   const res = await fetch(
     `${apiRoot(prefix)}/ingredients/${encodeURIComponent(id)}/quantity`,
     {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ quantity: newQuantity }),
     },
   );
+  return parseJson(res);
+}
+
+export async function listRecipesDB(): Promise<Recipe[]> {
+  const res = await fetch(`${apiRoot('/tsdb')}/recipes`);
   return parseJson(res);
 }
 

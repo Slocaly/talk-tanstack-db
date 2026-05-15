@@ -1,4 +1,4 @@
-import type { IngredientCategory } from '@/types/domain'
+import type { IngredientCategory } from '@/types/domain';
 
 export const categoryLabels: Record<IngredientCategory, string> = {
   viande: 'Viande & gibier',
@@ -8,4 +8,4 @@ export const categoryLabels: Record<IngredientCategory, string> = {
   herbe: 'Herbes & baies',
   laitier: 'Laitier',
   autre: 'Autre',
-}
+};

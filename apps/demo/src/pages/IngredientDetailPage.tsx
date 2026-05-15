@@ -1,22 +1,22 @@
-import { useEffect } from 'react'
-import { Link } from '@tanstack/react-router'
-import { categoryLabels } from '@/lib/categoryLabels'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { useEffect } from 'react';
+import { Link } from '@tanstack/react-router';
+import { categoryLabels } from '@/lib/categoryLabels';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
-import { Skeleton } from '@/components/ui/skeleton'
-import { IngredientMap } from '@/components/map/IngredientMap'
-import { AdjustStockCardMutationDBProvider } from '@/pages/providers/AdjustStockCardMutationDBProvider'
-import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
-import type { Ingredient } from '@/types/domain'
+} from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
+import { Skeleton } from '@/components/ui/skeleton';
+import { IngredientMap } from '@/components/map/IngredientMap';
+import { AdjustStockCardMutationDBProvider } from '@/pages/providers/AdjustStockCardMutationDBProvider';
+import { AdjustStockCardMutationProvider } from '@/pages/providers/AdjustStockCardMutationProvider';
+import { useAppPathPrefix } from '@/lib/appPathPrefix';
+import type { Ingredient } from '@/types/domain';
 
 export interface IngredientDetailPageProps {
   id: string | undefined;
@@ -26,23 +26,29 @@ export interface IngredientDetailPageProps {
   refetch: () => void;
 }
 
-export function IngredientDetailPage({ id, ingredient, isPending, error, refetch }: IngredientDetailPageProps) {
-  const prefix = useAppPathPrefix()
-  const ingredientsListTo = `${prefix}/ingredients` as const
+export function IngredientDetailPage({
+  id,
+  ingredient,
+  isPending,
+  error,
+  refetch,
+}: IngredientDetailPageProps) {
+  const prefix = useAppPathPrefix();
+  const ingredientsListTo = `${prefix}/ingredients` as const;
   const AdjustStock =
     prefix === '/tsdb'
       ? AdjustStockCardMutationDBProvider
-      : AdjustStockCardMutationProvider
+      : AdjustStockCardMutationProvider;
 
   useEffect(() => {
-    const name = ingredient?.name
+    const name = ingredient?.name;
     if (name) {
-      document.title = `${name} — Ingrédient`
+      document.title = `${name} — Ingrédient`;
     }
-  }, [ingredient?.name])
+  }, [ingredient?.name]);
 
   if (!id) {
-    return <p className="text-destructive">Identifiant manquant.</p>
+    return <p className="text-destructive">Identifiant manquant.</p>;
   }
 
   if (isPending) {
@@ -51,7 +57,7 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
         <Skeleton className="h-10 w-2/3" />
         <Skeleton className="h-48 w-full" />
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -60,9 +66,7 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
         <CardHeader>
           <CardTitle>Erreur</CardTitle>
           <CardDescription>
-            {error instanceof Error
-              ? error.message
-              : 'Chargement impossible'}
+            {error instanceof Error ? error.message : 'Chargement impossible'}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -71,7 +75,7 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
           </Button>
         </CardContent>
       </Card>
-    )
+    );
   }
 
   if (!ingredient) {
@@ -79,7 +83,9 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
       <Card>
         <CardHeader>
           <CardTitle>Ingrédient introuvable</CardTitle>
-          <CardDescription>Cette référence n’existe pas dans le stock.</CardDescription>
+          <CardDescription>
+            Cette référence n’existe pas dans le stock.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Button asChild variant="secondary">
@@ -87,10 +93,11 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
           </Button>
         </CardContent>
       </Card>
-    )
+    );
   }
 
-  const hasMapCoords = Number.isFinite(ingredient.lat) && Number.isFinite(ingredient.lng)
+  const hasMapCoords =
+    Number.isFinite(ingredient.lat) && Number.isFinite(ingredient.lng);
 
   return (
     <div className="space-y-6">
@@ -110,7 +117,9 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
         <Card>
           <CardHeader>
             <CardTitle>Informations</CardTitle>
-            <CardDescription>Quantité, péremption et conservation</CardDescription>
+            <CardDescription>
+              Quantité, péremption et conservation
+            </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -131,11 +140,15 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
             </div>
             <Separator />
             <div>
-              <p className="text-sm font-semibold text-foreground">Où trouver</p>
+              <p className="text-sm font-semibold text-foreground">
+                Où trouver
+              </p>
               <p className="text-muted-foreground">{ingredient.whereToFind}</p>
             </div>
             <div>
-              <p className="text-sm font-semibold text-foreground">Comment récolter</p>
+              <p className="text-sm font-semibold text-foreground">
+                Comment récolter
+              </p>
               <p className="text-muted-foreground">{ingredient.howToHarvest}</p>
             </div>
           </CardContent>
@@ -171,5 +184,5 @@ export function IngredientDetailPage({ id, ingredient, isPending, error, refetch
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

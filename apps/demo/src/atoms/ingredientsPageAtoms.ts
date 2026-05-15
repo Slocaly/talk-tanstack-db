@@ -1,10 +1,10 @@
-import { atom } from "jotai";
-import type { IngredientCategory } from "@/types/domain";
+import { atom } from 'jotai';
+import type { IngredientCategory } from '@/types/domain';
 
-export const ingredientsPageSearchAtom = atom("");
+export const ingredientsPageSearchAtom = atom('');
 
-export const ingredientsPageCategoryAtom = atom<IngredientCategory | "tous">(
-  "tous",
+export const ingredientsPageCategoryAtom = atom<IngredientCategory | 'tous'>(
+  'tous',
 );
 
 export const ingredientsPageExpiringSoonAtom = atom(false);

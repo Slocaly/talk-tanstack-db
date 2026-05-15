@@ -1,10 +1,10 @@
-import { useAtom } from "jotai";
+import { useAtom } from 'jotai';
 import {
   recipesPageMakableOnlyAtom,
   recipesPagePageSizeAtom,
   recipesPageSearchAtom,
   recipesPageTablePageAtom,
-} from "@/atoms/recipesPageAtoms";
+} from '@/atoms/recipesPageAtoms';
 
 export type RecipesFilters = {
   search: string;

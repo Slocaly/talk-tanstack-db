@@ -1,19 +1,19 @@
-import { Link, Outlet } from '@tanstack/react-router'
-import { useDemoStackToggleHotkey } from '@/hooks/useDemoStackToggleHotkey'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
-import { demoLibraryAccentHex } from '@/lib/demoLibraryAccent'
-import { cn } from '@/lib/utils'
+import { Link, Outlet } from '@tanstack/react-router';
+import { useDemoStackToggleHotkey } from '@/hooks/useDemoStackToggleHotkey';
+import { useAppPathPrefix } from '@/lib/appPathPrefix';
+import { demoLibraryAccentHex } from '@/lib/demoLibraryAccent';
+import { cn } from '@/lib/utils';
 
 export function AppLayout() {
-  useDemoStackToggleHotkey()
-  const prefix = useAppPathPrefix()
-  const accent = demoLibraryAccentHex(prefix)
-  const villageTo = prefix === '/tsq' ? '/tsq' : '/tsdb'
+  useDemoStackToggleHotkey();
+  const prefix = useAppPathPrefix();
+  const accent = demoLibraryAccentHex(prefix);
+  const villageTo = prefix === '/tsq' ? '/tsq' : '/tsdb';
   const nav = [
     { to: villageTo, label: 'Village' },
     { to: `${prefix}/ingredients`, label: 'Ingrédients' },
     { to: `${prefix}/recipes`, label: 'Recettes' },
-  ]
+  ];
 
   return (
     <div className="app-frame flex min-h-svh flex-col">

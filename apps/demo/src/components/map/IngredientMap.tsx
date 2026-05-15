@@ -1,20 +1,20 @@
-import { useMemo } from 'react'
-import L from 'leaflet'
-import type { LatLngBoundsExpression } from 'leaflet'
-import { ImageOverlay, MapContainer, Marker, Popup } from 'react-leaflet'
+import { useMemo } from 'react';
+import L from 'leaflet';
+import type { LatLngBoundsExpression } from 'leaflet';
+import { ImageOverlay, MapContainer, Marker, Popup } from 'react-leaflet';
 
 /** Geographic frame for the fictional village map (covers all seed ingredient coords). */
 const VILLAGE_MAP_BOUNDS: LatLngBoundsExpression = [
   [48.312, -4.78],
   [48.358, -4.698],
-]
+];
 
 type Props = {
-  lat: number
-  lng: number
-  title: string
-  snippet: string
-}
+  lat: number;
+  lng: number;
+  title: string;
+  snippet: string;
+};
 
 export function IngredientMap({ lat, lng, title, snippet }: Props) {
   const icon = useMemo(
@@ -26,8 +26,8 @@ export function IngredientMap({ lat, lng, title, snippet }: Props) {
         iconAnchor: [16, 30],
         popupAnchor: [0, -26],
       }),
-    []
-  )
+    [],
+  );
 
   return (
     <MapContainer
@@ -39,7 +39,10 @@ export function IngredientMap({ lat, lng, title, snippet }: Props) {
       className="h-[280px] w-full z-0"
       aria-label={`Carte : ${title}`}
     >
-      <ImageOverlay url="/village-map-illustration.svg" bounds={VILLAGE_MAP_BOUNDS} />
+      <ImageOverlay
+        url="/village-map-illustration.svg"
+        bounds={VILLAGE_MAP_BOUNDS}
+      />
       <Marker position={[lat, lng]} icon={icon}>
         <Popup>
           <strong>{title}</strong>
@@ -47,5 +50,5 @@ export function IngredientMap({ lat, lng, title, snippet }: Props) {
         </Popup>
       </Marker>
     </MapContainer>
-  )
+  );
 }

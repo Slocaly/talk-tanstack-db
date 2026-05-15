@@ -1,41 +1,48 @@
-import { useEffect } from 'react'
-import { ListPaginationBar } from '@/components/ListPaginationBar'
-import { Link } from '@tanstack/react-router'
-import type { Recipe } from '@/types/domain'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { useEffect } from 'react';
+import { ListPaginationBar } from '@/components/ListPaginationBar';
+import { Link } from '@tanstack/react-router';
+import type { Recipe } from '@/types/domain';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Skeleton } from '@/components/ui/skeleton'
-import { useAppPathPrefix } from '@/lib/appPathPrefix'
-import { useRecipesFilters } from '@/hooks/useRecipesFilters'
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useAppPathPrefix } from '@/lib/appPathPrefix';
+import { useRecipesFilters } from '@/hooks/useRecipesFilters';
 
 export interface RecipesPageProps {
-  recipes: Recipe[]
-  isPending: boolean
-  error: Error | null
-  refetch: () => void
-  totalItems: number
-  totalPages: number
+  recipes: Recipe[];
+  isPending: boolean;
+  error: Error | null;
+  refetch: () => void;
+  totalItems: number;
+  totalPages: number;
 }
 
-export function RecipesPage({ recipes, isPending, error, refetch, totalItems, totalPages }: RecipesPageProps) {
-  const prefix = useAppPathPrefix()
+export function RecipesPage({
+  recipes,
+  isPending,
+  error,
+  refetch,
+  totalItems,
+  totalPages,
+}: RecipesPageProps) {
+  const prefix = useAppPathPrefix();
   const {
     filters: { search, makableOnly, page, pageSize },
     setFilters,
-  } = useRecipesFilters()
+  } = useRecipesFilters();
 
   useEffect(() => {
-    document.title = 'Recettes — Stock du village gaulois'
-  }, [])
+    document.title = 'Recettes — Stock du village gaulois';
+  }, []);
 
   if (error) {
     return (
@@ -50,7 +57,7 @@ export function RecipesPage({ recipes, isPending, error, refetch, totalItems, to
           </Button>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -58,8 +65,8 @@ export function RecipesPage({ recipes, isPending, error, refetch, totalItems, to
       <div>
         <h1 className="mb-2 text-4xl text-foreground">Recettes</h1>
         <p className="text-muted-foreground">
-          Recherchez par nom, description ou ingrédient ; combinez avec le filtre
-          stock.
+          Recherchez par nom, description ou ingrédient ; combinez avec le
+          filtre stock.
         </p>
       </div>
 
@@ -91,61 +98,59 @@ export function RecipesPage({ recipes, isPending, error, refetch, totalItems, to
         className="grid list-none gap-4 p-0 sm:grid-cols-2"
         aria-busy={isPending || undefined}
       >
-        {isPending
-          ? Array.from({ length: 4 }, (_, i) => (
-              <li key={`skeleton-${i}`}>
+        {isPending ? (
+          Array.from({ length: 4 }, (_, i) => (
+            <li key={`skeleton-${i}`}>
+              <Card className="h-full">
+                <CardHeader>
+                  <div className="flex flex-wrap items-start justify-between gap-2">
+                    <Skeleton className="h-7 w-2/3 max-w-xs" />
+                    <Skeleton className="h-5 w-20 shrink-0 rounded-full" />
+                  </div>
+                  <div className="space-y-2 pt-1">
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-4/5" />
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="h-9 w-36" />
+                </CardContent>
+              </Card>
+            </li>
+          ))
+        ) : recipes.length === 0 ? (
+          <li className="col-span-full text-center text-muted-foreground">
+            Aucune recette ne correspond à la recherche ou aux filtres.
+          </li>
+        ) : (
+          recipes.map((recipe) => {
+            return (
+              <li key={recipe.id}>
                 <Card className="h-full">
                   <CardHeader>
                     <div className="flex flex-wrap items-start justify-between gap-2">
-                      <Skeleton className="h-7 w-2/3 max-w-xs" />
-                      <Skeleton className="h-5 w-20 shrink-0 rounded-full" />
+                      <CardTitle className="text-xl">{recipe.name}</CardTitle>
+                      <Badge variant="default">Faisable</Badge>
                     </div>
-                    <div className="space-y-2 pt-1">
-                      <Skeleton className="h-4 w-full" />
-                      <Skeleton className="h-4 w-4/5" />
-                    </div>
+                    {recipe.description && (
+                      <CardDescription>{recipe.description}</CardDescription>
+                    )}
                   </CardHeader>
                   <CardContent>
-                    <Skeleton className="h-9 w-36" />
+                    <Button asChild size="sm">
+                      <Link
+                        to={`${prefix}/recipes/$id`}
+                        params={{ id: recipe.id }}
+                      >
+                        Voir la recette
+                      </Link>
+                    </Button>
                   </CardContent>
                 </Card>
               </li>
-            ))
-          : recipes.length === 0 ? (
-              <li className="col-span-full text-center text-muted-foreground">
-                Aucune recette ne correspond à la recherche ou aux filtres.
-              </li>
-            ) : (
-              recipes.map((recipe) => {
-                return (
-                  <li key={recipe.id}>
-                    <Card className="h-full">
-                      <CardHeader>
-                        <div className="flex flex-wrap items-start justify-between gap-2">
-                          <CardTitle className="text-xl">{recipe.name}</CardTitle>
-                          <Badge variant="default">
-                            Faisable
-                          </Badge>
-                        </div>
-                        {recipe.description && (
-                          <CardDescription>{recipe.description}</CardDescription>
-                        )}
-                      </CardHeader>
-                      <CardContent>
-                        <Button asChild size="sm">
-                          <Link
-                            to={`${prefix}/recipes/$id`}
-                            params={{ id: recipe.id }}
-                          >
-                            Voir la recette
-                          </Link>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </li>
-                )
-              })
-            )}
+            );
+          })
+        )}
       </ul>
       <ListPaginationBar
         page={page}
@@ -156,5 +161,5 @@ export function RecipesPage({ recipes, isPending, error, refetch, totalItems, to
         isLoading={isPending}
       />
     </div>
-  )
+  );
 }

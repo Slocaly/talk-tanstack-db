@@ -16,10 +16,10 @@ The app lives under **`/tsq`** (e.g. `/tsq`, `/tsq/ingredients`). The home route
 
 ## Stack
 
-- [Vite](https://vitejs.dev/) + React 19 + TypeScript  
-- [TanStack Router](https://tanstack.com/router) (file-based routes)  
-- [TanStack Query](https://tanstack.com/query) for server state and mutations  
-- Tailwind CSS 4, shadcn-style UI primitives, [Leaflet](https://leafletjs.com/) / react-leaflet for maps  
+- [Vite](https://vitejs.dev/) + React 19 + TypeScript
+- [TanStack Router](https://tanstack.com/router) (file-based routes)
+- [TanStack Query](https://tanstack.com/query) for server state and mutations
+- Tailwind CSS 4, shadcn-style UI primitives, [Leaflet](https://leafletjs.com/) / react-leaflet for maps
 - [React Compiler](https://react.dev/learn/react-compiler) (see `vite.config.ts`)
 
 ## Run it

@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { seedIngredients, seedRecipes } from './seed.data';
 import type {
   DashboardSummary,
@@ -6,7 +10,27 @@ import type {
   IngredientCategory,
   PaginatedList,
   Recipe,
+  RecipeIngredient,
 } from './village.types';
+
+export type CreateRecipeInput = {
+  id?: string;
+  name: string;
+  description?: string;
+  ingredients?: RecipeIngredient[];
+};
+
+function slugifyRecipeName(name: string): string {
+  return (
+    name
+      .normalize('NFD')
+      .replace(/\p{M}/gu, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 60) || 'recette'
+  );
+}
 
 export type IngredientsListFilters = {
   search: string;
@@ -150,6 +174,56 @@ export class VillageService {
       throw new NotFoundException('Recette introuvable');
     }
     return cloneRecipe(found);
+  }
+
+  createRecipe(input: CreateRecipeInput): Recipe {
+    const name = input.name.trim();
+    if (!name) {
+      throw new BadRequestException('Le nom est requis');
+    }
+
+    const requestedId = input.id?.trim();
+    const id = requestedId || this.uniqueRecipeId(name);
+    if (this.recipes.some((r) => r.id === id)) {
+      throw new BadRequestException('Une recette avec cet identifiant existe déjà');
+    }
+
+    const ingredients = (input.ingredients ?? []).map((line) => {
+      const amount =
+        typeof line.amount === 'number'
+          ? line.amount
+          : Number.parseFloat(String(line.amount));
+      if (!Number.isFinite(amount) || amount <= 0) {
+        throw new BadRequestException('Quantité invalide');
+      }
+      if (!this.ingredients.some((i) => i.id === line.ingredientId)) {
+        throw new BadRequestException(
+          `Ingrédient inconnu : ${line.ingredientId}`,
+        );
+      }
+      return { ingredientId: line.ingredientId, amount };
+    });
+
+    const description = input.description?.trim();
+    const recipe: Recipe = {
+      id,
+      name,
+      description: description || undefined,
+      ingredients,
+    };
+    this.recipes.unshift(recipe);
+    return cloneRecipe(recipe);
+  }
+
+  private uniqueRecipeId(name: string): string {
+    const base = slugifyRecipeName(name);
+    let id = base;
+    let n = 2;
+    while (this.recipes.some((r) => r.id === id)) {
+      id = `${base}-${n}`;
+      n += 1;
+    }
+    return id;
   }
 
   getDashboardSummary(): DashboardSummary {

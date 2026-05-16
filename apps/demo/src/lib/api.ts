@@ -1,7 +1,19 @@
 import type { IngredientsFilters } from '@/hooks/useIngredientsFilters';
 import type { RecipesFilters } from '@/hooks/useRecipesFilters';
 import type { AppPathPrefix } from '@/lib/appPathPrefix';
-import type { DashboardSummary, Ingredient, Recipe } from '@/types/domain';
+import type {
+  DashboardSummary,
+  Ingredient,
+  Recipe,
+  RecipeIngredient,
+} from '@/types/domain';
+
+export type CreateRecipeInput = {
+  id?: string;
+  name: string;
+  description?: string;
+  ingredients?: RecipeIngredient[];
+};
 
 export type PaginatedList<T> = {
   items: T[];
@@ -134,6 +146,18 @@ export async function getRecipe(
     `${apiRoot(prefix)}/recipes/${encodeURIComponent(id)}`,
   );
   if (res.status === 404) return null;
+  return parseJson(res);
+}
+
+export async function createRecipe(
+  prefix: AppPathPrefix,
+  input: CreateRecipeInput,
+): Promise<Recipe> {
+  const res = await fetch(`${apiRoot(prefix)}/recipes`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
+  });
   return parseJson(res);
 }
 

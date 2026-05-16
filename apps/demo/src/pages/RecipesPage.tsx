@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ListPaginationBar } from '@/components/ListPaginationBar';
+import { AddRecipeModal } from '@/components/recipes/AddRecipeModal';
 import { Link } from '@tanstack/react-router';
-import type { Recipe } from '@/types/domain';
+import { PlusIcon } from 'lucide-react';
+import type { CreateRecipeInput } from '@/lib/api';
+import type { Ingredient, Recipe } from '@/types/domain';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -24,6 +27,10 @@ export interface RecipesPageProps {
   refetch: () => void;
   totalItems: number;
   totalPages: number;
+  ingredientsForAdd?: Ingredient[];
+  onAddRecipe?: (input: CreateRecipeInput) => Promise<void>;
+  isAddingRecipe?: boolean;
+  addRecipeError?: Error | null;
 }
 
 export function RecipesPage({
@@ -33,12 +40,18 @@ export function RecipesPage({
   refetch,
   totalItems,
   totalPages,
+  ingredientsForAdd,
+  onAddRecipe,
+  isAddingRecipe = false,
+  addRecipeError = null,
 }: RecipesPageProps) {
   const prefix = useAppPathPrefix();
+  const [addModalOpen, setAddModalOpen] = useState(false);
   const {
     filters: { search, makableOnly, page, pageSize },
     setFilters,
   } = useRecipesFilters();
+  const canAddRecipe = onAddRecipe !== undefined && ingredientsForAdd !== undefined;
 
   useEffect(() => {
     document.title = 'Recettes — Stock du village gaulois';
@@ -62,13 +75,32 @@ export function RecipesPage({
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="mb-2 text-4xl text-foreground">Recettes</h1>
-        <p className="text-muted-foreground">
-          Recherchez par nom, description ou ingrédient ; combinez avec le
-          filtre stock.
-        </p>
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <h1 className="mb-2 text-4xl text-foreground">Recettes</h1>
+          <p className="text-muted-foreground">
+            Recherchez par nom, description ou ingrédient ; combinez avec le
+            filtre stock.
+          </p>
+        </div>
+        {canAddRecipe && (
+          <Button type="button" onClick={() => setAddModalOpen(true)}>
+            <PlusIcon />
+            Ajouter une recette
+          </Button>
+        )}
       </div>
+
+      {canAddRecipe && onAddRecipe && ingredientsForAdd && (
+        <AddRecipeModal
+          open={addModalOpen}
+          onOpenChange={setAddModalOpen}
+          ingredients={ingredientsForAdd}
+          onSubmit={onAddRecipe}
+          isPending={isAddingRecipe}
+          error={addRecipeError}
+        />
+      )}
 
       <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-card/80 p-4">
         <div className="space-y-2">

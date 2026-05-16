@@ -5,12 +5,14 @@ import {
   DefaultValuePipe,
   Get,
   Param,
+  ParseBoolPipe,
   ParseIntPipe,
   Post,
   Query,
 } from '@nestjs/common';
 import {
   type CreateRecipeInput,
+  type RecipesListFilters,
   VillageService,
 } from '../village/village.service';
 import type { RecipeIngredient } from '../village/village.types';
@@ -80,8 +82,16 @@ export class TsqRecipesController extends RecipesControllerBase {
   list(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('pageSize', new DefaultValuePipe(20), ParseIntPipe) pageSize: number,
+    @Query('makableOnly', new DefaultValuePipe(false), ParseBoolPipe)
+    makableOnly: boolean,
+    @Query('search') searchRaw?: string,
   ) {
-    return this.village.findRecipesPaginated(page, pageSize);
+    const filters: RecipesListFilters = {
+      search: typeof searchRaw === 'string' ? searchRaw : '',
+      makableOnly,
+    };
+
+    return this.village.findRecipesPaginated(page, pageSize, filters);
   }
 }
 

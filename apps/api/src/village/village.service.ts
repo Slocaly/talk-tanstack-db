@@ -39,6 +39,11 @@ export type IngredientsListFilters = {
   inStockOnly: boolean;
 };
 
+export type RecipesListFilters = {
+  search: string;
+  makableOnly: boolean;
+};
+
 function cloneIngredient(i: Ingredient): Ingredient {
   return { ...i };
 }
@@ -126,8 +131,51 @@ export class VillageService {
     return this.recipes.map(cloneRecipe);
   }
 
-  findRecipesPaginated(page: number, pageSize: number): PaginatedList<Recipe> {
-    return paginateArray(this.recipes, cloneRecipe, page, pageSize);
+  findRecipesPaginated(
+    page: number,
+    pageSize: number,
+    filters: RecipesListFilters,
+  ): PaginatedList<Recipe> {
+    const source = this.filterRecipesForList(this.recipes, filters);
+    return paginateArray(source, cloneRecipe, page, pageSize);
+  }
+
+  private filterRecipesForList(
+    list: Recipe[],
+    f: RecipesListFilters,
+  ): Recipe[] {
+    let out = list;
+    if (f.makableOnly) {
+      const stockById = new Map(
+        this.ingredients.map((i) => [i.id, i.quantity] as const),
+      );
+      out = out.filter((r) => this.isRecipeMakable(r, stockById));
+    }
+    const q = f.search.trim().toLowerCase();
+    if (q.length > 0) {
+      const ingredientNames = new Map(
+        this.ingredients.map((i) => [i.id, i.name.toLowerCase()] as const),
+      );
+      out = out.filter((r) => {
+        const ingredientHay = r.ingredients
+          .map((line) => ingredientNames.get(line.ingredientId) ?? '')
+          .join(' ');
+        const hay =
+          `${r.name} ${r.description ?? ''} ${ingredientHay}`.toLowerCase();
+        return hay.includes(q);
+      });
+    }
+    return out;
+  }
+
+  private isRecipeMakable(
+    recipe: Recipe,
+    stockById: Map<string, number>,
+  ): boolean {
+    return recipe.ingredients.every((line) => {
+      const q = stockById.get(line.ingredientId) ?? 0;
+      return q >= line.amount;
+    });
   }
 
   findIngredientsPaginated(

@@ -5,8 +5,7 @@
 
 @font-face {
   font-family: "Excalifont";
-  src:
-    url("../public/fonts/excalifont.woff2") format("woff2");
+  src: url("../public/fonts/excalifont.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -43,19 +42,159 @@
 :root {
   --comics-font: "Excalifont", "Anime Ace", sans-serif;
   --title-font: "Excalifont", system-ui;
+  --comics-ink: #111;
+  --comics-cream: #fff8dc;
+  --comics-red: #c41e3a;
+  --comics-shadow: 6px 6px 0 #000;
 }
 
 .slidev-layout {
+  position: relative;
   padding: 2rem;
+  font-family: var(--comics-font);
+  color: var(--comics-ink);
 
-  h1 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--title-font), system-ui;
   }
 }
+
+/* ——— Shared components ——— */
+
+.comic-panel {
+  background: #fff;
+  border: 4px solid var(--comics-ink);
+  box-shadow: var(--comics-shadow);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--comics-font);
+  min-height: 0;
+}
+
+.comic-panel--narrator,
+.comic-panel--code {
+  background: var(--comics-cream);
+}
+
+.comic-panel--code {
+  overflow: auto;
+  max-height: 100%;
+}
+
+.comic-panel--code pre {
+  margin: 0;
+  font-size: 0.85em;
+}
+
+.comic-panel--inset {
+  padding: 0.75rem;
+  background: #fff;
+}
+
+.comic-panel--tilt {
+  transform: rotate(-0.5deg);
+}
+
+.narrateur-box {
+  background: var(--comics-cream);
+  border: 4px solid var(--comics-ink);
+  box-shadow: var(--comics-shadow);
+  padding: 1rem 1.75rem;
+  font-family: var(--comics-font);
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.narrateur-box--warning {
+  border-color: var(--comics-red);
+  color: var(--comics-red);
+}
+
+.narrateur-box--punchline {
+  background: #ffe566;
+  font-size: 1.35em;
+}
+
+.narrateur-box--chapter {
+  font-size: 1.1em;
+  line-height: 1.35;
+}
+
+.onomatopee {
+  font-family: var(--title-font), "Permanent Marker", system-ui;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 3px 3px 0 #000;
+  -webkit-text-stroke: 2px #000;
+  paint-order: stroke fill;
+  user-select: none;
+  pointer-events: none;
+}
+
+.onomatopee--sm {
+  font-size: 2.5rem;
+}
+.onomatopee--md {
+  font-size: 3.5rem;
+}
+.onomatopee--lg {
+  font-size: 5rem;
+}
+.onomatopee--xl {
+  font-size: 7rem;
+}
+
+.onomatopee--decor {
+  opacity: 0.9;
+}
+
+.character-sprite {
+  position: absolute;
+  bottom: 0;
+  height: 55%;
+  object-fit: contain;
+  object-position: bottom;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.character-sprite--left {
+  left: 0;
+}
+
+.character-sprite--right {
+  right: 0;
+}
+
+.character-sprite--center {
+  position: relative;
+  height: 12rem;
+  bottom: auto;
+}
+
+.character-sprite--flip {
+  transform: scaleX(-1);
+}
+
+.character-sprite--sm {
+  height: 40%;
+}
+.character-sprite--md {
+  height: 50%;
+}
+.character-sprite--lg {
+  height: 55%;
+}
+
+/* ——— Legacy layouts ——— */
+
 .slidev-layout.cover,
 .slidev-layout.title,
-.slidev-layout.image
-{
+.slidev-layout.image {
   @apply h-full grid;
 
   h1 {
@@ -68,4 +207,367 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+
+.slidev-layout.dialog {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+/* ——— planche-titre ——— */
+
+.slidev-layout.planche-titre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  gap: 1.5rem;
+}
+
+.planche-titre__bandeau {
+  align-self: stretch;
+  background: var(--comics-ink);
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  font-family: var(--title-font);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 4px solid var(--comics-ink);
+  box-shadow: var(--comics-shadow);
+}
+
+.planche-titre__panel {
+  width: min(88%, 52rem);
+  text-align: center;
+}
+
+.planche-titre__panel h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+}
+
+/* ——— chapitre ——— */
+
+.slidev-layout.chapitre {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.chapitre__box {
+  max-width: 70%;
+  z-index: 2;
+}
+
+.chapitre__number {
+  margin: 0 0 0.5rem;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.chapitre__subtitle {
+  margin: 0.75rem 0 0;
+  font-size: 0.8em;
+  text-transform: none;
+  font-weight: normal;
+}
+
+.chapitre__fx {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 1;
+}
+
+.chapitre__character {
+  z-index: 3;
+}
+
+/* ——— deux-vignettes ——— */
+
+.slidev-layout.deux-vignettes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  min-height: calc(100% - 2rem);
+}
+
+.deux-vignettes__left,
+.deux-vignettes__right {
+  height: 100%;
+  overflow: auto;
+}
+
+/* ——— panneau-triple ——— */
+
+.slidev-layout.panneau-triple {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+  min-height: calc(100% - 2rem);
+  align-items: stretch;
+}
+
+.panneau-triple__main {
+  grid-row: 1 / -1;
+  overflow: auto;
+}
+
+.panneau-triple__top,
+.panneau-triple__bottom {
+  overflow: auto;
+  font-size: 0.92em;
+}
+
+/* ——— deux-vignettes-entete ——— */
+
+.slidev-layout.deux-vignettes-entete {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: calc(100% - 2rem);
+}
+
+.deux-vignettes-entete__header {
+  flex-shrink: 0;
+}
+
+.deux-vignettes-entete__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.deux-vignettes-entete__cols .comic-panel {
+  overflow: auto;
+  height: 100%;
+}
+
+/* ——— monologue ——— */
+
+.slidev-layout.monologue {
+  display: grid;
+  grid-template-columns: 1fr minmax(12rem, 28%);
+  gap: 1rem;
+  align-items: end;
+  min-height: calc(100% - 2rem);
+}
+
+.monologue--left {
+  grid-template-columns: minmax(12rem, 28%) 1fr;
+}
+
+.monologue--left .monologue__panel {
+  order: 2;
+}
+
+.monologue--left .monologue__character {
+  order: 1;
+}
+
+.monologue__panel {
+  align-self: center;
+  max-height: 85%;
+  overflow: auto;
+  z-index: 2;
+}
+
+.monologue__character {
+  position: relative;
+  min-height: 12rem;
+  z-index: 3;
+}
+
+/* ——— narrateur ——— */
+
+.slidev-layout.narrateur {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+.narrateur__box {
+  max-width: 75%;
+  font-size: 1.35rem;
+}
+
+/* ——— citation ——— */
+
+.slidev-layout.citation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 100%;
+}
+
+.citation__quote {
+  max-width: 72%;
+  border-style: dashed;
+  border-radius: 2rem;
+}
+
+.citation__text {
+  margin: 0;
+  font-style: italic;
+  text-transform: none;
+  font-weight: normal;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.citation__author {
+  margin: 0;
+  font-family: var(--comics-font);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+/* ——— vignette-image ——— */
+
+.slidev-layout.vignette-image {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.25rem;
+  align-items: center;
+  min-height: calc(100% - 2rem);
+}
+
+.vignette-image--right {
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.vignette-image--right .vignette-image__frame {
+  order: 2;
+}
+
+.vignette-image--right .vignette-image__content {
+  order: 1;
+}
+
+.vignette-image__img {
+  display: block;
+  width: 100%;
+  max-height: 22rem;
+  object-fit: contain;
+}
+
+.vignette-image__character {
+  z-index: 4;
+}
+
+/* ——— planche-demo ——— */
+
+.slidev-layout.planche-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: calc(100% - 2rem);
+}
+
+.planche-demo__caption {
+  flex-shrink: 0;
+  font-size: 0.95em;
+}
+
+.planche-demo__code {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+/* ——— strip ——— */
+
+.slidev-layout.strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: calc(100% - 2rem);
+}
+
+.strip__header {
+  flex-shrink: 0;
+}
+
+.strip__panels {
+  display: grid;
+  gap: 0.75rem;
+  flex: 1;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.strip__cell {
+  font-size: 0.82em;
+  overflow: auto;
+  padding: 0.75rem;
+}
+
+/* ——— confrontation ——— */
+
+.slidev-layout.confrontation {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.confrontation__center {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  max-width: 42%;
+  z-index: 2;
+  font-size: 0.95em;
+}
+
+/* ——— onomatopee ——— */
+
+.slidev-layout.onomatopee-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+}
+
+/* ——— fin ——— */
+
+.slidev-layout.fin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  min-height: 100%;
+}
+
+.fin__panel {
+  text-align: center;
+  width: min(80%, 40rem);
+  z-index: 2;
+}
+
+.fin__cast {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  z-index: 3;
+}
+
+.fin__sprite {
+  position: relative !important;
+  height: 10rem !important;
 }

@@ -152,10 +152,11 @@ image: /queue_devant_maison_panoramix.png
 layout: image
 image: /ifonix.png
 ---
---- 
-layout: title
+
 ---
-# Presentation application Lucas
+
+<AppPresentation />
+
 ---
 layout: fullHeight
 dragPos:

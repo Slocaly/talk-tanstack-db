@@ -38,6 +38,7 @@ onUnmounted(() => {
 
 <template>
   <div class="ipad" :class="{ 'ipad--under': isUnderView }">
+    <div class="background" />
     <iframe src="http://localhost:5173" class="ipad-content"></iframe>
     <img src="/ipad.png" alt="ipad" class="ipad-screen" />
   </div>
@@ -50,10 +51,20 @@ onUnmounted(() => {
   position: absolute;
   left: 0;
   right: 0;
-  top: -2.5vh;
+  top: 0;
   pointer-events: auto;
   /* top (not transform): iframes often only repaint after a parent transform ends */
   transition: top 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background-color: #faf6e8;
 }
 
 .ipad--under {
@@ -62,18 +73,19 @@ onUnmounted(() => {
 }
 
 .ipad-screen {
-  z-index: -1;
   position: relative;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .ipad-content {
-  width: 1100px;
-  height: 700px;
+  width: 73%;
+  height: 73%;
   position: absolute;
   left: 50%;
-  top: 55%;
+  top: 49%;
   transform: translate(-50%, -50%);
   zoom: 0.5;
-  border-radius: 30px;
 }
 </style>

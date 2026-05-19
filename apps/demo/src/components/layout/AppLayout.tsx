@@ -38,7 +38,7 @@ export function AppLayout() {
         <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <Link
             to={villageTo}
-            className="bd-comic-wordmark font-[family-name:var(--font-display)] text-2xl tracking-wide text-foreground no-underline sm:text-3xl"
+            className="bd-comic-wordmark pl-10 font-[family-name:var(--font-display)] text-2xl tracking-wide text-foreground no-underline sm:text-3xl"
           >
             Stock du village gaulois
           </Link>

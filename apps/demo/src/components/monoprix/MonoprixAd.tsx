@@ -1,5 +1,6 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { setMonoprixReturnTo } from '@/lib/monoprixReturnTo';
 import { cn } from '@/lib/utils';
 
 type MonoprixAdProps = {
@@ -11,6 +12,7 @@ type MonoprixAdProps = {
 const MONOPRIX_AD_SHOW_PROBABILITY = 0.45;
 
 export function MonoprixAd({ ingredientId, ingredientName }: MonoprixAdProps) {
+  const pathname = useLocation({ select: (location) => location.pathname });
   const [show, setShow] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export function MonoprixAd({ ingredientId, ingredientName }: MonoprixAdProps) {
     <Link
       to="/tsq/monoprix/$id"
       params={{ id: ingredientId }}
+      onClick={() => setMonoprixReturnTo(pathname)}
       className={cn(
         'monoprix-ad block rounded-xl border-4 border-[var(--bd-ink)] no-underline outline-offset-4',
         'focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--monoprix-red)]',

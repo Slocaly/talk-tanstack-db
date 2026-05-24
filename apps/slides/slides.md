@@ -18,6 +18,11 @@ background: /panoramix_deborde.png
 layout: title
 ---
 # Le burnout de Panoramix
+
+---
+src: ./pages/slides/tanstack-query.md
+---
+
 ---
 layout: image
 image: /village_heureux.png

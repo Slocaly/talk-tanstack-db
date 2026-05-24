@@ -278,5 +278,3 @@ layout: title
 
 # Schema Delphin ON rebuild from scratch
 
----
-

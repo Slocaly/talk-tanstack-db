@@ -1,4 +1,4 @@
-p---
+---
 theme: comics
 title: TanStack Query — layouts BD
 transition: slide-left

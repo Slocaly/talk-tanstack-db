@@ -10,6 +10,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Comic Shanns";
+  src: url("../public/fonts/comic_shanns_2.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: "Anime Ace";
   src:
     url("../public/fonts/animeace/animeace_reg.woff2") format("woff2"),
@@ -80,11 +86,35 @@
 .comic-panel--code {
   overflow: auto;
   max-height: 100%;
+  --slidev-code-background: transparent;
 }
 
 .comic-panel--code pre {
   margin: 0;
   font-size: 0.85em;
+}
+
+.comic-panel--code :is(
+    pre,
+    code,
+    .shiki,
+    .slidev-code-block,
+    .slidev-code-block-wrapper,
+    .shiki-magic-move,
+    .shiki-magic-move-container
+  ) {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.comic-panel--code .slidev-monaco-container,
+.comic-panel--code .slidev-monaco-container .monaco-editor {
+  background: transparent !important;
+}
+
+.comic-panel--code .slidev-monaco-container .monaco-editor {
+  --vscode-editor-background: transparent;
+  --vscode-editorGutter-background: transparent;
 }
 
 .comic-panel--inset {

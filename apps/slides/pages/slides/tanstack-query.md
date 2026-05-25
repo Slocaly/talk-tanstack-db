@@ -244,21 +244,6 @@ On browse l'applis sur la liste des recettes
 Et Obelix va chercher page 1 page 2 page 3
 
 ---
-layout: dialog
-location: panoramix_home
-left: obelix:happy
-right: panoramix:happy
-transition: fade
----
-::right::
-Obelix,
-Va me chercher la page 1
----
-layout: image
-image: /plan.png
----
-<RunningCharacter :ingredient-positions="[{x: -250, y:-80}]" character="obelix"/>
----
 layout: title
 ---
 

@@ -1,6 +1,6 @@
 # Delphin
  - Les schemas de recontruction de  tanstack db from scratch
- - Se renseigner sur 20 mb dilemma et local offline first https://www.youtube.com/watch?v=kjOx-Le5gB8
+ - ✅ Se renseigner sur 20 mb dilemma et local offline first https://www.youtube.com/watch?v=kjOx-Le5gB8
  - Image des pages pour lever la métaphore
 
 

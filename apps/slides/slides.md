@@ -23,12 +23,16 @@ layout: title
 ---
 src: ./pages/slides/panoramix-burnout.md
 ---
-
 ---
-
+---
 <AppPresentation />
-
 ---
 src: ./pages/slides/tanstack-query.md
+---
+---
+src: ./pages/slides/metaphore-explained.md
+--- 
+---
+src: ./pages/slides/rebuild-tanstackdb.md
 ---
 ---

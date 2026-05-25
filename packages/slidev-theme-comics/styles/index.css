@@ -10,6 +10,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Comic Shanns";
+  src: url("../public/fonts/comic_shanns_2.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: "Anime Ace";
   src:
     url("../public/fonts/animeace/animeace_reg.woff2") format("woff2"),

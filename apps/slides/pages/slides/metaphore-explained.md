@@ -54,14 +54,14 @@ transition: fade
 
 ::right::
 
-Asterix, va me chercher toutes les ingrédients
+Asterix, va me chercher tous les ingrédients
 
 ---
 layout: image
 image: /plan_with_pages.png
 transition: none
 ---
-<RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}]" character="asterix" />
+<RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
 layout: image
 image: /stock_ingredients.png

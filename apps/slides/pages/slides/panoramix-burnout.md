@@ -115,7 +115,7 @@ Merci Asterix !
 layout: image
 image: /plan.png
 ---
-<RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}]" character="asterix" />
+<RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
 layout: image
 image: /stock_ingredients.png

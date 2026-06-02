@@ -80,7 +80,7 @@
 
 .comic-panel--narrator,
 .comic-panel--code {
-  background: var(--comics-cream);
+  background: white;
 }
 
 .comic-panel--code {
@@ -431,6 +431,22 @@
   font-size: 1.35rem;
 }
 
+.narrateur__box--sm {
+  font-size: 1rem;
+}
+
+.narrateur__box--md {
+  font-size: 1.35rem;
+}
+
+.narrateur__box--lg {
+  font-size: 2rem;
+}
+
+.narrateur__box--xl {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
 /* ——— citation ——— */
 
 .slidev-layout.citation {
@@ -496,6 +512,214 @@
 
 .vignette-image__character {
   z-index: 4;
+}
+
+/* ——— planche-diagramme ——— */
+
+.slidev-layout.planche-diagramme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100% - 2rem);
+  gap: 0.75rem;
+  padding: 1.25rem 2rem;
+  height: 100%;
+  width: 100%;
+}
+
+.planche-diagramme__caption {
+  flex-shrink: 0;
+  align-self: stretch;
+  max-width: min(92%, 56rem);
+  font-size: 0.95em;
+}
+
+.planche-diagramme__frame {
+  flex: 1;
+  width: min(98%, 56rem);
+  min-height: 0;
+  max-height: calc(100% - 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.25rem;
+  overflow: hidden;
+}
+
+.planche-diagramme__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.planche-diagramme__content :is(svg, img) {
+  display: block;
+  max-width: 100%;
+  max-height: min(68vh, 520px);
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+.planche-diagramme__content .mermaid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: min(68vh, 520px);
+}
+
+.planche-diagramme__content .mermaid svg {
+  max-width: 100%;
+  max-height: min(68vh, 520px);
+}
+
+.planche-diagramme__content .flow-diagram-wrapper {
+  width: 100%;
+  height: min(68vh, 520px);
+}
+
+.planche-diagramme__character {
+  z-index: 4;
+}
+
+/* ——— planche-diagramme stone surface ——— */
+
+.planche-diagramme__stone {
+  position: relative;
+  isolation: isolate;
+  background-color: #6d675c;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  border-radius: 1.5rem 0.85rem 1.85rem 1rem;
+  padding: 1.35rem 1.5rem;
+  transform: perspective(1100px) rotateX(7deg);
+  transform-origin: center 88%;
+  transform-style: preserve-3d;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -3px 10px rgba(0, 0, 0, 0.42),
+    inset 4px 0 10px rgba(0, 0, 0, 0.12),
+    inset -4px 0 10px rgba(255, 255, 255, 0.06),
+    0 0 0 3px #7a7368,
+    0 0 0 7px #524b42,
+    0 0 0 11px #3a3530,
+    0 24px 36px -10px rgba(0, 0, 0, 0.55),
+    12px 16px 0 #000;
+}
+
+.planche-diagramme__stone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 24% 14%, rgba(255, 255, 255, 0.28) 0%, transparent 44%),
+    radial-gradient(ellipse at 78% 88%, rgba(0, 0, 0, 0.32) 0%, transparent 46%),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.1) 0%, transparent 38%, rgba(0, 0, 0, 0.18) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -18px 28px rgba(0, 0, 0, 0.16);
+}
+
+.planche-diagramme__stone::after {
+  content: "";
+  position: absolute;
+  inset: 0.85rem 1rem;
+  border-radius: 1.1rem 0.65rem 1.35rem 0.75rem;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow:
+    inset 0 4px 14px rgba(0, 0, 0, 0.38),
+    inset 0 -2px 0 rgba(255, 255, 255, 0.08),
+    inset 3px 0 8px rgba(0, 0, 0, 0.14),
+    inset -2px 0 6px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.planche-diagramme__stone--tilt {
+  transform: perspective(1100px) rotateX(7deg) rotateZ(-0.75deg);
+}
+
+.planche-diagramme--panel .planche-diagramme__content {
+  position: relative;
+  z-index: 1;
+}
+
+.planche-diagramme--panel .planche-diagramme__content svg :is(path, line, polyline, polygon, circle, ellipse, rect:not(:first-of-type)) {
+  stroke: var(--comics-ink) !important;
+}
+
+.planche-diagramme--panel .planche-diagramme__content svg text {
+  fill: var(--comics-ink) !important;
+}
+
+.planche-diagramme--panel .planche-diagramme__content .mermaid :is(.node rect, .node polygon, .node circle, .node ellipse, .edgePath path, .flowchart-link) {
+  stroke: var(--comics-ink) !important;
+}
+
+.planche-diagramme--panel .planche-diagramme__content .mermaid :is(.nodeLabel, .edgeLabel span) {
+  color: var(--comics-ink) !important;
+  fill: var(--comics-ink) !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content {
+  position: relative;
+  z-index: 1;
+}
+
+.planche-diagramme--stone .planche-diagramme__content svg > rect:first-of-type {
+  fill: transparent !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content svg {
+  filter:
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.12));
+}
+
+.planche-diagramme--stone .planche-diagramme__content svg :is(path, line, polyline, polygon, circle, ellipse, rect:not(:first-of-type)) {
+  stroke: #fff !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content svg text {
+  fill: #fff !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content .mermaid svg {
+  filter:
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.12));
+}
+
+.planche-diagramme--stone .planche-diagramme__content .mermaid :is(.node rect, .node polygon, .node circle, .node ellipse, .edgePath path, .flowchart-link) {
+  stroke: #fff !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content .mermaid :is(.nodeLabel, .edgeLabel span) {
+  color: #fff !important;
+  fill: #fff !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content .flow-diagram-wrapper :is(.vue-flow__node, .vue-flow__edge-path) {
+  stroke: #fff !important;
+}
+
+.planche-diagramme--stone .planche-diagramme__content .flow-diagram-wrapper .vue-flow__node {
+  border-color: #2a2419 !important;
+  background: rgba(255, 248, 220, 0.35) !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.2),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.25) !important;
 }
 
 /* ——— planche-demo ——— */

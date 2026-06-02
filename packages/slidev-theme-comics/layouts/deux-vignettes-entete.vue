@@ -5,10 +5,10 @@
       <slot />
     </NarrateurBox>
     <div class="deux-vignettes-entete__cols">
-      <ComicPanel :rotate="-0.6">
+      <ComicPanel variant="code" :rotate="-0.6">
         <slot name="left" />
       </ComicPanel>
-      <ComicPanel :rotate="0.6">
+      <ComicPanel variant="code" :rotate="0.6">
         <slot name="right" />
       </ComicPanel>
     </div>

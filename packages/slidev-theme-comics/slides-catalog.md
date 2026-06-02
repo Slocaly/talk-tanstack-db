@@ -35,38 +35,30 @@ side: right
 Les potions du fetch côté client
 
 ---
-
 layout: narrateur
 variant: fact
 location: panoramix_home
-
 ---
 
 Le **cache** est la potion magique de Query : elle évite de re-fetch inutilement.
 
 ---
-
 layout: narrateur
 variant: warning
-
 ---
 
 Attention : un `staleTime` trop bas, et le village re-fetch à chaque render !
 
 ---
-
 layout: narrateur
 variant: punchline
-
 ---
 
 Sans Query, c'est comme préparer la potion magique à la main à chaque fois.
 
 ---
-
 layout: deux-vignettes
 location: village
-
 ---
 
 # Sans Query
@@ -84,10 +76,8 @@ location: village
 - États `isLoading`, `isError` unifiés
 
 ---
-
 layout: deux-vignettes-entete
 location: forest
-
 ---
 
 # Les ingrédients du gui
@@ -105,10 +95,8 @@ Identifiant unique du fetch — comme l'étiquette sur le chaudron.
 La recette : la fonction qui va chercher les données sur le serveur.
 
 ---
-
 layout: panneau-triple
 location: panoramix_home
-
 ---
 
 ```ts
@@ -132,13 +120,11 @@ Durée pendant laquelle les données sont considérées fraîches.
 Temps avant que le cache garbage-collect les données inactives.
 
 ---
-
 layout: monologue
 location: panoramix_home
 character: asterix
 side: right
 panel: code
-
 ---
 
 ## invalidateQueries
@@ -153,12 +139,10 @@ queryClient.invalidateQueries({ queryKey: ["todos"] });
 N'oublie pas d'invalider après une mutation !
 
 ---
-
 layout: planche-demo
 location: forest
 caption: "Regardez bien cette incantation…"
 character: asterix:happy
-
 ---
 
 ```ts
@@ -200,6 +184,25 @@ character: obelix:happy
 # Préfetch
 
 `queryClient.prefetchQuery()` — on prépare les ingrédients **avant** que l'utilisateur ouvre le chaudron.
+
+---
+
+layout: planche-diagramme
+location: village
+surface: stone
+caption: Navigation entre les pages — et refetch à chaque étape
+character: obelix:happy
+side: left
+clicks: 3
+
+---
+
+```mermaid {scale: 0.85}
+flowchart LR
+  Browser --> API
+  API --> Cache
+  Cache --> UI
+```
 
 ---
 
@@ -268,11 +271,9 @@ size: xl
 ---
 
 ---
-
 layout: fin
 location: village
 characters: asterix:happy,obelix:happy,panoramix:happy
-
 ---
 
 # Merci !

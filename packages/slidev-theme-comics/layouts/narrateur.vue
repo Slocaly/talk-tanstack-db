@@ -1,7 +1,10 @@
 <template>
   <BackgroundImage v-if="backgroundImageUrl" :url="backgroundImageUrl" />
   <div class="slidev-layout narrateur" :style="backgroundStyle">
-    <NarrateurBox :variant="variant" class="narrateur__box">
+    <NarrateurBox
+      :variant="variant"
+      :class="['narrateur__box', `narrateur__box--${size}`]"
+    >
       <slot />
     </NarrateurBox>
   </div>
@@ -18,9 +21,11 @@ const props = withDefaults(
     location?: Location;
     background?: string;
     variant?: "fact" | "warning" | "punchline" | "chapter";
+    size?: "sm" | "md" | "lg" | "xl";
   }>(),
   {
     variant: "fact",
+    size: "md",
   },
 );
 

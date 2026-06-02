@@ -136,27 +136,27 @@ clicks: 2
 
 <div v-click="2" class="store-logos-scatter relative h-full min-h-80 w-full">
   <div class="store-logo" style="top: 0%; left: 44%; transform: rotate(-5deg);">
-    <img src="/public/redux.png" alt="Redux" />
+    <img src="/redux.png" alt="Redux" />
     <p>Redux</p>
   </div>
   <div class="store-logo" style="top: 15%; left: 79%; transform: rotate(8deg);">
-    <img src="/public/pinia.png" alt="Pinia" />
+    <img src="/pinia.png" alt="Pinia" />
     <p>Pinia</p>
   </div>
   <div class="store-logo" style="top: 58%; left: 72%; transform: rotate(-7deg);">
-    <img src="/public/ngrx-logo.svg" alt="RxJs" />
+    <img src="/ngrx-logo.svg" alt="RxJs" />
     <p>RxJs</p>
   </div>
   <div class="store-logo" style="top: 70%; left: 44%; transform: rotate(4deg);">
-    <img src="/public/xstate-logo.png" alt="XState" />
+    <img src="/xstate-logo.png" alt="XState" />
     <p>XState</p>
   </div>
   <div class="store-logo" style="top: 56%; left: 10%; transform: rotate(-8deg);">
-    <img src="/public/zustand-logo.jpeg" alt="Zustand" />
+    <img src="/zustand-logo.jpeg" alt="Zustand" />
     <p>Zustand</p>
   </div>
   <div class="store-logo" style="top: 20%; left: 14%; transform: rotate(6deg);">
-    <img src="/public/jotai-logo.png" alt="Jotai" />
+    <img src="/jotai-logo.png" alt="Jotai" />
     <p>Jotai</p>
   </div>
 </div>
@@ -231,8 +231,8 @@ location: panoramix_home
 ---
 
 <div class="flex flex-col w-full h-full gap-20">
-  <img class="!w-3/4 pt-10" src="/public/tanstack-query.png" />
-  <img class="!h-20 !w-20 -rotate-20 absolute top-0 left-0" src="/public/tanstack-logo.png" />
+  <img class="!w-3/4 pt-10" src="/tanstack-query.png" />
+  <img class="!h-20 !w-20 -rotate-20 absolute top-0 left-0" src="/tanstack-logo.png" />
   <div class="flex gap-6 justify-center items-stretch">
     <div v-click class="w-3/8 flex border border-4 border-orange p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(251, 146, 60, 0.45) 0%, rgba(253, 224, 184, 0.3) 55%, rgba(255, 247, 237, 0.18) 100%)">
       <div class="text-6xl">🗃️</div>

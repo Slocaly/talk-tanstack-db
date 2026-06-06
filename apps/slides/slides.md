@@ -31,9 +31,12 @@ src: ./pages/slides/tanstack-query.md
 ---
 ---
 src: ./pages/slides/metaphore-explained.md
---- 
+---
 ---
 src: ./pages/slides/rebuild-tanstackdb.md
+---
+---
+src: ./pages/slides/local-first.md
 ---
 ---
 layout: image
@@ -43,3 +46,4 @@ image: /pano.gif
 <div class="flex h-full w-full items-center justify-center">
   <p class="text-9xl font-bold text-white">Merci</p>
 </div>
+--- 

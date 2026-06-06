@@ -81,11 +81,3 @@ image: /livre_peremption.png
     <h1>Invalidation de cache</h1>
 </v-clicks>
 ---
-layout: image
-image: /recoding-tanstackdb-from-scratch.png
----
-
-<div class="flex min-h-full items-center justify-center">
-    <h2 class="text-5xl" v-click="1" >Est-ce que c'est si compliqué ? 🤔</h2>
-</div>
---- 

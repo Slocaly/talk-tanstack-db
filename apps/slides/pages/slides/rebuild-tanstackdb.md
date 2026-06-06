@@ -1,4 +1,12 @@
 ---
+layout: image
+image: /recoding-tanstackdb-from-scratch.png
+---
+
+<div class="flex min-h-full items-center justify-center">
+    <h2 class="text-5xl" v-click="1" >Est-ce que c'est si compliqué ? 🤔</h2>
+</div>
+--- 
 layout: fullHeight
 transition: none
 ---

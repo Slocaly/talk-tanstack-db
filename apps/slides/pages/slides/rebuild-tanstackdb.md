@@ -7,13 +7,13 @@ image: /recoding-tanstackdb-from-scratch.png
     <h2 class="text-5xl" v-click="1" >Est-ce que c'est si compliqué ? 🤔</h2>
 </div>
 --- 
-layout: fullHeight
+layout: radial-gradient
 transition: none
 ---
 <ConstantToProxySchema/>
 
 ---
-layout: fullHeight
+layout: radial-gradient
 ---
 
 <ContextToDifferentialDataFlowProblemSchema/>
@@ -27,19 +27,19 @@ layout: image
 image: /ddf-paper.png
 ---
 ---
-layout: fullHeight
-transition: none
+layout: radial-gradient
+transition: view-transition
 ---
 
 <SqlOnAClassicDbSchema />
 ---
-layout: fullHeight
-transition: none
+layout: radial-gradient
+transition: view-transition
 ---
 <SqlOnDifferentialDataFlowSchema/>
 
 ---
-layout: fullHeight
+layout: radial-gradient
 transition: none
 ---
 <ChangeFromContextToTanstackDBSchema/>

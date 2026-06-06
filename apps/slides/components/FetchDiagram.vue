@@ -113,8 +113,8 @@ const reduxBox = createBoxDrawState(7, 6);
     xmlns="http://www.w3.org/2000/svg"
     class="fetch-diagram"
     viewBox="0 0 1861.7497435579044 1330.6665480461406"
-    width="80%"
-    height="80%"
+    width="70%"
+    height="70%"
   >
     <defs>
       <symbol id="image-2a1d22e9d79831f9a527a30fbfaf1e8a7f8660bb">

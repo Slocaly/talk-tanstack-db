@@ -8,9 +8,11 @@ size: xl
 # TanStack Query
 
 ---
-layout: planche-demo
+layout: radial-gradient
 location: village
 ---
+
+<MacWindow title="IngredientListPage.tsx" class="w-full">
 ````md magic-move { lines: true }
 ```tsx
 export const IngredientListPage = () => {
@@ -100,28 +102,24 @@ export const IngredientListPage = () => {
 };
 ```
 ````
-
+</MacWindow>
 
 ---
-layout: planche-diagramme
-location: village
-# surface: stone
-clicks: 9
+layout: radial-gradient
 ---
 
 <FetchDiagram />
 
 ---
-layout: deux-vignettes-entete
-location: village
-clicks: 2
+layout: deux-vignettes-radial
+revealCards: true
 ---
 
-# Librairie de store
+# Librairies de store
 
 ::left::
 
-<div v-click="1">
+<div>
   <ul class="store-benefits">
     <li>Unique source de vérité</li>
     <li>Réduction du “prop drilling”</li>
@@ -134,7 +132,7 @@ clicks: 2
 
 ::right::
 
-<div v-click="2" class="store-logos-scatter relative h-full min-h-80 w-full">
+<div class="store-logos-scatter relative h-full min-h-80 w-full">
   <div class="store-logo" style="top: 0%; left: 44%; transform: rotate(-5deg);">
     <img src="/redux.png" alt="Redux" />
     <p>Redux</p>
@@ -217,22 +215,18 @@ clicks: 2
 
 
 ---
-layout: planche-diagramme
-location: village
-# surface: stone
-clicks: 2
+layout: radial-gradient
 ---
 
 <TanStackQueryFetchDiagram />
 
 ---
-layout: planche-diagramme
-location: panoramix_home
+layout: radial-gradient
 ---
 
 <div class="flex flex-col w-full h-full gap-20">
-  <img class="!w-3/4 pt-10" src="/tanstack-query.png" />
-  <img class="!h-20 !w-20 -rotate-20 absolute top-0 left-0" src="/tanstack-logo.png" />
+  <img class="m-auto !w-3/4 pt-10" src="/tanstack-query.png" />
+  <img class="!h-20 !w-20 -rotate-20 absolute top-5 left-5" src="/tanstack-logo.png" />
   <div class="flex gap-12 justify-center items-stretch">
     <div v-click class="w-2/8 flex border border-4 border-orange p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(251, 146, 60, 0.45) 0%, rgba(253, 224, 184, 0.3) 55%, rgba(255, 247, 237, 0.18) 100%)">
       <div class="text-6xl">🗃️</div>
@@ -250,11 +244,14 @@ location: panoramix_home
 </div>
 
 ---
-layout: deux-vignettes-entete
-location: panoramix_home
+layout: deux-vignettes-radial
+macWindow: true
+leftTitle: useQuery.tsx
+rightTitle: useMutation.tsx
+revealCards: true
 ---
 
-Dans le code
+# Dans le code
 
 ::left::
 

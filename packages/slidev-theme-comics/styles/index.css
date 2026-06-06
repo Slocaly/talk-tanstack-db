@@ -10,6 +10,12 @@
   font-style: normal;
 }
 @font-face {
+  font-family: "Fightt";
+  src: url("../public/fonts/fightt.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
   font-family: "Comic Shanns";
   src: url("../public/fonts/comic_shanns_2.ttf") format("truetype");
   font-weight: normal;
@@ -54,6 +60,14 @@
   --comics-shadow: 6px 6px 0 #000;
 }
 
+.slidev-layout.text-fightt {
+  h1,
+  h2,
+  h3 {
+    font-family: "Fightt", sans-serif !important;
+  }
+}
+
 .slidev-layout {
   position: relative;
   padding: 2rem;
@@ -94,7 +108,8 @@
   font-size: 0.85em;
 }
 
-.comic-panel--code :is(
+.comic-panel--code
+  :is(
     pre,
     code,
     .shiki,
@@ -621,9 +636,22 @@
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse at 24% 14%, rgba(255, 255, 255, 0.28) 0%, transparent 44%),
-    radial-gradient(ellipse at 78% 88%, rgba(0, 0, 0, 0.32) 0%, transparent 46%),
-    linear-gradient(165deg, rgba(255, 255, 255, 0.1) 0%, transparent 38%, rgba(0, 0, 0, 0.18) 100%);
+    radial-gradient(
+      ellipse at 24% 14%,
+      rgba(255, 255, 255, 0.28) 0%,
+      transparent 44%
+    ),
+    radial-gradient(
+      ellipse at 78% 88%,
+      rgba(0, 0, 0, 0.32) 0%,
+      transparent 46%
+    ),
+    linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 38%,
+      rgba(0, 0, 0, 0.18) 100%
+    );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.22),
     inset 0 -18px 28px rgba(0, 0, 0, 0.16);
@@ -654,7 +682,18 @@
   z-index: 1;
 }
 
-.planche-diagramme--panel .planche-diagramme__content svg :is(path, line, polyline, polygon, circle, ellipse, rect:not(:first-of-type)) {
+.planche-diagramme--panel
+  .planche-diagramme__content
+  svg
+  :is(
+    path,
+    line,
+    polyline,
+    polygon,
+    circle,
+    ellipse,
+    rect:not(:first-of-type)
+  ) {
   stroke: var(--comics-ink) !important;
 }
 
@@ -662,11 +701,24 @@
   fill: var(--comics-ink) !important;
 }
 
-.planche-diagramme--panel .planche-diagramme__content .mermaid :is(.node rect, .node polygon, .node circle, .node ellipse, .edgePath path, .flowchart-link) {
+.planche-diagramme--panel
+  .planche-diagramme__content
+  .mermaid
+  :is(
+    .node rect,
+    .node polygon,
+    .node circle,
+    .node ellipse,
+    .edgePath path,
+    .flowchart-link
+  ) {
   stroke: var(--comics-ink) !important;
 }
 
-.planche-diagramme--panel .planche-diagramme__content .mermaid :is(.nodeLabel, .edgeLabel span) {
+.planche-diagramme--panel
+  .planche-diagramme__content
+  .mermaid
+  :is(.nodeLabel, .edgeLabel span) {
   color: var(--comics-ink) !important;
   fill: var(--comics-ink) !important;
 }
@@ -681,12 +733,22 @@
 }
 
 .planche-diagramme--stone .planche-diagramme__content svg {
-  filter:
-    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
     drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.12));
 }
 
-.planche-diagramme--stone .planche-diagramme__content svg :is(path, line, polyline, polygon, circle, ellipse, rect:not(:first-of-type)) {
+.planche-diagramme--stone
+  .planche-diagramme__content
+  svg
+  :is(
+    path,
+    line,
+    polyline,
+    polygon,
+    circle,
+    ellipse,
+    rect:not(:first-of-type)
+  ) {
   stroke: #fff !important;
 }
 
@@ -695,25 +757,43 @@
 }
 
 .planche-diagramme--stone .planche-diagramme__content .mermaid svg {
-  filter:
-    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
     drop-shadow(-1px -1px 0 rgba(255, 255, 255, 0.12));
 }
 
-.planche-diagramme--stone .planche-diagramme__content .mermaid :is(.node rect, .node polygon, .node circle, .node ellipse, .edgePath path, .flowchart-link) {
+.planche-diagramme--stone
+  .planche-diagramme__content
+  .mermaid
+  :is(
+    .node rect,
+    .node polygon,
+    .node circle,
+    .node ellipse,
+    .edgePath path,
+    .flowchart-link
+  ) {
   stroke: #fff !important;
 }
 
-.planche-diagramme--stone .planche-diagramme__content .mermaid :is(.nodeLabel, .edgeLabel span) {
+.planche-diagramme--stone
+  .planche-diagramme__content
+  .mermaid
+  :is(.nodeLabel, .edgeLabel span) {
   color: #fff !important;
   fill: #fff !important;
 }
 
-.planche-diagramme--stone .planche-diagramme__content .flow-diagram-wrapper :is(.vue-flow__node, .vue-flow__edge-path) {
+.planche-diagramme--stone
+  .planche-diagramme__content
+  .flow-diagram-wrapper
+  :is(.vue-flow__node, .vue-flow__edge-path) {
   stroke: #fff !important;
 }
 
-.planche-diagramme--stone .planche-diagramme__content .flow-diagram-wrapper .vue-flow__node {
+.planche-diagramme--stone
+  .planche-diagramme__content
+  .flow-diagram-wrapper
+  .vue-flow__node {
   border-color: #2a2419 !important;
   background: rgba(255, 248, 220, 0.35) !important;
   box-shadow:

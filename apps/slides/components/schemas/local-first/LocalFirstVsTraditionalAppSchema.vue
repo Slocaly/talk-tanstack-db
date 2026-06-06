@@ -7,6 +7,7 @@
     height="70%"
     class="mx-auto"
   >
+    <g id="traditional-app">
     <g
       stroke-linecap="round"
       transform="translate(14.110553309474199 139.87877939458667) rotate(0 248.11852884256018 162.9963804050326)"
@@ -696,6 +697,8 @@
         Traditional App
       </text>
     </g>
+    </g>
+    <g id="local-first-app" v-click="1" >
     <g
       stroke-linecap="round"
       transform="translate(819.3272470389438 146.7635563972135) rotate(0 248.1185288425604 162.9963804050326)"
@@ -1968,6 +1971,7 @@
       >
         Localfirst App
       </text>
+    </g>
     </g>
   </svg>
 </template>

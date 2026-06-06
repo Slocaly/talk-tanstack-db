@@ -135,3 +135,10 @@ class: bg-black
     4. Collaborators can see your changes
   </h1>
 </div>
+---
+layout: fullHeight
+class:
+---
+<LocalFirstVsTraditionalAppSchema/>
+
+---

@@ -187,7 +187,20 @@ layout: full
     src="/sync-engines.png"
     alt=""
     aria-hidden="true"
-    class="absolute inset-0 h-  w-full object-cover top-16"
+    class="absolute inset-0  w-full object-cover top-16"
+  />
+</div>
+
+---
+layout: full
+---
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/local-first-apps.png"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full object-cover top-0"
   />
 </div>
 

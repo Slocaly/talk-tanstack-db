@@ -15,7 +15,9 @@ class: text-white bg-black
   <video autoplay loop muted playsinline class="absolute inset-0 h-full w-full object-cover">
     <source src="/demo-overtone.mp4" type="video/mp4" />
   </video>
-  <h1 class="relative z-10 text-8xl font-bold text-white drop-shadow-xl bg-black/50">1. No spinners</h1>
+    <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/70">
+    1. No spinners
+  </h1>
 </div>
 
 ---
@@ -70,14 +72,66 @@ class: text-white bg-black
 </div>
 
 ---
-layout: bullet-list
+layout: full
+class: text-white bg-black
 ---
-<h1 class="text-4xl">7 règles</h1>
-<br />
-<h2 class="text-2xl" v-click="6">2. Your work is not trapped on one device</h2>
-<h2 class="text-2xl" v-click="2">3. The network is optional</h2>
-<h2 class="text-2xl" v-click="7">4. Collaborators can see your changes</h2>
-<h2 class="text-2xl" v-click="3">5. The Long Now - <small>Vous pouvez y acceder dans 10 ans</small></h2>
-<h2 class="text-2xl" v-click="4">6. Security and privacy by default</h2>
-<h2 class="text-2xl" v-click="5">7. You retain ultimate ownership and control</h2>
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/house-keys.png"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
+    7. You retain ultimate ownership and control
+  </h1>
+</div>
+
 ---
+layout: full
+class: bg-[#ece9d8]
+---
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/excel-2003.png"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-contain"
+  />
+</div>
+
+---
+layout: full
+class: text-white bg-black
+---
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/cafe-renverse.png"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <h1 class="absolute bottom-0 z-10 max-w-5xl px-8 py-4 text-center text-5xl font-bold text-white drop-shadow-xl bg-black/50">
+    2. Your work is not trapped on one device
+  </h1>
+</div>
+
+---
+layout: full
+class: bg-black
+---
+
+<div class="relative flex h-full w-full items-center justify-center overflow-hidden">
+  <img
+    src="/real-time-collaboration.png"
+    alt="real time collaboration cover image"
+    aria-hidden="true"
+    class="absolute inset-0 min-h-full w-full object-cover"
+  />
+  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/70">
+    4. Collaborators can see your changes
+  </h1>
+</div>

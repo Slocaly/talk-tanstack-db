@@ -53,6 +53,23 @@ class: text-white bg-black
 </div>
 
 ---
+layout: full
+class: text-white bg-black
+---
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/fort-boyard.webp"
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
+    6. Security and privacy by default
+  </h1>
+</div>
+
+---
 layout: bullet-list
 ---
 <h1 class="text-4xl">7 règles</h1>

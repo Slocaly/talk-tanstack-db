@@ -1019,7 +1019,7 @@
           ></path>
         </g>
       </g>
-      <g stroke-linecap="round" id="arrow-bigapp-to-local-db">
+      <g id="bigapp-to-localdb-arrow" stroke-linecap="round">
         <g
           transform="translate(1164.5132015078452 396.31778583238065) rotate(0 39.669328053937534 17.912829729207715)"
         >
@@ -1232,7 +1232,7 @@
           </g>
         </g>
       </g>
-      <g stroke-linecap="round">
+      <g id="localdb-to-server-arrow" stroke-linecap="round">
         <g
           transform="translate(1267.0856412395888 508.2769256086367) rotate(0 -80.03072102864598 95.6147989578335)"
         >
@@ -1264,7 +1264,7 @@
           ></path>
         </g>
       </g>
-      <g stroke-linecap="round">
+      <g id="smallapp-to-serverdb-arrow" stroke-linecap="round">
         <g
           transform="translate(1480.0976607447528 1079.3620608200135) rotate(0 -171.93554243568133 9.167280027341803)"
         >
@@ -1296,7 +1296,7 @@
           ></path>
         </g>
       </g>
-      <g stroke-linecap="round">
+      <g id="serverdb-to-server-arrow" stroke-linecap="round">
         <g
           transform="translate(1076.4858541748617 1028.5450998401539) rotate(0 0.5625179567746272 -48.918876122273105)"
         >
@@ -1800,7 +1800,7 @@
           ></path>
         </g>
       </g>
-      <g stroke-linecap="round">
+      <g id="server-to-localdb-arrow" stroke-linecap="round">
         <g
           transform="translate(1127.2949298780813 716.9337492642826) rotate(0 84.69648666001967 -98.7971384057414)"
         >
@@ -1832,7 +1832,7 @@
           ></path>
         </g>
       </g>
-      <g stroke-linecap="round">
+      <g id="localdb-to-bigapp-arrow" stroke-linecap="round">
         <g
           transform="translate(1270.403923694682 423.502634957762) rotate(0 -63.29915201260337 -62.791216669147616)"
         >
@@ -1864,7 +1864,7 @@
           ></path>
         </g>
       </g>
-      <g stroke-linecap="round">
+      <g id="server-to-serverdb-arrow" stroke-linecap="round">
         <g
           transform="translate(1051.421723881157 932.7669789432639) rotate(0 -0.05462149514687553 48.918876122273105)"
         >

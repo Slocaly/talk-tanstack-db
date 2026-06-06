@@ -5,10 +5,29 @@
       <slot />
     </NarrateurBox>
     <div class="deux-vignettes-entete__cols">
-      <ComicPanel variant="code" :rotate="-0.6">
+      <div
+        v-if="revealCards"
+        v-click="1"
+        class="deux-vignettes-entete__col"
+      >
+        <ComicPanel variant="code" :rotate="-0.6">
+          <slot name="left" />
+        </ComicPanel>
+      </div>
+      <ComicPanel v-else variant="code" :rotate="-0.6">
         <slot name="left" />
       </ComicPanel>
-      <ComicPanel variant="code" :rotate="0.6">
+
+      <div
+        v-if="revealCards"
+        v-click="2"
+        class="deux-vignettes-entete__col"
+      >
+        <ComicPanel variant="code" :rotate="0.6">
+          <slot name="right" />
+        </ComicPanel>
+      </div>
+      <ComicPanel v-else variant="code" :rotate="0.6">
         <slot name="right" />
       </ComicPanel>
     </div>
@@ -22,10 +41,17 @@ import NarrateurBox from "../components/NarrateurBox.vue";
 import type { Location } from "../types/characters";
 import { useComicBackground } from "../utils/useComicBackground";
 
-const props = defineProps<{
-  location?: Location;
-  background?: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    location?: Location;
+    background?: string;
+    /** Reveal left then right card on click (opt-in). */
+    revealCards?: boolean;
+  }>(),
+  {
+    revealCards: false,
+  },
+);
 
 const { backgroundImageUrl, backgroundStyle } = useComicBackground(props);
 </script>

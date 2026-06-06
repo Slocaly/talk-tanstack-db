@@ -35,6 +35,11 @@ src: ./pages/slides/metaphore-explained.md
 ---
 src: ./pages/slides/rebuild-tanstackdb.md
 ---
+
+---
+src: ./pages/slides/rework-tanstack-db.md
+---
+
 ---
 src: ./pages/slides/local-first.md
 ---

@@ -391,9 +391,52 @@
   min-height: 0;
 }
 
+.deux-vignettes-entete__col {
+  height: 100%;
+  min-height: 0;
+}
+
+.deux-vignettes-entete__col.slidev-vclick-target {
+  transition: opacity 0.35s ease;
+}
+
 .deux-vignettes-entete__cols .comic-panel {
   overflow: auto;
   height: 100%;
+}
+
+/* ——— vignette-entete ——— */
+
+.slidev-layout.vignette-entete {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-height: calc(100% - 2rem);
+  height: 100%;
+}
+
+.vignette-entete__header {
+  flex-shrink: 0;
+}
+
+.vignette-entete__card,
+.vignette-entete__panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: min(58vh, 100%);
+}
+
+.vignette-entete__card.slidev-vclick-target {
+  transition: opacity 0.35s ease;
+}
+
+.vignette-entete__card .comic-panel,
+.vignette-entete__panel {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  max-height: none;
 }
 
 /* ——— monologue ——— */

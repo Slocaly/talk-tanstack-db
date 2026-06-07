@@ -1,6 +1,6 @@
 ---
 layout: image
-image: /recoding-tanstackdb-from-scratch.png
+image: /rebuild-tanstackdb/recoding-tanstackdb-from-scratch.png
 ---
 
 <div class="flex min-h-full items-center justify-center">
@@ -20,11 +20,11 @@ layout: radial-gradient
 
 ---
 layout: image
-image: /differential_dataflow.png
+image: /rebuild-tanstackdb/differential_dataflow.png
 ---
 ---
 layout: image
-image: /ddf-paper.png
+image: /rebuild-tanstackdb/ddf-paper.png
 ---
 ---
 layout: radial-gradient

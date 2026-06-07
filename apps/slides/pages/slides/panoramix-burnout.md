@@ -10,9 +10,15 @@ layout: image
 image: /panoramix-burnout/village_heureux.png
 ---
 ---
-layout: image
-image: /panoramix-burnout/banquet.png
+layout: full
+clicks: 1
 ---
+<img
+    v-motion :initial="{ scale: 1, y: 0, x: 0 }" :click-1="{ scale: 3, y: 0, x: 900, transition: { duration: 3000} }"
+    src="/panoramix-burnout/banquet.png"
+    alt="banquet"
+    class="absolute top-0 left-0 cover full"
+    />
 ---
 layout: image
 image: /panoramix-burnout/panoramix_deborde.png

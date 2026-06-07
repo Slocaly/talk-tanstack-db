@@ -14,6 +14,9 @@ transition: slide-left
 mdc: true
 # duration of the presentation
 duration: 45min
+---
+<!-- Je te laisse faire cette slide @Lucas -->
+---
 src: ./pages/slides/panoramix-burnout.md
 ---
 ---

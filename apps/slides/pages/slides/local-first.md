@@ -12,21 +12,24 @@ class: bg-black
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/fight-club.png"
+    src="/local-first/fight-club.png"
     alt=""
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-contain"
   />
+<h1 class="absolute bottom-0 p-5 w-full text-right z-10 text-5xl font-bold text-white drop-shadow-xl">
+    Les 7 règles du Local first
+  </h1>
 </div>
 
 ---
 layout: full
-class: text-white bg-black text-fightt
+class: text-white bg-black
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
   <video autoplay loop muted playsinline class="absolute inset-0 h-full w-full object-cover">
-    <source src="/demo-overtone.mp4" type="video/mp4" />
+    <source src="/local-first/demo-overtone.mp4" type="video/mp4" />
   </video>
     <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/70">
     1. No spinners
@@ -35,15 +38,15 @@ class: text-white bg-black text-fightt
 
 ---
 layout: full
-class: bg-[#f7f7f7] text-gray-600 text-fightt
+class: bg-[#f7f7f7] text-gray-600
 ---
 
 <div class="relative flex h-full w-full flex-col items-center justify-center">
-  <h1 class="z-10 text-6xl font-bold drop-shadow-sm top-10 absolute">
+  <h1 class="z-10 text-5xl font-bold drop-shadow-sm top-10 absolute">
     3. The network is optional
   </h1>
   <img
-    src="/no-internet-dino.png"
+    src="/local-first/no-internet-dino.png"
     alt=""
     aria-hidden="true"
     class="pointer-events-none absolute inset-x-0 bottom-0 w-full object-contain object-bottom"
@@ -52,29 +55,29 @@ class: bg-[#f7f7f7] text-gray-600 text-fightt
 
 ---
 layout: full
-class: text-white bg-black text-fightt
+class: text-white bg-black
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/the-long-now.png"
+    src="/local-first/the-long-now.png"
     alt=""
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-cover"
   />
-  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-8xl font-bold text-white drop-shadow-xl bg-black/50">
-    5. the long now
+  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
+    5. The long now
   </h1>
 </div>
 
 ---
 layout: full
-class: text-white bg-black text-fightt
+class: text-white bg-black
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/fort-boyard.webp"
+    src="/local-first/fort-boyard.webp"
     alt=""
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-cover"
@@ -86,12 +89,12 @@ class: text-white bg-black text-fightt
 
 ---
 layout: full
-class: text-white bg-black text-fightt
+class: text-white bg-black
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/house-keys.png"
+    src="/local-first/house-keys.png"
     alt=""
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-cover"
@@ -108,7 +111,7 @@ class: bg-[#ece9d8]
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/excel-2003.png"
+    src="/local-first/excel-2003.png"
     alt=""
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-contain"
@@ -117,66 +120,62 @@ class: bg-[#ece9d8]
 
 ---
 layout: full
-class: text-white bg-black text-fightt
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/cafe-renverse.png"
+    src="/local-first/icloud.png"
     alt=""
     aria-hidden="true"
-    class="absolute inset-0 h-full w-full object-cover"
+    class="absolute inset-0 h-70 object-cover top-5 mx-auto"
   />
-  <h1 class="absolute bottom-0 z-10 max-w-5xl px-8 py-4 text-center text-6xl font-bold text-white drop-shadow-xl bg-black/50 w-full">
+  <h1 class="absolute bottom-0 z-10 max-w-5xl px-8 py-4 text-center text-5xl font-bold w-full">
     2. Your work is not trapped on one device
   </h1>
 </div>
 
 ---
 layout: full
-class: bg-black text-fightt
 ---
 
 <div class="relative flex h-full w-full items-center justify-center overflow-hidden">
   <img
-    src="/real-time-collaboration.png"
+    src="/local-first/collaboration.png"
     alt="real time collaboration cover image"
     aria-hidden="true"
-    class="absolute inset-0 min-h-full w-full object-cover"
+    class="absolute h-70 top-0"
   />
-  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-6xl font-bold text-white drop-shadow-xl bg-black/70">
+  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold">
     4. Collaborators can see your changes
   </h1>
 </div>
 ---
-layout: fullHeight
-transition: none
+layout: radial-gradient
 ---
 <DownloadAllData/>
 ---
-layout: fullHeight
+layout: radial-gradient
 
 ---
 <SmallDiffExchange/>
 
 ---
 layout: full
-class: text-white bg-black text-fightt
+class: bg-black
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
-  <video autoplay muted playsinline class="absolute inset-0 h-full w-full object-cover">
-    <source src="/loading-figma.mov" type="video/mp4" />
+  <video autoplay muted playsinline class="inset-0 h-112 w-full object-cover" style="object-position: 50% 100%; object-fit: cover;">
+    <source src="/local-first/loading-figma.mov" type="video/mp4" />
   </video>
 </div>
 ---
-layout: fullHeight
-class:
+layout: radial-gradient
 ---
 <LocalFirstVsTraditionalAppSchema/>
 
 ---
-layout: full
+layout: radial-gradient
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -184,20 +183,20 @@ layout: full
     Sync engines
   </h1>
   <img
-    src="/sync-engines.png"
+    src="/local-first/sync-engines-transparent.png"
     alt=""
     aria-hidden="true"
-    class="absolute inset-0  w-full object-cover top-16"
+    class="inset-0 h-100 mt-20"
   />
 </div>
 
 ---
-layout: full
+layout: radial-gradient
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
   <img
-    src="/local-first-apps.png"
+    src="/local-first/local-first-apps-transparent.png"
     alt=""
     aria-hidden="true"
     class="absolute inset-0 w-full object-cover top-0"

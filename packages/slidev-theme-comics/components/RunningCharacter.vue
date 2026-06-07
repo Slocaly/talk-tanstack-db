@@ -87,8 +87,8 @@ async function runAnimation() {
 
 let imageUrl = computed(() =>
   props.character === "asterix"
-    ? "/running_asterix.png"
-    : "/running_obelix.png",
+    ? "/panoramix-burnout/running_asterix.png"
+    : "/panoramix-burnout/running_obelix.png",
 );
 
 onSlideEnter(() => runAnimation());

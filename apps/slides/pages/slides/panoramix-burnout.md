@@ -1,27 +1,27 @@
 ---
 layout: image
-image: /village_heureux.png
+image: /panoramix-burnout/village_heureux.png
 ---
 ---
 layout: image
-image: /banquet.png
+image: /panoramix-burnout/banquet.png
 ---
 ---
 layout: image
-image: /panoramix_deborde.png
+image: /panoramix-burnout/panoramix_deborde.png
 ---
 ---
 layout: image
-image: /armoire_potion_vide.png
+image: /panoramix-burnout/armoire_potion_vide.png
 ---
 ---
 layout: image
-image: /conseil_village.png
+image: /panoramix-burnout/conseil_village.png
 transition: none
 ---
 ---
 layout: image
-image: /conseil_village.png
+image: /panoramix-burnout/conseil_village.png
 ---
 <SpeechBubble
 :x="100"
@@ -57,7 +57,7 @@ transition: fade
 et du ...
 ---
 layout: image
-image: /plan.png
+image: /panoramix-burnout/plan.png
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}]" character="obelix"/>
 ---
@@ -71,7 +71,7 @@ transition: fade
 Et 3 brins d'orges
 ---
 layout: image
-image: /plan.png
+image: /panoramix-burnout/plan.png
 ---
 <RunningCharacter :ingredient-positions="[{x: -200, y: 80}]" character="obelix" />
 ---
@@ -85,7 +85,7 @@ transition: fade
 Et de l'ecume de vague
 ---
 layout: image
-image: /plan.png
+image: /panoramix-burnout/plan.png
 ---
 <RunningCharacter :ingredient-positions="[{x: 160, y: 280}]" character="obelix" />
 ---
@@ -113,23 +113,23 @@ Je vais aller t'en chercher
 Merci Asterix !
 ---
 layout: image
-image: /plan.png
+image: /panoramix-burnout/plan.png
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
 layout: image
-image: /stock_ingredients.png
+image: /panoramix-burnout/stock_ingredients.png
 ---
 ---
 layout: image
-image: /livre_peremption.png
+image: /panoramix-burnout/livre_peremption.png
 ---
 ---
 layout: image
-image: /queue_devant_maison_panoramix.png
+image: /panoramix-burnout/queue_devant_maison_panoramix.png
 ---
 ---
 layout: image
-image: /ifonix.png
+image: /panoramix-burnout/ifonix.png
 ---
 --- 

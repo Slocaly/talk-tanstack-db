@@ -10,6 +10,17 @@
   >
     <g
       stroke-linecap="round"
+      transform="translate(56.7886915446029 163.65406849359897) rotate(0 249.3501078287759 163.06228637695312)"
+    >
+      <path
+        d="M1.33 1.1 L497.15 0.21 L497.09 324.31 L0.81 326"
+        stroke="none"
+        stroke-width="0"
+        fill="#ffffff"
+      ></path>
+    </g>
+    <g
+      stroke-linecap="round"
       transform="translate(59.62571407619771 164.73687265630178) rotate(0 248.11852884256018 162.99638040503214)"
     >
       <path

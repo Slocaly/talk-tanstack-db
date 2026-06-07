@@ -10,7 +10,7 @@ Obelix,
 Va me chercher la page 1
 ---
 layout: image
-image: /plan_with_pages.png
+image: /panoramix-burnout/plan_with_pages.png
 transition: none
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}]" character="obelix"/>
@@ -25,7 +25,7 @@ transition: fade
 Et la page 2
 ---
 layout: image
-image: /plan_with_pages.png
+image: /panoramix-burnout/plan_with_pages.png
 transition: none
 ---
 <RunningCharacter :ingredient-positions="[{x: -200, y: 80}]" character="obelix" />
@@ -40,7 +40,7 @@ transition: fade
 Et la page 3
 ---
 layout: image
-image: /plan_with_pages.png
+image: /panoramix-burnout/plan_with_pages.png
 transition: none
 ---
 <RunningCharacter :ingredient-positions="[{x: 160, y: 280}]" character="obelix" />
@@ -58,13 +58,13 @@ Asterix, va me chercher tous les ingrédients
 
 ---
 layout: image
-image: /plan_with_pages.png
+image: /panoramix-burnout/plan_with_pages.png
 transition: none
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
 layout: image
-image: /stock_ingredients.png
+image: /panoramix-burnout/stock_ingredients.png
 ---
 <v-clicks>
     <h2 class="text-4xl">Cache</h2> 
@@ -74,7 +74,7 @@ image: /stock_ingredients.png
 </v-clicks>
 ---
 layout: image
-image: /livre_peremption.png
+image: /panoramix-burnout/livre_peremption.png
 ---
 <v-clicks>
     <h2 class="text-4xl">Données "Staled"</h2> 

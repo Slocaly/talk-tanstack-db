@@ -150,32 +150,32 @@ layout: full
   </h1>
 </div>
 ---
-layout: fullHeight
+layout: radial-gradient
 ---
 <DownloadAllData/>
 ---
-layout: fullHeight
+layout: radial-gradient
 
 ---
 <SmallDiffExchange/>
 
 ---
 layout: full
-class: text-white bg-black
+class: bg-black
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
-  <video autoplay muted playsinline class="absolute inset-0 h-full w-full object-cover">
+  <video autoplay muted playsinline class="inset-0 h-112 w-full object-cover" style="object-position: 50% 100%; object-fit: cover;">
     <source src="/local-first/loading-figma.mov" type="video/mp4" />
   </video>
 </div>
 ---
-layout: fullHeight
+layout: radial-gradient
 ---
 <LocalFirstVsTraditionalAppSchema/>
 
 ---
-layout: full
+layout: radial-gradient
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -191,7 +191,7 @@ layout: full
 </div>
 
 ---
-layout: full
+layout: radial-gradient
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">

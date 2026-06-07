@@ -15,6 +15,17 @@
     <g id="traditional-app">
       <g
         stroke-linecap="round"
+        transform="translate(12 140) rotate(0 249.3501078287759 163.06228637695312)"
+      >
+        <path
+          d="M1.33 1.1 L497.15 0.21 L497.09 324.31 L0.81 326"
+          stroke="none"
+          stroke-width="0"
+          fill="#ffffff"
+        ></path>
+      </g>
+      <g
+        stroke-linecap="round"
         transform="translate(14.110553309474199 139.87877939458667) rotate(0 248.11852884256018 162.9963804050326)"
       >
         <path
@@ -680,6 +691,23 @@
     </g>
     <g id="local-first-app" v-click="1">
       <g id="big-app">
+        <g
+          stroke-linecap="round"
+          transform="translate(821.1008841737926 148.48948719477085) rotate(0 249.3501078287759 163.06228637695312)"
+        >
+          <path
+            d="M-0.44 -0.54 L498.71 0.4 L497.85 326.82 L0.48 325"
+            stroke="none"
+            stroke-width="0"
+            fill="#ffffff"
+          ></path>
+          <path
+            d="M0 0 C146.82 -1.5, 292.3 -1.37, 498.7 0 M0 0 C118.59 -1.39, 236.63 -1.2, 498.7 0 M498.7 0 C497.19 72.29, 497.34 142.24, 498.7 326.12 M498.7 0 C499.13 118.85, 498.22 237.92, 498.7 326.12 M498.7 326.12 C302.01 327.24, 103.98 326.31, 0 326.12 M498.7 326.12 C306.57 327.34, 115.17 327.31, 0 326.12 M0 326.12 C0.6 246.21, -1.04 165.89, 0 0 M0 326.12 C-1.76 257.72, -1.4 190.1, 0 0"
+            stroke="transparent"
+            stroke-width="1"
+            fill="none"
+          ></path>
+        </g>
         <g
           stroke-linecap="round"
           transform="translate(819.3272470389438 146.7635563972135) rotate(0 248.1185288425604 162.9963804050326)"

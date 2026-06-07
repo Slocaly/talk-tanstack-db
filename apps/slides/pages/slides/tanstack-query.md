@@ -1,11 +1,9 @@
 ---
-layout: narrateur
-location: village
-variant: punchline
-size: xl
+layout: radial-gradient
 ---
-
-# TanStack Query
+<div class="absolute inset-0 flex items-center justify-center">
+    <h1 class="text-6xl">Tanstack query</h1>
+</div>
 
 ---
 layout: radial-gradient
@@ -295,38 +293,3 @@ return (
 ```
 
 ---
-layout: title
----
-
-# ON a tout ce qui nous faut ? Pas besoin d'une nouvelle techno
-
----
-layout: title
----
-
-# Exemple de la liste des recettes
-
-On browse l'applis sur la liste des recettes
-
-Et Obelix va chercher page 1 page 2 page 3
-
----
-layout: title
----
-
-# T'es mignon mais si tu 2000 pages tu fais quoi ?
-
----
-layout: title
----
-
-# 20 mb Dilemma and difference entre local first et offline first
-Exemple de GIT (localfirst)
-Figma, Linear, slack et autres fonctionnent comme ça
-
----
-layout: title
----
-
-# Schema Delphin ON rebuild from scratch
-

@@ -1,3 +1,10 @@
+--- 
+layout: narrateur
+location: village
+variant: punchline
+size: xl
+---
+# Le burnout de Panoramix
 ---
 layout: image
 image: /panoramix-burnout/village_heureux.png

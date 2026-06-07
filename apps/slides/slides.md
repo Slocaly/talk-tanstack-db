@@ -14,13 +14,6 @@ transition: slide-left
 mdc: true
 # duration of the presentation
 duration: 45min
-background: /panoramix_deborde.png
-layout: title
----
-
-# Le burnout de Panoramix
-
----
 src: ./pages/slides/panoramix-burnout.md
 ---
 ---

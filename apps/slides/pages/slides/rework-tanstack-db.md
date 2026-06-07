@@ -1,12 +1,9 @@
 ---
-layout: narrateur
-location: forest
-variant: punchline
-size: xl
+layout: radial-gradient
 ---
-
-# TanStack DB
-
+<div class="absolute inset-0 flex items-center justify-center">
+    <h1 class="text-6xl">Tanstack DB </h1>
+</div>
 
 ---
 layout: radial-gradient
@@ -162,7 +159,4 @@ const { data, isLoading } = useLiveQuery((q) =>
 }
 </style>
 
----
-layout: vignette-entete
-location: forest
 ---

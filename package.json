@@ -6,6 +6,7 @@
     "build": "turbo run build"
   },
   "devDependencies": {
+    "@tanstack/intent": "^0.0.41",
     "turbo": "^2.8.17"
   },
   "packageManager": "pnpm@10.5.2"

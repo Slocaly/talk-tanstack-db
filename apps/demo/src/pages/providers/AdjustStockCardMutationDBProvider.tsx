@@ -1,4 +1,4 @@
-import { useUpdateIngredientQuantityMutation } from '@/hooks/useUpdateIngredientQuantityMutation';
+import { ingredientCollection } from '@/collections/ingredient-collection';
 import { AdjustStockCard } from '@/pages/AdjustStockCard';
 
 type AdjustStockCardMutationDBProviderProps = {
@@ -10,15 +10,17 @@ export function AdjustStockCardMutationDBProvider({
   ingredientId,
   quantity,
 }: AdjustStockCardMutationDBProviderProps) {
-  const updateQuantityMutation = useUpdateIngredientQuantityMutation(
-    '/tsdb',
-    ingredientId,
-  );
+  const onMutate = (newQuantity: number) => {
+    ingredientCollection.update(ingredientId, (draft) => {
+      draft.quantity = newQuantity;
+    });
+  }
 
   return (
     <AdjustStockCard
       quantity={quantity}
-      updateQuantityMutation={updateQuantityMutation}
+      onMutate={onMutate}
+      isPending={false}
     />
   );
 }

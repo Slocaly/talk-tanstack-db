@@ -9,7 +9,7 @@ type MonoprixAdProps = {
 };
 
 /** Chance d’afficher la pub à chaque chargement de la fiche (0–1). */
-const MONOPRIX_AD_SHOW_PROBABILITY = 0.45;
+const MONOPRIX_AD_SHOW_PROBABILITY = 1;
 
 export function MonoprixAd({ ingredientId, ingredientName }: MonoprixAdProps) {
   const pathname = useLocation({ select: (location) => location.pathname });

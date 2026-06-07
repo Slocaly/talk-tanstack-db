@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import type { UseMutationResult } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -10,23 +9,24 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import type { Ingredient } from '@/types/domain';
 
 type AdjustStockCardProps = {
   quantity: number;
-  updateQuantityMutation: UseMutationResult<Ingredient, Error, number>;
+  onMutate: (newQuantity: number) => void;
+  isPending: boolean;
 };
 
 export function AdjustStockCard({
   quantity,
-  updateQuantityMutation: mutation,
+  onMutate,
+  isPending,
 }: AdjustStockCardProps) {
   const [qtyInput, setQtyInput] = useState(() => String(quantity));
 
   const onSaveQuantity = () => {
     const n = Number.parseFloat(qtyInput.replace(',', '.'));
     if (Number.isNaN(n)) return;
-    mutation.mutate(n);
+    onMutate(n);
   };
 
   return (
@@ -49,19 +49,12 @@ export function AdjustStockCard({
             aria-label="Nouvelle quantité en stock"
           />
         </div>
-        {mutation.isError && (
-          <p className="text-sm text-destructive" role="alert">
-            {mutation.error instanceof Error
-              ? mutation.error.message
-              : 'Échec de la mise à jour'}
-          </p>
-        )}
         <Button
           type="button"
           onClick={onSaveQuantity}
-          disabled={mutation.isPending}
+          disabled={isPending}
         >
-          {mutation.isPending ? 'Enregistrement…' : 'Enregistrer la quantité'}
+          {isPending ? 'Enregistrement…' : 'Enregistrer la quantité'}
         </Button>
       </CardContent>
     </Card>

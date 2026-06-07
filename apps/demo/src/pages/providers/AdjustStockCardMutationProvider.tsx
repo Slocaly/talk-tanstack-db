@@ -10,15 +10,16 @@ export function AdjustStockCardMutationProvider({
   ingredientId,
   quantity,
 }: AdjustStockCardMutationProviderProps) {
-  const updateQuantityMutation = useUpdateIngredientQuantityMutation(
+  const { mutate, isPending } = useUpdateIngredientQuantityMutation(
     '/tsq',
-    ingredientId,
+    ingredientId
   );
 
   return (
     <AdjustStockCard
       quantity={quantity}
-      updateQuantityMutation={updateQuantityMutation}
+      onMutate={mutate}
+      isPending={isPending}
     />
   );
 }

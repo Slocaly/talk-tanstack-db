@@ -12,16 +12,16 @@ export function useUpdateIngredientQuantityMutation(
     mutationFn: (newQuantity: number) =>
       updateIngredientQuantity(prefix, ingredientId, newQuantity),
     onSuccess: () => {
-      void queryClient.invalidateQueries({
+      void queryClient.resetQueries({
         queryKey: queryKeys.ingredientsScope(prefix),
       });
-      void queryClient.invalidateQueries({
+      void queryClient.resetQueries({
         queryKey: queryKeys.ingredient(prefix, ingredientId),
       });
-      void queryClient.invalidateQueries({
+      void queryClient.resetQueries({
         queryKey: queryKeys.dashboard(prefix),
       });
-      void queryClient.invalidateQueries({
+      void queryClient.resetQueries({
         queryKey: queryKeys.recipesScope(prefix),
       });
     },

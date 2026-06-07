@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 import { IngredientMap } from '@/components/map/IngredientMap';
@@ -54,9 +55,79 @@ export function IngredientDetailPage({
 
   if (isPending) {
     return (
-      <div className="space-y-4">
-        <Skeleton className="h-10 w-2/3" />
-        <Skeleton className="h-48 w-full" />
+      <div className="space-y-6" aria-busy="true">
+        <div>
+          <Button asChild variant="outline" size="sm" className="mb-3">
+            <Link to={ingredientsListTo}>← Ingrédients</Link>
+          </Button>
+          <Skeleton className="h-10 w-2/3 max-w-md" />
+          <Skeleton className="mt-2 h-6 w-24 rounded-full" />
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Informations</CardTitle>
+              <CardDescription>
+                Quantité, péremption et conservation
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <p className="text-sm text-muted-foreground">Stock actuel</p>
+                <Skeleton className="mt-1 h-8 w-32" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Date limite</p>
+                <Skeleton className="mt-1 h-5 w-48" />
+              </div>
+              <Separator />
+              <div>
+                <p className="text-sm font-semibold text-foreground">
+                  Où trouver
+                </p>
+                <Skeleton className="mt-1 h-4 w-full" />
+                <Skeleton className="mt-1 h-4 w-4/5" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">
+                  Comment récolter
+                </p>
+                <Skeleton className="mt-1 h-4 w-full" />
+                <Skeleton className="mt-1 h-4 w-3/4" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Ajuster le stock</CardTitle>
+              <CardDescription>
+                Enregistrée sur l’API — met à jour le tableau de bord et les
+                recettes.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="qty-loading">Nouvelle quantité</Label>
+                <Skeleton id="qty-loading" className="h-9 w-full" />
+              </div>
+              <Skeleton className="h-9 w-44" />
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Carte du lieu</CardTitle>
+            <CardDescription>
+              Repère approximatif dans la forêt d’Armorique (OpenStreetMap).
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Skeleton className="h-64 w-full rounded-md" />
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -113,12 +184,6 @@ export function IngredientDetailPage({
           </Badge>
         </div>
       </div>
-
-      <MonoprixAd
-        ingredientId={ingredient.id}
-        ingredientName={ingredient.name}
-      />
-
       <div className="grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
@@ -166,6 +231,11 @@ export function IngredientDetailPage({
           quantity={ingredient.quantity}
         />
       </div>
+
+      <MonoprixAd
+        ingredientId={ingredient.id}
+        ingredientName={ingredient.name}
+      />
 
       <Card>
         <CardHeader>

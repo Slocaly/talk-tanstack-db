@@ -57,5 +57,101 @@ class: text-center
 ---
 
 <h1 class="text-5xl text-center">Et si tu as 20 000 000 pages ? 🙃</h1>
-<span class="text-5xl mt-30">sync=<span class="text-orange">"on-demand"</span></span>
+<span class="text-5xl mt-30">syncMode: <span class="text-orange">"on-demand"</span></span>
+---
+layout: radial-gradient
+location: village
+---
+<h1 class="text-5xl">SyncMode = on-demand</h1>
+<MacWindow title="todo-collection.ts" class="w-full mt-10">
+````md magic-move { lines: true }
+```tsx
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["todos"],
+    queryFn: async () => {
+      const response = await fetch("/api/todos")
+      return response.json()
+    },
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+```tsx {3}
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    syncMode: "on-demand",
+    queryKey: ["todos"],
+    queryFn: async () => {
+      const response = await fetch("/api/todos")
+      return response.json()
+    },
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+```tsx {3,5-8}
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    syncMode: "on-demand",
+    queryKey: ["todos"],
+    queryFn: async () => {
+      const response = await fetch("/api/todos")
+      return response.json()
+    },
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+```tsx {3,5-8}
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    syncMode: "on-demand",
+    queryKey: ["todos"],
+    queryFn: async (ctx) => {
+      const response = await fetch("/api/todos")
+      return response.json()
+    },
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+```tsx {3,5-10}
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    syncMode: "on-demand",
+    queryKey: ["todos"],
+    queryFn: async (ctx) => {
+      const searchParams = yourCustomSearchParamsMapping(ctx.meta.loadSubsetOptions)
+
+      const response = await fetch("/api/todos")
+      return response.json()
+    },
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+```tsx {3,5-10}
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    syncMode: "on-demand",
+    queryKey: ["todos"],
+    queryFn: async (ctx) => {
+      const searchParams = yourCustomSearchParamsMapping(ctx.meta.loadSubsetOptions)
+      
+      const response = await fetch(`/api/todos?${searchParams}`)
+      return response.json()
+    },
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+````
+</MacWindow>
 ---

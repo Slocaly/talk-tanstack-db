@@ -57,12 +57,14 @@ class: text-center
 ---
 
 <h1 class="text-5xl text-center">Et si tu as 20 000 000 pages ? 🙃</h1>
-<span class="text-5xl mt-30">syncMode: <span class="text-orange">"on-demand"</span></span>
+<v-clicks>
+    <span class="text-5xl mt-30">syncMode: <span class="text-orange">"on-demand"</span></span>
+</v-clicks>
 ---
 layout: radial-gradient
 location: village
 ---
-<h1 class="text-5xl">SyncMode = on-demand</h1>
+<h1 class="text-5xl">syncMode: <span class="text-orange">"on-demand"</span></h1>
 <MacWindow title="todo-collection.ts" class="w-full mt-10">
 ````md magic-move { lines: true }
 ```tsx

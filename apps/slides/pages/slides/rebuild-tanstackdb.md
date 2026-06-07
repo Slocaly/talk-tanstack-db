@@ -40,6 +40,12 @@ transition: view-transition
 
 ---
 layout: radial-gradient
+transition: view-transition
+---
+<UseLiveQuery class="mt-40"/>
+
+---
+layout: radial-gradient
 transition: none
 ---
 <ChangeFromContextToTanstackDBSchema/>

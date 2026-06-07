@@ -1,10 +1,10 @@
 ---
-layout: planche-titre
-location: village
-side: left
+layout: radial-gradient
 ---
+<div class="absolute inset-0 flex items-center justify-center">
+    <h1 class="text-6xl">Local first</h1>
+</div>
 
-# Local first
 ---
 layout: full
 class: bg-black

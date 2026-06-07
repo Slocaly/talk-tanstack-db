@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
   overflow: visible;
   background: #f5f5f5;
   border: 1px solid #ddd;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.32);
 }
 
 .mac-window--fill {

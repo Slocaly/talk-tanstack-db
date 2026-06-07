@@ -11,6 +11,7 @@ location: village
 ---
 
 <MacWindow title="IngredientListPage.tsx" class="w-full">
+
 ````md magic-move { lines: true }
 ```tsx
 export const IngredientListPage = () => {
@@ -214,6 +215,7 @@ revealCards: true
 
 ---
 layout: radial-gradient
+clicks: 2
 ---
 
 <TanStackQueryFetchDiagram />
@@ -253,43 +255,133 @@ revealCards: true
 
 ::left::
 
-```tsx {all|3-7|9-10|all}
-import { useQuery } from '@tanstack/react-query'
+```tsx {all|all|all|3-7|9-10|all}
+import { useQuery } from '@tanstack/react-query';
 
 const { data, isLoading, error } = useQuery({
   queryKey: ['users'],
   queryFn: () => 
     fetch('/api/users').then(res => res.json())
-})
+});
 
-if (isLoading) return <div>Chargement...</div>
-if (error) return <div>Erreur !</div>
+if (isLoading) return <div>Chargement...</div>;
+if (error) return <div>Erreur !</div>;
 
-return <div>{data?.map(user => user.name)}</div>
+return <div>{data?.map(user => user.name)}</div>;
 ```
 
 ::right::
 
-```tsx {all|6-10|13|all}
-import { 
-  useMutation, 
-  useQueryClient
-} from '@tanstack/react-query'
+```tsx {all|3-6|8|all}
+import { useMutation } from '@tanstack/react-query';
 
 const { mutate } = useMutation({
   mutationKey: ['users'],
-  mutationFn: (userData) => fetchUser(userData),
-  onSuccess: () => 
-    queryClient.invalidateQueries(['users'])
-})
+  mutationFn: (userData) => addUser(userData),
+});
 
-const handleCreate = () => mutate({ name: 'John' })
+const handleCreate = () => mutate({ name: 'John' });
 
 return (
   <button onClick={handleCreate}>
     Créer utilisateur
   </button>
-)
+);
 ```
 
 ---
+layout: radial-gradient
+---
+
+<h1 class="text-2xl text-left w-full">Avec une gestion de cache au petit oignons</h1>
+
+<MacWindow title="CacheInvalidation.tsx" class="mt-15 w-100">
+
+````md magic-move
+```tsx
+import { useMutation } from '@tanstack/react-query'; 
+
+const { mutate } = useMutation({
+  mutationKey: ['users'],
+  mutationFn: (userData) => addUser(userData),
+});
+
+const handleCreate = () => mutate({ name: 'John' });
+
+return (
+  <button onClick={handleCreate}>
+    Créer utilisateur
+  </button>
+);
+```
+```tsx {all|3,8-10}
+import { useMutation } from '@tanstack/react-query'; 
+
+const queryClient = useQueryClient();
+
+const { mutate } = useMutation({
+  mutationKey: ['users'],
+  mutationFn: (userData) => addUser(userData),
+  onSuccess: () => {
+    queryClient.invalidateQueries(['users'])
+  }
+});
+
+const handleCreate = () => mutate({ name: 'John' });
+
+return (
+  <button onClick={handleCreate}>
+    Créer utilisateur
+  </button>
+);
+```
+````
+</MacWindow>
+
+<style scoped>
+.store-benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.store-benefits li {
+  position: relative;
+  padding: 0.45rem 0.75rem 0.45rem 2rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  transform: rotate(-0.4deg);
+}
+
+.store-benefits li:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.store-benefits li::before {
+  content: "•";
+  position: absolute;
+  left: 0.65rem;
+  top: 0.5rem;
+  color: var(--comics-red);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+</style>
+
+---
+layout: radial-gradient
+---
+
+<div class="obelix-reveal h-110 flex flex-col justify-center items-center relative">
+  <div v-click.hide="1" class="text-9xl">?</div>
+  <img v-click="1" class="w-60 absolute max-w-100" src="/obélix.png" alt="obélix" />
+</div>
+
+<style>
+.obelix-reveal .slidev-vclick-target {
+  transition: opacity 0.5s ease;
+}
+</style>

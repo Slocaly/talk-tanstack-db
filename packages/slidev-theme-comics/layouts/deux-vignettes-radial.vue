@@ -26,9 +26,9 @@
           >
             <slot name="left" />
           </MacWindow>
-          <div v-else class="deux-vignettes-radial__card">
+          <Card v-else fill>
             <slot name="left" />
-          </div>
+          </Card>
         </div>
         <template v-else>
           <MacWindow
@@ -41,9 +41,9 @@
           >
             <slot name="left" />
           </MacWindow>
-          <div v-else class="deux-vignettes-radial__card">
+          <Card v-else fill>
             <slot name="left" />
-          </div>
+          </Card>
         </template>
 
         <div
@@ -61,9 +61,9 @@
           >
             <slot name="right" />
           </MacWindow>
-          <div v-else class="deux-vignettes-radial__card">
+          <Card v-else fill>
             <slot name="right" />
-          </div>
+          </Card>
         </div>
         <template v-else>
           <MacWindow
@@ -76,9 +76,9 @@
           >
             <slot name="right" />
           </MacWindow>
-          <div v-else class="deux-vignettes-radial__card">
+          <Card v-else fill>
             <slot name="right" />
-          </div>
+          </Card>
         </template>
       </div>
     </div>
@@ -87,6 +87,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+import Card from "../components/Card.vue";
 import MacWindow from "../components/MacWindow.vue";
 
 const props = withDefaults(
@@ -183,16 +184,6 @@ const contentStyle = computed(() =>
 
 .deux-vignettes-radial__col.slidev-vclick-target {
   transition: opacity 0.35s ease;
-}
-
-.deux-vignettes-radial__card {
-  height: 100%;
-  overflow: auto;
-  padding: 1.25rem 1.5rem;
-  background: #fff;
-  border: 1px solid #e4e4e7;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .deux-vignettes-radial__mac {

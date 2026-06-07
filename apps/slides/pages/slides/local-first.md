@@ -189,6 +189,31 @@ layout: radial-gradient
     class="inset-0 h-100 mt-20"
   />
 </div>
+---
+layout: radial-gradient
+---
+
+<h1 class="text-5xl">Sync engine</h1>
+<ul class="mt-10 text-4xl">
+    <v-clicks>
+        <li class="mt-10">⚡ Émet des events pour synchroniser les changements</li>
+        <li class="mt-10">🔀 Fusionne les changements concurrents (conflits)</li>
+    </v-clicks>
+</ul>
+
+---
+layout: radial-gradient
+---
+
+<h1 class="text-5xl">Backend dans une stack local first</h1>
+<ul class="mt-10 text-4xl">
+    <v-clicks>
+        <li class="mt-10">📦 Charge le contexte initiale</li>
+        <li class="mt-10">🔃 Utilise un sync engine</li>
+        <li class="mt-10">✅ Valide les inputs utilisateur</li>
+        <li class="mt-10">🔒 Authorization / Authentification</li>
+    </v-clicks>
+</ul>
 
 ---
 layout: radial-gradient
@@ -202,5 +227,18 @@ layout: radial-gradient
     class="absolute inset-0 w-full object-cover top-0"
   />
 </div>
+
+---
+layout: radial-gradient
+---
+
+<h1 class="text-5xl">Faut-il faire du <b>local-first ?</b></h1>
+<ul class="mt-10 text-4xl">
+    <v-clicks>
+        <li class="mt-10">🖥️ Ne s'applique qu'aux "applications"</li>
+        <li class="mt-10">✨ Change les habitudes</li>
+        <li class="mt-10">💒 Implique de "se marier" avec son sync engine</li>
+    </v-clicks>
+</ul>
 
 ---

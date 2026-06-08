@@ -79,40 +79,152 @@ layout: radial-gradient
 ---
 layout: deux-vignettes-radial
 macWindow: true
-revealCards: true
-leftTitle: Collections
-rightTitle: Live Queries
+leftTitle: todos-collection.ts
+rightTitle: Informations
 ---
 
-# Les deux piliers de TanStack DB
+<h1 class="w-full text-left text-4xl">Les collections</h1>
+<h2 class="w-full text-left text-xl opacity-75 italic">La base de TanStack DB</h2>
+
 
 ::left::
 
+````md magic-move
+```ts
+const todosCollection = createCollection()
+```
+```ts
+const todosCollection = createCollection(
+  queryCollectionOptions({})
+)
+```
+```ts {5-7|8|all}
+const queryClient = new QueryClient()
+
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["todos"],
+    queryFn: fetchTodo,
+    queryClient,
+    getKey: (item) => item.id,
+  })
+)
+```
+```ts {9-14}
+const queryClient = new QueryClient()
+
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["todos"],
+    queryFn: fetchTodo,
+    queryClient,
+    getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {
+      const newTodos = transaction.mutations.map((m) => 
+        m.modified
+      );
+      await createTodos(newTodos);
+    }
+  })
+)
+```
+```ts {10-15}
+const queryClient = new QueryClient()
+
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["todos"],
+    queryFn: fetchTodo,
+    queryClient,
+    getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {/** */},
+    onUpdate: async ({ transaction }) => {
+      const updates = transaction.mutations.map((m) => ({
+        id: m.key,
+        changes: m.changes,
+      }))
+      await updateTodos(updates)
+    }
+  })
+)
+```
+```ts {11-14}
+const queryClient = new QueryClient()
+
+const todosCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["todos"],
+    queryFn: fetchTodo,
+    queryClient,
+    getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {/** */},
+    onUpdate: async ({ transaction }) => {/** */},
+    onDelete: async ({ transaction }) => {
+      const ids = transaction.mutations.map((m) => m.key)
+      await deleteTodos(ids)
+    },
+  })
+)
+```
 ```ts
 const queryClient = new QueryClient()
 
 const todosCollection = createCollection(
   queryCollectionOptions({
     queryKey: ["todos"],
-    queryFn: async () => {
-      const response = await fetch("/api/todos")
-      return response.json()
-    },
+    queryFn: fetchTodo,
     queryClient,
     getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {/** */},
+    onUpdate: async ({ transaction }) => {/** */},
+    onDelete: async ({ transaction }) => {/** */},
   })
 )
 ```
-
-<div v-mark="{ at: 3, color: 'red', type: 'circle' }" class="absolute top-58 opacity-0">
-```ts
-    queryFn: async () => {
-        const response = await fetch("/api/dzd")
-    },
-```
-</div>
+````
 
 ::right::
+
+<div class="m-2 relative h-full">
+  <div v-click="[1, 2]" class="absolute inset-0">
+    Pleins de utilitaires existe déjà ! 🤯
+    <ul class="store-benefits">
+      <li>Query Collection</li>
+      <li>Electric Collection</li>
+      <li>Trailbase Collection</li>
+      <li>RxDB Collection</li>
+      <li>PowerSync Collection</li>
+      <li>LocalStorage Collection</li>
+      <li>LocalOnly Collection</li>
+    </ul>
+  </div>
+  <div v-click="[2, 4]" class="absolute inset-0">
+    Comme un useQuery classique 🥳
+
+```tsx
+const queryClient = new QueryClient();
+
+const useTodoQuery = useQuery({
+  queryKey: ["todos"],
+  queryFn: fetchTodo,
+  queryClient
+})
+```
+  </div>
+  <div v-click="[4, 8]" class="absolute inset-0">
+  "Persistence handlers"
+    <ul class="store-benefits">
+      <li v-click="5">onInsert</li>
+      <li v-click="6">onUpdate</li>
+      <li v-click="7">onDelete</li>
+    </ul>
+  </div>
+  <div v-click="8" class="absolute inset-0">
+    <h2 class="text-4xl w-full h-80 text-center flex items-center justify-center">Tout est prêt ! 🎉</h2>
+  </div>
+</div>
+
+<!-- ::right::
 
 ```ts
 const { data, isLoading } = useLiveQuery((q) =>
@@ -135,28 +247,66 @@ const { data, isLoading } = useLiveQuery((q) =>
             text: todos.text
         }))
 ```
-</div>
+</div> -->
 
 
-<style>
-.asterix-underline {
-  display: inline-block;
-  position: relative;
-  margin: 0 0 0.75rem;
-  padding-bottom: 0.15em;
+<style scoped>
+.store-benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
-.asterix-underline::after {
-  content: "";
+.store-benefits li {
+  position: relative;
+  padding: 0.45rem 0.75rem 0.45rem 2rem;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  transform: rotate(-0.4deg);
+}
+
+.store-benefits li:nth-child(even) {
+  transform: rotate(0.5deg);
+}
+
+.store-benefits li::before {
+  content: "•";
   position: absolute;
-  left: -5%;
-  right: -5%;
-  bottom: -0.05em;
-  height: 0.5em;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'%3E%3Cpath d='M2 11 C28 5 52 13 78 8 S128 4 152 10 S178 6 198 9' fill='none' stroke='%23111' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M4 13 C32 9 58 14 84 11 S134 8 160 13 S182 10 196 12' fill='none' stroke='%23111' stroke-width='3' stroke-linecap='round' opacity='0.55'/%3E%3C/svg%3E")
-    center / 100% 100% no-repeat;
-  pointer-events: none;
+  left: 0.65rem;
+  top: 0.5rem;
+  color: var(--comics-red);
+  font-size: 0.9rem;
+  line-height: 1;
 }
 </style>
 
 ---
+layout: radial-gradient
+---
+
+
+<h1 class="w-full text-left text-4xl">Les Live queries</h1>
+<h2 class="w-full text-left text-xl opacity-75 italic">"Query Driven Developpment"</h2>
+
+
+<MacWindow class="w-120 mt-20" title="TodoList.tsx">
+````md magic-move
+```tsx
+const TodoList = () => {
+  const todos = /** ? */
+
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.content}</li>
+      ))}
+    </ul>
+  )
+}
+```
+````
+</MacWindow>

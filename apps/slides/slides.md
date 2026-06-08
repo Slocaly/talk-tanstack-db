@@ -35,6 +35,7 @@ src: ./pages/slides/rebuild-tanstackdb.md
 ---
 src: ./pages/slides/rework-tanstack-db.md
 ---
+
 ---
 src: ./pages/slides/sync-on-demand.md
 ---
@@ -42,6 +43,7 @@ src: ./pages/slides/sync-on-demand.md
 ---
 src: ./pages/slides/local-first.md
 ---
+
 ---
 layout: image
 image: /pano.gif

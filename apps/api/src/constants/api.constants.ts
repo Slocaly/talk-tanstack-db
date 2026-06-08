@@ -1,1 +1,1 @@
-export const API_ARTIFICIAL_DELAY_MS = 500;
+export const API_ARTIFICIAL_DELAY_MS = 800;

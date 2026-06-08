@@ -6,43 +6,62 @@ size: xl
 ---
 # Le burnout de Panoramix
 ---
-layout: image
-image: /panoramix-burnout/village_heureux.png
+layout: full
 ---
+<img
+v-motion :initial="{ scale: 1.3, y: 60, x: -60 }" :enter="{ scale: 1.1, y: 0, x: 30, transition: { duration: 15000, ease: 'linear'} }"
+src="/panoramix-burnout/village_heureux.png"
+alt="banquet"
+class="absolute top-0 left-0 cover full"
+/>
 ---
 layout: full
 clicks: 1
 ---
 <img
-    v-motion :initial="{ scale: 1, y: 0, x: 0 }" :click-1="{ scale: 3, y: 0, x: 900, transition: { duration: 3000} }"
+    v-motion :initial="{ scale: 1.1, y: -10, x: 50 }" :enter="{ scale: 1.3, y: 0, x: 0, transition: { duration: 15000, ease: 'linear'} }" :click-1="{ scale: 3, y: 0, x: 900, transition: { duration: 3000} }"
     src="/panoramix-burnout/banquet.png"
     alt="banquet"
     class="absolute top-0 left-0 cover full"
     />
 ---
+layout: full
+---
+<img
+v-motion :initial="{ scale: 1.2, y: 0, x: 0 }" :enter="{ scale: 1, y: 0, x: 0, transition: { duration: 15000, ease: 'linear'} }"
+src="/panoramix-burnout/panoramix_deborde.png"
+alt="banquet"
+class="absolute top-0 left-0 cover full"
+/>
+---
+layout: full
+clicks: 1
+---
+<img
+v-motion :initial="{ scale: 1, y: 0, x: 0 }" :click-1="{ scale: 2, y: -120, x: -30, transition: { duration: 1200} }"
+src="/panoramix-burnout/armoire_potion_vide.png"
+alt="banquet"
+class="absolute top-0 left-0 cover full"
+/>
+---
 layout: image
-image: /panoramix-burnout/panoramix_deborde.png
 ---
----
-layout: image
-image: /panoramix-burnout/armoire_potion_vide.png
----
----
-layout: image
-image: /panoramix-burnout/conseil_village.png
-transition: none
----
----
-layout: image
-image: /panoramix-burnout/conseil_village.png
----
+<img
+v-motion :initial="{ scale: 1.2, y: -40, x: 20 }" :enter="{ scale: 1.2, y: 10, x: -20, transition: { duration: 15000} }"
+src="/panoramix-burnout/conseil_village.png"
+alt="banquet"
+class="absolute top-0 left-0 cover full"
+/>
 <SpeechBubble
+v-motion
+:initial="{ scale: 1, y: -40, x: 20 }" :enter="{ scale: 1, y: 10, x: -20, transition: { duration: 15000} }"
+v-click="1"
 :x="100"
-:y="0"
+:y="40"
 :width="300"
 :height="160"
-:tail-x="420"
-:tail-y="50"
+:tail-x="430"
+:tail-y="30"
 fill="white"
 stroke="black"
 :stroke-width="4"
@@ -138,9 +157,14 @@ layout: image
 image: /panoramix-burnout/livre_peremption.png
 ---
 ---
-layout: image
-image: /panoramix-burnout/queue_devant_maison_panoramix.png
+layout: full
 ---
+<img
+v-motion :initial="{ scale: 1.5, y: -120, x: -240 }" :enter="{ scale: 1.2, y: -100, x: 50, transition: { duration: 3000, delay: 1500} }"
+src="/panoramix-burnout/queue_devant_maison_panoramix.png"
+alt="banquet"
+class="absolute top-0 left-0 cover full"
+/>
 ---
 layout: image
 image: /panoramix-burnout/ifonix.png

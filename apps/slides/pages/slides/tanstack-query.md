@@ -117,6 +117,8 @@ opacity: 0.20
 ---
 layout: deux-vignettes-radial
 revealCards: true
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 <TanstackTitle class="text-4xl" small>Librairies de <Red>store</Red></TanstackTitle>

@@ -1,5 +1,6 @@
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <div class="absolute inset-0 flex items-center justify-center">
     <TanstackTitle class="text-6xl">Local <Green>first</Green></TanstackTitle>
@@ -17,9 +18,9 @@ class: bg-black
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-contain"
   />
-<h1 class="absolute bottom-0 p-5 w-full text-right z-10 text-5xl font-bold text-white drop-shadow-xl">
-    Les 7 règles du Local first
-  </h1>
+<TanstackTitle small class="absolute bottom-0 p-5 w-full text-right z-10 text-5xl font-bold text-white drop-shadow-xl">
+    Les 7 règles du <Green>Local first</Green>
+  </TanstackTitle>
 </div>
 
 ---
@@ -31,20 +32,20 @@ class: text-white bg-black
   <video autoplay loop muted playsinline class="absolute inset-0 h-full w-full object-cover">
     <source src="/local-first/demo-overtone.mp4" type="video/mp4" />
   </video>
-    <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/70">
-    1. No spinners
-  </h1>
+    <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/70">
+    1. No <Green>spinners</Green>
+  </TanstackTitle>
 </div>
 
 ---
 layout: full
-class: bg-[#f7f7f7] text-gray-600
+class: bg-[#f7f7f7]
 ---
 
 <div class="relative flex h-full w-full flex-col items-center justify-center">
-  <h1 class="z-10 text-5xl font-bold drop-shadow-sm top-10 absolute">
-    3. The network is optional
-  </h1>
+  <TanstackTitle small class="z-10 text-5xl font-bold drop-shadow-sm top-10 absolute">
+    3. The network is <Green>optional</Green>
+  </TanstackTitle>
   <img
     src="/local-first/no-internet-dino.png"
     alt=""
@@ -65,9 +66,9 @@ class: text-white bg-black
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-cover"
   />
-  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
-    5. The long now
-  </h1>
+  <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
+    5. The long <Green>now</Green>
+  </TanstackTitle>
 </div>
 
 ---
@@ -82,9 +83,9 @@ class: text-white bg-black
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-cover"
   />
-  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
-    6. Security and privacy by default
-  </h1>
+  <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-4xl font-bold text-white drop-shadow-xl bg-black/50">
+    6. Security and privacy <Green>by default</Green>
+  </TanstackTitle>
 </div>
 
 ---
@@ -99,9 +100,9 @@ class: text-white bg-black
     aria-hidden="true"
     class="absolute inset-0 h-full w-full object-cover"
   />
-  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
-    7. You retain ultimate ownership and control
-  </h1>
+  <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
+    7. You retain ultimate <Green>ownership</Green> and <Green>control</Green>
+  </TanstackTitle>
 </div>
 
 ---
@@ -129,9 +130,9 @@ layout: full
     aria-hidden="true"
     class="absolute inset-0 h-70 object-cover top-5 mx-auto"
   />
-  <h1 class="absolute bottom-0 z-10 max-w-5xl px-8 py-4 text-center text-5xl font-bold w-full">
-    2. Your work is not trapped on one device
-  </h1>
+  <TanstackTitle small class="absolute bottom-0 z-10 max-w-5xl px-8 py-4 text-center text-5xl font-bold w-full">
+    2. Your work is not <Green>trapped</Green> on <Green>one device</Green>
+  </TanstackTitle>
 </div>
 
 ---
@@ -145,16 +146,18 @@ layout: full
     aria-hidden="true"
     class="absolute h-70 top-0"
   />
-  <h1 class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold">
-    4. Collaborators can see your changes
-  </h1>
+  <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold">
+    4. Collaborators can <Green>see your changes</Green>
+  </TanstackTitle>
 </div>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <DownloadAllData/>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 
 ---
 <SmallDiffExchange/>
@@ -171,11 +174,13 @@ class: bg-black
 </div>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <LocalFirstVsTraditionalAppSchema/>
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -191,6 +196,7 @@ layout: radial-gradient
 </div>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 
 <TanstackTitle small class="text-5xl">
@@ -205,6 +211,7 @@ layout: radial-gradient
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <TanstackTitle small class="text-4xl">
 Backend dans une stack <Green>local first</Green> 
@@ -220,6 +227,7 @@ Backend dans une stack <Green>local first</Green>
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -233,6 +241,7 @@ layout: radial-gradient
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <TanstackTitle small class="text-5xl">
     Faut-il faire du <Green>local first</Green> ?
@@ -242,16 +251,19 @@ layout: radial-gradient
         <li class="mt-10">🖥️ Ne s'applique qu'aux "applications"</li>
         <li class="mt-10">✨ Change les habitudes</li>
         <li class="mt-10">💒 Implique de "se marier" avec son sync engine</li>
+        <li class="mt-10">🤯 Ou de le recoder... Bonne chance !</li>
     </v-clicks>
 </ul>
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 transition: none
 ---
 <SyncEngineVendorLocking/>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 transition: none
 ---
 <SyncEngineVendorLockingTanstackDb/>

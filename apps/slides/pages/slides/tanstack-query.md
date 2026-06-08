@@ -1,5 +1,7 @@
 ---
 layout: radial-gradient
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 <div class="absolute inset-0 flex items-center justify-center">
     <TanstackTitle class="text-6xl">Tanstack <Red>query</Red></TanstackTitle>
@@ -7,7 +9,8 @@ layout: radial-gradient
 
 ---
 layout: radial-gradient
-location: village
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 <MacWindow title="IngredientListPage.tsx" class="w-full">
@@ -105,6 +108,8 @@ export const IngredientListPage = () => {
 
 ---
 layout: radial-gradient
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 <FetchDiagram />
@@ -112,6 +117,8 @@ layout: radial-gradient
 ---
 layout: deux-vignettes-radial
 revealCards: true
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 <TanstackTitle class="text-4xl" small>Librairies de <Red>store</Red></TanstackTitle>
@@ -215,6 +222,8 @@ revealCards: true
 
 ---
 layout: radial-gradient
+color: "#FE9A00FF"
+opacity: 0.20
 clicks: 2
 ---
 
@@ -222,6 +231,8 @@ clicks: 2
 
 ---
 layout: radial-gradient
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 <div class="flex flex-col w-full h-full gap-20">
@@ -291,6 +302,8 @@ return (
 
 ---
 layout: radial-gradient
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 
@@ -375,6 +388,8 @@ return (
 
 ---
 layout: radial-gradient
+color: "#FE9A00FF"
+opacity: 0.20
 ---
 
 <div class="obelix-reveal h-110 flex flex-col justify-center items-center relative">

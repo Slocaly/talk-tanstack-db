@@ -293,11 +293,79 @@ layout: radial-gradient
 <h2 class="w-full text-left text-xl opacity-75 italic">"Query Driven Developpment"</h2>
 
 
-<MacWindow class="w-120 mt-20" title="TodoList.tsx">
+<div class="flex flex-col w-full items-center justify-center h-60">
+  <MacWindow class="w-120" title="ActiveTodoList.tsx">
+
 ````md magic-move
 ```tsx
-const TodoList = () => {
-  const todos = /** ? */
+const ActiveTodoList = () => {
+  const todos = /** ? */;
+
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.content}</li>
+      ))}
+    </ul>
+  )
+}
+```
+```tsx
+const ActiveTodoList = () => {
+  const todos = useLiveQuery()
+
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.content}</li>
+      ))}
+    </ul>
+  )
+}
+```
+```tsx
+const ActiveTodoList = () => {
+  const todos = useLiveQuery((q) => {
+    return q.from({ todos: todosCollection })
+  })
+
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.content}</li>
+      ))}
+    </ul>
+  )
+}
+```
+```tsx
+const ActiveTodoList = () => {
+  const todos = useLiveQuery((q) => {
+    return q
+              .from({ todos: todosCollection })
+              .where(({ todos })  => eq(todos.completed, false))
+  })
+
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <li key={todo.id}>{todo.content}</li>
+      ))}
+    </ul>
+  )
+}
+```
+```tsx
+const ActiveTodoList = () => {
+  const todos = useLiveQuery((q) => {
+    return q
+              .from({ todos: todosCollection })
+              .where(({ todos })  => eq(todos.completed, false))
+              .select(({ todos }) => ({ 
+                  id: todos.id,
+                  text: todos.text
+              }))
+  })
 
   return (
     <ul>
@@ -309,4 +377,186 @@ const TodoList = () => {
 }
 ```
 ````
-</MacWindow>
+  </MacWindow>
+</div>
+
+---
+layout: radial-gradient
+---
+
+<div class="h-110 flex flex-col justify-center items-center">
+  <h1 class="text-6xl text-center">Et si on refaisait l'app d'Iphonix ?</h1>
+</div>
+
+---
+layout: deux-vignettes-radial
+macWindow: true
+leftTitle: ingredient-collection.ts
+rightTitle: recipe-collection.ts
+rightClick: 5
+revealCards: true
+---
+
+# Première étape, les collections
+
+::left::
+
+````md magic-move
+```ts
+export const ingredientCollection = createCollection(
+  queryCollectionOptions(),
+);
+```
+```ts
+export const ingredientCollection = createCollection(
+  queryCollectionOptions(),
+);
+```
+```ts {2-6}
+export const ingredientCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ['ingredients'],
+    queryFn: listIngredients,
+    queryClient,
+  }),
+);
+```
+```ts {6}
+export const ingredientCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ['ingredients'],
+    queryFn: listIngredients,
+    queryClient,
+    getKey: (item) => item.id,
+  }),
+);
+```
+```ts {7-16}
+export const ingredientCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ['ingredients'],
+    queryFn: listIngredients,
+    queryClient,
+    getKey: (item) => item.id,
+    onUpdate: async ({ transaction }) => {
+      await Promise.all(
+        transaction.mutations.map(({ modified }) =>
+          updateIngredientQuantity({
+            id: modified.id, 
+            quantity: modified.quantity
+          }),
+        ),
+      );
+    },
+  }),
+);
+```
+````
+
+::right::
+
+````md magic-move
+```ts
+export const recipeCollection = createCollection(
+  queryCollectionOptions(),
+);
+```
+```ts
+export const recipeCollection = createCollection(
+  queryCollectionOptions(),
+);
+```
+```ts {2-6}
+export const recipeCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ['recipes'],
+    queryFn: listRecipes,
+    queryClient,
+  }),
+);
+
+```
+```ts {6}
+export const recipeCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ['recipes'],
+    queryFn: listRecipes,
+    queryClient,
+    getKey: (item) => item.id,
+  }),
+);
+
+```
+```ts {7-13|all}
+export const recipeCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ['recipes'],
+    queryFn: listRecipes,
+    queryClient,
+    getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {
+      await Promise.all(
+        transaction.mutations.map(({ modified }) =>
+          createRecipe(modified),
+        ),
+      );
+    },
+  }),
+);
+
+```
+````
+
+---
+layout: deux-vignettes-radial
+macWindow: true
+revealCards: true
+leftTitle: IngredientList.tsx
+leftLabel: TanStack Query
+rightTitle: IngredientList.tsx
+rightLabel: TanStack DB
+rightClick: 7
+---
+
+# La query des ingredients
+
+::left::
+
+```tsx {all|all|2|5|6|4|all}
+export function IngredientsList() {
+  const filters = useIngredientsFilters();
+
+  const { data, isPending } = useQuery({
+    queryKey: ['ingredients'],
+    queryFn: () => listIngredients(filters)
+  })
+
+  return <ul>...</ul>;
+}
+```
+
+::right::
+
+```tsx {all|2|4|6|7-14|15|16-17|all}
+export function IngredientsList() {
+  const filters = useIngredientsFilters();
+
+  const { data, isPending } = useLiveQuery((q) => 
+    q.
+      .from({ ingredients: ingredientCollection })
+      .where(({ ingredients }) => 
+        ilike(ingredients.name, `%${search}%`))
+      .where(({ ingredients }) => category !== 'tous' 
+          ? eq(category, ingredients.category)
+          : eq(true, true))
+      .where(({ ingredients }) => inStockOnly 
+        ? gt(ingredients.quantity, 0) 
+        : eq(true, true))
+      .orderBy(({ ingredients }) => ingredients.id, "desc")
+      .limit(pageSize)
+      .offset((page - 1) * pageSize)
+  )
+
+    return <ul>...</ul>;
+}
+```

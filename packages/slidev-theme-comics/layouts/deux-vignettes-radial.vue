@@ -13,7 +13,7 @@
       <div class="deux-vignettes-radial__cols">
         <div
           v-if="revealCards"
-          v-click="1"
+          v-click="leftClick"
           class="deux-vignettes-radial__col"
         >
           <MacWindow
@@ -48,7 +48,7 @@
 
         <div
           v-if="revealCards"
-          v-click="2"
+          v-click="rightClick"
           class="deux-vignettes-radial__col"
         >
           <MacWindow
@@ -100,6 +100,10 @@ const props = withDefaults(
     zoom?: number;
     /** Reveal left then right card on click (opt-in). */
     revealCards?: boolean;
+    /** Click step at which the left card appears (when revealCards is true). */
+    leftClick?: number;
+    /** Click step at which the right card appears (when revealCards is true). */
+    rightClick?: number;
     /** Wrap columns in MacWindow chrome. */
     macWindow?: boolean;
     /** MacWindow title for the left column. */
@@ -117,6 +121,8 @@ const props = withDefaults(
     color: "#c41e3a",
     opacity: 0.12,
     revealCards: false,
+    leftClick: 1,
+    rightClick: 2,
     macWindow: false,
     leftTitle: "code.ts",
     rightTitle: "code.ts",

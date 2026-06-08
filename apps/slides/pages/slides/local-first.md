@@ -264,7 +264,25 @@ transition: none
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-transition: none
 ---
 <SyncEngineVendorLockingTanstackDb/>
+---
+layout: radial-gradient
+color: "#00BC7DFF"
+transition: none
+---
+<ProgressiveSyncEngineMigration/>
+---
+layout: radial-gradient
+color: "#00BC7DFF"
+---
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/local-first/tanstack-compatibilite.png"
+    alt=""
+    aria-hidden="true"
+    class="inset-0 h-120 mt-0"
+  />
+</div>
 ---

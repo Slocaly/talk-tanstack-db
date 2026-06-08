@@ -149,6 +149,15 @@ image: /panoramix-burnout/plan.png
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
+layout: full
+---
+<img
+v-motion :initial="{ scale: 1, y: -100, x: 0 }" :enter="{ scale: 1.2, y: 0, x: 0, transition: { duration: 15000} }"
+src="/panoramix-burnout/dispute-asterix-obelix.png"
+alt="dispute asterix et obelix"
+class="absolute top-0 left-0 cover full"
+/>
+---
 layout: image
 image: /panoramix-burnout/stock_ingredients.png
 ---
@@ -165,6 +174,10 @@ src="/panoramix-burnout/queue_devant_maison_panoramix.png"
 alt="banquet"
 class="absolute top-0 left-0 cover full"
 />
+---
+layout: image
+image: /panoramix-burnout/plan-siege-romain.png
+---
 ---
 layout: image
 image: /panoramix-burnout/ifonix.png

@@ -81,3 +81,10 @@ image: /panoramix-burnout/livre_peremption.png
     <h1>Invalidation de cache</h1>
 </v-clicks>
 ---
+layout: image
+image: /panoramix-burnout/plan-siege-romain.png
+---
+<v-clicks>
+    <h1>Offline</h1>
+</v-clicks>
+---

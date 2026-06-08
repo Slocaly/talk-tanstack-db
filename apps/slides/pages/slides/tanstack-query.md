@@ -2,7 +2,7 @@
 layout: radial-gradient
 ---
 <div class="absolute inset-0 flex items-center justify-center">
-    <TanstackTitle>Tanstack <Red>query</Red></TanstackTitle>
+    <TanstackTitle class="text-6xl">Tanstack <Red>query</Red></TanstackTitle>
 </div>
 
 ---
@@ -114,7 +114,7 @@ layout: deux-vignettes-radial
 revealCards: true
 ---
 
-# Librairies de store
+<TanstackTitle class="text-4xl" small>Librairies de <Red>store</Red></TanstackTitle>
 
 ::left::
 
@@ -251,7 +251,7 @@ rightTitle: useMutation.tsx
 revealCards: true
 ---
 
-# Dans le code
+<TanstackTitle class="text-4xl" small>Dans le <Red>code</Red></TanstackTitle>
 
 ::left::
 
@@ -293,7 +293,9 @@ return (
 layout: radial-gradient
 ---
 
-<h1 class="text-2xl text-left w-full">Avec une gestion de cache au petit oignons</h1>
+
+<h1 class="text-4xl text-left w-full"><TanstackTitle small>Une gestion de <Red>cache</Red></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic">"Aux petits oignons"</h2>
 
 <MacWindow title="CacheInvalidation.tsx" class="mt-15 w-100">
 

@@ -2,7 +2,7 @@
 layout: radial-gradient
 ---
 <div class="absolute inset-0 flex items-center justify-center">
-    <TanstackTitle>Local <Green>first</Green></TanstackTitle>
+    <TanstackTitle class="text-6xl">Local <Green>first</Green></TanstackTitle>
 </div>
 
 ---
@@ -179,9 +179,9 @@ layout: radial-gradient
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
-  <h1 class="absolute top-0 z-10 max-w-5xl px-8 py-2 text-center text-5xl font-bold">
-    Sync engines
-  </h1>
+  <TanstackTitle small class="absolute top-0 z-10 max-w-5xl px-8 py-2 text-center text-5xl font-bold">
+    Sync <Green>engines</Green>
+  </TanstackTitle>
   <img
     src="/local-first/sync-engines-transparent.png"
     alt=""
@@ -193,7 +193,9 @@ layout: radial-gradient
 layout: radial-gradient
 ---
 
-<h1 class="text-5xl">Sync engine</h1>
+<TanstackTitle small class="text-5xl">
+    Sync <Green>engines</Green>
+  </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
         <li class="mt-10">⚡ Émet des events pour synchroniser les changements</li>
@@ -204,8 +206,9 @@ layout: radial-gradient
 ---
 layout: radial-gradient
 ---
-
-<h1 class="text-5xl">Backend dans une stack local first</h1>
+<TanstackTitle small class="text-4xl">
+Backend dans une stack <Green>local first</Green> 
+  </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
         <li class="mt-10">📦 Charge le contexte initiale</li>
@@ -231,8 +234,9 @@ layout: radial-gradient
 ---
 layout: radial-gradient
 ---
-
-<h1 class="text-5xl">Faut-il faire du <b>local-first ?</b></h1>
+<TanstackTitle small class="text-5xl">
+    Faut-il faire du <Green>local first</Green> ?
+  </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
         <li class="mt-10">🖥️ Ne s'applique qu'aux "applications"</li>

@@ -3,7 +3,7 @@ layout: radial-gradient
 transition: none
 ---
 <div class="flex absolute top-0 min-h-full flex-content-around flex-col">
-<h1 class="text-5xl text-center mt-10">Et si tu as 200 pages ? 🤔</h1>
+<TanstackTitle small class="text-5xl text-center mt-8">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
 <v-clicks>
 <MacWindow title="ingredient-item.json" class="w-full mt-10">
 ```json
@@ -30,7 +30,7 @@ layout: radial-gradient
 class: text-center
 ---
 
-<h1 class="text-5xl text-center">Et si tu as 200 pages ? 🤔</h1>
+<TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
 <ul class="mt-10 text-4xl">
     <li class="mt-10">3G : 1 mb/s <span class="text-red">635 ms</span></li>
     <li class="mt-10">4G <small>moyenne</small> : 10 mb/s <span class="text-red">63.5 ms</span></li>
@@ -43,7 +43,7 @@ layout: radial-gradient
 class: text-center
 ---
 
-<h1 class="text-5xl text-center"><span class="text-red">Bandwith</span> &#8800; <span class="text-blue">Latency</span></h1>
+<TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl">
     <li class="mt-10">3G : <span class="text-red">635 ms</span> <span class="text-blue">+ 80-500 ms</span></li>
     <li class="mt-10">4G <small>moyenne</small> : <span class="text-red">63.5 ms</span> <span class="text-blue">+ 20-80 ms</span></li>
@@ -55,8 +55,7 @@ class: text-center
 layout: radial-gradient
 class: text-center
 ---
-
-<h1 class="text-5xl text-center">Et si tu as 20 000 000 pages ? 🙃</h1>
+<TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>20 000 000</Orange> pages ? 🙃</TanstackTitle>
 <v-clicks>
     <span class="text-5xl mt-30">syncMode: <span class="text-orange">"on-demand"</span></span>
 </v-clicks>
@@ -64,7 +63,7 @@ class: text-center
 layout: radial-gradient
 location: village
 ---
-<h1 class="text-5xl">syncMode: <span class="text-orange">"on-demand"</span></h1>
+<TanstackTitle small class="text-5xl">syncMode: <Orange>"on-demand"</Orange></TanstackTitle>
 <MacWindow title="todo-collection.ts" class="w-full mt-10">
 ````md magic-move { lines: true }
 ```tsx

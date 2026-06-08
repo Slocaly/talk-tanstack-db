@@ -2,7 +2,7 @@
 layout: radial-gradient
 ---
 <div class="absolute inset-0 flex items-center justify-center">
-    <TanstackTitle>Tanstack <Orange>DB</Orange></TanstackTitle>
+    <TanstackTitle class="text-6xl">Tanstack <Orange>DB</Orange></TanstackTitle>
 </div>
 
 ---
@@ -37,7 +37,7 @@ layout: radial-gradient
     class="title-slide-up absolute inset-x-0 z-10 text-center pt-6"
     :class="$clicks < 1 ? 'title-slide-up--center' : 'title-slide-up--top'"
   >
-    TanStack DB, c'est quoi ?
+    <TanstackTitle>TanStack <Orange>DB</Orange></TanstackTitle>, c'est quoi ?
   </h1>
 
   <div v-click="1" class="citation-reveal flex h-full flex-col items-center justify-center gap-4 px-8 pt-32">
@@ -83,7 +83,7 @@ leftTitle: todos-collection.ts
 rightTitle: Informations
 ---
 
-<h1 class="w-full text-left text-4xl">Les collections</h1>
+<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>collections</Orange></TanstackTitle></h1>
 <h2 class="w-full text-left text-xl opacity-75 italic">La base de TanStack DB</h2>
 
 
@@ -289,7 +289,7 @@ layout: radial-gradient
 ---
 
 
-<h1 class="w-full text-left text-4xl">Les Live queries</h1>
+<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
 <h2 class="w-full text-left text-xl opacity-75 italic">"Query Driven Developpment"</h2>
 
 

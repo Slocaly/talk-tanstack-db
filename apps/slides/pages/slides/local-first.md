@@ -2,7 +2,7 @@
 layout: radial-gradient
 ---
 <div class="absolute inset-0 flex items-center justify-center">
-    <h1 class="text-6xl">Local first</h1>
+    <TanstackTitle>Local <Green>first</Green></TanstackTitle>
 </div>
 
 ---

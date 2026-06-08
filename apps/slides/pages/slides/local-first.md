@@ -1,5 +1,6 @@
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <div class="absolute inset-0 flex items-center justify-center">
     <TanstackTitle class="text-6xl">Local <Green>first</Green></TanstackTitle>
@@ -151,10 +152,12 @@ layout: full
 </div>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <DownloadAllData/>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 
 ---
 <SmallDiffExchange/>
@@ -171,11 +174,13 @@ class: bg-black
 </div>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <LocalFirstVsTraditionalAppSchema/>
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -191,6 +196,7 @@ layout: radial-gradient
 </div>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 
 <TanstackTitle small class="text-5xl">
@@ -205,6 +211,7 @@ layout: radial-gradient
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <TanstackTitle small class="text-4xl">
 Backend dans une stack <Green>local first</Green> 
@@ -220,6 +227,7 @@ Backend dans une stack <Green>local first</Green>
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -233,6 +241,7 @@ layout: radial-gradient
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 ---
 <TanstackTitle small class="text-5xl">
     Faut-il faire du <Green>local first</Green> ?
@@ -247,11 +256,13 @@ layout: radial-gradient
 
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 transition: none
 ---
 <SyncEngineVendorLocking/>
 ---
 layout: radial-gradient
+color: "#00BC7DFF"
 transition: none
 ---
 <SyncEngineVendorLockingTanstackDb/>

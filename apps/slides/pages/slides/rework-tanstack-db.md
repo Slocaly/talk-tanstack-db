@@ -385,7 +385,7 @@ layout: radial-gradient
 ---
 
 <div class="h-110 flex flex-col justify-center items-center">
-  <h1 class="text-6xl text-center">Et si on refaisait l'app d'Iphonix ?</h1>
+  <TanstackTitle class="text-6xl text-center">Et si on refaisait l'app <br/>d'<Orange>Iphonix</Orange> ?</TanstackTitle>
 </div>
 
 ---

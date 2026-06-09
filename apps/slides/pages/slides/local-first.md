@@ -44,7 +44,7 @@ class: bg-[#f7f7f7]
 
 <div class="relative flex h-full w-full flex-col items-center justify-center">
   <TanstackTitle small class="z-10 text-5xl font-bold drop-shadow-sm top-10 absolute">
-    3. The network is <Green>optional</Green>
+    2. The network is <Green>optional</Green>
   </TanstackTitle>
   <img
     src="/local-first/no-internet-dino.png"
@@ -67,7 +67,7 @@ class: text-white bg-black
     class="absolute inset-0 h-full w-full object-cover"
   />
   <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
-    5. The long <Green>now</Green>
+    3. The long <Green>now</Green>
   </TanstackTitle>
 </div>
 
@@ -84,7 +84,7 @@ class: text-white bg-black
     class="absolute inset-0 h-full w-full object-cover"
   />
   <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-4xl font-bold text-white drop-shadow-xl bg-black/50">
-    6. Security and privacy <Green>by default</Green>
+    4. Security and privacy <Green>by default</Green>
   </TanstackTitle>
 </div>
 
@@ -101,7 +101,7 @@ class: text-white bg-black
     class="absolute inset-0 h-full w-full object-cover"
   />
   <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold text-white drop-shadow-xl bg-black/50">
-    7. You retain ultimate <Green>ownership</Green> and <Green>control</Green>
+    5. You retain ultimate <Green>ownership</Green> and <Green>control</Green>
   </TanstackTitle>
 </div>
 
@@ -131,7 +131,7 @@ layout: full
     class="absolute inset-0 h-70 object-cover top-5 mx-auto"
   />
   <TanstackTitle small class="absolute bottom-0 z-10 max-w-5xl px-8 py-4 text-center text-5xl font-bold w-full">
-    2. Your work is not <Green>trapped</Green> on <Green>one device</Green>
+    6. Your work is not <Green>trapped</Green> on <Green>one device</Green>
   </TanstackTitle>
 </div>
 
@@ -147,7 +147,7 @@ layout: full
     class="absolute h-70 top-0"
   />
   <TanstackTitle small class="absolute bottom-0 p-10 w-full text-center z-10 text-5xl font-bold">
-    4. Collaborators can <Green>see your changes</Green>
+    7. Collaborators can <Green>see your changes</Green>
   </TanstackTitle>
 </div>
 ---

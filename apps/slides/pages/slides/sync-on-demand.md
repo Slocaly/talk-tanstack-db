@@ -28,14 +28,29 @@ transition: none
 ---
 layout: radial-gradient
 class: text-center
+transition: none
 ---
 
 <TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
-<ul class="mt-10 text-4xl">
-    <li class="mt-10">3G : 1 mb/s <span class="text-red">635 ms</span></li>
-    <li class="mt-10">4G <small>moyenne</small> : 10 mb/s <span class="text-red">63.5 ms</span></li>
-    <li class="mt-10">4G <small>bonne</small> : 50 mb/s <span class="text-red">12.7 ms</span></li>
-    <li class="mt-10">Fibre : 1000 mb/s <span class="text-red">0.635 ms</span></li>
+<ul class="mt-10 text-4xl w-160">
+    <li class="mt-10 w-full flex space-between">3G : 1 mb/s <span class="text-red ml-auto">635 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : 10 mb/s <span class="text-red ml-auto">63.5 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>bonne</small> : 50 mb/s <span class="text-red ml-auto">12.7 ms</span></li>
+    <li class="mt-10 w-full flex space-between">Fibre : 1000 mb/s <span class="text-red ml-auto">0.635 ms</span></li>
+</ul>
+
+---
+layout: radial-gradient
+class: text-center
+transition: none
+---
+
+<TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
+<ul class="mt-10 text-4xl w-160">
+    <li class="mt-10 w-full flex space-between">3G : <span class="text-red inline-block ml-auto">635 ms</span>&nbsp;<span class="text-blue">+ 80-500 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : <span class="text-red inline-block ml-auto">63.5 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>bonne</small> : <span class="text-red inline-block ml-auto">12.7 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
+    <li class="mt-10 w-full flex space-between">Fibre : <span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
 </ul>
 
 ---
@@ -44,11 +59,11 @@ class: text-center
 ---
 
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
-<ul class="mt-10 text-4xl">
-    <li class="mt-10">3G : <span class="text-red">635 ms</span> <span class="text-blue">+ 80-500 ms</span></li>
-    <li class="mt-10">4G <small>moyenne</small> : <span class="text-red">63.5 ms</span> <span class="text-blue">+ 20-80 ms</span></li>
-    <li class="mt-10">4G <small>bonne</small> : <span class="text-red">12.7 ms</span> <span class="text-blue">+ 20-80 ms</span></li>
-    <li class="mt-10">Fibre : <span class="text-red">0.635 ms</span> <span class="text-blue">+ 5-30 ms</span></li>
+<ul class="mt-10 text-4xl w-160">
+    <li class="mt-10 w-full flex space-between">3G : <img class="inline ml-auto w-80" src="/local-first/latency/3g.svg" /></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-moyenne.svg" /></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>bonne</small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-bonne.svg" /></li>
+    <li class="mt-10 w-full flex space-between">Fibre : <img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
 </ul>
 
 ---

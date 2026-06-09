@@ -4,7 +4,7 @@ color: "#FE9A00FF"
 opacity: 0.20
 ---
 <div class="absolute inset-0 flex items-center justify-center">
-    <TanstackTitle class="text-6xl">Tanstack <Red>query</Red></TanstackTitle>
+    <TanstackTitle class="text-6xl text-center">From <Red>0</Red><br/> to<br/>Tanstack <Red>query</Red></TanstackTitle>
 </div>
 
 ---

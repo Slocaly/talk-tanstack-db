@@ -286,3 +286,17 @@ color: "#00BC7DFF"
   />
 </div>
 ---
+layout: radial-gradient
+color: "#00BC7DFF"
+---
+<TanstackTitle small class="text-5xl text-center">
+    Faut-il faire du Tanstack DB <br /><Green>Maintenant</Green> ?
+  </TanstackTitle>
+<ul class="mt-10 text-4xl">
+    <v-clicks>
+        <li class="mt-20">👶️ C'est en <TanstackTitle small px-2 rounded-3 bg-black text-white>beta</TanstackTitle></li>
+        <li class="mt-20">✨ L'IA préfère <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
+    </v-clicks>
+</ul>
+
+---

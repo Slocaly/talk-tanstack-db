@@ -83,6 +83,7 @@ Va me chercher du gui
 layout: dialog
 location: panoramix_home
 right: panoramix:scorn
+left: obelix:smoke
 transition: fade
 ---
 ::right::

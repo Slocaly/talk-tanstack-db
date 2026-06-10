@@ -87,6 +87,14 @@ columns: 3
 </div>
 
 ---
+layout: radial-gradient
+---
+
+<img class="absolute top-0 w-full h-140 object-cover" src="/kolecto-background.png" />
+<img class="absolute top-5" src="/kolecto-logo.png" />
+
+
+---
 layout: image
 image: /pano.gif
 title: Merci

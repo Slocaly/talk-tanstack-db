@@ -1,8 +1,14 @@
+<script setup lang="ts">
+import { onSlideEnter } from "@slidev/client";
+
+onSlideEnter(() => {
+  window.dispatchEvent(new CustomEvent("toggleApp"));
+});
+</script>
+
 <template>
-  <!-- <div class="slidev-layout image" :style="style" /> -->
-  <iframe src="http://localhost:5173" class="ipad-content"></iframe>
   <img
-    src="/app-presentation.png"
+    src="/panoramix-burnout/fond-village-iphonix.png"
     alt="app-presentation"
     class="app-presentation"
   />
@@ -16,15 +22,5 @@
   top: -5%;
   object-fit: contain;
   pointer-events: none;
-}
-
-.ipad-content {
-  width: 60%;
-  height: 825px;
-  position: absolute;
-  left: 51%;
-  top: 36dvh;
-  transform: translate(-50%, -50%);
-  zoom: 0.5;
 }
 </style>

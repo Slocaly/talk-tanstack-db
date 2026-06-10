@@ -10,6 +10,14 @@ function toggle() {
   isUnderView.value = !isUnderView.value;
 }
 
+function openApp() {
+  isUnderView.value = true;
+}
+
+function closeApp() {
+  isUnderView.value = false;
+}
+
 function onKeyDown(e: KeyboardEvent) {
   if (e.repeat) return;
   if (e.key !== "+" && e.code !== "NumpadAdd") return;
@@ -29,10 +37,16 @@ watch(
 
 onMounted(() => {
   window.addEventListener("keydown", onKeyDown);
+  window.addEventListener("toggleApp", toggle);
+  window.addEventListener("openApp", openApp);
+  window.addEventListener("closeApp", closeApp);
 });
 
 onUnmounted(() => {
   window.removeEventListener("keydown", onKeyDown);
+  window.removeEventListener("toggleApp", toggle);
+  window.removeEventListener("openApp", openApp);
+  window.removeEventListener("closeApp", closeApp);
 });
 </script>
 

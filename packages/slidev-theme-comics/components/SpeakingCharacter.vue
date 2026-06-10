@@ -2,7 +2,7 @@
   <img
     :src="url"
     :alt="props.character.character"
-    class="absolute bottom-0 h-3/5"
+    class="absolute"
     :class="cssClasses"
   />
   <SpeechBubble
@@ -75,6 +75,10 @@ const TAILS_POSITIONS = {
       x: 40,
       y: 280,
     },
+    smoke: {
+      x: 0,
+      y: 0,
+    },
   },
   panoramix: {
     angry: {
@@ -93,6 +97,10 @@ const TAILS_POSITIONS = {
       x: 10,
       y: 260,
     },
+    smoke: {
+      x: 0,
+      y: 0,
+    },
   },
   obelix: {
     angry: {
@@ -110,6 +118,10 @@ const TAILS_POSITIONS = {
     scorn: {
       x: 35,
       y: 220,
+    },
+    smoke: {
+      x: 0,
+      y: 0,
     },
   },
 } as const;
@@ -133,8 +145,12 @@ const url = computed(() =>
   ),
 );
 
-const cssClasses =
-  props.position === "right" ? "right-0 -scale-x-100" : "left-0";
+const cssClasses = {
+  "right-0 -scale-x-100": props.position === "right",
+  "left-0": props.position !== "right",
+  "h-3/5 bottom-0": props.character.emotion !== "smoke",
+  "h-[200px] opacity-80 bottom-15 left-0": props.character.emotion === "smoke",
+};
 
 const leftTailPosition =
   TAILS_POSITIONS[props.character.character][props.character.emotion];

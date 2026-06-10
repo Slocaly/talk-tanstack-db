@@ -61,7 +61,7 @@ abstract class IngredientsControllerBase {
         : typeof raw === 'string'
           ? Number.parseFloat(raw)
           : NaN;
-    if (!Number.isFinite(n)) {
+    if (!Number.isFinite(n) || n === 666) {
       throw new BadRequestException('Quantité invalide');
     }
     return this.village.updateIngredientQuantity(id, n);

@@ -178,7 +178,7 @@ title: Le first de local first
   <div v-click="2" class="bg-blue-200 absolute w-265px top--5 bottom--5 right--5 bg-opacity-60 flex items-center justify-center">
     <img class="h-80px" src="/local-first/logo-jira.png" />
   </div>
-  <Arrow v-click="3" v-click.hide="4" x2="350" y2="250" x1="650" y1="250" width="12" class="ts-red" />
+  <Arrow v-click="[3, 4]" x2="350" y2="250" x1="650" y1="250" width="12" class="ts-red" />
   <Arrow v-click="4" x1="350" y1="250" x2="650" y2="250" width="12" class="ts-red" />
 </div>
 ---

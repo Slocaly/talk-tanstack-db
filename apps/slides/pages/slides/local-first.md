@@ -1,6 +1,7 @@
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Titre Local first
 ---
 <div class="absolute inset-0 flex items-center justify-center">
     <TanstackTitle class="text-6xl">Local <Green>first</Green></TanstackTitle>
@@ -9,6 +10,7 @@ color: "#00BC7DFF"
 ---
 layout: full
 class: bg-black
+title: Les 7 règles du local first
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -26,6 +28,7 @@ class: bg-black
 ---
 layout: full
 class: text-white bg-black
+title: 1 No spinners
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -40,6 +43,7 @@ class: text-white bg-black
 ---
 layout: full
 class: bg-[#f7f7f7]
+title: 2 Network is optional
 ---
 
 <div class="relative flex h-full w-full flex-col items-center justify-center">
@@ -57,6 +61,7 @@ class: bg-[#f7f7f7]
 ---
 layout: full
 class: text-white bg-black
+title: 3 The long now
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -74,6 +79,7 @@ class: text-white bg-black
 ---
 layout: full
 class: text-white bg-black
+title: 4 Security and privacy
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -91,6 +97,7 @@ class: text-white bg-black
 ---
 layout: full
 class: text-white bg-black
+title: 5 Ownership and control
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -108,6 +115,7 @@ class: text-white bg-black
 ---
 layout: full
 class: bg-[#ece9d8]
+title: Excel 2003
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -121,6 +129,7 @@ class: bg-[#ece9d8]
 
 ---
 layout: full
+title: 6 Not trapped on 1 device
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -137,6 +146,7 @@ layout: full
 
 ---
 layout: full
+title: 7 Collaborators can see your changes
 ---
 
 <div class="relative flex h-full w-full items-center justify-center overflow-hidden">
@@ -151,13 +161,36 @@ layout: full
   </TanstackTitle>
 </div>
 ---
+layout: full
+title: Le first de local first
+---
+
+<div class="relative flex h-full w-full items-center justify-center">
+  <img
+    src="/local-first/all-rules.png"
+    alt="real time collaboration cover image"
+    aria-hidden="true"
+    class="absolute w-full"
+  />
+  <div v-click="1" class="bg-green absolute w-540px top--5 bottom--5 left--5 bg-opacity-30 flex items-center justify-center">
+    <img class="h-100px" src="/local-first/logo-excel.png" />
+  </div>
+  <div v-click="2" class="bg-blue-200 absolute w-265px top--5 bottom--5 right--5 bg-opacity-60 flex items-center justify-center">
+    <img class="h-80px" src="/local-first/logo-jira.png" />
+  </div>
+  <Arrow v-click="3" v-click.hide="4" x2="350" y2="250" x1="650" y1="250" width="12" class="ts-red" />
+  <Arrow v-click="4" x1="350" y1="250" x2="650" y2="250" width="12" class="ts-red" />
+</div>
+---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: On load toutes les données
 ---
 <DownloadAllData/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: On echange que des diff
 
 ---
 <SmallDiffExchange/>
@@ -165,6 +198,7 @@ color: "#00BC7DFF"
 ---
 layout: full
 class: bg-black
+title: Loading Figma
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -175,12 +209,14 @@ class: bg-black
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: How changes works schema
 ---
 <LocalFirstVsTraditionalAppSchema/>
 
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Sync engines catalogue
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -197,6 +233,7 @@ color: "#00BC7DFF"
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Sync engines bullets
 ---
 
 <TanstackTitle small class="text-5xl">
@@ -212,6 +249,7 @@ color: "#00BC7DFF"
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Backend dans une stack Localfirst
 ---
 <TanstackTitle small class="text-4xl">
 Backend dans une stack <Green>local first</Green> 
@@ -228,6 +266,7 @@ Backend dans une stack <Green>local first</Green>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Applis connues en localfirst
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -242,6 +281,7 @@ color: "#00BC7DFF"
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Faut il faire du local first ?
 ---
 <TanstackTitle small class="text-5xl">
     Faut-il faire du <Green>local first</Green> ?
@@ -259,22 +299,26 @@ color: "#00BC7DFF"
 layout: radial-gradient
 color: "#00BC7DFF"
 transition: none
+title: Vendor locking sync engine
 ---
 <SyncEngineVendorLocking/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Tanstack DB abstraction côté front 
 ---
 <SyncEngineVendorLockingTanstackDb/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
 transition: none
+title: Tanstack DB migration progressive
 ---
 <ProgressiveSyncEngineMigration/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Collections tanstack db (sync engines)
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -288,6 +332,7 @@ color: "#00BC7DFF"
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
+title: Faut-il faire du tanstack DB now ?
 ---
 <TanstackTitle small class="text-5xl text-center">
     Faut-il faire du Tanstack DB <br /><Green>Maintenant</Green> ?

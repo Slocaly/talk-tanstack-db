@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { useMemo } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export function RecipeDetailPageQueryProvider() {
   const { id } = useParams({ strict: false });
@@ -16,6 +17,15 @@ export function RecipeDetailPageQueryProvider() {
   const ingredientInRecipe = useMemo(() => {
     return ingredients?.filter((ingredient) => recipe?.ingredients.some((ri) => ri.ingredientId === ingredient.id));
   }, [recipe, ingredients]);
+
+  if (isPending) {
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-10 w-2/3" />
+        <Skeleton className="h-40 w-full" />
+      </div>
+    );
+  }
 
   if (!recipe) {
     return (

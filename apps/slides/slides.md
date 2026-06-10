@@ -17,6 +17,9 @@ duration: 45min
 ---
 <!-- Je te laisse faire cette slide @Lucas -->
 ---
+src: ./pages/slides/intro.md
+---
+---
 src: ./pages/slides/panoramix-burnout.md
 ---
 ---

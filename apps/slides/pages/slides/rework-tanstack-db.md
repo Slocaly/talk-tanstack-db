@@ -245,7 +245,7 @@ const useRecipeQuery = useQuery({
 ```ts
 const queryClient = new QueryClient()
 
-const recipeCollection = createCollection(
+const ingredientCollection = createCollection(
   queryCollectionOptions({
     queryKey: ["ingredients"],
     queryFn: fetchIngredients,
@@ -529,4 +529,4 @@ layout: radial-gradient
     <span class="inline-block mr-4">🏎️</span> Performance perçue au maximum
   </li>
 </ul>
----
+l>

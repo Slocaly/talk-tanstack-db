@@ -255,34 +255,32 @@ return (
 ```
 
 ---
-layout: radial-gradient
+layout: deux-vignettes-radial
 color: "#FE9A00FF"
+macWindow: true
+revealCards: true
+leftTitle: useQuery.ts
+rightTitle: useMutation.ts
+rightClick: 3
 opacity: 0.20
 ---
-
 
 <h1 class="text-4xl text-left w-full"><TanstackTitle small>Une gestion de <Red>cache</Red></TanstackTitle></h1>
 <h2 class="w-full text-left text-xl opacity-75 italic">"Aux petits oignons"</h2>
 
-<MacWindow title="CacheInvalidation.tsx" class="mt-5 w-100">
+::left::
 
-````md magic-move
-```tsx
-import { useMutation } from '@tanstack/react-query'; 
-
-const { mutate } = useMutation({
-  mutationFn: (userData) => addUser(userData),
+```tsx {all|all|5}
+const { data, isLoading, error } = useQuery({
+  queryKey: ['users'],
+  queryFn: () => 
+    fetch('/api/users').then(res => res.json()),
+  staleTime: 5000
 });
-
-const handleCreate = () => mutate({ name: 'John' });
-
-return (
-  <button onClick={handleCreate}>
-    Créer utilisateur
-  </button>
-);
 ```
-```tsx {all|3,8-10}
+
+::right::
+```tsx {all|all|3,7-9}
 import { useMutation } from '@tanstack/react-query'; 
 
 const queryClient = useQueryClient();
@@ -302,8 +300,6 @@ return (
   </button>
 );
 ```
-````
-</MacWindow>
 
 <style scoped>
 .store-benefits {

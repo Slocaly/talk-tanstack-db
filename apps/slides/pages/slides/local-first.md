@@ -331,11 +331,26 @@ title: Collections tanstack db (sync engines)
 </div>
 ---
 layout: radial-gradient
-color: "#00BC7DFF"
 title: Faut-il faire du tanstack DB now ?
 ---
 <TanstackTitle small class="text-5xl text-center">
-    Faut-il faire du Tanstack DB <br /><Green>Maintenant</Green> ?
+    Faut-il faire du Tanstack <Orange>DB</Orange> ?
+  </TanstackTitle>
+<ul class="mt-10 text-4xl">
+    <v-clicks>
+        <li class="mt-10">🖥️ Ne s'applique qu'aux "applications" <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">✨ Change les habitudes <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">🚫 Les live query ont des limites</li>
+        <li class="mt-10">📈 Learning curve</li>
+    </v-clicks>
+</ul>
+
+---
+layout: radial-gradient
+title: Faut-il faire du tanstack DB now ?
+---
+<TanstackTitle small class="text-5xl text-center">
+    Faut-il faire du Tanstack <Orange>DB</Orange> <br /><Orange>Maintenant</Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
@@ -343,5 +358,4 @@ title: Faut-il faire du tanstack DB now ?
         <li class="mt-20">✨ L'IA préfère <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
     </v-clicks>
 </ul>
-
 ---

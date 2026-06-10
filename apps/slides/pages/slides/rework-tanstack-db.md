@@ -128,8 +128,8 @@ const recipeCollection = createCollection(
     queryClient,
     getKey: (item) => item.id,
     onInsert: async ({ transaction }) => {
-      const newRecipe = transaction.mutations.map((m) => 
-        m.modified
+      const newRecipe = transaction.mutations.map(
+        (m) =>  m.modified
       );
       await createRecipe(newTodos);
     }
@@ -147,7 +147,8 @@ const recipeCollection = createCollection(
     getKey: (item) => item.id,
     onInsert: async ({ transaction }) => {/** */},
     onUpdate: async ({ transaction }) => {
-      const updates = transaction.mutations.map((m) => ({
+      const updates = transaction.mutations.map(
+      (m) => ({
         id: m.key,
         changes: m.changes,
       }))
@@ -168,7 +169,9 @@ const recipeCollection = createCollection(
     onInsert: async ({ transaction }) => {/** */},
     onUpdate: async ({ transaction }) => {/** */},
     onDelete: async ({ transaction }) => {
-      const ids = transaction.mutations.map((m) => m.key)
+      const ids = transaction.mutations.map(
+        (m) => m.key
+      )
       await deleteRecipes(ids)
     },
   })
@@ -208,18 +211,9 @@ const recipeCollection = createCollection(
 
 ::right::
 
-<div class="m-2 relative h-full">
+<div class="m-2 relative">
   <div v-click="[1, 2]" class="absolute inset-0">
-    Pleins de utilitaires existe déjà ! 🤯
-    <ul class="store-benefits">
-      <li>Query Collection</li>
-      <li>LocalStorage Collection</li>
-      <li>LocalOnly Collection</li>
-      <li class="opacity-50">Electric Collection</li>
-      <li class="opacity-50">Trailbase Collection</li>
-      <li class="opacity-50">RxDB Collection</li>
-      <li class="opacity-50">PowerSync Collection</li>
-    </ul>
+    Migration simplifié depuis TanStack Query ! 🎉
   </div>
   <div v-click="[2, 4]" class="absolute inset-0">
     Comme un useQuery classique 🥳
@@ -303,11 +297,11 @@ const recipeCollection = createCollection(
 layout: deux-vignettes-radial
 macWindow: true
 revealCards: true
-leftTitle: IngredientList.tsx
+leftTitle: RecipesPage.tsx
 leftLabel: TanStack Query
-rightTitle: IngredientList.tsx
+rightTitle: RecipesPage.tsx
 rightLabel: TanStack DB
-rightClick: 7
+rightClick: 3
 ---
 
 <h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
@@ -315,8 +309,8 @@ rightClick: 7
 
 ::left::
 
-```tsx {all|all|2|5|6|4|all}
-export function RecipesList() {
+```tsx {all|all|4-7}
+export function RecipesPage() {
   const filters = useRecipesFilters();
 
   const { data, isPending } = useQuery({
@@ -324,14 +318,14 @@ export function RecipesList() {
     queryFn: () => listRecipe(filters)
   })
 
-  return <ul>...</ul>;
+  return <RecipesList recipes={data} />;
 }
 ```
 
 ::right::
 
-```tsx {all|all|2|4|5|6-7|8|9-10|all}
-export function RecipesList() {
+```tsx {all|4-11|5|6-7|8|9-10|4-11}
+export function RecipesPage() {
   const filters = useRecipesFilters();
 
   const { data, isLoading } = useLiveQuery((q) =>
@@ -343,7 +337,7 @@ export function RecipesList() {
       .offset((page - 1) * pageSize),
   );
 
-    return <ul>...</ul>;
+    return <RecipesList recipes={data} />;
 }
 ```
 
@@ -412,6 +406,58 @@ export function RecipeDetails() {
 ```
 </div>
 
+---
+layout: deux-vignettes-radial
+macWindow: true
+revealCards: true
+leftTitle: IngredientDetailPage.tsx
+leftLabel: TanStack Query
+rightTitle: IngredientDetailPage.tsx
+rightLabel: TanStack DB
+rightClick: 4
+---
+
+<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Mutations</Orange></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic">Action utilisateurs</h2>
+
+::left::
+
+```tsx {all|all|2-13|15-17}
+export function IngredientDetailsPage({ ingredientId }) {
+  const { mutate, isPending } = useMutation({
+    mutationFn: (newQuantity) => 
+      updateIngredientQuantity(ingredientId, newQuantity)
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(
+        ['ingredient-detail']
+      )
+      await queryClient.invalidateQueries(
+        ['ingredients']
+      )
+    }
+  })
+
+  const onSubmit = (newQuantity: number) => {
+    mutate(newQuantity)
+  }
+
+  return <IngredientQuantityForm onSubmit={onSubmit} />;
+}
+```
+
+::right::
+
+```tsx {all|all|2-6|3|2-6}
+export function IngredientDetailsPage({ ingredientId }) {
+  const onSubmit = (newQuantity: number) => {
+    ingredientCollection.update(ingredientId, (draft) => {
+      draft.quantity = newQuantity;
+    });
+  }
+
+  return <IngredientQuantityForm onSubmit={onSubmit} />;
+}
+```
 
 ---
 layout: radial-gradient
@@ -430,18 +476,19 @@ layout: radial-gradient
 </h1>
 
 <ul class="w-full flex flex-col gap-6 text-3xl mt-20 mb-20">
-  <li v-click><TanstackTitle small>
-    <span class="inline-block mr-4">⏳</span> Aucun temps de chargement après l'initial</TanstackTitle>
+  <li v-click>
+    <span class="inline-block mr-4">⏳</span> Aucun temps de chargement après l'initial
   </li>
-  <li v-click><TanstackTitle small>
-    <span class="inline-block mr-4">🌈</span> Optimistic update par default</TanstackTitle>
+  <li v-click>
+    <span class="inline-block mr-4">🌈</span> Optimistic update par default
   </li>
-  <li v-click><TanstackTitle small>
-    <span class="inline-block mr-4">🪓</span> Separation of concerns encore plus appuyé</TanstackTitle>
+  <li v-click>
+    <span class="inline-block mr-4">🪓</span> Separation of concerns encore plus appuyé
   </li>
-  <li v-click><TanstackTitle small>
-    <span class="inline-block mr-4">🕹️</span> DX au petit oignons !</TanstackTitle>
+  <li v-click>
+    <span class="inline-block mr-4">🕹️</span> DX au petit oignons !
+  </li>
+  <li v-click>
+    <span class="inline-block mr-4">🏎️</span> Performance perçue au maximum
   </li>
 </ul>
-
-<h1 class="text-4xl" v-click><TanstackTitle small>🏎️  Performance perçue au <Orange>maximum</Orange></TanstackTitle></h1>

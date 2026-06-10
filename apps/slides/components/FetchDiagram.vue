@@ -30,9 +30,9 @@ function createLeaveState(rangeStart: number, rangeEndExclusive: number) {
         headsVisible.value = true;
       } else if (wasIn && !isIn) {
         leaving.value = true;
-        headsVisible.value = false;
         leaveTimer = setTimeout(() => {
           leaving.value = false;
+          headsVisible.value = false;
         }, LEAVE_MS);
       } else {
         leaving.value = false;
@@ -364,7 +364,7 @@ const reduxBox = createBoxDrawState(7, 6);
       </g>
       <mask></mask>
     </g>
-    <g v-click="clickOffset + 2" class="ingredients-list-page fade-in">
+    <g v-click="clickOffset + 1" class="ingredients-list-page fade-in">
       <g
         transform="translate(141.02158667602998 959.4003441185741) rotate(0 246.2954857188961 138.54121071687905)"
       >
@@ -394,7 +394,7 @@ const reduxBox = createBoxDrawState(7, 6);
       </g>
     </g>
     <g
-      v-click="[clickOffset + 3, clickOffset + 4]"
+      v-click="[clickOffset + 2, clickOffset + 3]"
       class="recipe-detail-request-arrow vclick-leave-draw"
       :class="{ 'is-leaving': requestArrowsLeaving }"
     >
@@ -475,7 +475,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 4" class="app-container">
+    <g v-click="clickOffset + 3" class="app-container">
       <g
         stroke-linecap="round"
         transform="translate(10 801.0339717517982) rotate(0 920.8748717789522 259.81628814717124)"
@@ -510,7 +510,7 @@ const reduxBox = createBoxDrawState(7, 6);
       </g>
     </g>
     <g
-      v-click="[clickOffset + 3, clickOffset + 4]"
+      v-click="[clickOffset + 2, clickOffset + 3]"
       class="ingredients-list-request-arrow vclick-leave-draw"
       :class="{ 'is-leaving': requestArrowsLeaving }"
     >
@@ -592,7 +592,7 @@ const reduxBox = createBoxDrawState(7, 6);
       </g>
     </g>
     <g
-      v-click="[clickOffset + 5, clickOffset + 7]"
+      v-click="[clickOffset + 4, clickOffset + 6]"
       class="app-request-arrow vclick-leave-draw"
       :class="{ 'is-leaving': appRequestArrowLeaving }"
     >
@@ -673,7 +673,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 2" class="recipe-detail-page fade-in">
+    <g v-click="clickOffset + 1" class="recipe-detail-page fade-in">
       <g
         transform="translate(1332.329244200162 903.5823251197926) rotate(0 194.18234252929688 24.677701309555687)"
       >
@@ -702,7 +702,7 @@ const reduxBox = createBoxDrawState(7, 6);
         ></use>
       </g>
     </g>
-    <g v-click="clickOffset + 6" class="recipe-list-page fade-in">
+    <g v-click="clickOffset + 5" class="recipe-list-page fade-in">
       <g
         transform="translate(716.2517707759507 962.4050519226785) rotate(0 245.25724727209854 137.95720159055554)"
       >
@@ -731,7 +731,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 7" class="action">
+    <g v-click="clickOffset + 6" class="action">
       <g
         stroke-linecap="round"
         transform="translate(348.68349400578427 464.92962053386964) rotate(0 120.05830110062016 61.28073516526547)"
@@ -765,7 +765,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 7" class="reducer">
+    <g v-click="clickOffset + 6" class="reducer">
       <g
         stroke-linecap="round"
         transform="translate(798.5296500505483 461.51825497166647) rotate(0 120.05830110062016 61.28073516526547)"
@@ -799,7 +799,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 7" class="store">
+    <g v-click="clickOffset + 6" class="store">
       <g
         stroke-linecap="round"
         transform="translate(1282.2305131763214 466.10427116200026) rotate(0 120.05830110062016 61.28073516526547)"
@@ -833,7 +833,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 8" class="action-request-arrow">
+    <g v-click="clickOffset + 7" class="action-request-arrow">
       <g mask="url(#mask-sYGGgDkCiXPgXFr6lw_7K)" stroke-linecap="round">
         <g
           transform="translate(476.2802279163179 458.92962053386964) rotate(0 166.1424424260399 -132.98153703736352)"
@@ -903,7 +903,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g v-click="clickOffset + 9" class="action-reducer-arrow">
+    <g v-click="clickOffset + 8" class="action-reducer-arrow">
       <g stroke-linecap="round">
         <g
           transform="translate(588.387279692346 527.497592649449) rotate(0 106.44908194741038 0.7414821575462156)"
@@ -938,7 +938,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </g>
       </g>
     </g>
-    <g v-click="clickOffset + 9" class="reducer-store-arrow">
+    <g v-click="clickOffset + 8" class="reducer-store-arrow">
       <g stroke-linecap="round">
         <g
           transform="translate(1037.0362678445417 521.6130808765829) rotate(0 119.12906892599904 3.3385615133661304)"
@@ -973,7 +973,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </g>
       </g>
     </g>
-    <g v-click="clickOffset + 9" class="store-recipe-arrow">
+    <g v-click="clickOffset + 8" class="store-recipe-arrow">
       <g stroke-linecap="round">
         <g
           transform="translate(1403.485206370844 594.6657414925303) rotate(0 29.925887819444142 151.81823542761867)"
@@ -1008,7 +1008,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </g>
       </g>
     </g>
-    <g v-click="clickOffset + 9" class="store-ingredients-arrow">
+    <g v-click="clickOffset + 8" class="store-ingredients-arrow">
       <g stroke-linecap="round">
         <g
           transform="translate(1276.2305131763205 556.6639134536608) rotate(0 -378.2763600987787 167.0855823511797)"
@@ -1043,7 +1043,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </g>
       </g>
     </g>
-    <g v-click="clickOffset + 9" class="recipe-action-arrow">
+    <g v-click="clickOffset + 8" class="recipe-action-arrow">
       <g stroke-linecap="round">
         <g
           transform="translate(1430.6038025511998 900.0005113606594) rotate(0 -424.2100792271408 -157.05423332491273)"
@@ -1078,7 +1078,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </g>
       </g>
     </g>
-    <g v-click="clickOffset + 9" class="ingredients-action-arrow">
+    <g v-click="clickOffset + 8" class="ingredients-action-arrow">
       <g stroke-linecap="round">
         <g
           transform="translate(360.278459021821618 884.244892623803) rotate(0 34.73089187751566 -148.39973702465886)"
@@ -1165,7 +1165,7 @@ const reduxBox = createBoxDrawState(7, 6);
 
 .vclick-leave-draw.is-leaving .fetch-arrow {
   stroke-dashoffset: 0;
-  animation: undraw-stroke 0.9s ease-in forwards !important;
+  animation: none !important;
 }
 
 .vclick-leave-draw.is-leaving .draw-label {
@@ -1200,15 +1200,6 @@ const reduxBox = createBoxDrawState(7, 6);
 @keyframes draw-stroke {
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-@keyframes undraw-stroke {
-  from {
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dashoffset: 2500;
   }
 }
 

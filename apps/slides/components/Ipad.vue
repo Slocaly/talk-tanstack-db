@@ -100,6 +100,6 @@ onUnmounted(() => {
   left: 50%;
   top: 49%;
   transform: translate(-50%, -50%);
-  zoom: 0.5;
+  zoom: 1;
 }
 </style>

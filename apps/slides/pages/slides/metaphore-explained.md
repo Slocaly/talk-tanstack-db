@@ -66,7 +66,7 @@ title: Asterix va me chercher toutes les ingrédients
 
 ::right::
 
-Asterix, va me chercher tous les ingrédients
+Asterix, va me chercher toutes les pages
 
 ---
 layout: image

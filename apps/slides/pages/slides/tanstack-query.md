@@ -115,88 +115,41 @@ opacity: 0.20
 <FetchDiagram />
 
 ---
-layout: deux-vignettes-radial
-revealCards: true
+layout: radial-gradient
 color: "#FE9A00FF"
 opacity: 0.20
 ---
 
-<TanstackTitle class="text-4xl" small>Librairies de <Red>store</Red></TanstackTitle>
-
-::left::
-
-<div>
-  <ul class="store-benefits">
-    <li>Unique source de vérité</li>
-    <li>Réduction du “prop drilling”</li>
-    <li>Architecture plus claire et maintenable</li>
-    <li>Debugging avancé avec DevTools</li>
-    <li>Facilite le travail en équipe</li>
-    <li>Code plus prévisible et réutilisable</li>
-  </ul>
-</div>
-
-::right::
+<TanstackTitle class="text-4xl text-left" small>Librairies de <Red>store</Red></TanstackTitle>
 
 <div class="store-logos-scatter relative h-full min-h-80 w-full">
-  <div class="store-logo" style="top: 0%; left: 44%; transform: rotate(-5deg);">
+  <div class="store-logo" style="top: 36%; left: 4%; transform: rotate(9deg);">
+    <img src="/jotai-logo.png" alt="Jotai" />
+    <p>Jotai</p>
+  </div>
+  <div class="store-logo" style="top: 24%; left: 36%; transform: rotate(-11deg);">
     <img src="/redux.png" alt="Redux" />
     <p>Redux</p>
   </div>
-  <div class="store-logo" style="top: 15%; left: 79%; transform: rotate(8deg);">
+  <div class="store-logo" style="top: 48%; left: 80%; transform: rotate(7deg);">
     <img src="/pinia.png" alt="Pinia" />
     <p>Pinia</p>
   </div>
-  <div class="store-logo" style="top: 58%; left: 72%; transform: rotate(-7deg);">
+  <div class="store-logo" style="top: 70%; left: 16%; transform: rotate(-8deg);">
+    <img src="/zustand-logo.png" alt="Zustand" />
+    <p>Zustand</p>
+  </div>
+  <div class="store-logo" style="top: 58%; left: 58%; transform: rotate(12deg);">
     <img src="/ngrx-logo.svg" alt="RxJs" />
     <p>RxJs</p>
   </div>
-  <div class="store-logo" style="top: 70%; left: 44%; transform: rotate(4deg);">
+  <div class="store-logo" style="top: 84%; left: 40%; transform: rotate(-6deg);">
     <img src="/xstate-logo.png" alt="XState" />
     <p>XState</p>
-  </div>
-  <div class="store-logo" style="top: 56%; left: 10%; transform: rotate(-8deg);">
-    <img src="/zustand-logo.jpeg" alt="Zustand" />
-    <p>Zustand</p>
-  </div>
-  <div class="store-logo" style="top: 20%; left: 14%; transform: rotate(6deg);">
-    <img src="/jotai-logo.png" alt="Jotai" />
-    <p>Jotai</p>
   </div>
 </div>
 
 <style scoped>
-.store-benefits {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.store-benefits li {
-  position: relative;
-  padding: 0.45rem 0.75rem 0.45rem 2rem;
-  font-size: 1.05rem;
-  line-height: 1.35;
-  transform: rotate(-0.4deg);
-}
-
-.store-benefits li:nth-child(even) {
-  transform: rotate(0.5deg);
-}
-
-.store-benefits li::before {
-  content: "•";
-  position: absolute;
-  left: 0.65rem;
-  top: 0.5rem;
-  color: var(--comics-red);
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
 .store-logos-scatter .store-logo {
   position: absolute;
   display: flex;
@@ -206,14 +159,14 @@ opacity: 0.20
 }
 
 .store-logos-scatter .store-logo img {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 5.75rem;
+  height: 5.75rem;
   object-fit: contain;
 }
 
 .store-logos-scatter .store-logo p {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1;
   white-space: nowrap;
 }
@@ -260,13 +213,14 @@ macWindow: true
 leftTitle: useQuery.tsx
 rightTitle: useMutation.tsx
 revealCards: true
+rightClick: 5
 ---
 
 <TanstackTitle class="text-4xl" small>Dans le <Red>code</Red></TanstackTitle>
 
 ::left::
 
-```tsx {all|all|all|3-7|9-10|all}
+```tsx {all|all|6|3-7|9-10|8}
 import { useQuery } from '@tanstack/react-query';
 
 const { data, isLoading, error } = useQuery({
@@ -283,7 +237,7 @@ return <div>{data?.map(user => user.name)}</div>;
 
 ::right::
 
-```tsx {all|3-6|8|all}
+```tsx {all|3-6|7}
 import { useMutation } from '@tanstack/react-query';
 
 const { mutate } = useMutation({

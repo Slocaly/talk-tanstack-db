@@ -1,6 +1,7 @@
 ---
 layout: radial-gradient
 transition: none
+title: Et si tu as 200 pages ?
 ---
 <div class="flex absolute top-0 min-h-full flex-content-around flex-col">
 <TanstackTitle small class="text-5xl text-center mt-8">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
@@ -29,6 +30,7 @@ transition: none
 layout: radial-gradient
 class: text-center
 transition: none
+title: Bandwith
 ---
 
 <TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
@@ -43,6 +45,7 @@ transition: none
 layout: radial-gradient
 class: text-center
 transition: none
+title: Bandwith vs latency
 ---
 
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
@@ -56,6 +59,7 @@ transition: none
 ---
 layout: radial-gradient
 class: text-center
+title: Bandwith vs latency proportions
 ---
 
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
@@ -69,6 +73,7 @@ class: text-center
 ---
 layout: radial-gradient
 class: text-center
+title: Et si tu as 20 M pages ?
 ---
 <TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>20 000 000</Orange> pages ? 🙃</TanstackTitle>
 <v-clicks>
@@ -77,16 +82,17 @@ class: text-center
 ---
 layout: radial-gradient
 location: village
+title: syncMode on-demand
 ---
 <TanstackTitle small class="text-5xl">syncMode: <Orange>"on-demand"</Orange></TanstackTitle>
-<MacWindow title="todo-collection.ts" class="w-full mt-10">
+<MacWindow title="ingredients-collection.ts" class="w-full mt-10">
 ````md magic-move { lines: true }
 ```tsx
-const todosCollection = createCollection(
+const ingredientsCollection = createCollection(
   queryCollectionOptions({
-    queryKey: ["todos"],
+    queryKey: ["ingredients"],
     queryFn: async () => {
-      const response = await fetch("/api/todos")
+      const response = await fetch("/api/ingredients")
       return response.json()
     },
     queryClient,
@@ -95,12 +101,12 @@ const todosCollection = createCollection(
 )
 ```
 ```tsx {3}
-const todosCollection = createCollection(
+const ingredientsCollection = createCollection(
   queryCollectionOptions({
     syncMode: "on-demand",
-    queryKey: ["todos"],
+    queryKey: ["ingredients"],
     queryFn: async () => {
-      const response = await fetch("/api/todos")
+      const response = await fetch("/api/ingredients")
       return response.json()
     },
     queryClient,
@@ -109,12 +115,12 @@ const todosCollection = createCollection(
 )
 ```
 ```tsx {3,5-8}
-const todosCollection = createCollection(
+const ingredientsCollection = createCollection(
   queryCollectionOptions({
     syncMode: "on-demand",
-    queryKey: ["todos"],
+    queryKey: ["ingredients"],
     queryFn: async () => {
-      const response = await fetch("/api/todos")
+      const response = await fetch("/api/ingredients")
       return response.json()
     },
     queryClient,
@@ -123,12 +129,12 @@ const todosCollection = createCollection(
 )
 ```
 ```tsx {3,5-8}
-const todosCollection = createCollection(
+const ingredientsCollection = createCollection(
   queryCollectionOptions({
     syncMode: "on-demand",
-    queryKey: ["todos"],
+    queryKey: ["ingredients"],
     queryFn: async (ctx) => {
-      const response = await fetch("/api/todos")
+      const response = await fetch("/api/ingredients")
       return response.json()
     },
     queryClient,
@@ -137,14 +143,14 @@ const todosCollection = createCollection(
 )
 ```
 ```tsx {3,5-10}
-const todosCollection = createCollection(
+const ingredientsCollection = createCollection(
   queryCollectionOptions({
     syncMode: "on-demand",
-    queryKey: ["todos"],
+    queryKey: ["ingredients"],
     queryFn: async (ctx) => {
       const searchParams = yourCustomSearchParamsMapping(ctx.meta.loadSubsetOptions)
 
-      const response = await fetch("/api/todos")
+      const response = await fetch("/api/ingredients")
       return response.json()
     },
     queryClient,
@@ -153,14 +159,14 @@ const todosCollection = createCollection(
 )
 ```
 ```tsx {3,5-10}
-const todosCollection = createCollection(
+const ingredientsCollection = createCollection(
   queryCollectionOptions({
     syncMode: "on-demand",
-    queryKey: ["todos"],
+    queryKey: ["ingredients"],
     queryFn: async (ctx) => {
       const searchParams = yourCustomSearchParamsMapping(ctx.meta.loadSubsetOptions)
       
-      const response = await fetch(`/api/todos?${searchParams}`)
+      const response = await fetch(`/api/ingredients?${searchParams}`)
       return response.json()
     },
     queryClient,

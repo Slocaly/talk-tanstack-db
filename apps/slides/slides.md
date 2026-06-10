@@ -47,6 +47,7 @@ src: ./pages/slides/local-first.md
 ---
 layout: image
 image: /pano.gif
+title: Merci 
 ---
 
 <div class="flex h-full w-full items-center justify-center">

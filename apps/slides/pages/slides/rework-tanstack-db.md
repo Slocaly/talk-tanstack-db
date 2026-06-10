@@ -1,5 +1,6 @@
 ---
 layout: radial-gradient
+title: Tanstack DB
 ---
 <div class="absolute inset-0 flex items-center justify-center">
     <TanstackTitle class="text-6xl">Tanstack <Orange>DB</Orange></TanstackTitle>
@@ -470,9 +471,45 @@ layout: radial-gradient
 ---
 layout: radial-gradient
 ---
+<img class="absolute top-5 w-300px mx-auto" src="/tanstackdb/tsquery.png" />
+
+---
+layout: radial-gradient
+---
+
+<img class="absolute top-5 w-300px mx-auto" src="/tanstackdb/tsdbquery.png" />
+
+---
+layout: radial-gradient
+---
+
+<img class="absolute top-5 w-250px mx-auto" src="/tanstackdb/tsdbinmemo.png" />
+
+---
+layout: radial-gradient
+---
 
 <h1 class="w-full text-center text-4xl">
-  <TanstackTitle>Les <Orange>avantages</Orange> de TanStack <Orange>DB</Orange></TanstackTitle>
+  <TanstackTitle small>Local only <Orange>Collection</Orange></TanstackTitle>
+</h1>
+
+<ul class="w-full flex flex-col gap-6 text-3xl mt-20 mb-20">
+  <li v-click>
+    <span class="inline-block mr-4">🖥️</span> Peux faire office de store
+  </li>
+  <li v-click>
+    <span class="inline-block mr-4">⚡</span> Prototyper sans backend
+  </li>
+  <li v-click>
+    <span class="inline-block mr-4">🧪</span> Trop bien pour les tests
+  </li>
+</ul>
+---
+layout: radial-gradient
+---
+
+<h1 class="w-full text-center text-4xl">
+  <TanstackTitle small>Les <Orange>avantages</Orange> de TanStack <Orange>DB</Orange></TanstackTitle>
 </h1>
 
 <ul class="w-full flex flex-col gap-6 text-3xl mt-20 mb-20">
@@ -492,3 +529,4 @@ layout: radial-gradient
     <span class="inline-block mr-4">🏎️</span> Performance perçue au maximum
   </li>
 </ul>
+---

@@ -1,14 +1,13 @@
 <template>
   <BackgroundImage v-if="backgroundImageUrl" :url="backgroundImageUrl" />
   <div class="slidev-layout strip" :style="backgroundStyle">
-    <NarrateurBox
-      v-if="$slots.header"
-      variant="chapter"
-      class="strip__header"
-    >
+    <NarrateurBox v-if="$slots.header" variant="chapter" class="strip__header">
       <slot name="header" />
     </NarrateurBox>
-    <div class="strip__panels" :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }">
+    <div
+      class="strip__panels"
+      :style="{ gridTemplateColumns: `repeat(${columns}, 1fr)` }"
+    >
       <ComicPanel
         v-for="(slotName, index) in panelSlots"
         :key="slotName"

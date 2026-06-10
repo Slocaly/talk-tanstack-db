@@ -53,4 +53,42 @@ title: Merci
 <div class="flex h-full w-full items-center justify-center">
   <p class="text-9xl font-bold text-white">Merci</p>
 </div>
---- 
+
+---
+layout: strip
+location: village
+columns: 3
+---
+
+::step1::
+
+<TanstackTitle class="text-5xl text-center w-full block mt-6" small>
+  <img class="w-40 mb-15 rounded-full mx-auto" src="/delphin-aubin.png" />
+  Delphin <Green>Aubin</Green>
+</TanstackTitle>
+
+<img class="w-20 absolute top-2 rotate-5" src="/kolecto.svg" />
+
+<div class="mt-auto opacity-60 block w-full text-center text-xl">
+  Staff Engineer
+</div>
+
+::step2::
+
+<TanstackTitle class="text-3xl text-center w-full block mt-2" small>
+  Open<Blue>Feedback</Blue>
+  <img class="mt-20 w-50 mx-auto" src="/feedback.svg" />
+</TanstackTitle>
+
+::step3::
+
+<TanstackTitle class="text-5xl text-center w-full block mt-6" small>
+  <img class="w-40 mb-15 rounded-full mx-auto" src="/lucas-audart.png" />
+  Lucas <Red>Audart</Red>
+</TanstackTitle>
+
+<img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
+
+<div class="mt-auto opacity-60 block w-full text-center text-xl">
+  Developpeur Frontend
+</div>

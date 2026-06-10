@@ -77,6 +77,14 @@ layout: radial-gradient
 </style>
 
 ---
+layout: radial-gradient
+---
+
+<div class="h-110 flex flex-col justify-center items-center">
+  <TanstackTitle class="text-6xl text-center">Et si on refaisait l'app <br/>d'<Orange>Iphonix</Orange> ?</TanstackTitle>
+</div>
+
+---
 layout: deux-vignettes-radial
 macWindow: true
 leftTitle: todos-collection.ts
@@ -91,20 +99,20 @@ rightTitle: Informations
 
 ````md magic-move
 ```ts
-const todosCollection = createCollection()
+const recipeCollection = createCollection()
 ```
 ```ts
-const todosCollection = createCollection(
+const recipeCollection = createCollection(
   queryCollectionOptions({})
 )
 ```
 ```ts {5-7|8|all}
 const queryClient = new QueryClient()
 
-const todosCollection = createCollection(
+const recipeCollection = createCollection(
   queryCollectionOptions({
-    queryKey: ["todos"],
-    queryFn: fetchTodo,
+    queryKey: ["recipe"],
+    queryFn: fetchRecipe,
     queryClient,
     getKey: (item) => item.id,
   })
@@ -113,17 +121,17 @@ const todosCollection = createCollection(
 ```ts {9-14}
 const queryClient = new QueryClient()
 
-const todosCollection = createCollection(
+const recipeCollection = createCollection(
   queryCollectionOptions({
-    queryKey: ["todos"],
-    queryFn: fetchTodo,
+    queryKey: ["recipe"],
+    queryFn: fetchRecipe,
     queryClient,
     getKey: (item) => item.id,
     onInsert: async ({ transaction }) => {
-      const newTodos = transaction.mutations.map((m) => 
+      const newRecipe = transaction.mutations.map((m) => 
         m.modified
       );
-      await createTodos(newTodos);
+      await createRecipe(newTodos);
     }
   })
 )
@@ -131,10 +139,10 @@ const todosCollection = createCollection(
 ```ts {10-15}
 const queryClient = new QueryClient()
 
-const todosCollection = createCollection(
+const recipeCollection = createCollection(
   queryCollectionOptions({
-    queryKey: ["todos"],
-    queryFn: fetchTodo,
+    queryKey: ["recipe"],
+    queryFn: fetchRecipe,
     queryClient,
     getKey: (item) => item.id,
     onInsert: async ({ transaction }) => {/** */},
@@ -143,7 +151,7 @@ const todosCollection = createCollection(
         id: m.key,
         changes: m.changes,
       }))
-      await updateTodos(updates)
+      await updateRecipe(updates)
     }
   })
 )
@@ -151,17 +159,17 @@ const todosCollection = createCollection(
 ```ts {11-14}
 const queryClient = new QueryClient()
 
-const todosCollection = createCollection(
+const recipeCollection = createCollection(
   queryCollectionOptions({
-    queryKey: ["todos"],
-    queryFn: fetchTodo,
+    queryKey: ["recipe"],
+    queryFn: fetchRecipe,
     queryClient,
     getKey: (item) => item.id,
     onInsert: async ({ transaction }) => {/** */},
     onUpdate: async ({ transaction }) => {/** */},
     onDelete: async ({ transaction }) => {
       const ids = transaction.mutations.map((m) => m.key)
-      await deleteTodos(ids)
+      await deleteRecipes(ids)
     },
   })
 )
@@ -169,10 +177,25 @@ const todosCollection = createCollection(
 ```ts
 const queryClient = new QueryClient()
 
-const todosCollection = createCollection(
+const recipeCollection = createCollection(
   queryCollectionOptions({
-    queryKey: ["todos"],
-    queryFn: fetchTodo,
+    queryKey: ["recipe"],
+    queryFn: fetchRecipe,
+    queryClient,
+    getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {/** */},
+    onUpdate: async ({ transaction }) => {/** */},
+    onDelete: async ({ transaction }) => {/** */},
+  })
+)
+```
+```ts
+const queryClient = new QueryClient()
+
+const recipeCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["recipe"],
+    queryFn: fetchRecipe,
     queryClient,
     getKey: (item) => item.id,
     onInsert: async ({ transaction }) => {/** */},
@@ -190,12 +213,12 @@ const todosCollection = createCollection(
     Pleins de utilitaires existe déjà ! 🤯
     <ul class="store-benefits">
       <li>Query Collection</li>
-      <li>Electric Collection</li>
-      <li>Trailbase Collection</li>
-      <li>RxDB Collection</li>
-      <li>PowerSync Collection</li>
       <li>LocalStorage Collection</li>
       <li>LocalOnly Collection</li>
+      <li class="opacity-50">Electric Collection</li>
+      <li class="opacity-50">Trailbase Collection</li>
+      <li class="opacity-50">RxDB Collection</li>
+      <li class="opacity-50">PowerSync Collection</li>
     </ul>
   </div>
   <div v-click="[2, 4]" class="absolute inset-0">
@@ -204,9 +227,9 @@ const todosCollection = createCollection(
 ```tsx
 const queryClient = new QueryClient();
 
-const useTodoQuery = useQuery({
-  queryKey: ["todos"],
-  queryFn: fetchTodo,
+const useRecipeQuery = useQuery({
+  queryKey: ["recipe"],
+  queryFn: fetchRecipe,
   queryClient
 })
 ```
@@ -222,33 +245,25 @@ const useTodoQuery = useQuery({
   <div v-click="8" class="absolute inset-0">
     <h2 class="text-4xl w-full h-80 text-center flex items-center justify-center">Tout est prêt ! 🎉</h2>
   </div>
+  <div class="-ml-2 mt-2" v-click="9">
+
+```ts
+const queryClient = new QueryClient()
+
+const recipeCollection = createCollection(
+  queryCollectionOptions({
+    queryKey: ["ingredients"],
+    queryFn: fetchIngredients,
+    queryClient,
+    getKey: (item) => item.id,
+    onInsert: async ({ transaction }) => {/** */},
+    onUpdate: async ({ transaction }) => {/** */},
+    onDelete: async ({ transaction }) => {/** */},
+  })
+)
+```
+  </div>
 </div>
-
-<!-- ::right::
-
-```ts
-const { data, isLoading } = useLiveQuery((q) =>
-    q
-        .from({ todos: todosCollection })
-        .where(({ todos })  => eq(todos.completed, false))
-        .select(({ todos }) => ({ 
-            id: todos.id,
-            text: todos.text
-        }))
-);
-```
-
-<div v-mark="{ at: 4, color: 'orange', type: 'circle' }" class="absolute top-42 opacity-0">
-```ts
-        .from({ todos: todosCollection })
-        .where(({ todos })  => eq(todos.completed, false))
-        .select(({ todos }) => ({ 
-            id: todos.id,
-            text: todos.text
-        }))
-```
-</div> -->
-
 
 <style scoped>
 .store-benefits {
@@ -285,229 +300,6 @@ const { data, isLoading } = useLiveQuery((q) =>
 </style>
 
 ---
-layout: radial-gradient
----
-
-
-<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
-<h2 class="w-full text-left text-xl opacity-75 italic">"Query Driven Developpment"</h2>
-
-
-<div class="flex flex-col w-full items-center justify-center h-60">
-  <MacWindow class="w-120" title="ActiveTodoList.tsx">
-
-````md magic-move
-```tsx
-const ActiveTodoList = () => {
-  const todos = /** ? */;
-
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.content}</li>
-      ))}
-    </ul>
-  )
-}
-```
-```tsx
-const ActiveTodoList = () => {
-  const todos = useLiveQuery()
-
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.content}</li>
-      ))}
-    </ul>
-  )
-}
-```
-```tsx
-const ActiveTodoList = () => {
-  const todos = useLiveQuery((q) => {
-    return q.from({ todos: todosCollection })
-  })
-
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.content}</li>
-      ))}
-    </ul>
-  )
-}
-```
-```tsx
-const ActiveTodoList = () => {
-  const todos = useLiveQuery((q) => {
-    return q
-              .from({ todos: todosCollection })
-              .where(({ todos })  => eq(todos.completed, false))
-  })
-
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.content}</li>
-      ))}
-    </ul>
-  )
-}
-```
-```tsx
-const ActiveTodoList = () => {
-  const todos = useLiveQuery((q) => {
-    return q
-              .from({ todos: todosCollection })
-              .where(({ todos })  => eq(todos.completed, false))
-              .select(({ todos }) => ({ 
-                  id: todos.id,
-                  text: todos.text
-              }))
-  })
-
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.content}</li>
-      ))}
-    </ul>
-  )
-}
-```
-````
-  </MacWindow>
-</div>
-
----
-layout: radial-gradient
----
-
-<div class="h-110 flex flex-col justify-center items-center">
-  <TanstackTitle class="text-6xl text-center">Et si on refaisait l'app <br/>d'<Orange>Iphonix</Orange> ?</TanstackTitle>
-</div>
-
----
-layout: deux-vignettes-radial
-macWindow: true
-leftTitle: ingredient-collection.ts
-rightTitle: recipe-collection.ts
-rightClick: 5
-revealCards: true
----
-
-# Première étape, les collections
-
-::left::
-
-````md magic-move
-```ts
-export const ingredientCollection = createCollection(
-  queryCollectionOptions(),
-);
-```
-```ts
-export const ingredientCollection = createCollection(
-  queryCollectionOptions(),
-);
-```
-```ts {2-6}
-export const ingredientCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ['ingredients'],
-    queryFn: listIngredients,
-    queryClient,
-  }),
-);
-```
-```ts {6}
-export const ingredientCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ['ingredients'],
-    queryFn: listIngredients,
-    queryClient,
-    getKey: (item) => item.id,
-  }),
-);
-```
-```ts {7-16}
-export const ingredientCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ['ingredients'],
-    queryFn: listIngredients,
-    queryClient,
-    getKey: (item) => item.id,
-    onUpdate: async ({ transaction }) => {
-      await Promise.all(
-        transaction.mutations.map(({ modified }) =>
-          updateIngredientQuantity({
-            id: modified.id, 
-            quantity: modified.quantity
-          }),
-        ),
-      );
-    },
-  }),
-);
-```
-````
-
-::right::
-
-````md magic-move
-```ts
-export const recipeCollection = createCollection(
-  queryCollectionOptions(),
-);
-```
-```ts
-export const recipeCollection = createCollection(
-  queryCollectionOptions(),
-);
-```
-```ts {2-6}
-export const recipeCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ['recipes'],
-    queryFn: listRecipes,
-    queryClient,
-  }),
-);
-
-```
-```ts {6}
-export const recipeCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ['recipes'],
-    queryFn: listRecipes,
-    queryClient,
-    getKey: (item) => item.id,
-  }),
-);
-
-```
-```ts {7-13|all}
-export const recipeCollection = createCollection(
-  queryCollectionOptions({
-    queryKey: ['recipes'],
-    queryFn: listRecipes,
-    queryClient,
-    getKey: (item) => item.id,
-    onInsert: async ({ transaction }) => {
-      await Promise.all(
-        transaction.mutations.map(({ modified }) =>
-          createRecipe(modified),
-        ),
-      );
-    },
-  }),
-);
-
-```
-````
-
----
 layout: deux-vignettes-radial
 macWindow: true
 revealCards: true
@@ -518,17 +310,18 @@ rightLabel: TanStack DB
 rightClick: 7
 ---
 
-# La query des ingredients
+<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic">"Query Driven Developpment"</h2>
 
 ::left::
 
 ```tsx {all|all|2|5|6|4|all}
-export function IngredientsList() {
-  const filters = useIngredientsFilters();
+export function RecipesList() {
+  const filters = useRecipesFilters();
 
   const { data, isPending } = useQuery({
-    queryKey: ['ingredients'],
-    queryFn: () => listIngredients(filters)
+    queryKey: ['recipes'],
+    queryFn: () => listRecipe(filters)
   })
 
   return <ul>...</ul>;
@@ -537,26 +330,118 @@ export function IngredientsList() {
 
 ::right::
 
-```tsx {all|2|4|6|7-14|15|16-17|all}
-export function IngredientsList() {
-  const filters = useIngredientsFilters();
+```tsx {all|all|2|4|5|6-7|8|9-10|all}
+export function RecipesList() {
+  const filters = useRecipesFilters();
 
-  const { data, isPending } = useLiveQuery((q) => 
-    q.
-      .from({ ingredients: ingredientCollection })
-      .where(({ ingredients }) => 
-        ilike(ingredients.name, `%${search}%`))
-      .where(({ ingredients }) => category !== 'tous' 
-          ? eq(category, ingredients.category)
-          : eq(true, true))
-      .where(({ ingredients }) => inStockOnly 
-        ? gt(ingredients.quantity, 0) 
-        : eq(true, true))
-      .orderBy(({ ingredients }) => ingredients.id, "desc")
+  const { data, isLoading } = useLiveQuery((q) =>
+    q.from({ recipes: recipeCollection })
+      .where(({ recipes }) => 
+        ilike(recipes.name, `%${search}%`))
+      .orderBy(({ recipes }) => recipes.id, "desc")
       .limit(pageSize)
-      .offset((page - 1) * pageSize)
-  )
+      .offset((page - 1) * pageSize),
+  );
 
     return <ul>...</ul>;
 }
 ```
+
+---
+layout: deux-vignettes-radial
+revealCards: true
+macWindow: true
+leftTitle: IngredientsList.tsx
+rightTitle: RecipeDetails.tsx
+location: forest
+---
+
+<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic">Une api très complète !</h2>
+
+::left::
+
+```tsx {all|all|all|5-6}
+export function IngredientList() {
+  const { data, isLoading } = useLiveQuery((q) =>
+    q
+      .from({ ing: ingredientCollection })
+      .where(({ ing }) => eq(category, ing.category))
+      .where(({ ing }) => gt(ing.quantity, 0))
+      .orderBy(({ ing }) => ing.id, "desc")
+      .limit(pageSize)
+      .offset((page - 1) * pageSize),
+  );
+
+  return <main>...</main>
+}
+```
+
+<div v-mark="{ at: 3, color: 'orange', type: 'circle' }" class="absolute opacity-0 top-55 left-18">
+```ts
+.where(({ ing }) => eq(category, ing.category))
+.where(({ ing }) => gt(ing.quantity, 0))
+```
+</div>
+
+::right::
+
+```tsx {all|6-9}
+export function RecipeDetails() {
+  const { data, isLoading } = useLiveQuery((q) =>
+    q
+      .from({ recipes: recipeCollection })
+      .where(({ recipes }) => eq(recipes.id, id))
+      .join({ ingredient: ingredientsCollection }, 
+        ({ recipe, ingredient }) => 
+          eq(recipe.id, ingredient.id)
+      )
+      .findOne(),
+  );
+
+  return <main>...</main>
+}
+```
+
+<div class="absolute opacity-0 top-58 left-135" v-mark="{ at: 4, color: 'red', type: 'circle' }">
+```ts
+.join({ ingredient: ingredientsCollection }, 
+  ({ recipe, ingredient }) => 
+    eq(recipe.id, ingredient.id)
+)
+```
+</div>
+
+
+---
+layout: radial-gradient
+---
+
+<h1 class="w-full text-center text-6xl mt-50">
+  <TanstackTitle small>Demo <Orange>time !</Orange></TanstackTitle>
+</h1>
+
+---
+layout: radial-gradient
+---
+
+<h1 class="w-full text-center text-4xl">
+  <TanstackTitle>Les <Orange>avantages</Orange> de TanStack <Orange>DB</Orange></TanstackTitle>
+</h1>
+
+<ul class="w-full flex flex-col gap-6 text-3xl mt-20 mb-20">
+  <li v-click><TanstackTitle small>
+    <span class="inline-block mr-4">⏳</span> Aucun temps de chargement après l'initial</TanstackTitle>
+  </li>
+  <li v-click><TanstackTitle small>
+    <span class="inline-block mr-4">🌈</span> Optimistic update par default</TanstackTitle>
+  </li>
+  <li v-click><TanstackTitle small>
+    <span class="inline-block mr-4">🪓</span> Separation of concerns encore plus appuyé</TanstackTitle>
+  </li>
+  <li v-click><TanstackTitle small>
+    <span class="inline-block mr-4">🕹️</span> DX au petit oignons !</TanstackTitle>
+  </li>
+</ul>
+
+<h1 class="text-4xl" v-click><TanstackTitle small>🏎️  Performance perçue au <Orange>maximum</Orange></TanstackTitle></h1>

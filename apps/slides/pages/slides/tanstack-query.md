@@ -287,7 +287,6 @@ return <div>{data?.map(user => user.name)}</div>;
 import { useMutation } from '@tanstack/react-query';
 
 const { mutate } = useMutation({
-  mutationKey: ['users'],
   mutationFn: (userData) => addUser(userData),
 });
 
@@ -310,14 +309,13 @@ opacity: 0.20
 <h1 class="text-4xl text-left w-full"><TanstackTitle small>Une gestion de <Red>cache</Red></TanstackTitle></h1>
 <h2 class="w-full text-left text-xl opacity-75 italic">"Aux petits oignons"</h2>
 
-<MacWindow title="CacheInvalidation.tsx" class="mt-15 w-100">
+<MacWindow title="CacheInvalidation.tsx" class="mt-5 w-100">
 
 ````md magic-move
 ```tsx
 import { useMutation } from '@tanstack/react-query'; 
 
 const { mutate } = useMutation({
-  mutationKey: ['users'],
   mutationFn: (userData) => addUser(userData),
 });
 
@@ -335,7 +333,6 @@ import { useMutation } from '@tanstack/react-query';
 const queryClient = useQueryClient();
 
 const { mutate } = useMutation({
-  mutationKey: ['users'],
   mutationFn: (userData) => addUser(userData),
   onSuccess: () => {
     queryClient.invalidateQueries(['users'])

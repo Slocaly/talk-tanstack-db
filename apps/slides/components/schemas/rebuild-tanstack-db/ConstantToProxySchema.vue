@@ -29,7 +29,7 @@
         x="0"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
@@ -73,7 +73,7 @@
         x="104.11994934082031"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -86,7 +86,7 @@
         x="104.11994934082031"
         y="117.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -130,7 +130,7 @@
         x="100.11994934082031"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -143,7 +143,7 @@
         x="100.11994934082031"
         y="117.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -256,20 +256,20 @@
         x="116.26990509033203"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        CreateIngredientForm
+        CreateIngredient
       </text>
       <text
         x="116.26990509033203"
         y="117.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -282,14 +282,14 @@
         x="116.26990509033203"
         y="167.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        DATA.ingredients.push()
+        DATA.push()
       </text>
     </g>
     <g v-click="2" stroke-linecap="round" id="createingredient-arrow">

@@ -60,27 +60,27 @@
         x="0"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        export const ingredientsProvider = ...
+        ingredientsProvider = ...
       </text>
       <text
         x="0"
         y="67.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        export const recipesProvider = ...
+        recipesProvider = ...
       </text>
     </g>
     <g
@@ -107,7 +107,7 @@
         x="80.33992767333984"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -120,7 +120,7 @@
         x="80.33992767333984"
         y="117.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -154,7 +154,7 @@
         x="61.089935302734375"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -167,7 +167,7 @@
         x="61.089935302734375"
         y="117.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -265,20 +265,20 @@
         x="105.49991607666016"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        CreateIngredientForm
+        CreateIngredient
       </text>
       <text
         x="105.49991607666016"
         y="117.62"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="middle"
         style="white-space: pre"
@@ -329,7 +329,7 @@
         x="0"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
@@ -534,7 +534,7 @@
         x="0"
         y="17.619999999999997"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="20px"
+        font-size="26px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
@@ -552,7 +552,7 @@
         x="0"
         y="31.716"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="36px"
+        font-size="40px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
@@ -565,7 +565,7 @@
         x="0"
         y="76.71600000000001"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="36px"
+        font-size="40px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"
@@ -578,7 +578,7 @@
         x="0"
         y="121.71600000000001"
         font-family="Excalifont, Xiaolai, sans-serif, Segoe UI Emoji"
-        font-size="36px"
+        font-size="40px"
         fill="#1e1e1e"
         text-anchor="start"
         style="white-space: pre"

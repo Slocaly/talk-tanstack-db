@@ -14,8 +14,11 @@ transition: slide-left
 mdc: true
 # duration of the presentation
 duration: 45min
+layout: radial-gradient
 ---
-<!-- Je te laisse faire cette slide @Lucas -->
+<div class="absolute top-0 min-h-full w-full flex justify-center items-center px-4">
+    <h1 class="text-5xl">Ils sont fous chez <TanstackTitle>TanStack</TanstackTitle>, ils ont mis une <TanstackTitle><Orange>DB</Orange></TanstackTitle> dans le front !</h1>
+</div>
 ---
 src: ./pages/slides/intro.md
 ---

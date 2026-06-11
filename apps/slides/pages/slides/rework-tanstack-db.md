@@ -44,7 +44,7 @@ layout: radial-gradient
   <div v-click="1" class="citation-reveal flex h-full flex-col items-center justify-center gap-4 px-8 pt-32">
     <div class="comic-panel citation__quote">
       <blockquote class="citation__text">
-        Une couche de base de données côté client, propulsée par le differential dataflow, qui se branche directement sur vos appels useQuery existants.
+        Une couche de <span class="text-red font-bold">base de données</span> côté client&nbsp;<span v-click="2">propulsée par le <span class="text-red font-bold">differential dataflow</span></span><span v-click="3">, qui se branche directement sur vos appels <span class="text-red font-bold">useQuery existants</span>.</span>
       </blockquote>
     </div>
     <p class="citation__author">— L'équipe TanStack DB</p>

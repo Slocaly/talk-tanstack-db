@@ -7,55 +7,27 @@ const props = withDefaults(defineProps<{ clickOffset?: number }>(), {
 });
 
 const nav = useNav();
-const LEAVE_MS = 900;
 
 function createLeaveState(rangeStart: number, rangeEndExclusive: number) {
-  const leaving = ref(false);
   const headsVisible = ref(false);
-  let leaveTimer: ReturnType<typeof setTimeout> | undefined;
 
   watch(
     () => nav.clicks.value,
-    (current, previous) => {
-      const prev = previous ?? current;
+    (current) => {
       const start = props.clickOffset + rangeStart;
       const end = props.clickOffset + rangeEndExclusive;
-      const wasIn = prev >= start && prev < end;
-      const isIn = current >= start && current < end;
-
-      clearTimeout(leaveTimer);
-
-      if (isIn) {
-        leaving.value = false;
-        headsVisible.value = true;
-      } else if (wasIn && !isIn) {
-        leaving.value = true;
-        leaveTimer = setTimeout(() => {
-          leaving.value = false;
-          headsVisible.value = false;
-        }, LEAVE_MS);
-      } else {
-        leaving.value = false;
-        headsVisible.value = false;
-      }
+      headsVisible.value = current >= start && current < end;
     },
     { immediate: true },
   );
 
-  return { leaving, headsVisible };
+  return { headsVisible };
 }
 
-const {
-  leaving: requestArrowsLeaving,
-  headsVisible: requestArrowHeadsVisible,
-} = createLeaveState(3, 4);
+const { headsVisible: requestArrowHeadsVisible } = createLeaveState(2, 3);
+const { headsVisible: appRequestArrowHeadsVisible } = createLeaveState(4, 6);
 
-const {
-  leaving: appRequestArrowLeaving,
-  headsVisible: appRequestArrowHeadsVisible,
-} = createLeaveState(5, 7);
-
-function createBoxDrawState(appearAtClick: number, delayWhenFromClick: number) {
+function createBoxDrawState(appearAtClick: number) {
   const drawing = ref(false);
   const labelVisible = ref(false);
   let drawTimer: ReturnType<typeof setTimeout> | undefined;
@@ -66,9 +38,6 @@ function createBoxDrawState(appearAtClick: number, delayWhenFromClick: number) {
     (current, previous) => {
       const prev = previous ?? current;
       const threshold = props.clickOffset + appearAtClick;
-      const needsDelay =
-        prev === props.clickOffset + delayWhenFromClick &&
-        current === props.clickOffset + appearAtClick;
 
       clearTimeout(drawTimer);
       clearTimeout(labelTimer);
@@ -86,16 +55,13 @@ function createBoxDrawState(appearAtClick: number, delayWhenFromClick: number) {
       drawing.value = false;
       labelVisible.value = false;
 
-      drawTimer = setTimeout(
-        () => {
-          if (nav.clicks.value < threshold) return;
-          drawing.value = true;
-          labelTimer = setTimeout(() => {
-            if (nav.clicks.value >= threshold) labelVisible.value = true;
-          }, 900);
-        },
-        needsDelay ? LEAVE_MS : 0,
-      );
+      drawTimer = setTimeout(() => {
+        if (nav.clicks.value < threshold) return;
+        drawing.value = true;
+        labelTimer = setTimeout(() => {
+          if (nav.clicks.value >= threshold) labelVisible.value = true;
+        }, 900);
+      }, 0);
     },
     { immediate: true },
   );
@@ -103,8 +69,8 @@ function createBoxDrawState(appearAtClick: number, delayWhenFromClick: number) {
   return { drawing, labelVisible };
 }
 
-const appContainerBox = createBoxDrawState(4, 3);
-const reduxBox = createBoxDrawState(7, 6);
+const appContainerBox = createBoxDrawState(4);
+const reduxBox = createBoxDrawState(7);
 </script>
 
 <template>
@@ -393,11 +359,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g
-      v-click="[clickOffset + 2, clickOffset + 3]"
-      class="recipe-detail-request-arrow vclick-leave-draw"
-      :class="{ 'is-leaving': requestArrowsLeaving }"
-    >
+    <g v-click="[clickOffset + 2, clickOffset + 3]" class="recipe-detail-request-arrow">
       <g
         mask="url(#mask-lI_jNyBDtp3KLzJFzU4c6)"
         class="fetch-arrow-strokes"
@@ -509,11 +471,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g
-      v-click="[clickOffset + 2, clickOffset + 3]"
-      class="ingredients-list-request-arrow vclick-leave-draw"
-      :class="{ 'is-leaving': requestArrowsLeaving }"
-    >
+    <g v-click="[clickOffset + 2, clickOffset + 3]" class="ingredients-list-request-arrow">
       <g
         mask="url(#mask-jlh9HWp_mpZncE167Wnl_)"
         class="fetch-arrow-strokes"
@@ -591,11 +549,7 @@ const reduxBox = createBoxDrawState(7, 6);
         </text>
       </g>
     </g>
-    <g
-      v-click="[clickOffset + 4, clickOffset + 6]"
-      class="app-request-arrow vclick-leave-draw"
-      :class="{ 'is-leaving': appRequestArrowLeaving }"
-    >
+    <g v-click="[clickOffset + 4, clickOffset + 6]" class="app-request-arrow">
       <g
         mask="url(#mask-5w0EvSZwlEGXxe1QrVDDA)"
         class="fetch-arrow-strokes"
@@ -1151,26 +1105,16 @@ const reduxBox = createBoxDrawState(7, 6);
   stroke-dashoffset: 0;
 }
 
-/* Leave: override Slidev instant hide while animating out */
-.vclick-leave-draw.is-leaving {
-  opacity: 1 !important;
-  pointer-events: none;
-  animation: fade-out-group 0.9s ease forwards;
+.fetch-arrow-head {
+  opacity: 0;
 }
 
-.vclick-leave-draw.is-leaving .fetch-arrow-strokes {
-  opacity: 1 !important;
-  visibility: visible !important;
+:deep(.slidev-vclick-current) .fetch-arrow-head {
+  animation: fade-label 0.15s ease-out 0.9s forwards;
 }
 
-.vclick-leave-draw.is-leaving .fetch-arrow {
-  stroke-dashoffset: 0;
-  animation: none !important;
-}
-
-.vclick-leave-draw.is-leaving .draw-label {
+:deep(.slidev-vclick-prior) .fetch-arrow-head {
   opacity: 1;
-  animation: fade-label-out 0.25s ease-in forwards;
 }
 
 .draw-label {
@@ -1203,21 +1147,9 @@ const reduxBox = createBoxDrawState(7, 6);
   }
 }
 
-@keyframes fade-out-group {
-  to {
-    opacity: 0;
-  }
-}
-
 @keyframes fade-label {
   to {
     opacity: 1;
-  }
-}
-
-@keyframes fade-label-out {
-  to {
-    opacity: 0;
   }
 }
 

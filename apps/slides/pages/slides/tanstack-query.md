@@ -142,7 +142,7 @@ opacity: 0.20
   </div>
   <div class="store-logo" style="top: 58%; left: 58%; transform: rotate(12deg);">
     <img src="/ngrx-logo.svg" alt="RxJs" />
-    <p>RxJs</p>
+    <p>NgRx</p>
   </div>
   <div class="store-logo" style="top: 84%; left: 40%; transform: rotate(-6deg);">
     <img src="/xstate-logo.png" alt="XState" />

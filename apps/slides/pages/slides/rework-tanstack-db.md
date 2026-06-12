@@ -132,12 +132,12 @@ const recipeCollection = createCollection(
       const newRecipe = transaction.mutations.map(
         (m) =>  m.modified
       );
-      await createRecipe(newTodos);
+      await api.createRecipe(newTodos);
     }
   })
 )
 ```
-```ts {10-15}
+```ts {10-17}
 const queryClient = new QueryClient()
 
 const recipeCollection = createCollection(
@@ -153,12 +153,12 @@ const recipeCollection = createCollection(
         id: m.key,
         changes: m.changes,
       }))
-      await updateRecipe(updates)
+      await api.updateRecipe(updates)
     }
   })
 )
 ```
-```ts {11-14}
+```ts {11-16}
 const queryClient = new QueryClient()
 
 const recipeCollection = createCollection(
@@ -173,7 +173,7 @@ const recipeCollection = createCollection(
       const ids = transaction.mutations.map(
         (m) => m.key
       )
-      await deleteRecipes(ids)
+      await api.deleteRecipes(ids)
     },
   })
 )
@@ -529,4 +529,3 @@ layout: radial-gradient
     <span class="inline-block mr-4">🏎️</span> Performance perçue au maximum
   </li>
 </ul>
-l>

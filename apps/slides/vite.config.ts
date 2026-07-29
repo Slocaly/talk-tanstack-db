@@ -11,13 +11,17 @@ export default {
   plugins: [
     {
       name: "copy-theme-images",
-      closeBundle() {
+      // buildStart runs for both `slidev dev` (serve) and `slidev build`.
+      // Copying into public/images (rather than dist/images via closeBundle)
+      // means the dev server's publicDir also serves them, and Vite's build
+      // step copies public/ into dist/ on its own.
+      buildStart() {
         cpSync(
           resolve(
             __dirname,
             "../../packages/slidev-theme-comics/public/images",
           ),
-          resolve(__dirname, "dist/images"),
+          resolve(__dirname, "public/images"),
           { recursive: true },
         );
       },

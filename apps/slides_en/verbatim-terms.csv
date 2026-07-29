@@ -1,0 +1,50 @@
+Termes spécifique,prononciation,langue
+TanStack,[tæn.stæk],anglais
+TanStack Query,[tæn.stæk ˈkwi.ɹi],anglais
+TanStack DB,[tæn.stæk de.be],anglais
+front / front-end,[fʁɔ̃t.ɛnd],anglais
+backend,[bæk.ɛnd],anglais
+DB (database),[de.be],français
+API,[a.pe.i],anglais
+DevX (Developer Experience),[di.vi.ɛks],anglais
+optimistic update,[ɔp.tɪ.mɪ.stɪk ʌp.deɪt],anglais
+sync engine,[sɪŋk ˈɛn.dʒɪn],anglais
+Local first,[lo.kal fœʁst],anglais
+cache,[kaʃ],anglais
+store,[stɔʁ],anglais
+state,[steɪt],anglais
+stale / staled,[steɪl],anglais
+rendering,[ʁən.də.ʁiŋ],anglais
+prop drilling,[pʁɔp dʁɪ.lɪŋ],anglais
+DevTools,[dɛv.tuːlz],anglais
+fetch,[fɛtʃ],anglais
+useState,[juː steɪt],anglais
+useEffect,[juː ɪ.fɛkt],anglais
+useQuery,[juː ˈkwi.ɹi],anglais
+useMutation,[juː mjuː.ˈteɪ.ʃən],anglais
+useQueryClient,[juː ˈkwi.ɹi klaɪ.ənt],anglais
+useLiveQuery,[juː laɪv ˈkwi.ɹi],anglais
+queryKey,[ˈkwi.ɹi kiː],anglais
+queryFn,[ˈkwi.ɹi ɛf ɛn],anglais
+mutationKey,[mjuː.ˈteɪ.ʃən kiː],anglais
+mutationFn,[mjuː.ˈteɪ.ʃən ɛf ɛn],anglais
+invalidateQueries,[ɪn.ˈvæ.lɪ.deɪt ˈkwi.ɹiz],anglais
+queryClient,[ˈkwi.ɹi klaɪ.ənt],anglais
+Redux,[ˈɹiː.dʌks],anglais
+Pinia,[ˈpiː.ni.a],anglais
+RxJS,[ɑʁ ɛks dʒeɪ ɛs],anglais
+XState,[ɛks steɪt],anglais
+Zustand,[ˈtsuː.ʃtant],anglais
+Jotai,[dʒoʊ.ˈtaɪ],anglais
+proxy,[pʁɔ.ksi],anglais
+context (React Context),[ˈkɒn.tɛkst],anglais
+differential dataflow,[ˌdɪf.ə.ˈɹɛn.ʃəl ˈdeɪ.tə.fləʊ],anglais
+SQL,[ɛs.ky.ɛl],anglais
+collections,[kə.ˈlɛk.ʃənz],anglais
+live queries,[laɪv ˈkwi.ɹiz],anglais
+blazing fast,[ˈbleɪ.zɪŋ fɑːst],anglais
+real-time,[ɹiːl taɪm],anglais
+TypeScript,[taɪp skɹɪpt],anglais
+React,[ɹiː.ækt],anglais
+spinner / spinners,[ˈspɪ.nɚ],anglais
+network,[ˈnɛt.wɜːk],anglais

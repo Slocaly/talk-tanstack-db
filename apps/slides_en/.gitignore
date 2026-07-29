@@ -1,0 +1,3 @@
+# Copied from packages/slidev-theme-comics/public/images by vite.config.ts
+# (Slidev only serves the app's own public/ dir, not a theme's).
+public/images/

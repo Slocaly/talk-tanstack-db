@@ -1,0 +1,21 @@
+{
+  "name": "slides_en",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --remote --port 3333",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.11.5",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "@slidev/types": "^52.15.2",
+    "slidev-theme-comics": "workspace:*",
+    "vue": "^3.5.27"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
+  }
+}

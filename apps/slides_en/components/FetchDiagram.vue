@@ -355,11 +355,14 @@ const reduxBox = createBoxDrawState(7);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page liste Ingrédients
+          Ingredients list page
         </text>
       </g>
     </g>
-    <g v-click="[clickOffset + 2, clickOffset + 3]" class="recipe-detail-request-arrow">
+    <g
+      v-click="[clickOffset + 2, clickOffset + 3]"
+      class="recipe-detail-request-arrow"
+    >
       <g
         mask="url(#mask-lI_jNyBDtp3KLzJFzU4c6)"
         class="fetch-arrow-strokes"
@@ -471,7 +474,10 @@ const reduxBox = createBoxDrawState(7);
         </text>
       </g>
     </g>
-    <g v-click="[clickOffset + 2, clickOffset + 3]" class="ingredients-list-request-arrow">
+    <g
+      v-click="[clickOffset + 2, clickOffset + 3]"
+      class="ingredients-list-request-arrow"
+    >
       <g
         mask="url(#mask-jlh9HWp_mpZncE167Wnl_)"
         class="fetch-arrow-strokes"
@@ -642,7 +648,7 @@ const reduxBox = createBoxDrawState(7);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page détail Recette
+          Recipe detail page
         </text>
       </g>
       <g
@@ -681,7 +687,7 @@ const reduxBox = createBoxDrawState(7);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page liste Recettes
+          Recipes list page
         </text>
       </g>
     </g>

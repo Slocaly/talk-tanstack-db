@@ -437,7 +437,7 @@ const newGraphVisible = computed(() => newGraphShown.value);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page liste Ingrédients
+          Ingredients list page
         </text>
       </g>
       <g
@@ -483,7 +483,7 @@ const newGraphVisible = computed(() => newGraphShown.value);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page détail Recette
+          Recipe detail page
         </text>
       </g>
       <g
@@ -520,7 +520,7 @@ const newGraphVisible = computed(() => newGraphShown.value);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page liste Recettes
+          Recipes list page
         </text>
       </g>
     </g>

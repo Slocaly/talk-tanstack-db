@@ -86,7 +86,7 @@ columns: 3
 <img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
 
 <div class="mt-auto opacity-60 block w-full text-center text-xl">
-  Developpeur Frontend
+  Frontend Staff Engineer
 </div>
 
 ---
@@ -143,5 +143,5 @@ columns: 3
 <img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
 
 <div class="mt-auto opacity-60 block w-full text-center text-xl">
-  Developpeur Frontend
+  Frontend Staff Engineer
 </div>

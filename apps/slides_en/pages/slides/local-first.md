@@ -191,7 +191,6 @@ title: On load toutes les données
 layout: radial-gradient
 color: "#00BC7DFF"
 title: On echange que des diff
-
 ---
 <SmallDiffExchange/>
 
@@ -301,20 +300,26 @@ color: "#00BC7DFF"
 transition: none
 title: Vendor locking sync engine
 ---
+
 <SyncEngineVendorLocking/>
+
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-title: Tanstack DB abstraction côté front 
+title: Tanstack DB abstraction côté front
 ---
+
 <SyncEngineVendorLockingTanstackDb/>
+
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
 transition: none
 title: Tanstack DB migration progressive
 ---
+
 <ProgressiveSyncEngineMigration/>
+
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
@@ -329,18 +334,20 @@ title: Collections tanstack db (sync engines)
     class="inset-0 h-120 mt-0"
   />
 </div>
+
 ---
 layout: radial-gradient
-title: Faut-il faire du tanstack DB now ?
+title: Faut-il faire du tanstack DB ?
 ---
+
 <TanstackTitle small class="text-5xl text-center">
-    Faut-il faire du Tanstack <Orange>DB</Orange> ?
+    Could we use Tanstack <Orange>DB</Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">🖥️ Ne s'applique qu'aux "applications" <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
-        <li class="mt-10">✨ Change les habitudes <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
-        <li class="mt-10">🚫 Les live query ont des limites</li>
+        <li class="mt-10">🖥️ Apply only to "applications" <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">✨ Change habits <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">🚫 Live queries aren't limitless</li>
         <li class="mt-10">📈 Learning curve</li>
     </v-clicks>
 </ul>
@@ -349,13 +356,14 @@ title: Faut-il faire du tanstack DB now ?
 layout: radial-gradient
 title: Faut-il faire du tanstack DB now ?
 ---
+
 <TanstackTitle small class="text-5xl text-center">
-    Faut-il faire du Tanstack <Orange>DB</Orange> <br /><Orange>Maintenant</Orange> ?
+   Could we use Tanstack <Orange>DB</Orange> <br /><Orange>Now</Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-20">👶️ C'est en <TanstackTitle small px-2 rounded-3 bg-black text-white>beta</TanstackTitle></li>
-        <li class="mt-20">✨ L'IA préfère <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
+        <li class="mt-20">👶️ It's in <TanstackTitle small px-2 rounded-3 bg-black text-white>beta</TanstackTitle></li>
+        <li class="mt-20">✨ AI prefer <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
     </v-clicks>
 </ul>
 ---

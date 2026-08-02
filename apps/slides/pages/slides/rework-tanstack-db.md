@@ -20,11 +20,11 @@ layout: radial-gradient
     </div>
     <div v-click class="w-2/8 flex border border-4 border-red p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(239, 68, 68, 0.45) 0%, rgba(254, 202, 202, 0.3) 55%, rgba(254, 242, 242, 0.18) 100%)">
       <div class="text-6xl">🔬</div>
-      <div class="text-2xl text-center">Réactivité fine</div>
+      <div class="text-2xl text-center"><T fr="Réactivité fine" en="Fine Grained Reactivity" /></div>
     </div>
     <div v-click class="w-2/8 flex border border-4 border-red p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(239, 68, 68, 0.45) 0%, rgba(254, 202, 202, 0.3) 55%, rgba(254, 242, 242, 0.18) 100%)">
       <div class="text-6xl">🌈</div>
-      <div class="text-2xl text-center">Optimistic update par défaut</div>
+      <div class="text-2xl text-center"><T fr="Optimistic update par défaut" en="Optimistic update by design" /></div>
     </div>
   </div>
 </div>
@@ -38,7 +38,7 @@ layout: radial-gradient
     class="title-slide-up absolute inset-x-0 z-10 text-center pt-6"
     :class="$clicks < 1 ? 'title-slide-up--center' : 'title-slide-up--top'"
   >
-    <TanstackTitle>TanStack <Orange>DB</Orange></TanstackTitle>, c'est quoi ?
+    <T><template #fr><TanstackTitle>TanStack <Orange>DB</Orange></TanstackTitle>, c'est quoi ?</template><template #en>What is <TanstackTitle>TanStack <Orange>DB</Orange></TanstackTitle>?</template></T>
   </h1>
 
   <div v-click="1" class="citation-reveal flex h-full flex-col items-center justify-center gap-4 px-8 pt-32">
@@ -47,7 +47,7 @@ layout: radial-gradient
         Une couche de <span class="text-red font-bold">base de données</span> côté client&nbsp;<span v-click="2">propulsée par le <span class="text-red font-bold">differential dataflow</span></span><span v-click="3">, qui se branche directement sur vos appels <span class="text-red font-bold">useQuery existants</span>.</span>
       </blockquote>
     </div>
-    <p class="citation__author">— L'équipe TanStack DB</p>
+    <p class="citation__author">— <T fr="L'équipe TanStack DB" en="TanStack DB's team" /></p>
   </div>
 </div>
 
@@ -82,7 +82,7 @@ layout: radial-gradient
 ---
 
 <div class="h-110 flex flex-col justify-center items-center">
-  <TanstackTitle class="text-6xl text-center">Et si on refaisait l'app <br/>d'<Orange>Iphonix</Orange> ?</TanstackTitle>
+  <TanstackTitle class="text-6xl text-center"><T><template #fr>Et si on refaisait l'app <br/>d'<Orange>Iphonix</Orange> ?</template><template #en>What if we redo the <br/><Orange>Iphonix</Orange> app?</template></T></TanstackTitle>
 </div>
 
 ---
@@ -92,8 +92,8 @@ leftTitle: todos-collection.ts
 rightTitle: Informations
 ---
 
-<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>collections</Orange></TanstackTitle></h1>
-<h2 class="w-full text-left text-xl opacity-75 italic">La base de TanStack DB</h2>
+<h1 class="w-full text-left text-4xl"><TanstackTitle small><T><template #fr>Les <Orange>collections</Orange></template><template #en><Orange>collections</Orange></template></T></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic"><T fr="La base de TanStack DB" en="TanStack DB foundation" /></h2>
 
 
 ::left::
@@ -214,10 +214,10 @@ const recipeCollection = createCollection(
 
 <div class="m-2 relative">
   <div v-click="[1, 2]" class="absolute inset-0">
-    Migration simplifié depuis TanStack Query ! 🎉
+    <T fr="Migration simplifié depuis TanStack Query ! 🎉" en="Easy refactor from TanStack Query ! 🎉" />
   </div>
   <div v-click="[2, 4]" class="absolute inset-0">
-    Comme un useQuery classique 🥳
+    <T fr="Comme un useQuery classique 🥳" en="Like a good old useQuery 🥳" />
 
 ```tsx
 const queryClient = new QueryClient();
@@ -238,7 +238,7 @@ const useRecipeQuery = useQuery({
     </ul>
   </div>
   <div v-click="8" class="absolute inset-0">
-    <h2 class="text-4xl w-full h-80 text-center flex items-center justify-center">Tout est prêt ! 🎉</h2>
+    <h2 class="text-4xl w-full h-80 text-center flex items-center justify-center"><T fr="Tout est prêt ! 🎉" en="Everything is ready! 🎉" /></h2>
   </div>
   <div class="-ml-2 mt-2" v-click="9">
 
@@ -305,7 +305,7 @@ rightLabel: TanStack DB
 rightClick: 3
 ---
 
-<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
+<h1 class="w-full text-left text-4xl"><TanstackTitle small><T fr="Les " en="" /><Orange>Live queries</Orange></TanstackTitle></h1>
 <h2 class="w-full text-left text-xl opacity-75 italic">"Query Driven Developpment"</h2>
 
 ::left::
@@ -351,8 +351,8 @@ rightTitle: RecipeDetails.tsx
 location: forest
 ---
 
-<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Live queries</Orange></TanstackTitle></h1>
-<h2 class="w-full text-left text-xl opacity-75 italic">Une api très complète !</h2>
+<h1 class="w-full text-left text-4xl"><TanstackTitle small><T fr="Les " en="" /><Orange>Live queries</Orange></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic"><T fr="Une api très complète !" en="a very complete api!" /></h2>
 
 ::left::
 
@@ -418,8 +418,8 @@ rightLabel: TanStack DB
 rightClick: 4
 ---
 
-<h1 class="w-full text-left text-4xl"><TanstackTitle small>Les <Orange>Mutations</Orange></TanstackTitle></h1>
-<h2 class="w-full text-left text-xl opacity-75 italic">Action utilisateurs</h2>
+<h1 class="w-full text-left text-4xl"><TanstackTitle small><T fr="Les " en="" /><Orange>Mutations</Orange></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic"><T fr="Action utilisateurs" en="User actions" /></h2>
 
 ::left::
 
@@ -495,13 +495,13 @@ layout: radial-gradient
 
 <ul class="w-full flex flex-col gap-6 text-3xl mt-20 mb-20">
   <li v-click>
-    <span class="inline-block mr-4">🖥️</span> Peux faire office de store
+    <span class="inline-block mr-4">🖥️</span> <T fr="Peux faire office de store" en="Can be use as a store" />
   </li>
   <li v-click>
-    <span class="inline-block mr-4">⚡</span> Prototyper sans backend
+    <span class="inline-block mr-4">⚡</span> <T fr="Prototyper sans backend" en="Prototype without backend" />
   </li>
   <li v-click>
-    <span class="inline-block mr-4">🧪</span> Trop bien pour les tests
+    <span class="inline-block mr-4">🧪</span> <T fr="Trop bien pour les tests" en="Great for testing" />
   </li>
 </ul>
 ---
@@ -509,23 +509,23 @@ layout: radial-gradient
 ---
 
 <h1 class="w-full text-center text-4xl">
-  <TanstackTitle small>Les <Orange>avantages</Orange> de TanStack <Orange>DB</Orange></TanstackTitle>
+  <TanstackTitle small><T><template #fr>Les <Orange>avantages</Orange> de TanStack <Orange>DB</Orange></template><template #en><Orange>TanStack</Orange> DB <Orange>benefits</Orange></template></T></TanstackTitle>
 </h1>
 
 <ul class="w-full flex flex-col gap-6 text-3xl mt-20 mb-20">
   <li v-click>
-    <span class="inline-block mr-4">⏳</span> Aucun temps de chargement après l'initial
+    <span class="inline-block mr-4">⏳</span> <T fr="Aucun temps de chargement après l'initial" en="No loading time after the initial one" />
   </li>
   <li v-click>
-    <span class="inline-block mr-4">🌈</span> Optimistic update par default
+    <span class="inline-block mr-4">🌈</span> <T fr="Optimistic update par default" en="Optimistic update by design" />
   </li>
   <li v-click>
-    <span class="inline-block mr-4">🪓</span> Separation of concerns encore plus appuyé
+    <span class="inline-block mr-4">🪓</span> <T fr="Separation of concerns encore plus appuyé" en="Even more Separation of concerns" />
   </li>
   <li v-click>
-    <span class="inline-block mr-4">🕹️</span> DX au petit oignons !
+    <span class="inline-block mr-4">🕹️</span> <T fr="DX au petit oignons !" en="nearly perfect DX!" />
   </li>
   <li v-click>
-    <span class="inline-block mr-4">🏎️</span> Performance perçue au maximum
+    <span class="inline-block mr-4">🏎️</span> <T fr="Performance perçue au maximum" en="Perceived performance to the max" />
   </li>
 </ul>

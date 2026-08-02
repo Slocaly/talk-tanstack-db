@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { onSlideEnter, onSlideLeave, useNav } from "@slidev/client";
+import { t } from "../lib/lang";
 
 const props = withDefaults(defineProps<{ clickOffset?: number }>(), {
   clickOffset: 0,
@@ -437,7 +438,7 @@ const newGraphVisible = computed(() => newGraphShown.value);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page liste Ingrédients
+          {{ t("Page liste Ingrédients", "Ingredients list page") }}
         </text>
       </g>
       <g
@@ -483,7 +484,7 @@ const newGraphVisible = computed(() => newGraphShown.value);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page détail Recette
+          {{ t("Page détail Recette", "Recipe detail page") }}
         </text>
       </g>
       <g
@@ -520,7 +521,7 @@ const newGraphVisible = computed(() => newGraphShown.value);
           direction="ltr"
           dominant-baseline="alphabetic"
         >
-          Page liste Recettes
+          {{ t("Page liste Recettes", "Recipes list page") }}
         </text>
       </g>
     </g>

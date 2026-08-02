@@ -334,13 +334,13 @@ layout: radial-gradient
 title: Faut-il faire du tanstack DB now ?
 ---
 <TanstackTitle small class="text-5xl text-center">
-    Faut-il faire du Tanstack <Orange>DB</Orange> ?
+    <T fr="Faut-il faire du Tanstack" en="Could we use Tanstack" /> <Orange>DB</Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">🖥️ Ne s'applique qu'aux "applications" <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
-        <li class="mt-10">✨ Change les habitudes <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
-        <li class="mt-10">🚫 Les live query ont des limites</li>
+        <li class="mt-10">🖥️ <T fr="Ne s'applique qu'aux &quot;applications&quot;" en="Apply only to &quot;applications&quot;" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">✨ <T fr="Change les habitudes" en="Change habits" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">🚫 <T fr="Les live query ont des limites" en="Live queries aren't limitless" /></li>
         <li class="mt-10">📈 Learning curve</li>
     </v-clicks>
 </ul>
@@ -350,12 +350,12 @@ layout: radial-gradient
 title: Faut-il faire du tanstack DB now ?
 ---
 <TanstackTitle small class="text-5xl text-center">
-    Faut-il faire du Tanstack <Orange>DB</Orange> <br /><Orange>Maintenant</Orange> ?
+    <T fr="Faut-il faire du Tanstack" en="Could we use Tanstack" /> <Orange>DB</Orange> <br /><Orange><T fr="Maintenant" en="Now" /></Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-20">👶️ C'est en <TanstackTitle small px-2 rounded-3 bg-black text-white>beta</TanstackTitle></li>
-        <li class="mt-20">✨ L'IA préfère <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
+        <li class="mt-20">👶️ <T fr="C'est en" en="It's in" /> <TanstackTitle small px-2 rounded-3 bg-black text-white>beta</TanstackTitle></li>
+        <li class="mt-20">✨ <T fr="L'IA préfère" en="AI prefer" /> <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
     </v-clicks>
 </ul>
 ---

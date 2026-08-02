@@ -1,4 +1,5 @@
 <template>
+  <LangSwitcher />
   <div class="ipad-layer">
     <Ipad />
   </div>

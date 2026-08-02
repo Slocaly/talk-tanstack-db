@@ -121,7 +121,7 @@ color: "#FE9A00FF"
 opacity: 0.20
 ---
 
-<TanstackTitle class="text-4xl text-left" small>Librairies de <Red>store</Red></TanstackTitle>
+<TanstackTitle class="text-4xl text-left" small><T><template #fr>Librairies de <Red>store</Red></template><template #en><Red>Store</Red> Librairies</template></T></TanstackTitle>
 
 <div class="store-logos-scatter relative h-full min-h-80 w-full">
   <div class="store-logo" style="top: 36%; left: 4%; transform: rotate(9deg);">
@@ -195,15 +195,15 @@ opacity: 0.20
   <div class="flex gap-12 justify-center items-stretch">
     <div v-click class="w-2/8 flex border border-4 border-orange p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(251, 146, 60, 0.45) 0%, rgba(253, 224, 184, 0.3) 55%, rgba(255, 247, 237, 0.18) 100%)">
       <div class="text-6xl">🗃️</div>
-      <div class="text-2xl text-center">Cache intelligent</div>
+      <div class="text-2xl text-center"><T fr="Cache intelligent" en="Smart cache" /></div>
     </div>
     <div v-click class="w-2/8 flex border border-4 border-orange p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(251, 146, 60, 0.45) 0%, rgba(253, 224, 184, 0.3) 55%, rgba(255, 247, 237, 0.18) 100%)">
       <div class="text-6xl">⚡</div>
-      <div class="text-2xl text-center">Pas de rendering inutile</div>
+      <div class="text-2xl text-center"><T fr="Pas de rendering inutile" en="No useless rendering" /></div>
     </div>
     <div v-click class="w-2/8 flex border border-4 border-orange p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(251, 146, 60, 0.45) 0%, rgba(253, 224, 184, 0.3) 55%, rgba(255, 247, 237, 0.18) 100%)">
       <div class="text-6xl">🚀</div>
-      <div class="text-2xl text-center">Synchronisation automatique</div>
+      <div class="text-2xl text-center"><T fr="Synchronisation automatique" en="Automatic sync" /></div>
     </div>
   </div>
 </div>
@@ -217,7 +217,7 @@ revealCards: true
 rightClick: 5
 ---
 
-<TanstackTitle class="text-4xl" small>Dans le <Red>code</Red></TanstackTitle>
+<TanstackTitle class="text-4xl" small><T><template #fr>Dans le <Red>code</Red></template><template #en>In the <Red>code</Red></template></T></TanstackTitle>
 
 ::left::
 
@@ -230,8 +230,8 @@ const { data, isLoading, error } = useQuery({
     fetch('/api/users').then(res => res.json())
 });
 
-if (isLoading) return <div>Chargement...</div>;
-if (error) return <div>Erreur !</div>;
+if (isLoading) return <div>Loading...</div>;
+if (error) return <div>Error !</div>;
 
 return <div>{data?.map(user => user.name)}</div>;
 ```
@@ -249,7 +249,7 @@ const handleCreate = () => mutate({ name: 'John' });
 
 return (
   <button onClick={handleCreate}>
-    Créer utilisateur
+    Create user
   </button>
 );
 ```
@@ -265,8 +265,8 @@ rightClick: 3
 opacity: 0.20
 ---
 
-<h1 class="text-4xl text-left w-full"><TanstackTitle small>Une gestion de <Red>cache</Red></TanstackTitle></h1>
-<h2 class="w-full text-left text-xl opacity-75 italic">"Aux petits oignons"</h2>
+<h1 class="text-4xl text-left w-full"><TanstackTitle small><T><template #fr>Une gestion de <Red>cache</Red></template><template #en><Red>Cache</Red> handling</template></T></TanstackTitle></h1>
+<h2 class="w-full text-left text-xl opacity-75 italic"><T fr="&quot;Aux petits oignons&quot;" en="&quot;To perfection&quot;" /></h2>
 
 ::left::
 
@@ -296,7 +296,7 @@ const handleCreate = () => mutate({ name: 'John' });
 
 return (
   <button onClick={handleCreate}>
-    Créer utilisateur
+    Create user
   </button>
 );
 ```

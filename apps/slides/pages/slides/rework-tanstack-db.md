@@ -12,7 +12,7 @@ layout: radial-gradient
 
 <div class="flex flex-col w-full h-full gap-20">
   <TanstackTitle big class="w-full pt-10 text-7xl text-center">Tanstack <Orange>DB</Orange></TanstackTitle>
-  <img class="!h-20 !w-20 -rotate-20 absolute top-5 left-5" src="/tanstack-logo.png" />
+  <img class="!h-20 !w-20 -rotate-10 absolute top-5 left-5" src="/tanstack-logo.svg" />
   <div class="flex gap-12 justify-center items-stretch">
     <div v-click class="w-2/8 flex border border-4 border-red p-4 rounded-lg flex-col gap-4 items-center justify-center" style="background: radial-gradient(farthest-corner at 50% 30%, rgba(239, 68, 68, 0.45) 0%, rgba(254, 202, 202, 0.3) 55%, rgba(254, 242, 242, 0.18) 100%)">
       <div class="text-6xl">🐎</div>

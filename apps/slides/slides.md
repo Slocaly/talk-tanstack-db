@@ -22,7 +22,7 @@ layout: radial-gradient
         <h1 class="text-5xl">Ils sont fous chez <TanstackTitle>TanStack</TanstackTitle>, ils ont mis une <TanstackTitle><Orange>DB</Orange></TanstackTitle> dans le front !</h1>
     </template>
     <template #en>
-        <h1 class="text-5xl">These <TanstackTitle>TanStack</TanstackTitle> folks are crazy! They put a <TanstackTitle><Orange>DB</Orange></TanstackTitle> in the frontend!</h1>
+        <h1 class="text-5xl">These <TanstackTitle>TanStack</TanstackTitle> folks are crazy, they put a <TanstackTitle><Orange>DB</Orange></TanstackTitle> in the frontend!</h1>
     </template>
 </T>
 </div>

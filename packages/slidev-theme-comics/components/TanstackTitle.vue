@@ -17,16 +17,17 @@ withDefaults(
 </template>
 
 <style scoped>
-.ts-title {
+.ts-title,
+.ts-title * {
   font-family: Inter, sans-serif;
   text-transform: uppercase;
   font-weight: 900;
   letter-spacing: -1px;
 }
-.ts-title.normal {
+.ts-title.normal, .ts-title.normal * {
   letter-spacing: -3px;
 }
-.ts-title.big {
+.ts-title.big, .ts-title.big * {
   letter-spacing: -4px;
 }
 </style>

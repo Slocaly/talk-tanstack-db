@@ -8,8 +8,10 @@ title: Obelix va me chercher la page 1
 ---
 
 ::right::
-Obelix,
-Va me chercher la page 1
+<T
+ fr="Obelix, Va me chercher la page 1"
+ en="Go get me page 1"
+/>
 
 ---
 layout: image
@@ -26,8 +28,13 @@ right: panoramix:happy
 transition: fade
 title: Obelix va me chercher la page 2
 ---
+
 ::right::
-Et la page 2
+<T
+ fr="Et la page 2"
+ en="And page 2"
+/>
+
 ---
 layout: image
 image: /panoramix-burnout/plan_with_pages.png
@@ -46,7 +53,10 @@ title: Obelix va me chercher la page 3
 ---
 
 ::right::
-Et la page 3
+<T
+ fr="Et la page 3"
+ en="And page 3"
+/>
 
 ---
 layout: image
@@ -65,8 +75,10 @@ title: Asterix va me chercher toutes les ingrédients
 ---
 
 ::right::
-
-Asterix, va me chercher toutes les pages
+<T
+ fr="Asterix, va me chercher toutes les pages"
+ en="Asterix, go get me all the pages."
+/>
 
 ---
 layout: image
@@ -124,13 +136,20 @@ title: Stock ingrédients = cache
     >
         State
     </SpeechBubble>
-    <NarrateurBox class="mt-100 text-black text-4xl flex items-center justify-center">Données côté client</NarrateurBox>
+    <NarrateurBox class="mt-100 text-black text-4xl flex items-center justify-center">
+<T
+ fr="Données côté client"
+ en="Client side data"
+/>
+</NarrateurBox>
 </v-clicks>
+
 ---
 layout: image
 image: /panoramix-burnout/livre_peremption.png
 title: Livre peremtion =  staled
 ---
+
 <v-clicks>
     <SpeechBubble
         :x="0"
@@ -143,9 +162,20 @@ title: Livre peremtion =  staled
         stroke="black"
         :stroke-width="4"
         :text-style="{ fontSize: '38px', color: '#111' }"
-    >Données "Staled"</SpeechBubble>
-    <NarrateurBox class="mt-100 text-black text-4xl flex items-center justify-center">Invalidation de cache</NarrateurBox>
+    >
+<T
+ fr='Données "Staled"'
+ en='"Staled" data'
+/>
+</SpeechBubble>
+    <NarrateurBox class="mt-100 text-black text-4xl flex items-center justify-center">
+<T
+ fr="Invalidation de cache"
+ en="Cache invalidation"
+/>
+</NarrateurBox>
 </v-clicks>
+
 ---
 layout: image
 image: /panoramix-burnout/plan-siege-romain.png
@@ -154,4 +184,3 @@ title: Siege romain  = offline
 <v-clicks>
     <NarrateurBox class="mt-100 text-black text-4xl flex items-center justify-center">Offline</NarrateurBox>
 </v-clicks>
----

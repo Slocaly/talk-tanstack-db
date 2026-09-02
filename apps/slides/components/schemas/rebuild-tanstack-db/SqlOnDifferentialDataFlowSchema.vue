@@ -38,7 +38,10 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        SELECT * FROM Ingredients WHERE Quantité &lt; 100
+        <T
+          fr="SELECT * FROM Ingredients WHERE Quantité &lt; 100"
+          en="SELECT * FROM Ingredients WHERE Quantity &lt; 100"
+        />
       </text>
     </g>
     <g
@@ -56,7 +59,10 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        SELECT * FROM Ingredients WHERE Date péremption &lt; 01/06/0001
+        <T
+          fr="SELECT * FROM Ingredients WHERE Date péremption &lt; 01/06/0001"
+          en="SELECT * FROM Ingredients WHERE Expiry date &lt; 01/06/0001"
+        />
       </text>
     </g>
     <g
@@ -84,7 +90,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Ingrédients
+        <T fr="Ingrédients" en="Ingredients" />
       </text>
     </g>
     <g
@@ -101,7 +107,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Verveine
+        <T fr="Verveine" en="Verbena" />
       </text>
     </g>
     <g
@@ -118,7 +124,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Menthe séchée
+        <T fr="Menthe séchée" en="Dried mint" />
       </text>
     </g>
     <g
@@ -135,7 +141,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Camomille
+        <T fr="Camomille" en="Chamomile" />
       </text>
     </g>
     <g
@@ -152,7 +158,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Miel
+        <T fr="Miel" en="Honey" />
       </text>
     </g>
     <g stroke-linecap="round">
@@ -246,7 +252,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Nom
+        <T fr="Nom" en="Name" />
       </text>
     </g>
     <g
@@ -263,7 +269,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Date péremption
+        <T fr="Date péremption" en="Expiry date" />
       </text>
     </g>
     <g
@@ -343,7 +349,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Quantité
+        <T fr="Quantité" en="Quantity" />
       </text>
     </g>
     <g
@@ -429,7 +435,10 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        SELECT * FROM Ingredients WHERE Nom LIKE 'M%'
+        <T
+          fr="SELECT * FROM Ingredients WHERE Nom LIKE 'M%'"
+          en="SELECT * FROM Ingredients WHERE Name LIKE 'M%'"
+        />
       </text>
     </g>
     <g
@@ -447,7 +456,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Miel Quantité = 80
+        <T fr="Miel Quantité = 80" en="Honey Quantity = 80" />
       </text>
     </g>
   </svg>

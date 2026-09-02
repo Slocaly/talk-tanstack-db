@@ -21,7 +21,8 @@ title: Les 7 règles du local first
     class="absolute inset-0 h-full w-full object-contain"
   />
 <TanstackTitle small class="absolute bottom-0 p-5 w-full text-right z-10 text-5xl font-bold text-white drop-shadow-xl">
-    Les 7 règles du <Green>Local first</Green>
+<T fr="Les 7 règles du " en="The 7 rules of " />    
+ <Green>Local first</Green>
   </TanstackTitle>
 </div>
 
@@ -241,8 +242,8 @@ title: Sync engines bullets
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">⚡ Émet des events pour synchroniser les changements</li>
-        <li class="mt-10">🔀 Fusionne les changements concurrents (conflits)</li>
+        <li class="mt-10">⚡ <T fr="Émet des events pour synchroniser les changements" en="Emits events to synchronize changes" /></li>
+        <li class="mt-10">🔀 <T fr="Fusionne les changements concurrents (conflits)" en="Merges concurrent changes (conflicts)"/></li>
     </v-clicks>
 </ul>
 
@@ -251,15 +252,23 @@ layout: radial-gradient
 color: "#00BC7DFF"
 title: Backend dans une stack Localfirst
 ---
+
 <TanstackTitle small class="text-4xl">
-Backend dans une stack <Green>local first</Green> 
-  </TanstackTitle>
+  <T>
+      <template #fr>
+          Backend dans une stack <Green>local first</Green>
+      </template>
+      <template #en>
+          Backend in a <Green>local first</Green> stack
+      </template>
+  </T>
+</TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">📦 Charge le contexte initiale</li>
-        <li class="mt-10">🔃 Utilise un sync engine</li>
-        <li class="mt-10">✅ Valide les inputs utilisateur</li>
-        <li class="mt-10">🔒 Authorization / Authentification</li>
+        <li class="mt-10">📦 <T fr="Charge le contexte initiale" en="Loads the initial context" /></li>
+        <li class="mt-10">🔃 <T fr="Utilise un sync engine" en="Use a sync engine" /></li>
+        <li class="mt-10">✅ <T fr="Valide les inputs utilisateur" en="Validates user inputs" /></li>
+        <li class="mt-10">🔒 Authorization / Authentication</li>
     </v-clicks>
 </ul>
 
@@ -283,15 +292,16 @@ layout: radial-gradient
 color: "#00BC7DFF"
 title: Faut il faire du local first ?
 ---
+
 <TanstackTitle small class="text-5xl">
-    Faut-il faire du <Green>local first</Green> ?
+    <T fr="Faut-il faire du " en="Should we go " /><Green>local first</Green> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">🖥️ Ne s'applique qu'aux "applications"</li>
-        <li class="mt-10">✨ Change les habitudes</li>
-        <li class="mt-10">💒 Implique de "se marier" avec son sync engine</li>
-        <li class="mt-10">🤯 Ou de le recoder... Bonne chance !</li>
+        <li class="mt-10">🖥️ <T fr="Ne s'applique qu'aux applications" en='Only applies to "applications"' /></li>
+        <li class="mt-10">✨ <T fr="Change les habitudes" en="Changes habits" /></li>
+        <li class="mt-10">💒 <T fr='Implique de "se marier" avec son sync engine' en="Means getting locked into its sync engine" /></li>
+        <li class="mt-10">🤯 <T fr="Ou de le recoder... Bonne chance !" en="Or recode it yourself… Good luck!" /></li>
     </v-clicks>
 </ul>
 
@@ -358,4 +368,3 @@ title: Faut-il faire du tanstack DB now ?
         <li class="mt-20">✨ <T fr="L'IA préfère" en="AI prefer" /> <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
     </v-clicks>
 </ul>
----

@@ -585,7 +585,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Gestion d'erreur ?
+        Error management ?
       </text>
     </g>
     <g

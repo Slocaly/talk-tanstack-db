@@ -3,8 +3,14 @@ layout: radial-gradient
 transition: none
 title: Et si tu as 200 pages ?
 ---
+
 <div class="flex absolute top-0 min-h-full flex-content-around flex-col">
-<TanstackTitle small class="text-5xl text-center mt-8">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
+<TanstackTitle small class="text-5xl text-center mt-8">
+<T>
+    <template #fr>Et si tu as <Orange>200</Orange> pages ?  🤔</template>
+    <template #en>And what if you have <Orange>200</Orange> pages?  🤔</template>
+</T>
+</TanstackTitle>
 <v-clicks>
 <MacWindow title="ingredient-item.json" class="w-full mt-10">
 ```json
@@ -22,7 +28,8 @@ title: Et si tu as 200 pages ?
 }
 ```
 </MacWindow>
-     <h2 class="text-4xl mt-auto mb-10">2000 ingrédients --> 635 ko</h2>
+     <h2 class="text-4xl mt-auto mb-10">
+<T fr="2000 ingrédients --> 635 ko" en="2000 ingredients --> 635 ko" /></h2>
 </v-clicks>
 </div>
 
@@ -33,7 +40,12 @@ transition: none
 title: Bandwith
 ---
 
-<TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>200</Orange> pages ? 🤔</TanstackTitle>
+<TanstackTitle small class="text-5xl text-center mt-8">
+    <T>
+        <template #fr>Et si tu as <Orange>200</Orange> pages ?  🤔</template>
+        <template #en>And what if you have <Orange>200</Orange> pages?  🤔</template>
+    </T>
+</TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
     <li class="mt-10 w-full flex space-between">3G : 1 mb/s <span class="text-red ml-auto">635 ms</span></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : 10 mb/s <span class="text-red ml-auto">63.5 ms</span></li>
@@ -51,9 +63,9 @@ title: Bandwith vs latency
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
     <li class="mt-10 w-full flex space-between">3G : <span class="text-red inline-block ml-auto">635 ms</span>&nbsp;<span class="text-blue">+ 80-500 ms</span></li>
-    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : <span class="text-red inline-block ml-auto">63.5 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
-    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>bonne</small> : <span class="text-red inline-block ml-auto">12.7 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
-    <li class="mt-10 w-full flex space-between">Fibre : <span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : <span class="text-red inline-block ml-auto">63.5 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : <span class="text-red inline-block ml-auto">12.7 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre : " en="Fiber :" /><span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
 </ul>
 
 ---
@@ -65,9 +77,9 @@ title: Bandwith vs latency proportions
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
     <li class="mt-10 w-full flex space-between">3G : <img class="inline ml-auto w-80" src="/local-first/latency/3g.svg" /></li>
-    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-moyenne.svg" /></li>
-    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>bonne</small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-bonne.svg" /></li>
-    <li class="mt-10 w-full flex space-between">Fibre : <img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-moyenne.svg" /></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-bonne.svg" /></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre : " en="Fiber :" /> <img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
 </ul>
 
 ---
@@ -75,10 +87,17 @@ layout: radial-gradient
 class: text-center
 title: Et si tu as 20 M pages ?
 ---
-<TanstackTitle small class="text-5xl text-center">Et si tu as <Orange>20 000 000</Orange> pages ? 🙃</TanstackTitle>
+
+<TanstackTitle small class="text-5xl text-center mt-8">
+    <T fr="Et si tu as " en="What if you have " />
+    <Orange>20 000 000</Orange><T fr=" pages ?" en=" pages?" /> 🙃
+</TanstackTitle> 
+
+
 <v-clicks>
     <span class="text-5xl mt-30">syncMode: <span class="text-orange">"on-demand"</span></span>
 </v-clicks>
+
 ---
 layout: radial-gradient
 location: village
@@ -176,4 +195,3 @@ const ingredientsCollection = createCollection(
 ```
 ````
 </MacWindow>
----

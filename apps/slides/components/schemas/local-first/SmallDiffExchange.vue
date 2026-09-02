@@ -470,7 +470,10 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        2. On n'échange que des petits diff
+        <T
+          fr="2. On n'échange que des petits diff"
+          en="2. We only exchange small data diffs"
+        />
       </text>
       <text
         x="326.42203776041697"
@@ -483,7 +486,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        de données
+        <T fr="de données" en="" />
       </text>
     </g>
     <g

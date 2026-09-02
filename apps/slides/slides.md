@@ -17,7 +17,14 @@ duration: 45min
 layout: radial-gradient
 ---
 <div class="absolute top-0 min-h-full w-full flex justify-center items-center px-4">
-    <h1 class="text-5xl">Ils sont fous chez <TanstackTitle>TanStack</TanstackTitle>, ils ont mis une <TanstackTitle><Orange>DB</Orange></TanstackTitle> dans le front !</h1>
+<T>
+    <template #fr>
+        <h1 class="text-5xl">Ils sont fous chez <TanstackTitle>TanStack</TanstackTitle>, ils ont mis une <TanstackTitle><Orange>DB</Orange></TanstackTitle> dans le front !</h1>
+    </template>
+    <template #en>
+        <h1 class="text-5xl">These <TanstackTitle>TanStack</TanstackTitle> folks are crazy! They put a <TanstackTitle><Orange>DB</Orange></TanstackTitle> in the frontend!</h1>
+    </template>
+</T>
 </div>
 ---
 src: ./pages/slides/intro.md
@@ -104,7 +111,7 @@ title: Merci
 ---
 
 <div class="flex h-full w-full items-center justify-center">
-  <p class="text-9xl font-bold text-white">Merci</p>
+  <p class="text-9xl font-bold text-white"><T fr="Merci" en="Thank you" /></p>
 </div>
 
 ---

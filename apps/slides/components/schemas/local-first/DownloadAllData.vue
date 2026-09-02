@@ -402,7 +402,10 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        1. On télécharge toutes les données
+        <T
+          fr="1. On télécharge toutes les données"
+          en="1. We download all the data that"
+        />
       </text>
       <text
         x="326.42203776041697"
@@ -415,7 +418,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        qui pourraient nous être utile
+        <T fr="qui pourraient nous être utile" en="could be useful to us" />
       </text>
     </g>
     <g

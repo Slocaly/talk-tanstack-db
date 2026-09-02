@@ -1,3 +1,4 @@
+<script setup></script>
 <template>
   <svg
     version="1.1"
@@ -66,7 +67,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Ingrédients
+        <T fr="Ingrédients" en="Ingredients" />
       </text>
     </g>
     <g
@@ -83,7 +84,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Verveine
+        <T fr="Verveine" en="Verbena" />
       </text>
     </g>
     <g
@@ -100,7 +101,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Menthe séchée
+        <T fr="Menthe séchée" en="Dried mint" />
       </text>
     </g>
     <g
@@ -117,7 +118,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Camomille
+        <T fr="Camomille" en="Chamomile" />
       </text>
     </g>
     <g
@@ -134,7 +135,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Miel
+        <T fr="Miel" en="Honey" />
       </text>
     </g>
     <g stroke-linecap="round">
@@ -228,7 +229,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Nom
+        <T fr="Nom" en="Name" />
       </text>
     </g>
     <g
@@ -245,7 +246,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Date péremption
+        <T fr="Date péremption" en="Expiry date" />
       </text>
     </g>
     <g
@@ -325,7 +326,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Quantité
+        <T fr="Quantité" en="Quantity" />
       </text>
     </g>
     <g
@@ -411,7 +412,10 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        SELECT * FROM Ingredients WHERE Quantité < 100
+        <T
+          fr="SELECT * FROM Ingredients WHERE Quantité < 100"
+          en="SELECT * FROM Ingredients WHERE Quantity < 100"
+        />
       </text>
     </g>
   </svg>

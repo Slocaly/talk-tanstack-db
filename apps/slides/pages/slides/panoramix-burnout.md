@@ -1,10 +1,12 @@
---- 
+---
 layout: narrateur
 location: village
 variant: punchline
 size: xl
 ---
-# Le burnout de Panoramix
+
+<h1><T fr="Le burnout de Panoramix" en="Panoramix's Burnout" /></h1>
+
 ---
 layout: full
 title: Village heureux
@@ -51,6 +53,7 @@ title: Stock potion vide
 layout: image
 title: conseil village
 ---
+
 <img
     v-motion :initial="{ scale: 1.2, y: -40, x: 20 }" :enter="{ scale: 1.2, y: 10, x: -20, transition: { duration: 15000} }"
     src="/panoramix-burnout/conseil_village.png"
@@ -72,8 +75,9 @@ title: conseil village
     :stroke-width="4"
     :text-style="{ fontSize: '14px', color: '#111' }"
 >
-Asterix et Obelix vont t'aider pour les ingrédients
+<T fr="Asterix et Obelix vont t'aider pour les ingrédients" en="Asterix and Obelix will help you with the ingredients" />
 </SpeechBubble>
+
 ---
 layout: dialog
 location: panoramix_home
@@ -82,9 +86,13 @@ right: panoramix:happy
 transition: fade
 title: Obelix va chercher guy
 ---
+
 ::right::
-Obelix,
-Va me chercher du gui
+<T
+ fr="Obelix, Va me chercher du gui"
+ en="Obelix, go get me some mistletoe"
+/>
+
 ---
 layout: dialog
 location: panoramix_home
@@ -93,8 +101,13 @@ left: obelix:smoke
 transition: fade
 title: Obelix disparait
 ---
+
 ::right::
-et du ...
+<T
+ fr="et du ..."
+ en="and some..."
+/>
+
 ---
 layout: image
 image: /panoramix-burnout/plan.png
@@ -109,8 +122,13 @@ right: panoramix:scorn
 transition: fade
 title: Obelix va chercher 3 brins d'orges
 ---
+
 ::right::
-Et 3 brins d'orges
+<T
+ fr="Et 3 brins d'orges"
+ en="And three stalks of barley"
+/>
+
 ---
 layout: image
 image: /panoramix-burnout/plan.png
@@ -125,8 +143,13 @@ right: panoramix:scorn
 transition: fade
 title: Obelix va chercher ecume de vague
 ---
+
 ::right::
-Et de l'ecume de vague
+<T
+ fr="Et de l'écume de vague"
+ en="And some sea foam"
+/>
+
 ---
 layout: image
 image: /panoramix-burnout/plan.png
@@ -143,8 +166,14 @@ title: Asterix va me chercher tous les ingrédients
 ---
 
 ::right::
-
-Il me faut du gui, <br />3 brins d'orges et de l'ecume de vague
+<T
+ fr="Il me faut du gui,"
+ en="I need some mistletoe,"
+/><br />
+<T
+ fr="3 brins d'orges et de l'ecume de vague"
+ en="three stalks of barley and some sea foam"
+/>
 
 ---
 layout: dialog
@@ -153,11 +182,18 @@ left: asterix:happy
 right: panoramix:happy
 title: Asterix OK
 ---
-Je vais aller t'en chercher
+
+<T
+ fr="Je vais aller t'en chercher"
+ en="I’ll go get some for you"
+/>
 
 ::right::
+<T
+ fr="Merci Asterix !"
+ en="Thanks Asterix!"
+/>
 
-Merci Asterix !
 ---
 layout: image
 image: /panoramix-burnout/plan.png
@@ -204,4 +240,3 @@ layout: image
 image: /panoramix-burnout/ifonix.png
 title: Ifonix
 ---
---- 

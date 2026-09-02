@@ -1,0 +1,14 @@
+node_modules
+**/node_modules
+dist
+**/dist
+.turbo
+**/.turbo
+.git
+.pnpm-store
+apps/api/data
+apps/api/**/*.sqlite
+.idea
+.vscode
+.DS_Store
+**/.DS_Store

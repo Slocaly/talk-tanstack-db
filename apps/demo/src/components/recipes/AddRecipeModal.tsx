@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { PlusIcon, Trash2Icon } from 'lucide-react';
 import type { CreateRecipeInput } from '@/lib/api';
 import type { Ingredient, RecipeIngredient } from '@/types/domain';

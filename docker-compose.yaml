@@ -6,26 +6,18 @@ services:
     restart: unless-stopped
     environment:
       - SERVICE_FQDN_SLIDES
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
+    expose:
+      - '80'
 
   demo:
     build:
       context: .
       dockerfile: apps/demo/Dockerfile
     restart: unless-stopped
-    depends_on:
-      - api
     environment:
       - SERVICE_FQDN_DEMO
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
+    expose:
+      - '80'
 
   api:
     build:
@@ -37,11 +29,8 @@ services:
       DATABASE_PATH: /data/village.sqlite
     volumes:
       - api_data:/data
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3001/api"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
+    expose:
+      - '3001'
 
 volumes:
   api_data:

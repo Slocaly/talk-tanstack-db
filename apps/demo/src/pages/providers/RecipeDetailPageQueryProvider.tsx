@@ -4,6 +4,7 @@ import { useRecipeDetailIngredientsCatalogQuery } from '@/hooks/useRecipeDetailI
 import { RecipeDetailPage } from '@/pages/RecipeDetailPage';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { useMemo } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -31,11 +32,11 @@ export function RecipeDetailPageQueryProvider() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Recette introuvable</CardTitle>
+          <CardTitle>{t('recipes.notFoundTitle')}</CardTitle>
         </CardHeader>
         <CardContent>
           <Button asChild variant="secondary">
-            <Link to={`${prefix}/recipes`}>Retour aux recettes</Link>
+            <Link to={`${prefix}/recipes`}>{t('recipes.returnToList')}</Link>
           </Button>
         </CardContent>
       </Card>

@@ -19,6 +19,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useIngredientsFilters } from '@/hooks/useIngredientsFilters';
+import { formatDate, t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { categoryLabels } from '@/lib/categoryLabels';
 import type { Ingredient, IngredientCategory } from '@/types/domain';
@@ -59,26 +60,26 @@ export function IngredientsPageLayout({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="mb-2 text-4xl text-foreground">Ingrédients</h1>
-        <p className="text-muted-foreground">
-          Cherchez, filtrez et ouvrez la fiche pour la carte et la récolte.
-        </p>
+        <h1 className="mb-2 text-4xl text-foreground">
+          {t('ingredients.title')}
+        </h1>
+        <p className="text-muted-foreground">{t('ingredients.subtitle')}</p>
       </div>
 
       <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-card/80 p-4">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-2">
-            <Label htmlFor="ing-search">Recherche</Label>
+            <Label htmlFor="ing-search">{t('common.search')}</Label>
             <Input
               id="ing-search"
-              placeholder="Nom, lieu, récolte, catégorie…"
+              placeholder={t('ingredients.searchPlaceholder')}
               value={search}
               onChange={(e) => setFilters({ search: e.target.value })}
-              aria-label="Recherche d’ingrédients"
+              aria-label={t('ingredients.searchAria')}
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="ing-cat">Catégorie</Label>
+            <Label htmlFor="ing-cat">{t('ingredients.category')}</Label>
             <Select
               value={category}
               onValueChange={(category) =>
@@ -87,13 +88,16 @@ export function IngredientsPageLayout({
                 })
               }
             >
-              <SelectTrigger id="ing-cat" aria-label="Filtrer par catégorie">
-                <SelectValue placeholder="Catégorie" />
+              <SelectTrigger
+                id="ing-cat"
+                aria-label={t('ingredients.categoryFilterAria')}
+              >
+                <SelectValue placeholder={t('ingredients.category')} />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((c) => (
                   <SelectItem key={c} value={c}>
-                    {c === 'tous' ? 'Toutes les catégories' : categoryLabels[c]}
+                    {c === 'tous' ? t('categories.all') : categoryLabels[c]}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -108,7 +112,7 @@ export function IngredientsPageLayout({
               onChange={(e) => setFilters({ expiringSoon: e.target.checked })}
               className="size-4 rounded border-2 border-foreground"
             />
-            Péremption dans les 7 jours
+            {t('ingredients.expiringSoon')}
           </label>
           <label className="flex cursor-pointer items-center gap-2 text-sm">
             <input
@@ -117,7 +121,7 @@ export function IngredientsPageLayout({
               onChange={(e) => setFilters({ inStockOnly: e.target.checked })}
               className="size-4 rounded border-2 border-foreground"
             />
-            Uniquement en stock
+            {t('ingredients.inStockOnly')}
           </label>
         </div>
       </div>
@@ -127,11 +131,13 @@ export function IngredientsPageLayout({
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Nom</TableHead>
-                <TableHead>Stock</TableHead>
-                <TableHead>Péremption</TableHead>
-                <TableHead>Catégorie</TableHead>
-                <TableHead className="text-right">Fiche</TableHead>
+                <TableHead>{t('ingredients.colName')}</TableHead>
+                <TableHead>{t('ingredients.colStock')}</TableHead>
+                <TableHead>{t('ingredients.colExpiry')}</TableHead>
+                <TableHead>{t('ingredients.colCategory')}</TableHead>
+                <TableHead className="text-right">
+                  {t('ingredients.colSheet')}
+                </TableHead>
               </TableRow>
             </TableHeader>
             {isPending ? (
@@ -144,7 +150,7 @@ export function IngredientsPageLayout({
                       colSpan={5}
                       className="text-center text-muted-foreground"
                     >
-                      Aucun ingrédient ne correspond aux filtres.
+                      {t('ingredients.empty')}
                     </TableCell>
                   </TableRow>
                 ) : (
@@ -156,7 +162,7 @@ export function IngredientsPageLayout({
                       </TableCell>
                       <TableCell>
                         <time dateTime={ing.dueDate}>
-                          {new Date(ing.dueDate).toLocaleDateString('fr-FR')}
+                          {formatDate(ing.dueDate)}
                         </time>
                       </TableCell>
                       <TableCell>
@@ -167,7 +173,7 @@ export function IngredientsPageLayout({
                       <TableCell className="text-right">
                         <Button asChild size="sm" variant="secondary">
                           <Link to={ingredientDetailTo} params={{ id: ing.id }}>
-                            Détails
+                            {t('common.details')}
                           </Link>
                         </Button>
                       </TableCell>

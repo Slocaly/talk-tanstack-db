@@ -11,6 +11,7 @@ import { categoryEmoji } from '@/lib/categoryEmoji';
 import { categoryLabels } from '@/lib/categoryLabels';
 import { MonoprixPriceTag } from '@/components/monoprix/MonoprixPriceTag';
 import { getMonoprixPrice } from '@/lib/monoprixPrice';
+import { t } from '@/i18n';
 import type { Ingredient } from '@/types/domain';
 
 type MonoprixProductCardProps = {
@@ -44,7 +45,7 @@ export function MonoprixProductCard({ ingredient }: MonoprixProductCardProps) {
           params={{ id: ingredient.id }}
           className="bd-comic-pill inline-flex w-full justify-center bg-[var(--monoprix-red)] px-3 py-2 text-sm font-bold text-white no-underline"
         >
-          Voir le produit
+          {t('monoprix.viewProduct')}
         </Link>
       </CardFooter>
     </Card>

@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { t } from '@/i18n';
 import { cn } from '@/lib/utils';
 
 type ListPaginationBarProps = {
@@ -42,8 +43,14 @@ export function ListPaginationBar({
       ) : (
         <p className="text-sm text-muted-foreground">
           {totalItems === 0
-            ? 'Aucun élément'
-            : `${from}–${to} sur ${totalItems} · page ${page} / ${totalPages}`}
+            ? t('pagination.empty')
+            : t('pagination.summary', {
+                from,
+                to,
+                total: totalItems,
+                page,
+                totalPages,
+              })}
         </p>
       )}
       <div className="flex flex-wrap items-center gap-2">
@@ -54,7 +61,7 @@ export function ListPaginationBar({
           disabled={navDisabled || page <= 1}
           onClick={() => onPageChange(page - 1)}
         >
-          Précédent
+          {t('pagination.previous')}
         </Button>
         <Button
           type="button"
@@ -63,7 +70,7 @@ export function ListPaginationBar({
           disabled={navDisabled || page >= totalPages}
           onClick={() => onPageChange(page + 1)}
         >
-          Suivant
+          {t('pagination.next')}
         </Button>
       </div>
     </div>

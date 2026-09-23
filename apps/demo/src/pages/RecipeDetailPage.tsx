@@ -19,6 +19,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Skeleton } from '@/components/ui/skeleton';
+import { t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { Badge } from '@/components/ui/badge';
 
@@ -41,18 +42,23 @@ export function RecipeDetailPage({
 
   useEffect(() => {
     if (recipe) {
-      document.title = `${recipe.name} — Recette`;
+      document.title = t('documentTitle.recipe', { name: recipe.name });
     }
   }, [recipe]);
 
-  const ingredientWithInfo = useMemo(() => ingredients.map((ingredient) => {
-    const ingredientInRecipe = recipe.ingredients.find((ri) => ri.ingredientId === ingredient.id);
-    const ingredientAmount = ingredientInRecipe?.amount ?? 0;
-    const stock = ingredient.quantity;
-    const ok = stock >= ingredientAmount;
-    return { ...ingredient, ingredientAmount, stock, ok };
-  }), [ingredients, recipe]);
-
+  const ingredientWithInfo = useMemo(
+    () =>
+      ingredients.map((ingredient) => {
+        const ingredientInRecipe = recipe.ingredients.find(
+          (ri) => ri.ingredientId === ingredient.id,
+        );
+        const ingredientAmount = ingredientInRecipe?.amount ?? 0;
+        const stock = ingredient.quantity;
+        const ok = stock >= ingredientAmount;
+        return { ...ingredient, ingredientAmount, stock, ok };
+      }),
+    [ingredients, recipe],
+  );
 
   const makable = ingredientWithInfo.every((ingredient) => ingredient.ok);
 
@@ -69,11 +75,9 @@ export function RecipeDetailPage({
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Erreur</CardTitle>
+          <CardTitle>{t('common.error')}</CardTitle>
           <CardDescription>
-            {error instanceof Error
-              ? error.message
-              : 'Chargement impossible'}
+            {error instanceof Error ? error.message : t('common.loadFailed')}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -84,12 +88,12 @@ export function RecipeDetailPage({
     <div className="space-y-6">
       <div>
         <Button asChild variant="outline" size="sm" className="mb-3">
-          <Link to={recipesListTo}>← Recettes</Link>
+          <Link to={recipesListTo}>{t('recipes.backToList')}</Link>
         </Button>
         <div className="flex flex-wrap items-center gap-3">
           <h1 className="text-4xl text-foreground">{recipe.name}</h1>
           <Badge variant={makable ? 'default' : 'destructive'}>
-            {makable ? 'Réalisable' : 'Stock insuffisant'}
+            {makable ? t('recipes.makable') : t('recipes.insufficientStock')}
           </Badge>
         </div>
         {recipe.description && (
@@ -99,21 +103,20 @@ export function RecipeDetailPage({
 
       <Card>
         <CardHeader>
-          <CardTitle>Ingrédients et stock</CardTitle>
-          <CardDescription>
-            Quantités requises face au stock du village (lien vers chaque
-            fiche).
-          </CardDescription>
+          <CardTitle>{t('recipes.ingredientsStockTitle')}</CardTitle>
+          <CardDescription>{t('recipes.ingredientsStockDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Ingrédient</TableHead>
-                  <TableHead>Requis</TableHead>
-                  <TableHead>En stock</TableHead>
-                  <TableHead className="text-right">Fiche</TableHead>
+                  <TableHead>{t('recipes.colIngredient')}</TableHead>
+                  <TableHead>{t('recipes.colRequired')}</TableHead>
+                  <TableHead>{t('recipes.colInStock')}</TableHead>
+                  <TableHead className="text-right">
+                    {t('recipes.colSheet')}
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -126,13 +129,18 @@ export function RecipeDetailPage({
                       <TableCell>{ingredient.ingredientAmount}</TableCell>
                       <TableCell>
                         <span
-                          className={ingredient.ok ? 'text-primary' : 'text-destructive'}
+                          className={
+                            ingredient.ok ? 'text-primary' : 'text-destructive'
+                          }
                         >
                           {ingredient.stock}
                         </span>
                         {!ingredient.ok && (
                           <span className="ml-2 text-xs text-muted-foreground">
-                            (manque {ingredient.ingredientAmount - ingredient.stock})
+                            {t('recipes.missingAmount', {
+                              amount:
+                                ingredient.ingredientAmount - ingredient.stock,
+                            })}
                           </span>
                         )}
                       </TableCell>
@@ -142,7 +150,7 @@ export function RecipeDetailPage({
                             to={ingredientDetailTo}
                             params={{ id: ingredient.id }}
                           >
-                            Détails
+                            {t('common.details')}
                           </Link>
                         </Button>
                       </TableCell>
@@ -154,8 +162,7 @@ export function RecipeDetailPage({
           </div>
           <Separator />
           <p className="text-sm text-muted-foreground">
-            Les unités sont celles du stock (kg, fioles, miches, etc.) —
-            comparaison indicative pour la démo.
+            {t('recipes.unitsNote')}
           </p>
         </CardContent>
       </Card>

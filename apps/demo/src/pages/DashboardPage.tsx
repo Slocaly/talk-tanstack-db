@@ -13,8 +13,10 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+import { formatDate, t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { categoryLabels } from '@/lib/categoryLabels';
+
 export type DashboardPageProps = {
   dashboardQuery: UseQueryResult<DashboardSummary, Error>;
 };
@@ -27,7 +29,7 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
   const recipesIndexTo = `${prefix}/recipes` as const;
 
   useEffect(() => {
-    document.title = 'Village — Stock du village gaulois';
+    document.title = t('documentTitle.village');
   }, []);
 
   if (isPending) {
@@ -48,14 +50,14 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Impossible de charger le village</CardTitle>
+          <CardTitle>{t('dashboard.loadErrorTitle')}</CardTitle>
           <CardDescription>
-            {error instanceof Error ? error.message : 'Erreur inconnue'}
+            {error instanceof Error ? error.message : t('common.unknownError')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Button type="button" onClick={() => void refetch()}>
-            Réessayer
+            {t('common.retry')}
           </Button>
         </CardContent>
       </Card>
@@ -67,11 +69,8 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="mb-2 text-4xl text-foreground">Tableau de bord</h1>
-        <p className="text-muted-foreground">
-          Vue d’ensemble des réserves avant le prochain banquet — ou la
-          prochaine patrouille romaine.
-        </p>
+        <h1 className="mb-2 text-4xl text-foreground">{t('dashboard.title')}</h1>
+        <p className="text-muted-foreground">{t('dashboard.subtitle')}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -79,10 +78,8 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
           <CardHeader className="flex flex-row items-center gap-2 space-y-0">
             <Package className="size-8 text-primary" aria-hidden />
             <div>
-              <CardTitle>Références en stock</CardTitle>
-              <CardDescription>
-                Types d’ingrédients avec quantité {'>'} 0
-              </CardDescription>
+              <CardTitle>{t('dashboard.stockRefsTitle')}</CardTitle>
+              <CardDescription>{t('dashboard.stockRefsDesc')}</CardDescription>
             </div>
           </CardHeader>
           <CardContent>
@@ -96,10 +93,8 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
           <CardHeader className="flex flex-row items-center gap-2 space-y-0">
             <ChefHat className="size-8 text-secondary" aria-hidden />
             <div>
-              <CardTitle>Unités au total</CardTitle>
-              <CardDescription>
-                Somme des quantités (toutes unités confondues)
-              </CardDescription>
+              <CardTitle>{t('dashboard.totalUnitsTitle')}</CardTitle>
+              <CardDescription>{t('dashboard.totalUnitsDesc')}</CardDescription>
             </div>
           </CardHeader>
           <CardContent>
@@ -116,10 +111,8 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
               aria-hidden
             />
             <div>
-              <CardTitle>Prochaine péremption</CardTitle>
-              <CardDescription>
-                Article le plus urgent encore en stock
-              </CardDescription>
+              <CardTitle>{t('dashboard.nextExpiryTitle')}</CardTitle>
+              <CardDescription>{t('dashboard.nextExpiryDesc')}</CardDescription>
             </div>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -133,11 +126,9 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
                   {next.name}
                 </Link>
                 <p className="text-sm text-muted-foreground">
-                  Date limite :{' '}
+                  {t('dashboard.dueDate')}{' '}
                   <time dateTime={next.dueDate}>
-                    {new Date(next.dueDate).toLocaleDateString('fr-FR', {
-                      dateStyle: 'long',
-                    })}
+                    {formatDate(next.dueDate, { dateStyle: 'long' })}
                   </time>
                 </p>
                 <Badge variant="secondary">
@@ -145,7 +136,7 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
                 </Badge>
               </>
             ) : (
-              <p className="text-muted-foreground">Aucun stock disponible.</p>
+              <p className="text-muted-foreground">{t('dashboard.noStock')}</p>
             )}
           </CardContent>
         </Card>
@@ -154,10 +145,8 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
           <CardHeader className="flex flex-row items-center gap-2 space-y-0">
             <TriangleAlert className="size-8 text-destructive" aria-hidden />
             <div>
-              <CardTitle>Alertes</CardTitle>
-              <CardDescription>
-                Péremption sous 7 jours et petits stocks
-              </CardDescription>
+              <CardTitle>{t('dashboard.alertsTitle')}</CardTitle>
+              <CardDescription>{t('dashboard.alertsDesc')}</CardDescription>
             </div>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
@@ -165,13 +154,13 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
               <span className="font-semibold text-destructive">
                 {data.expiringWithin7Days}
               </span>{' '}
-              référence(s) à consommer dans les 7 jours.
+              {t('dashboard.expiringRefs')}
             </p>
             <p>
               <span className="font-semibold text-foreground">
                 {data.lowStockCount}
               </span>{' '}
-              référence(s) avec stock très bas (≤ 2).
+              {t('dashboard.lowStockRefs')}
             </p>
           </CardContent>
         </Card>
@@ -179,10 +168,10 @@ export function DashboardPage({ dashboardQuery }: DashboardPageProps) {
 
       <div className="flex flex-wrap gap-3">
         <Button asChild>
-          <Link to={ingredientsIndexTo}>Voir tous les ingrédients</Link>
+          <Link to={ingredientsIndexTo}>{t('dashboard.viewIngredients')}</Link>
         </Button>
         <Button asChild variant="secondary">
-          <Link to={recipesIndexTo}>Consulter les recettes</Link>
+          <Link to={recipesIndexTo}>{t('dashboard.viewRecipes')}</Link>
         </Button>
       </div>
     </div>

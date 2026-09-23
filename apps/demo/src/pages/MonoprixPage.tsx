@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useMonoprixFilters } from '@/hooks/useMonoprixFilters';
+import { t } from '@/i18n';
 import type { Ingredient } from '@/types/domain';
 
 export type MonoprixPageProps = {
@@ -32,19 +33,19 @@ export function MonoprixPage({
   } = useMonoprixFilters();
 
   useEffect(() => {
-    document.title = 'Monoprix — Le village en promo';
+    document.title = t('documentTitle.monoprix');
   }, []);
 
   if (error) {
     return (
       <MonoprixStoreLayout>
         <div className="rounded-xl border-4 border-destructive bg-white p-6">
-          <p className="font-semibold">Impossible de charger le rayon</p>
+          <p className="font-semibold">{t('monoprix.loadError')}</p>
           <p className="text-sm text-muted-foreground">
-            {error instanceof Error ? error.message : 'Erreur'}
+            {error instanceof Error ? error.message : t('common.error')}
           </p>
           <Button type="button" className="mt-4" onClick={refetch}>
-            Réessayer
+            {t('common.retry')}
           </Button>
         </div>
       </MonoprixStoreLayout>
@@ -54,16 +55,14 @@ export function MonoprixPage({
   return (
     <MonoprixStoreLayout>
       <div className="space-y-6">
-        <p className="text-muted-foreground">
-          Tout pour cuisiner le sanglier — prix du jour, stock du village.
-        </p>
+        <p className="text-muted-foreground">{t('monoprix.intro')}</p>
 
         <div className="rounded-xl border-2 border-[var(--bd-ink)] bg-white/90 p-4">
-          <Label htmlFor="monoprix-search">Rechercher un produit</Label>
+          <Label htmlFor="monoprix-search">{t('monoprix.searchLabel')}</Label>
           <Input
             id="monoprix-search"
             type="search"
-            placeholder="Nom, catégorie…"
+            placeholder={t('monoprix.searchPlaceholder')}
             value={search}
             className="mt-2"
             onChange={(e) => setFilters({ search: e.target.value, page: 1 })}
@@ -83,7 +82,7 @@ export function MonoprixPage({
             : ingredients.length === 0
               ? (
                 <li className="col-span-full text-center text-muted-foreground">
-                  Aucun produit dans ce rayon.
+                  {t('monoprix.empty')}
                 </li>
                 )
               : ingredients.map((ingredient) => (

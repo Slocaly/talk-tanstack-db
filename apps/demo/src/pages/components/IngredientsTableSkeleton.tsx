@@ -1,5 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { TableBody, TableCell, TableRow } from '@/components/ui/table';
+import { t } from '@/i18n';
 
 type IngredientsTableSkeletonProps = {
   rows: number;
@@ -10,7 +11,7 @@ export function IngredientsTableSkeleton({
 }: IngredientsTableSkeletonProps) {
   const n = Math.min(Math.max(1, rows), 24);
   return (
-    <TableBody aria-busy="true" aria-label="Chargement des ingrédients">
+    <TableBody aria-busy="true" aria-label={t('ingredients.loadingAria')}>
       {Array.from({ length: n }, (_, i) => (
         <TableRow key={i}>
           <TableCell>

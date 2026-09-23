@@ -1,5 +1,12 @@
 import type { IngredientsFilters } from '@/hooks/useIngredientsFilters';
 import type { RecipesFilters } from '@/hooks/useRecipesFilters';
+import {
+  localizeDashboardSummary,
+  localizeIngredient,
+  localizeIngredients,
+  localizeRecipe,
+  localizeRecipes,
+} from '@/i18n/localizeContent';
 import type { AppPathPrefix } from '@/lib/appPathPrefix';
 import type {
   DashboardSummary,
@@ -82,7 +89,7 @@ function tsqRecipeListParams(
 
 export async function listIngredientsDB(): Promise<Ingredient[]> {
   const res = await fetch(`${apiRoot('/tsdb')}/ingredients`);
-  return parseJson(res);
+  return localizeIngredients(await parseJson(res));
 }
 
 export async function listIngredients(
@@ -93,7 +100,8 @@ export async function listIngredients(
     `${apiRoot(prefix)}/ingredients?${tsqListParams(filters, filters?.pageSize ?? 10)}`,
   );
 
-  return parseJson(res);
+  const page = await parseJson<PaginatedList<Ingredient>>(res);
+  return { ...page, items: localizeIngredients(page.items) };
 }
 
 export async function getIngredient(
@@ -104,7 +112,7 @@ export async function getIngredient(
     `${apiRoot(prefix)}/ingredients/${encodeURIComponent(id)}`,
   );
   if (res.status === 404) return null;
-  return parseJson(res);
+  return localizeIngredient(await parseJson(res));
 }
 
 export async function updateIngredientQuantity(
@@ -120,12 +128,12 @@ export async function updateIngredientQuantity(
       body: JSON.stringify({ quantity: newQuantity }),
     },
   );
-  return parseJson(res);
+  return localizeIngredient(await parseJson(res));
 }
 
 export async function listRecipesDB(): Promise<Recipe[]> {
   const res = await fetch(`${apiRoot('/tsdb')}/recipes`);
-  return parseJson(res);
+  return localizeRecipes(await parseJson(res));
 }
 
 export async function listRecipes(
@@ -135,7 +143,8 @@ export async function listRecipes(
   const res = await fetch(
     `${apiRoot(prefix)}/recipes?${tsqRecipeListParams(filters, filters.pageSize)}`,
   );
-  return parseJson(res);
+  const page = await parseJson<PaginatedList<Recipe>>(res);
+  return { ...page, items: localizeRecipes(page.items) };
 }
 
 export async function getRecipe(
@@ -146,7 +155,7 @@ export async function getRecipe(
     `${apiRoot(prefix)}/recipes/${encodeURIComponent(id)}`,
   );
   if (res.status === 404) return null;
-  return parseJson(res);
+  return localizeRecipe(await parseJson(res));
 }
 
 export async function createRecipe(
@@ -158,14 +167,14 @@ export async function createRecipe(
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
   });
-  return parseJson(res);
+  return localizeRecipe(await parseJson(res));
 }
 
 export async function getDashboardSummary(
   prefix: AppPathPrefix,
 ): Promise<DashboardSummary> {
   const res = await fetch(`${apiRoot(prefix)}/dashboard/summary`);
-  return parseJson(res);
+  return localizeDashboardSummary(await parseJson(res));
 }
 
 export function isRecipeMakable(

@@ -2,6 +2,7 @@ import { useParams } from '@tanstack/react-router';
 import { IngredientDetailPage } from '@/pages/IngredientDetailPage';
 import { eq, useLiveQuery } from '@tanstack/react-db';
 import { ingredientCollection } from '@/collections/ingredient-collection';
+import { t } from '@/i18n';
 
 export function IngredientDetailPageDBProvider() {
   const { id } = useParams({ strict: false });
@@ -17,7 +18,7 @@ export function IngredientDetailPageDBProvider() {
       id={id}
       ingredient={ingredient ?? null}
       isPending={isPending}
-      error={isError ? new Error('Erreur lors de la récupération de l\'ingrédient') : null}
+      error={isError ? new Error(t('ingredients.fetchError')) : null}
       refetch={() => { }}
     />
   );

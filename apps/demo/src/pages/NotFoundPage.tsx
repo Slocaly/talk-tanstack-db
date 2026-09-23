@@ -8,24 +8,23 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { t } from '@/i18n';
 
 export function NotFoundPage() {
   useEffect(() => {
-    document.title = 'Page introuvable — Stock du village gaulois';
+    document.title = t('documentTitle.notFound');
   }, []);
 
   return (
     <Card className="mx-auto max-w-lg text-center">
       <CardHeader>
-        <CardTitle className="text-3xl">Par Toutatis !</CardTitle>
-        <CardDescription>
-          Cette page s’est enfuie comme un légionnaire devant un sanglier.
-        </CardDescription>
+        <CardTitle className="text-3xl">{t('notFound.title')}</CardTitle>
+        <CardDescription>{t('notFound.description')}</CardDescription>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
-        <p className="text-muted-foreground">Erreur 404 — chemin inconnu.</p>
+        <p className="text-muted-foreground">{t('notFound.code')}</p>
         <Button asChild>
-          <Link to="/tsq">Retour au village</Link>
+          <Link to="/tsq">{t('notFound.backHome')}</Link>
         </Button>
       </CardContent>
     </Card>

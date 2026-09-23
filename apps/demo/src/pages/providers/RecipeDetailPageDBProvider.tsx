@@ -6,6 +6,7 @@ import { ingredientCollection } from '@/collections/ingredient-collection';
 import { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 
 export function RecipeDetailPageDBProvider() {
@@ -33,11 +34,11 @@ export function RecipeDetailPageDBProvider() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Recette introuvable</CardTitle>
+          <CardTitle>{t('recipes.notFoundTitle')}</CardTitle>
         </CardHeader>
         <CardContent>
           <Button asChild variant="secondary">
-            <Link to={`${prefix}/recipes`}>Retour aux recettes</Link>
+            <Link to={`${prefix}/recipes`}>{t('recipes.returnToList')}</Link>
           </Button>
         </CardContent>
       </Card>
@@ -49,7 +50,7 @@ export function RecipeDetailPageDBProvider() {
       recipe={recipe}
       ingredients={ingredients ?? []}
       isPending={isLoading}
-      error={isError ? new Error('Erreur lors de la récupération de la recette') : null}
+      error={isError ? new Error(t('recipes.fetchOneError')) : null}
     />
   );
 }

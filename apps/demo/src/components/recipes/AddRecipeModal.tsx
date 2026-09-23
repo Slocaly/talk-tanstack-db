@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { t } from '@/i18n';
 
 type IngredientLine = {
   key: string;
@@ -62,7 +63,7 @@ export function AddRecipeModal({
     event.preventDefault();
     const trimmedName = name.trim();
     if (!trimmedName) {
-      setValidationError('Le nom de la recette est requis.');
+      setValidationError(t('addRecipe.nameRequired'));
       return;
     }
 
@@ -71,7 +72,7 @@ export function AddRecipeModal({
       if (!line.ingredientId) continue;
       const amount = Number.parseFloat(line.amount);
       if (!Number.isFinite(amount) || amount <= 0) {
-        setValidationError('Chaque quantité doit être un nombre positif.');
+        setValidationError(t('addRecipe.amountPositive'));
         return;
       }
       recipeIngredients.push({
@@ -100,46 +101,51 @@ export function AddRecipeModal({
 
   const displayError =
     validationError ??
-    (error instanceof Error ? error.message : error ? 'Erreur' : null);
+    (error instanceof Error
+      ? error.message
+      : error
+        ? t('common.error')
+        : null);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-h-[min(90vh,720px)] overflow-y-auto sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>Nouvelle recette</DialogTitle>
-          <DialogDescription>
-            Ajoutez un plat au livre du village. Les ingrédients sont optionnels
-            pour commencer.
-          </DialogDescription>
+          <DialogTitle>{t('addRecipe.title')}</DialogTitle>
+          <DialogDescription>{t('addRecipe.description')}</DialogDescription>
         </DialogHeader>
 
         <form className="space-y-4" onSubmit={(e) => void handleSubmit(e)}>
           <div className="space-y-2">
-            <Label htmlFor="recipe-name">Nom</Label>
+            <Label htmlFor="recipe-name">{t('common.name')}</Label>
             <Input
               id="recipe-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Ex. Ragoût du druide"
+              placeholder={t('addRecipe.namePlaceholder')}
               required
               autoFocus
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="recipe-description">Description</Label>
+            <Label htmlFor="recipe-description">
+              {t('addRecipe.descriptionLabel')}
+            </Label>
             <textarea
               id="recipe-description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Une courte histoire autour du plat…"
+              placeholder={t('addRecipe.descriptionPlaceholder')}
               rows={3}
               className="flex min-h-[4.5rem] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 md:text-sm dark:bg-input/30"
             />
           </div>
 
           <fieldset className="space-y-3">
-            <legend className="text-sm font-medium">Ingrédients</legend>
+            <legend className="text-sm font-medium">
+              {t('addRecipe.ingredients')}
+            </legend>
             <ul className="space-y-3 p-0">
               {lines.map((line, index) => (
                 <li
@@ -147,8 +153,11 @@ export function AddRecipeModal({
                   className="grid gap-2 rounded-lg border border-border/80 bg-background/60 p-3 sm:grid-cols-[1fr_6rem_auto]"
                 >
                   <div className="space-y-1.5">
-                    <Label className="sr-only" htmlFor={`ingredient-${line.key}`}>
-                      Ingrédient {index + 1}
+                    <Label
+                      className="sr-only"
+                      htmlFor={`ingredient-${line.key}`}
+                    >
+                      {t('addRecipe.ingredientN', { n: index + 1 })}
                     </Label>
                     <Select
                       value={line.ingredientId || undefined}
@@ -166,7 +175,9 @@ export function AddRecipeModal({
                         id={`ingredient-${line.key}`}
                         className="w-full"
                       >
-                        <SelectValue placeholder="Choisir un ingrédient" />
+                        <SelectValue
+                          placeholder={t('addRecipe.chooseIngredient')}
+                        />
                       </SelectTrigger>
                       <SelectContent>
                         {ingredients.map((ingredient) => (
@@ -179,7 +190,7 @@ export function AddRecipeModal({
                   </div>
                   <div className="space-y-1.5">
                     <Label className="sr-only" htmlFor={`amount-${line.key}`}>
-                      Quantité
+                      {t('addRecipe.quantity')}
                     </Label>
                     <Input
                       id={`amount-${line.key}`}
@@ -196,7 +207,7 @@ export function AddRecipeModal({
                           ),
                         )
                       }
-                      aria-label="Quantité"
+                      aria-label={t('addRecipe.quantity')}
                     />
                   </div>
                   <Button
@@ -210,7 +221,7 @@ export function AddRecipeModal({
                         prev.filter((row) => row.key !== line.key),
                       )
                     }
-                    aria-label="Retirer la ligne"
+                    aria-label={t('addRecipe.removeLine')}
                   >
                     <Trash2Icon />
                   </Button>
@@ -224,7 +235,7 @@ export function AddRecipeModal({
               onClick={() => setLines((prev) => [...prev, emptyLine()])}
             >
               <PlusIcon />
-              Ajouter un ingrédient
+              {t('addRecipe.addIngredient')}
             </Button>
           </fieldset>
 
@@ -241,10 +252,10 @@ export function AddRecipeModal({
               onClick={() => onOpenChange(false)}
               disabled={isPending}
             >
-              Annuler
+              {t('common.cancel')}
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? 'Enregistrement…' : 'Créer la recette'}
+              {isPending ? t('common.saving') : t('addRecipe.create')}
             </Button>
           </DialogFooter>
         </form>

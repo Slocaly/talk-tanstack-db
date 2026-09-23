@@ -2,6 +2,7 @@ import { ingredientCollection } from '@/collections/ingredient-collection';
 import { recipeCollection } from '@/collections/recipe-collection';
 import { useRecipesFilters } from '@/hooks/useRecipesFilters';
 import type { CreateRecipeInput } from '@/lib/api';
+import { t } from '@/i18n';
 import { slugifyRecipeName } from '@/lib/recipeId';
 import { RecipesPage } from '@/pages/RecipesPage';
 import { ilike, useLiveQuery } from '@tanstack/react-db';
@@ -40,7 +41,7 @@ export function RecipesPageDBProvider() {
       await tx.isPersisted.promise;
     } catch (err) {
       const next =
-        err instanceof Error ? err : new Error('Impossible de créer la recette');
+        err instanceof Error ? err : new Error(t('recipes.createError'));
       setAddRecipeError(next);
       throw next;
     } finally {
@@ -52,7 +53,7 @@ export function RecipesPageDBProvider() {
     <RecipesPage
       recipes={recipes}
       isPending={isPending}
-      error={error ? new Error('Erreur lors de la récupération des recettes') : null}
+      error={error ? new Error(t('recipes.fetchError')) : null}
       refetch={() => { }}
       totalItems={recipes?.length ?? 0}
       totalPages={100}

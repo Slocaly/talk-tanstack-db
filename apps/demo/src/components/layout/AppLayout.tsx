@@ -1,5 +1,6 @@
 import { Link, Outlet, useRouterState } from '@tanstack/react-router';
 import { useDemoStackToggleHotkey } from '@/hooks/useDemoStackToggleHotkey';
+import { t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { demoLibraryAccentHex } from '@/lib/demoLibraryAccent';
 import { cn } from '@/lib/utils';
@@ -15,9 +16,9 @@ export function AppLayout() {
   const accent = demoLibraryAccentHex(prefix);
   const villageTo = prefix === '/tsq' ? '/tsq' : '/tsdb';
   const nav = [
-    { to: villageTo, label: 'Village' },
-    { to: `${prefix}/ingredients`, label: 'Ingrédients' },
-    { to: `${prefix}/recipes`, label: 'Recettes' },
+    { to: villageTo, label: t('nav.village') },
+    { to: `${prefix}/ingredients`, label: t('nav.ingredients') },
+    { to: `${prefix}/recipes`, label: t('nav.recipes') },
   ];
 
   if (isMonoprixPath(pathname)) {
@@ -40,11 +41,11 @@ export function AppLayout() {
             to={villageTo}
             className="bd-comic-wordmark pl-10 font-[family-name:var(--font-display)] text-2xl tracking-wide text-foreground no-underline sm:text-3xl"
           >
-            Stock du village gaulois
+            {t('app.brand')}
           </Link>
           <nav
             className="flex flex-wrap justify-center gap-2 sm:justify-end"
-            aria-label="Navigation principale"
+            aria-label={t('app.navAria')}
           >
             {nav.map(({ to, label }) => (
               <Link
@@ -62,7 +63,7 @@ export function AppLayout() {
         <Outlet />
       </main>
       <footer className="bd-comic-footer mt-auto px-4 py-4 text-center text-sm text-muted-foreground sm:px-6 lg:px-8">
-        Par Toutatis ! — suivez les dates de péremption et respectez le druide.
+        {t('app.footer')}
       </footer>
     </div>
   );

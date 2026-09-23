@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
+import { t } from '@/i18n';
 import { getMonoprixReturnTo } from '@/lib/monoprixReturnTo';
 
 type MonoprixStoreLayoutProps = {
@@ -25,7 +26,7 @@ export function MonoprixStoreLayout({
               Monoprix
             </Link>
             <p className="mt-1 text-sm font-semibold text-white/90 sm:text-base">
-              Le village en promo
+              {t('monoprix.tagline')}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -33,14 +34,14 @@ export function MonoprixStoreLayout({
               to={returnTo}
               className="bd-comic-pill inline-flex w-fit bg-white/90 px-4 py-2 text-sm font-bold text-[var(--monoprix-red)] no-underline"
             >
-              ← Retour au village
+              {t('monoprix.backToVillage')}
             </Link>
             {showBackToCatalog ? (
               <Link
                 to="/tsq/monoprix"
                 className="bd-comic-pill inline-flex w-fit bg-white px-4 py-2 text-sm font-bold text-[var(--monoprix-red)] no-underline"
               >
-                ← Tous les rayons
+                {t('monoprix.allAisles')}
               </Link>
             ) : null}
           </div>
@@ -50,7 +51,7 @@ export function MonoprixStoreLayout({
         {children}
       </main>
       <footer className="border-t-4 border-[var(--bd-ink)] bg-white/80 px-4 py-4 text-center text-sm text-muted-foreground">
-        Prix affichés à titre gaulois — Par Toutatis, vérifiez la date limite.
+        {t('monoprix.footer')}
       </footer>
     </div>
   );

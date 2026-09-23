@@ -17,6 +17,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Skeleton } from '@/components/ui/skeleton';
+import { t } from '@/i18n';
 import { useAppPathPrefix } from '@/lib/appPathPrefix';
 import { useRecipesFilters } from '@/hooks/useRecipesFilters';
 
@@ -51,22 +52,23 @@ export function RecipesPage({
     filters: { search, makableOnly, page, pageSize },
     setFilters,
   } = useRecipesFilters();
-  const canAddRecipe = onAddRecipe !== undefined && ingredientsForAdd !== undefined;
+  const canAddRecipe =
+    onAddRecipe !== undefined && ingredientsForAdd !== undefined;
 
   useEffect(() => {
-    document.title = 'Recettes — Stock du village gaulois';
+    document.title = t('documentTitle.recipes');
   }, []);
 
   if (error) {
     return (
       <div className="rounded-xl border-2 border-destructive p-6">
-        <p className="font-semibold">Impossible de charger les recettes</p>
+        <p className="font-semibold">{t('recipes.loadError')}</p>
         <p className="text-sm text-muted-foreground">
-          {error instanceof Error ? error.message : 'Erreur'}
+          {error instanceof Error ? error.message : t('common.error')}
         </p>
         <div className="mt-4 flex gap-2">
           <Button type="button" onClick={refetch}>
-            Réessayer
+            {t('common.retry')}
           </Button>
         </div>
       </div>
@@ -77,16 +79,13 @@ export function RecipesPage({
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="mb-2 text-4xl text-foreground">Recettes</h1>
-          <p className="text-muted-foreground">
-            Recherchez par nom, description ou ingrédient ; combinez avec le
-            filtre stock.
-          </p>
+          <h1 className="mb-2 text-4xl text-foreground">{t('recipes.title')}</h1>
+          <p className="text-muted-foreground">{t('recipes.subtitle')}</p>
         </div>
         {canAddRecipe && (
           <Button type="button" onClick={() => setAddModalOpen(true)}>
             <PlusIcon />
-            Ajouter une recette
+            {t('recipes.addRecipe')}
           </Button>
         )}
       </div>
@@ -104,14 +103,14 @@ export function RecipesPage({
 
       <div className="flex flex-col gap-4 rounded-xl border-2 border-border bg-card/80 p-4">
         <div className="space-y-2">
-          <Label htmlFor="recipe-search">Recherche</Label>
+          <Label htmlFor="recipe-search">{t('common.search')}</Label>
           <Input
             id="recipe-search"
             type="search"
-            placeholder="Nom de recette, mot-clé, ingrédient…"
+            placeholder={t('recipes.searchPlaceholder')}
             value={search}
             onChange={(e) => setFilters({ search: e.target.value })}
-            aria-label="Recherche de recettes"
+            aria-label={t('recipes.searchAria')}
           />
         </div>
         <Label className="flex cursor-pointer items-center gap-2 text-sm font-normal">
@@ -120,9 +119,9 @@ export function RecipesPage({
             checked={makableOnly}
             onChange={(e) => setFilters({ makableOnly: e.target.checked })}
             className="size-4 rounded border-2 border-foreground"
-            aria-label="Afficher uniquement les recettes réalisables avec le stock"
+            aria-label={t('recipes.makableFilterAria')}
           />
-          Réalisable avec le stock actuel
+          {t('recipes.makableFilter')}
         </Label>
       </div>
 
@@ -152,7 +151,7 @@ export function RecipesPage({
           ))
         ) : recipes.length === 0 ? (
           <li className="col-span-full text-center text-muted-foreground">
-            Aucune recette ne correspond à la recherche ou aux filtres.
+            {t('recipes.empty')}
           </li>
         ) : (
           recipes.map((recipe) => {
@@ -162,7 +161,7 @@ export function RecipesPage({
                   <CardHeader>
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <CardTitle className="text-xl">{recipe.name}</CardTitle>
-                      <Badge variant="default">Faisable</Badge>
+                      <Badge variant="default">{t('recipes.makableBadge')}</Badge>
                     </div>
                     {recipe.description && (
                       <CardDescription>{recipe.description}</CardDescription>
@@ -174,7 +173,7 @@ export function RecipesPage({
                         to={`${prefix}/recipes/$id`}
                         params={{ id: recipe.id }}
                       >
-                        Voir la recette
+                        {t('recipes.viewRecipe')}
                       </Link>
                     </Button>
                   </CardContent>

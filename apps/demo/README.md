@@ -5,10 +5,21 @@ Small front-end for the **talk-tanstack-db** monorepo: a playful “Gaulish vill
 ## What you can do
 
 - **Village (dashboard)** — Counts, low-stock hints, and the next ingredient nearing expiry.
-- **Ingrédients** — List of ingredients with categories; open a row for **detail**, a **map** (where to find / harvest), and **adjust stock** (PATCH quantity, then lists and dashboard refresh).
-- **Recettes** — Recipes with required ingredients; the UI can tell whether a recipe is **makable** from current stock.
+- **Ingredients** — List of ingredients with categories; open a row for **detail**, a **map** (where to find / harvest), and **adjust stock** (PATCH quantity, then lists and dashboard refresh).
+- **Recipes** — Recipes with required ingredients; the UI can tell whether a recipe is **makable** from current stock.
 
-The copy and labels are mostly in French to match the theme.
+## Internationalization
+
+UI copy is localized via a small i18n helper (`src/i18n`). Locale is selected at build/dev time with:
+
+```bash
+VITE_LOCALE=en   # English
+VITE_LOCALE=fr   # French (default if unset)
+```
+
+Copy `.env.example` to `.env` to switch languages, then restart the Vite dev server.
+
+API seed content (ingredient/recipe names and blurbs) stays French on the server. When `VITE_LOCALE=en`, the demo overlays English copy by entity `id` in `src/i18n/content/` as responses are parsed (`src/lib/api.ts`).
 
 ## Routes
 

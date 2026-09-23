@@ -1,5 +1,6 @@
 import { Link, useLocation } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
+import { t } from '@/i18n';
 import { setMonoprixReturnTo } from '@/lib/monoprixReturnTo';
 import { cn } from '@/lib/utils';
 
@@ -8,7 +9,7 @@ type MonoprixAdProps = {
   ingredientName: string;
 };
 
-/** Chance d’afficher la pub à chaque chargement de la fiche (0–1). */
+/** Chance of showing the ad on each product page load (0–1). */
 const MONOPRIX_AD_SHOW_PROBABILITY = 1;
 
 export function MonoprixAd({ ingredientId, ingredientName }: MonoprixAdProps) {
@@ -35,16 +36,16 @@ export function MonoprixAd({ ingredientId, ingredientName }: MonoprixAdProps) {
         'monoprix-ad block rounded-xl border-4 border-[var(--bd-ink)] no-underline outline-offset-4',
         'focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--monoprix-red)]',
       )}
-      aria-label={`Publicité Monoprix : ${ingredientName}. Ouvrir la fiche au magasin.`}
+      aria-label={t('monoprix.adAria', { name: ingredientName })}
     >
       <span className="monoprix-ad-flash" aria-hidden>
-        Prix choc !
+        {t('monoprix.adFlash')}
       </span>
-      <p className="monoprix-ad-title">En rayon chez Monoprix !</p>
+      <p className="monoprix-ad-title">{t('monoprix.adTitle')}</p>
       <p className="monoprix-ad-body">
-        <strong>{ingredientName}</strong> — bon état, odeur de forêt acceptée.
+        <strong>{ingredientName}</strong> {t('monoprix.adBodySuffix')}
       </p>
-      <p className="monoprix-ad-hint">Voir en magasin →</p>
+      <p className="monoprix-ad-hint">{t('monoprix.adHint')}</p>
     </Link>
   );
 }

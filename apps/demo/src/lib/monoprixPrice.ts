@@ -1,4 +1,5 @@
 import type { Ingredient, IngredientCategory } from '@/types/domain';
+import { formatNumber, t } from '@/i18n';
 
 const categoryMultiplier: Record<IngredientCategory, number> = {
   viande: 1.4,
@@ -20,8 +21,9 @@ function hashId(id: string): number {
 
 function formatSesterces(amount: number): string {
   const rounded = Math.round(amount);
-  const label = rounded <= 1 ? 'sesterce' : 'sesterces';
-  return `${rounded.toLocaleString('fr-FR')} ${label}`;
+  const label =
+    rounded <= 1 ? t('monoprix.sesterce') : t('monoprix.sesterces');
+  return `${formatNumber(rounded)} ${label}`;
 }
 
 export type MonoprixPrice = {
@@ -37,6 +39,6 @@ export function getMonoprixPrice(ingredient: Ingredient): MonoprixPrice {
   return {
     sesterces,
     formatted: formatSesterces(sesterces),
-    perUnit: `le ${ingredient.unit}`,
+    perUnit: t('monoprix.perUnit', { unit: ingredient.unit }),
   };
 }

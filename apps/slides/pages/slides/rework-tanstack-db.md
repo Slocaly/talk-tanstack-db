@@ -44,7 +44,7 @@ layout: radial-gradient
   <div v-click="1" class="citation-reveal flex h-full flex-col items-center justify-center gap-4 px-8 pt-32">
     <div class="comic-panel citation__quote">
       <blockquote class="citation__text">
-        Une couche de <span class="text-red font-bold">base de données</span> côté client&nbsp;<span v-click="2">propulsée par le <span class="text-red font-bold">differential dataflow</span></span><span v-click="3">, qui se branche directement sur vos appels <span class="text-red font-bold">useQuery existants</span>.</span>
+        <T fr="Une couche de " en="A client-side " /><span class="text-red font-bold"><T fr="base de données" en="database"/></span><T fr=" côté client" en=" layer"/>&nbsp;<span v-click="2"><T fr="propulsée par le " en="powered by " /><span class="text-red font-bold">differential dataflow</span></span><span v-click="3">, <T fr="qui se branche directement sur vos appels " en="that plugs straight into your existing " /><span class="text-red font-bold"><T fr="useQuery " en="useQuery " /></span><T fr="existants" en="calls" />.</span>
       </blockquote>
     </div>
     <p class="citation__author">— <T fr="L'équipe TanStack DB" en="TanStack DB's team" /></p>

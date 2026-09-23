@@ -11,12 +11,21 @@ size: xl
 layout: full
 title: Village heureux
 ---
+
 <img
 v-motion :initial="{ scale: 1.3, y: 60, x: -60 }" :enter="{ scale: 1.1, y: 0, x: 30, transition: { duration: 15000, ease: 'linear'} }"
 src="/panoramix-burnout/village_heureux.png"
 alt="banquet"
 class="absolute top-0 left-0 cover full"
 />
+
+<!--
+The gaulish village
+
+
+The gauls
+-->
+
 ---
 layout: full
 clicks: 1
@@ -215,11 +224,21 @@ layout: image
 image: /panoramix-burnout/stock_ingredients.png
 title: Stock ingrédients
 ---
+
+<!--
+Expiration date
+-->
+
 ---
 layout: image
 image: /panoramix-burnout/livre_peremption.png
 title: Date de péremtion
 ---
+
+<!--
+Expiration date
+-->
+
 ---
 layout: full
 title: Queue devant pano pour medicaments
@@ -235,6 +254,14 @@ layout: image
 image: /panoramix-burnout/plan-siege-romain.png
 title: Siège romain
 ---
+
+<!--
+A siege
+
+
+The romans
+-->
+
 ---
 layout: image
 image: /panoramix-burnout/ifonix.png

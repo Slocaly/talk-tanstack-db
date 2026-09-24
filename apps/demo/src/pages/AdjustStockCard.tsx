@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -23,6 +23,10 @@ export function AdjustStockCard({
   isPending,
 }: AdjustStockCardProps) {
   const [qtyInput, setQtyInput] = useState(() => String(quantity));
+
+  useEffect(() => {
+    setQtyInput(String(quantity));
+  }, [quantity]);
 
   const onSaveQuantity = () => {
     const n = Number.parseFloat(qtyInput.replace(',', '.'));

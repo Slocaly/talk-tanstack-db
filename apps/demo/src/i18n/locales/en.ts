@@ -106,6 +106,7 @@ export const en = {
     newQuantity: 'New quantity',
     newQuantityAria: 'New stock quantity',
     saveQuantity: 'Save quantity',
+    updateFailed: 'Could not update quantity',
     mapTitle: 'Location map',
     mapDesc: 'Approximate landmark in the Armorican forest (OpenStreetMap).',
     noCoords: 'No coordinates are set for this ingredient.',

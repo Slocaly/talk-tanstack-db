@@ -100,6 +100,7 @@ export const fr = {
     newQuantity: 'Nouvelle quantité',
     newQuantityAria: 'Nouvelle quantité en stock',
     saveQuantity: 'Enregistrer la quantité',
+    updateFailed: 'Impossible de mettre à jour la quantité',
     mapTitle: 'Carte du lieu',
     mapDesc: 'Repère approximatif dans la forêt d’Armorique (OpenStreetMap).',
     noCoords: 'Aucune coordonnée n’est renseignée pour cet ingrédient.',

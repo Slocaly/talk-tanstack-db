@@ -32,6 +32,13 @@ layout: image
 image: /rebuild-tanstackdb/differential_dataflow.png
 title: Differential dataflow
 ---
+
+<div class="flex min-h-full items-center justify-center">
+    <TanstackTitle small class="text-5xl" v-click="1" >
+Differential Dataflow
+</TanstackTitle>
+</div>
+
 ---
 layout: image
 image: /rebuild-tanstackdb/ddf-paper.png

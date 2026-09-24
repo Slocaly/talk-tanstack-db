@@ -224,7 +224,7 @@ export function IngredientDetailPage({
         </Card>
 
         <AdjustStock
-          key={`${ingredient.id}-${ingredient.quantity}`}
+          key={ingredient.id}
           ingredientId={ingredient.id}
           quantity={ingredient.quantity}
         />

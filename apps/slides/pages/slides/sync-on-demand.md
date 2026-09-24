@@ -47,10 +47,10 @@ title: Bandwith
     </T>
 </TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
-    <li class="mt-10 w-full flex space-between">3G : 1 mb/s <span class="text-red ml-auto">635 ms</span></li>
-    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>moyenne</small> : 10 mb/s <span class="text-red ml-auto">63.5 ms</span></li>
-    <li class="mt-10 w-full flex space-between">4G&nbsp;<small>bonne</small> : 50 mb/s <span class="text-red ml-auto">12.7 ms</span></li>
-    <li class="mt-10 w-full flex space-between">Fibre : 1000 mb/s <span class="text-red ml-auto">0.635 ms</span></li>
+    <li class="mt-10 w-full flex space-between">3G: 1 mb/s <span class="text-red ml-auto">635 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : 10 mb/s <span class="text-red ml-auto">63.5 ms</span></li>
+    <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : 50 mb/s <span class="text-red ml-auto">12.7 ms</span></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre" en="Fiber" />: 1000 mb/s <span class="text-red ml-auto">0.635 ms</span></li>
 </ul>
 
 ---
@@ -62,10 +62,10 @@ title: Bandwith vs latency
 
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
-    <li class="mt-10 w-full flex space-between">3G : <span class="text-red inline-block ml-auto">635 ms</span>&nbsp;<span class="text-blue">+ 80-500 ms</span></li>
+    <li class="mt-10 w-full flex space-between">3G: <span class="text-red inline-block ml-auto">635 ms</span>&nbsp;<span class="text-blue">+ 80-500 ms</span></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : <span class="text-red inline-block ml-auto">63.5 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : <span class="text-red inline-block ml-auto">12.7 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
-    <li class="mt-10 w-full flex space-between"><T fr="Fibre : " en="Fiber :" /><span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre: " en="Fiber:" /><span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
 </ul>
 
 ---
@@ -76,10 +76,10 @@ title: Bandwith vs latency proportions
 
 <TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
-    <li class="mt-10 w-full flex space-between">3G : <img class="inline ml-auto w-80" src="/local-first/latency/3g.svg" /></li>
+    <li class="mt-10 w-full flex space-between">3G: <img class="inline ml-auto w-80" src="/local-first/latency/3g.svg" /></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-moyenne.svg" /></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-bonne.svg" /></li>
-    <li class="mt-10 w-full flex space-between"><T fr="Fibre : " en="Fiber :" /> <img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre: " en="Fiber:" /> <img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
 </ul>
 
 ---

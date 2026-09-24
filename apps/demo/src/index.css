@@ -630,13 +630,63 @@
   filter: brightness(1.06);
 }
 
+@keyframes error-toast-appear {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes error-toast-flash {
+  0%,
+  100% {
+    background-color: #c41e3a;
+  }
+  50% {
+    background-color: #ff1f3d;
+  }
+}
+
+.error-toast-host {
+  pointer-events: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 1.25rem;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.error-toast-flash {
+  max-width: 28rem;
+  border: 2px solid #1a1a1a;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 4px 4px 0 #1a1a1a;
+  background-color: #c41e3a;
+  animation:
+    error-toast-appear 0.25s ease-out,
+    error-toast-flash 0.45s ease-in-out 0.25s 3;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .monoprix-ad,
   .monoprix-ad::after,
   .monoprix-ad::before,
   .monoprix-ad-flash,
   .monoprix-ad-title,
-  .monoprix-ad-hint {
+  .monoprix-ad-hint,
+  .error-toast-flash {
     animation: none !important;
   }
 

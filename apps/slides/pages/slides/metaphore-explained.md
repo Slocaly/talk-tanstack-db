@@ -144,6 +144,10 @@ title: Stock ingrédients = cache
 </NarrateurBox>
 </v-clicks>
 
+<!--
+Expiration date
+-->
+
 ---
 layout: image
 image: /panoramix-burnout/livre_peremption.png

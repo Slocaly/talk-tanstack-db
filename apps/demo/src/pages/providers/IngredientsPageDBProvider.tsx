@@ -8,7 +8,7 @@ export function IngredientsPageDBProvider() {
     filters: { search, category, inStockOnly, page, pageSize },
   } = useIngredientsFilters();
 
-  const { data: ingredients } = useLiveQuery((q) =>
+  const { data: ingredients, isLoading } = useLiveQuery((q) =>
     q
       .from({ ingredients: ingredientCollection })
       .where(({ ingredients }) => ilike(ingredients.name, `%${search}%`))
@@ -25,7 +25,7 @@ export function IngredientsPageDBProvider() {
       ingredients={ingredients ?? []}
       totalItems={ingredients?.length ?? 0}
       totalPages={100}
-      isPending={false}
+      isPending={isLoading}
       refetch={() => { }}
       error={null}
     />

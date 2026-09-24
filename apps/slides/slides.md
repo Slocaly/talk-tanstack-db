@@ -93,7 +93,7 @@ columns: 3
 <img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
 
 <div class="mt-auto opacity-60 block w-full text-center text-xl">
-  <T fr="Developpeur Frontend" en="Frontend Staff Engineer" />
+  <T fr="Staff Engineer" en="Staff Engineer" />
 </div>
 
 ---
@@ -150,5 +150,5 @@ columns: 3
 <img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
 
 <div class="mt-auto opacity-60 block w-full text-center text-xl">
-  <T fr="Developpeur Frontend" en="Frontend Staff Engineer" />
+  <T fr="Staff Engineer" en="Staff Engineer" />
 </div>

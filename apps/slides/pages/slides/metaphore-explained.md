@@ -180,6 +180,10 @@ title: Livre peremtion =  staled
 </NarrateurBox>
 </v-clicks>
 
+<!--
+Expiration date
+-->
+
 ---
 layout: image
 image: /panoramix-burnout/plan-siege-romain.png

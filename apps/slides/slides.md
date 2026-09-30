@@ -33,8 +33,14 @@ src: ./pages/slides/intro.md
 src: ./pages/slides/panoramix-burnout.md
 ---
 ---
----
+
 <AppPresentation />
+
+<!--
+Temps DevLille : 3:54
+Temps Dernière Répète : 6:23
+-->
+
 ---
 src: ./pages/slides/tanstack-query.md
 ---
@@ -60,13 +66,13 @@ src: ./pages/slides/local-first.md
 ---
 layout: strip
 location: village
-columns: 3
+columns: 2
 ---
 
 ::step1::
 
 <TanstackTitle class="text-5xl text-center w-full block mt-6" small>
-  <img class="w-40 mb-15 rounded-full mx-auto" src="/delphin-aubin.png" />
+  <img class="w-60 mb-15 rounded-full mx-auto" src="/delphin-aubin.png" />
   Delphin <Green>Aubin</Green>
 </TanstackTitle>
 
@@ -78,31 +84,16 @@ columns: 3
 
 ::step2::
 
-<TanstackTitle class="text-3xl text-center w-full block mt-2" small>
-  Open<Blue>Feedback</Blue>
-  <img class="mt-20 w-50 mx-auto" src="/feedback.svg" />
-</TanstackTitle>
-
-::step3::
-
 <TanstackTitle class="text-5xl text-center w-full block mt-6" small>
-  <img class="w-40 mb-15 rounded-full mx-auto" src="/lucas-audart.png" />
+  <img class="w-60 mb-20 rounded-full mx-auto" src="/lucas-audart.png" />
   Lucas <Red>Audart</Red>
 </TanstackTitle>
 
 <img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
 
 <div class="mt-auto opacity-60 block w-full text-center text-xl">
-  <T fr="Developpeur Frontend" en="Frontend Staff Engineer" />
+  <T fr="Staff Engineer" en="Staff Engineer" />
 </div>
-
----
-layout: radial-gradient
----
-
-<img class="absolute top-0 w-full h-140 object-cover" src="/kolecto-background.png" />
-<img class="absolute top-5" src="/kolecto-logo.png" />
-
 
 ---
 layout: image
@@ -112,43 +103,4 @@ title: Merci
 
 <div class="flex h-full w-full items-center justify-center">
   <p class="text-9xl font-bold text-white"><T fr="Merci" en="Thank you" /></p>
-</div>
-
----
-layout: strip
-location: village
-columns: 3
----
-
-::step1::
-
-<TanstackTitle class="text-5xl text-center w-full block mt-6" small>
-  <img class="w-40 mb-15 rounded-full mx-auto" src="/delphin-aubin.png" />
-  Delphin <Green>Aubin</Green>
-</TanstackTitle>
-
-<img class="w-20 absolute top-2 rotate-5" src="/kolecto.svg" />
-
-<div class="mt-auto opacity-60 block w-full text-center text-xl">
-  Staff Engineer
-</div>
-
-::step2::
-
-<TanstackTitle class="text-3xl text-center w-full block mt-2" small>
-  Open<Blue>Feedback</Blue>
-  <img class="mt-20 w-50 mx-auto" src="/feedback.svg" />
-</TanstackTitle>
-
-::step3::
-
-<TanstackTitle class="text-5xl text-center w-full block mt-6" small>
-  <img class="w-40 mb-15 rounded-full mx-auto" src="/lucas-audart.png" />
-  Lucas <Red>Audart</Red>
-</TanstackTitle>
-
-<img class="w-20 absolute top-2 -rotate-5" src="/kolecto.svg" />
-
-<div class="mt-auto opacity-60 block w-full text-center text-xl">
-  <T fr="Developpeur Frontend" en="Frontend Staff Engineer" />
 </div>

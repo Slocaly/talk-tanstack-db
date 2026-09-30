@@ -2,9 +2,15 @@
 layout: radial-gradient
 title: Tanstack DB
 ---
+
 <div class="absolute inset-0 flex items-center justify-center">
     <TanstackTitle class="text-6xl">Tanstack <Orange>DB</Orange></TanstackTitle>
 </div>
+
+<!--
+Temps DevLille : 15:50
+Temps Dernière Répète : 24:23
+-->
 
 ---
 layout: radial-gradient

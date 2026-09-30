@@ -33,6 +33,11 @@ title: Et si tu as 200 pages ?
 </v-clicks>
 </div>
 
+<!--
+Temps DevLille : 28:06
+Temps Dernière Répète : 39:06
+-->
+
 ---
 layout: radial-gradient
 class: text-center

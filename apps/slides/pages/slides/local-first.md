@@ -343,6 +343,7 @@ title: Collections tanstack db (sync engines)
 layout: radial-gradient
 title: Faut-il faire du tanstack DB now ?
 ---
+
 <TanstackTitle small class="text-5xl text-center">
     <T fr="Faut-il faire du Tanstack" en="Could we use Tanstack" /> <Orange>DB</Orange> ?
   </TanstackTitle>
@@ -354,6 +355,11 @@ title: Faut-il faire du tanstack DB now ?
         <li class="mt-10">📈 Learning curve</li>
     </v-clicks>
 </ul>
+
+<!--
+Temps DevLille : 39:55
+Temps Dernière Répète : 59:48
+-->
 
 ---
 layout: radial-gradient

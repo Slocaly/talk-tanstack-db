@@ -37,7 +37,7 @@ title: Et si tu as 200 pages ?
 layout: radial-gradient
 class: text-center
 transition: none
-title: Bandwith
+title: Bandwidth
 ---
 
 <TanstackTitle small class="text-5xl text-center mt-8">
@@ -57,29 +57,29 @@ title: Bandwith
 layout: radial-gradient
 class: text-center
 transition: none
-title: Bandwith vs latency
+title: Bandwidth vs latency
 ---
 
-<TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
+<TanstackTitle small class="text-5xl text-center"><Orange>Bandwidth</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
     <li class="mt-10 w-full flex space-between">3G: <span class="text-red inline-block ml-auto">635 ms</span>&nbsp;<span class="text-blue">+ 80-500 ms</span></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : <span class="text-red inline-block ml-auto">63.5 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : <span class="text-red inline-block ml-auto">12.7 ms</span>&nbsp;<span class="text-blue">+ 20-80 ms</span></li>
-    <li class="mt-10 w-full flex space-between"><T fr="Fibre: " en="Fiber:" /><span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre :" en="Fiber:" />&nbsp;<span class="text-red inline-block ml-auto">0.635 ms</span>&nbsp;<span class="text-blue">+ 5-30 ms</span></li>
 </ul>
 
 ---
 layout: radial-gradient
 class: text-center
-title: Bandwith vs latency proportions
+title: Bandwidth vs latency proportions
 ---
 
-<TanstackTitle small class="text-5xl text-center"><Orange>Bandwith</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
+<TanstackTitle small class="text-5xl text-center"><Orange>Bandwidth</Orange> &#8800; <Blue>Latency</Blue></TanstackTitle>
 <ul class="mt-10 text-4xl w-160">
     <li class="mt-10 w-full flex space-between">3G: <img class="inline ml-auto w-80" src="/local-first/latency/3g.svg" /></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="moyenne" en="average" /></small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-moyenne.svg" /></li>
     <li class="mt-10 w-full flex space-between">4G&nbsp;<small><T fr="bonne" en="good" /></small> : <img class="inline ml-auto w-80" src="/local-first/latency/4g-bonne.svg" /></li>
-    <li class="mt-10 w-full flex space-between"><T fr="Fibre: " en="Fiber:" /> <img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
+    <li class="mt-10 w-full flex space-between"><T fr="Fibre :" en="Fiber:" />&nbsp;<img class="inline ml-auto w-80" src="/local-first/latency/fibre.svg" /></li>
 </ul>
 
 ---

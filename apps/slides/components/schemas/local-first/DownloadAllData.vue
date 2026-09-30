@@ -418,7 +418,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        <T fr="qui pourraient nous être utile" en="could be useful to us" />
+        <T fr="qui pourraient nous être utiles" en="could be useful to us" />
       </text>
     </g>
     <g

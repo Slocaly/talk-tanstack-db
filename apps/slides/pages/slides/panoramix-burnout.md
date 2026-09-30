@@ -84,7 +84,7 @@ title: conseil village
     :stroke-width="4"
     :text-style="{ fontSize: '14px', color: '#111' }"
 >
-<T fr="Asterix et Obelix vont t'aider pour les ingrédients" en="Asterix and Obelix will help you with the ingredients" />
+<T fr="Astérix et Obélix vont t'aider pour les ingrédients" en="Asterix and Obelix will help you with the ingredients" />
 </SpeechBubble>
 
 ---
@@ -93,12 +93,12 @@ location: panoramix_home
 left: obelix:happy
 right: panoramix:happy
 transition: fade
-title: Obelix va chercher guy
+title: Obélix va chercher du gui
 ---
 
 ::right::
 <T
- fr="Obelix, Va me chercher du gui"
+ fr="Obélix, va me chercher du gui"
  en="Obelix, go get me some mistletoe"
 />
 
@@ -108,7 +108,7 @@ location: panoramix_home
 right: panoramix:scorn
 left: obelix:smoke
 transition: fade
-title: Obelix disparait
+title: Obélix disparaît
 ---
 
 ::right::
@@ -129,12 +129,12 @@ location: panoramix_home
 left: obelix:happy
 right: panoramix:scorn
 transition: fade
-title: Obelix va chercher 3 brins d'orges
+title: Obélix va chercher 3 brins d'orge
 ---
 
 ::right::
 <T
- fr="Et 3 brins d'orges"
+ fr="Et 3 brins d'orge"
  en="And three stalks of barley"
 />
 
@@ -150,7 +150,7 @@ location: panoramix_home
 left: obelix:happy
 right: panoramix:scorn
 transition: fade
-title: Obelix va chercher ecume de vague
+title: Obélix va chercher de l'écume de vague
 ---
 
 ::right::
@@ -180,7 +180,7 @@ title: Asterix va me chercher tous les ingrédients
  en="I need some mistletoe,"
 /><br />
 <T
- fr="3 brins d'orges et de l'ecume de vague"
+ fr="3 brins d'orge et de l'écume de vague"
  en="three stalks of barley and some sea foam"
 />
 
@@ -211,7 +211,7 @@ title: Plan Asterix
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
 layout: full
-title: Asterix & Obelix qui à raison ?
+title: Astérix & Obélix, qui a raison ?
 ---
 <img
     v-motion :initial="{ scale: 1, y: -100, x: 0 }" :enter="{ scale: 1.2, y: 0, x: 0, transition: { duration: 15000} }"
@@ -232,7 +232,7 @@ Expiration date
 ---
 layout: image
 image: /panoramix-burnout/livre_peremption.png
-title: Date de péremtion
+title: Date de péremption
 ---
 
 <!--
@@ -241,7 +241,7 @@ Expiration date
 
 ---
 layout: full
-title: Queue devant pano pour medicaments
+title: Queue devant Pano pour médicaments
 ---
 <img
     v-motion :initial="{ scale: 1.5, y: -120, x: -240 }" :enter="{ scale: 1.2, y: -100, x: 50, transition: { duration: 3000, delay: 1500} }"

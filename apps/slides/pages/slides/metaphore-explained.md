@@ -71,12 +71,12 @@ location: panoramix_home
 left: asterix:happy
 right: panoramix:happy
 transition: fade
-title: Asterix va me chercher toutes les ingrédients
+title: Astérix va me chercher tous les ingrédients
 ---
 
 ::right::
 <T
- fr="Asterix, va me chercher toutes les pages"
+ fr="Astérix, va me chercher toutes les pages"
  en="Asterix, go get me all the pages."
 />
 
@@ -151,7 +151,7 @@ Expiration date
 ---
 layout: image
 image: /panoramix-burnout/livre_peremption.png
-title: Livre peremtion =  staled
+title: Livre péremption = stale
 ---
 
 <v-clicks>
@@ -183,7 +183,7 @@ title: Livre peremtion =  staled
 ---
 layout: image
 image: /panoramix-burnout/plan-siege-romain.png
-title: Siege romain  = offline
+title: Siège romain = offline
 ---
 <v-clicks>
     <NarrateurBox class="mt-100 text-black text-4xl flex items-center justify-center">Offline</NarrateurBox>

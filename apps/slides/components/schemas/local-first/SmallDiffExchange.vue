@@ -471,7 +471,7 @@
         dominant-baseline="alphabetic"
       >
         <T
-          fr="2. On n'échange que des petits diff"
+          fr="2. On n'échange que des petits diffs"
           en="2. We only exchange small data diffs"
         />
       </text>

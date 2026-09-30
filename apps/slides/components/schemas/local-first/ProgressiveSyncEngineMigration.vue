@@ -609,7 +609,7 @@
         direction="ltr"
         dominant-baseline="alphabetic"
       >
-        Tanstack DB
+        TanStack DB
       </text>
     </g>
     <g

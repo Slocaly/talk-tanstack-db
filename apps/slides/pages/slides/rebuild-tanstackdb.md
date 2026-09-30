@@ -7,7 +7,7 @@ title: Est-ce que c'est si compliqué
 <div class="flex min-h-full items-center justify-center">
     <TanstackTitle small class="text-5xl" v-click="1" >
 <T
- fr="Est-ce que c'est si  compliqué ? 🤔"
+ fr="Est-ce que c'est si compliqué ? 🤔"
  en="Is it really that complicated? 🤔"
 />
 </TanstackTitle>

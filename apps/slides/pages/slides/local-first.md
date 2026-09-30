@@ -191,7 +191,7 @@ title: On load toutes les données
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-title: On echange que des diff
+title: On n'échange que des diffs
 
 ---
 <SmallDiffExchange/>
@@ -210,7 +210,7 @@ title: Loading Figma
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-title: How changes works schema
+title: How changes work schema
 ---
 <LocalFirstVsTraditionalAppSchema/>
 
@@ -265,7 +265,7 @@ title: Backend dans une stack Localfirst
 </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">📦 <T fr="Charge le contexte initiale" en="Loads the initial context" /></li>
+        <li class="mt-10">📦 <T fr="Charge le contexte initial" en="Loads the initial context" /></li>
         <li class="mt-10">🔃 <T fr="Utilise un sync engine" en="Use a sync engine" /></li>
         <li class="mt-10">✅ <T fr="Valide les inputs utilisateur" en="Validates user inputs" /></li>
         <li class="mt-10">🔒 Authorization / Authentication</li>
@@ -290,7 +290,7 @@ title: Applis connues en localfirst
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-title: Faut il faire du local first ?
+title: Faut-il faire du local first ?
 ---
 
 <TanstackTitle small class="text-5xl">
@@ -309,26 +309,26 @@ title: Faut il faire du local first ?
 layout: radial-gradient
 color: "#00BC7DFF"
 transition: none
-title: Vendor locking sync engine
+title: Vendor lock-in sync engine
 ---
 <SyncEngineVendorLocking/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-title: Tanstack DB abstraction côté front 
+title: TanStack DB abstraction côté front
 ---
 <SyncEngineVendorLockingTanstackDb/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
 transition: none
-title: Tanstack DB migration progressive
+title: TanStack DB migration progressive
 ---
 <ProgressiveSyncEngineMigration/>
 ---
 layout: radial-gradient
 color: "#00BC7DFF"
-title: Collections tanstack db (sync engines)
+title: Collections TanStack DB (sync engines)
 ---
 
 <div class="relative flex h-full w-full items-center justify-center">
@@ -341,15 +341,15 @@ title: Collections tanstack db (sync engines)
 </div>
 ---
 layout: radial-gradient
-title: Faut-il faire du tanstack DB now ?
+title: Faut-il faire du TanStack DB ?
 ---
 <TanstackTitle small class="text-5xl text-center">
-    <T fr="Faut-il faire du Tanstack" en="Could we use Tanstack" /> <Orange>DB</Orange> ?
+    <T fr="Faut-il faire du TanStack" en="Should we use TanStack" /> <Orange>DB</Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
-        <li class="mt-10">🖥️ <T fr="Ne s'applique qu'aux &quot;applications&quot;" en="Apply only to &quot;applications&quot;" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
-        <li class="mt-10">✨ <T fr="Change les habitudes" en="Change habits" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">🖥️ <T fr="Ne s'applique qu'aux &quot;applications&quot;" en="Applies only to &quot;applications&quot;" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
+        <li class="mt-10">✨ <T fr="Change les habitudes" en="Changes habits" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
         <li class="mt-10">🚫 <T fr="Les live query ont des limites" en="Live queries aren't limitless" /></li>
         <li class="mt-10">📈 Learning curve</li>
     </v-clicks>
@@ -357,14 +357,14 @@ title: Faut-il faire du tanstack DB now ?
 
 ---
 layout: radial-gradient
-title: Faut-il faire du tanstack DB now ?
+title: Faut-il faire du TanStack DB maintenant ?
 ---
 <TanstackTitle small class="text-5xl text-center">
-    <T fr="Faut-il faire du Tanstack" en="Could we use Tanstack" /> <Orange>DB</Orange> <br /><Orange><T fr="Maintenant" en="Now" /></Orange> ?
+    <T fr="Faut-il faire du TanStack" en="Should we use TanStack" /> <Orange>DB</Orange> <br /><Orange><T fr="Maintenant" en="Now" /></Orange> ?
   </TanstackTitle>
 <ul class="mt-10 text-4xl">
     <v-clicks>
         <li class="mt-20">👶️ <T fr="C'est en" en="It's in" /> <TanstackTitle small px-2 rounded-3 bg-black text-white>beta</TanstackTitle></li>
-        <li class="mt-20">✨ <T fr="L'IA préfère" en="AI prefer" /> <TanstackTitle small>tanstack <Red>query</Red></TanstackTitle></li>
+        <li class="mt-20">✨ <T fr="L'IA préfère" en="AI prefers" /> <TanstackTitle small>TanStack <Red>Query</Red></TanstackTitle></li>
     </v-clicks>
 </ul>

@@ -1,8 +1,8 @@
 ---
 theme: comics
-title: Ils sont fous chez Tanstack ils ont mis une DB dans le front !
+title: Ils sont fous chez TanStack, ils ont mis une DB dans le front !
 info: |
-  ## Conference sur TanstackDB
+  ## Conférence sur TanStack DB
 # apply UnoCSS classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing

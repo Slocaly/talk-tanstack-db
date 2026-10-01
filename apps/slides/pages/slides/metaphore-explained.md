@@ -4,12 +4,12 @@ location: panoramix_home
 left: obelix:happy
 right: panoramix:happy
 transition: fade
-title: Obelix va me chercher la page 1
+title: Obélix va me chercher la page 1
 ---
 
 ::right::
 <T
- fr="Obelix, Va me chercher la page 1"
+ fr="Obélix, va me chercher la page 1"
  en="Go get me page 1"
 />
 
@@ -17,7 +17,7 @@ title: Obelix va me chercher la page 1
 layout: image
 image: /panoramix-burnout/plan_with_pages.png
 transition: none
-title: Plan Obelix
+title: Plan Obélix
 ---
 ## <RunningCharacter :ingredient-positions="[{x: -250, y:-80}]" character="obelix"/>
 ---
@@ -26,7 +26,7 @@ location: panoramix_home
 left: obelix:happy
 right: panoramix:happy
 transition: fade
-title: Obelix va me chercher la page 2
+title: Obélix va me chercher la page 2
 ---
 
 ::right::
@@ -39,7 +39,7 @@ title: Obelix va me chercher la page 2
 layout: image
 image: /panoramix-burnout/plan_with_pages.png
 transition: none
-title: Plan Obelix
+title: Plan Obélix
 ---
 
 ## <RunningCharacter :ingredient-positions="[{x: -200, y: 80}]" character="obelix" />
@@ -49,7 +49,7 @@ location: panoramix_home
 left: obelix:happy
 right: panoramix:scorn
 transition: fade
-title: Obelix va me chercher la page 3
+title: Obélix va me chercher la page 3
 ---
 
 ::right::
@@ -62,7 +62,7 @@ title: Obelix va me chercher la page 3
 layout: image
 image: /panoramix-burnout/plan_with_pages.png
 transition: none
-title: Plan Obelix
+title: Plan Obélix
 ---
 ## <RunningCharacter :ingredient-positions="[{x: 160, y: 280}]" character="obelix" />
 ---
@@ -84,7 +84,7 @@ title: Astérix va me chercher tous les ingrédients
 layout: image
 image: /panoramix-burnout/plan_with_pages.png
 transition: none
-title: Plan Asterix
+title: Plan Astérix
 ---
 ## <RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---

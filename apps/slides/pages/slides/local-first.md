@@ -350,7 +350,7 @@ title: Faut-il faire du TanStack DB ?
     <v-clicks>
         <li class="mt-10">🖥️ <T fr="Ne s'applique qu'aux &quot;applications&quot;" en="Applies only to &quot;applications&quot;" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
         <li class="mt-10">✨ <T fr="Change les habitudes" en="Changes habits" /> <TanstackTitle class="text-sm" small># Local <Green>first</Green></TanstackTitle></li>
-        <li class="mt-10">🚫 <T fr="Les live query ont des limites" en="Live queries aren't limitless" /></li>
+        <li class="mt-10">🚫 <T fr="Les live queries ont des limites" en="Live queries aren't limitless" /></li>
         <li class="mt-10">📈 Learning curve</li>
     </v-clicks>
 </ul>

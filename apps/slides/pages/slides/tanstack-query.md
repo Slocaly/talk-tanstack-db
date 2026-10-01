@@ -121,7 +121,7 @@ color: "#FE9A00FF"
 opacity: 0.20
 ---
 
-<TanstackTitle class="text-4xl text-left" small><T><template #fr>Librairies de <Red>store</Red></template><template #en><Red>Store</Red> Librairies</template></T></TanstackTitle>
+<TanstackTitle class="text-4xl text-left" small><T><template #fr>Librairies de <Red>store</Red></template><template #en><Red>Store</Red> Libraries</template></T></TanstackTitle>
 
 <div class="store-logos-scatter relative h-full min-h-80 w-full">
   <div class="store-logo" style="top: 36%; left: 4%; transform: rotate(9deg);">

@@ -120,7 +120,7 @@ title: Obélix disparaît
 ---
 layout: image
 image: /panoramix-burnout/plan.png
-title: Plan obelix
+title: Plan Obélix
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}]" character="obelix"/>
 ---
@@ -141,7 +141,7 @@ title: Obélix va chercher 3 brins d'orge
 ---
 layout: image
 image: /panoramix-burnout/plan.png
-title: Plan obelix
+title: Plan Obélix
 ---
 <RunningCharacter :ingredient-positions="[{x: -200, y: 80}]" character="obelix" />
 ---
@@ -162,7 +162,7 @@ title: Obélix va chercher de l'écume de vague
 ---
 layout: image
 image: /panoramix-burnout/plan.png
-title: Plan obelix
+title: Plan Obélix
 ---
 <RunningCharacter :ingredient-positions="[{x: 160, y: 280}]" character="obelix" />
 ---
@@ -171,7 +171,7 @@ location: panoramix_home
 left: asterix:happy
 right: panoramix:happy
 transition: fade
-title: Asterix va me chercher tous les ingrédients
+title: Astérix va me chercher tous les ingrédients
 ---
 
 ::right::
@@ -189,7 +189,7 @@ layout: dialog
 location: panoramix_home
 left: asterix:happy
 right: panoramix:happy
-title: Asterix OK
+title: Astérix OK
 ---
 
 <T
@@ -199,14 +199,14 @@ title: Asterix OK
 
 ::right::
 <T
- fr="Merci Asterix !"
+ fr="Merci Astérix !"
  en="Thanks Asterix!"
 />
 
 ---
 layout: image
 image: /panoramix-burnout/plan.png
-title: Plan Asterix
+title: Plan Astérix
 ---
 <RunningCharacter :ingredient-positions="[{x: -250, y:-80}, {x: -200, y: 80}, {x: 160, y: 280}, {x: 260, y: -80}]" character="asterix" />
 ---
@@ -216,7 +216,7 @@ title: Astérix & Obélix, qui a raison ?
 <img
     v-motion :initial="{ scale: 1, y: -100, x: 0 }" :enter="{ scale: 1.2, y: 0, x: 0, transition: { duration: 15000} }"
     src="/panoramix-burnout/dispute-asterix-obelix.png"
-    alt="dispute asterix et obelix"
+    alt="dispute Astérix et Obélix"
     class="absolute top-0 left-0 cover full"
 />
 ---

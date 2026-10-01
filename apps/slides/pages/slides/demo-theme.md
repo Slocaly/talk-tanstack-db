@@ -185,7 +185,7 @@ location: forest
 > C'est pas faux : le cache, c'est la vie.
 
 ::author::
-— Obelix, après un banquet
+— Obélix, après un banquet
 
 ---
 layout: strip
@@ -221,7 +221,7 @@ right: panoramix:happy
 transition: fade
 ---
 
-Asterix, va me chercher du gui !
+Astérix, va me chercher du gui !
 
 ::right::
 Et du gui frais, pas du vieux stock !

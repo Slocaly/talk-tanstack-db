@@ -82,7 +82,7 @@ layout: radial-gradient
 ---
 
 <div class="h-110 flex flex-col justify-center items-center">
-  <TanstackTitle class="text-6xl text-center"><T><template #fr>Et si on refaisait l'app <br/>d'<Orange>Ifonix</Orange> ?</template><template #en>What if we rebuilt the <br/><Orange>Ifonix</Orange> app?</template></T></TanstackTitle>
+  <TanstackTitle class="text-6xl text-center"><T><template #fr>Et si on refaisait l'app <br/>d'<Orange>Iphonix</Orange> ?</template><template #en>What if we rebuilt the <br/><Orange>Iphonix</Orange> app?</template></T></TanstackTitle>
 </div>
 
 ---

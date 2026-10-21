@@ -58,6 +58,10 @@ src: ./pages/slides/local-first.md
 ---
 
 ---
+src: ./pages/slides/outro.md
+---
+
+---
 layout: strip
 location: village
 columns: 3

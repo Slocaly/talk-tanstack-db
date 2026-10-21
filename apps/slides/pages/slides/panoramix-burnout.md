@@ -240,16 +240,6 @@ Expiration date
 -->
 
 ---
-layout: full
-title: Queue devant Pano pour médicaments
----
-<img
-    v-motion :initial="{ scale: 1.5, y: -120, x: -240 }" :enter="{ scale: 1.2, y: -100, x: 50, transition: { duration: 3000, delay: 1500} }"
-    src="/panoramix-burnout/queue_devant_maison_panoramix.png"
-    alt="banquet"
-    class="absolute top-0 left-0 cover full"
-/>
----
 layout: image
 image: /panoramix-burnout/plan-siege-romain.png
 title: Siège romain
